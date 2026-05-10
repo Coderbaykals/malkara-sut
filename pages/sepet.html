@@ -422,6 +422,58 @@
     };
   }
 </script>
+
+<!-- Cookie consent banner -->
+<div x-data="cookieConsent()"
+     x-show="!decided"
+     x-cloak
+     x-transition:enter-start="cookie-slide-down"
+     x-transition:enter-end="cookie-slide-up"
+     x-transition.duration.400ms
+     class="cookie-banner"
+     role="dialog"
+     aria-label="Çerez tercihleri"
+     style="display:none">
+  <div class="cookie-content">
+    <p>
+      <strong>Çerez kullanıyoruz.</strong>
+      Sitemizde size daha iyi deneyim sunmak için sepet ve oturum çerezleri kullanıyoruz. Detayları
+      <a :href="cookiePolicyUrl">Çerez Politikası</a>'nda bulabilirsiniz.
+    </p>
+    <div class="cookie-actions">
+      <button @click="reject()" class="btn-cookie btn-cookie-ghost" type="button">Reddet</button>
+      <button @click="accept()" class="btn-cookie btn-cookie-primary" type="button">Kabul Et</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function cookieConsent() {
+    return {
+      decided: false,
+      get cookiePolicyUrl() {
+        return window.location.pathname.includes('/pages/')
+          ? 'cerez-politikasi.html'
+          : 'cerez-politikasi.html';
+      },
+      init() {
+        try {
+          this.decided = localStorage.getItem('msub_cookies') !== null;
+        } catch (e) {
+          this.decided = false;
+        }
+      },
+      accept() {
+        try { localStorage.setItem('msub_cookies', 'accepted'); } catch (e) {}
+        this.decided = true;
+      },
+      reject() {
+        try { localStorage.setItem('msub_cookies', 'rejected'); } catch (e) {}
+        this.decided = true;
+      }
+    };
+  }
+</script>
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </body>
 </html>
