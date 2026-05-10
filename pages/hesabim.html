@@ -509,6 +509,7 @@
 <script src="../assets/js/cart-ui.js" defer></script>
 <script src="../assets/js/social.js" defer></script>
 <script src="../assets/js/data-loader.js" defer></script>
+<script src="../assets/js/analytics.js" defer></script>
 
 <!-- Search modal (Alpine-controlled) -->
 <div x-data="{
@@ -653,7 +654,7 @@
       accept() {
         try { localStorage.setItem('msub_cookies', 'accepted'); } catch (e) {}
         this.decided = true;
-        // Future: window.dispatchEvent(new CustomEvent('msub:consent', { detail: { allowed: true } }))
+        try { window.dispatchEvent(new Event('cookies:accepted')); } catch (e) {}
       },
       reject() {
         try { localStorage.setItem('msub_cookies', 'rejected'); } catch (e) {}

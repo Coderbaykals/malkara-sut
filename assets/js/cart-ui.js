@@ -82,6 +82,14 @@
     flashButton(btn);
     // Sprint 6: dispatch event so cart-added modal opens
     window.dispatchEvent(new CustomEvent('cart:added', { detail: { product } }));
+    // Sprint 8: GA4 add_to_cart event (consent-gated, no-op if not loaded)
+    if (window.MSUB.analytics) {
+      window.MSUB.analytics.track('add_to_cart', {
+        currency: 'TRY',
+        value: product.price * product.qty,
+        items: [{ item_id: product.id, item_name: product.name, price: product.price, quantity: product.qty }],
+      });
+    }
   }
 
   function init() {
