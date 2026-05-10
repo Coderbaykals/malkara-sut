@@ -225,3 +225,22 @@
 
 /* Body scroll lock when mobile menu open */
 body.no-scroll { overflow: hidden; }
+
+
+/* ACTIVE PAGE INDICATOR (aria-current="page") */
+nav.desktop-nav a[aria-current="page"] {
+  color: var(--green-deep);
+  font-weight: 600;
+  border-bottom: 2px solid var(--green-deep);
+  padding-bottom: 4px;
+}
+.mobile-menu-nav a[aria-current="page"] {
+  color: var(--green-deep);
+  font-weight: 600;
+  background: var(--cream);
+  border-radius: 8px;
+}
+.icon-btn[aria-current="page"] {
+  border-color: var(--green-deep);
+  background: var(--cream);
+}
