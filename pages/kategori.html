@@ -588,7 +588,19 @@
 <script src="../assets/js/data-loader.js" defer></script>
 
 <!-- Search modal (Alpine-controlled) -->
-<div x-data="{ open: false, query: '' }"
+<div x-data="{
+       open: false,
+       query: '',
+       results: [],
+       loading: false,
+       async search() {
+         const q = this.query.trim();
+         if (q.length < 2) { this.results = []; return; }
+         this.loading = true;
+         this.results = await window.MSUB.data.searchProducts(q);
+         this.loading = false;
+       }
+     }"
      @open-search.window="open = true; $nextTick(() => $refs.input && $refs.input.focus())"
      @keydown.escape.window="open = false"
      x-show="open"
@@ -603,6 +615,7 @@
       <input type="search"
              x-ref="input"
              x-model="query"
+             @input.debounce.200ms="search()"
              placeholder="Ürün, kategori veya üretici ara…"
              class="search-input"
              autocomplete="off">
@@ -621,44 +634,28 @@
         <a href="abonelik.html">Abonelik</a>
       </div>
     </div>
-    <div x-show="query.trim()" class="search-results">
-      <p class="search-pending">
-        "<span x-text="query"></span>" için canlı arama yakında etkinleşecek. Şimdilik kategori sayfasından filtreleyebilirsiniz.
-      </p>
-      <a :href="`kategori.html?q=${encodeURIComponent(query)}`" class="btn btn-primary">Tüm ürünleri gör</a>
+    <div x-show="query.trim() && results.length > 0" class="search-results">
+      <p class="search-results-count" x-text="results.length + ' ürün bulundu'"></p>
+      <ul class="search-results-list">
+        <template x-for="p in results.slice(0, 8)" :key="p.id">
+          <li>
+            <a :href="'urun-detay.html?id=' + p.id" class="search-result-item">
+              <img :src="p.image" :alt="p.name" loading="lazy">
+              <div>
+                <strong x-text="p.name"></strong>
+                <small><span x-text="p.producerVillage"></span> köyü · <span x-text="p.price + ' ₺'"></span></small>
+              </div>
+            </a>
+          </li>
+        </template>
+      </ul>
+      <a :href="`kategori.html?q=${encodeURIComponent(query)}`" class="search-all-link">
+        Tüm sonuçları gör →
+      </a>
     </div>
-  </div>
-</div>
-
-<!-- Cart-added modal -->
-<div x-data="cartAddedModal()"
-     x-show="open"
-     x-cloak
-     x-transition.opacity
-     @cart:added.window="show($event.detail.product)"
-     @keydown.escape.window="close()"
-     @click.self="close()"
-     class="cart-modal-overlay"
-     style="display:none">
-  <div class="cart-modal" role="dialog" aria-modal="true" aria-label="Sepete eklendi">
-    <button @click="close()" class="cart-modal-close" type="button" aria-label="Kapat">×</button>
-    <div class="cart-modal-icon">✓</div>
-    <h3>Sepetinize Eklendi</h3>
-    <div class="cart-modal-product" x-show="product">
-      <img :src="product?.image" :alt="product?.name">
-      <div class="cart-modal-product-info">
-        <h4 x-text="product?.name"></h4>
-        <small x-text="product?.producerVillage ? product.producerVillage + ' köyü' : ''"></small>
-        <strong x-text="product?.price + ' ₺'"></strong>
-      </div>
-    </div>
-    <div class="cart-modal-summary">
-      <span>Sepetinizde <strong x-text="cartCount"></strong> ürün</span>
-      <strong x-text="cartTotal + ' ₺'"></strong>
-    </div>
-    <div class="cart-modal-actions">
-      <button class="btn btn-ghost" @click="close()" type="button">Alışverişe Devam</button>
-      <a :href="cartUrl" class="btn btn-primary">Sepete Git →</a>
+    <div x-show="query.trim() && query.length >= 2 && !loading && results.length === 0" class="search-empty">
+      <p>"<span x-text="query"></span>" için sonuç bulunamadı.</p>
+      <p class="search-pending">Farklı kelimeler deneyebilir veya kategorilere göz atabilirsiniz.</p>
     </div>
   </div>
 </div>
