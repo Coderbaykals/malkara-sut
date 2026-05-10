@@ -80,7 +80,8 @@
 
     window.MSUB.cart.addItem(product);
     flashButton(btn);
-    showToast(`${product.name} sepete eklendi`);
+    // Sprint 6: dispatch event so cart-added modal opens
+    window.dispatchEvent(new CustomEvent('cart:added', { detail: { product } }));
   }
 
   function init() {
