@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Malkara Süt Üreticileri Birliği — Trakya'nın bereketi">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1F3A2E"/>
+      <stop offset="100%" stop-color="#2D5A3D"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#5A8A6B" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#1F3A2E" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- M monogram -->
+  <circle cx="600" cy="210" r="78" fill="#F7F1E3"/>
+  <text x="600" y="244" text-anchor="middle"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="86" font-weight="700" fill="#1F3A2E">M</text>
+
+  <!-- Brand name -->
+  <text x="600" y="370" text-anchor="middle"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="56" font-weight="600" fill="#F7F1E3">Malkara Süt Üreticileri Birliği</text>
+
+  <!-- Tagline -->
+  <text x="600" y="438" text-anchor="middle"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-style="italic" font-size="30" fill="#D4A574">Trakya'nın bereketi, sofranızın hakiki konuğu</text>
+
+  <!-- Stats divider -->
+  <line x1="450" y1="500" x2="750" y2="500" stroke="#F7F1E3" stroke-opacity="0.25" stroke-width="1"/>
+
+  <!-- Stats -->
+  <text x="600" y="540" text-anchor="middle"
+        font-family="Helvetica, Arial, sans-serif"
+        font-size="20" font-weight="500" fill="#F7F1E3" fill-opacity="0.85"
+        letter-spacing="2">57 KÖY · 92 SOĞUTMA MERKEZİ · 105 TON / GÜN</text>
+</svg>
