@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WhatsApp Sipariş Süreci — Malkara Süt Üreticileri Birliği</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/base.css">
+<link rel="stylesheet" href="../assets/css/components.css">
+<link rel="stylesheet" href="../assets/css/pages/legal.css">
+</head>
+<body x-data="{ mobileOpen: false, cartCount: 0 }" :class="{ 'no-scroll': mobileOpen }" @msub:cart-updated.window="cartCount = $event.detail.count; if ($refs.cartBadge) { $refs.cartBadge.classList.add('pop'); setTimeout(() => $refs.cartBadge.classList.remove('pop'), 320); }">
+
+<header>
+  <div class="nav-wrap">
+    <a href="../index.html" class="logo">
+      <div class="logo-mark">M</div>
+      <div class="logo-text">
+        Malkara
+        <small>Süt Üreticileri Birliği</small>
+      </div>
+    </a>
+    <nav class="desktop-nav">
+      <ul>
+        <li><a href="kategori.html">Ürünler</a></li>
+        <li><a href="ureticiler.html">Üreticiler</a></li>
+        <li><a href="hikayemiz.html">Hikayemiz</a></li>
+        <li><a href="abonelik.html">Abonelik</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="iletisim.html" aria-current="page">İletişim</a></li>
+      </ul>
+    </nav>
+    <div class="nav-actions">
+      <button type="button" class="icon-btn search-trigger" @click="$dispatch(\'open-search\')" aria-label="Ara"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></button>
+      <a href="giris-kayit.html" class="icon-btn" aria-label="Hesap">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </a>
+      <a href="sepet.html" class="icon-btn" aria-label="Sepet">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-count" x-ref="cartBadge" x-text="cartCount > 0 ? cartCount : ''" :class="{ 'has-items': cartCount > 0 }"></span>
+      </a>
+      <button class="icon-btn mobile-menu-toggle" aria-label="Menüyü aç" @click="mobileOpen = true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="help-hero">
+  <div class="help-hero-wrap">
+    <h1>Nasıl <em>yardımcı olabiliriz?</em></h1>
+    <p>Sıkça sorulan sorular, kargo ve iade detayları, sözleşme metinleri ve doğrudan iletişim — hepsi tek yerde.</p>
+    <div class="help-search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" placeholder="Sorularınızı yazın... (örn: 'iade nasıl yapılır?')">
+      <button>Ara</button>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK CATEGORIES -->
+<section class="quick-cats">
+  <div class="container">
+    <div class="quick-grid">
+      <div class="quick-cat" onclick="document.querySelector('#siparis').scrollIntoView({behavior:'smooth'})">
+        <div class="icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/></svg>
+        </div>
+        <strong>Sipariş</strong>
+        <span>12 makale</span>
+      </div>
+      <div class="quick-cat" onclick="document.querySelector('#kargo').scrollIntoView({behavior:'smooth'})">
+        <div class="icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+        <strong>Kargo</strong>
+        <span>8 makale</span>
+      </div>
+      <div class="quick-cat" onclick="document.querySelector('#iade').scrollIntoView({behavior:'smooth'})">
+        <div class="icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.74 9.74 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+        </div>
+        <strong>İade</strong>
+        <span>6 makale</span>
+      </div>
+      <div class="quick-cat" onclick="document.querySelector('#abonelik').scrollIntoView({behavior:'smooth'})">
+        <div class="icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 0 1-9 9m9-9a9 9 0 0 0-9-9m9 9H3m9 9a9 9 0 0 1-9-9m9 9c-2.5-2.5-4-5.5-4-9s1.5-6.5 4-9m0 18c2.5-2.5 4-5.5 4-9s-1.5-6.5-4-9"/></svg>
+        </div>
+        <strong>Abonelik</strong>
+        <span>10 makale</span>
+      </div>
+      <div class="quick-cat" onclick="document.querySelector('#urun').scrollIntoView({behavior:'smooth'})">
+        <div class="icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>
+        </div>
+        <strong>Ürünler</strong>
+        <span>14 makale</span>
+      </div>
+      <div class="quick-cat" onclick="document.querySelector('#kvkk').scrollIntoView({behavior:'smooth'})">
+        <div class="icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <strong>KVKK & Yasal</strong>
+        <span>5 belge</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN -->
+<main class="main">
+  <article class="legal-page">
+    <header class="legal-header">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">Anasayfa</a>
+        <span class="sep">/</span>
+        <span class="current" aria-current="page">WhatsApp Sipariş Süreci</span>
+      </nav>
+      <h1>WhatsApp Sipariş Süreci</h1>
+      <p class="legal-subtitle">Mesafeli satış sözleşmesi yerine, sipariş ve teslimat şartları</p>
+      <p class="legal-updated">Son güncelleme: 10 Mayıs 2026</p>
+    </header>
+
+    <div class="legal-info-box">
+      <strong>📌 Taslak metin:</strong> Bu metin, Birlik avukatı tarafından onaylandıktan sonra güncellenecektir. Mevcut versiyon hukuki bağlayıcılık taşımayan bir taslaktır.
+    </div>
+
+    <aside class="legal-toc">
+      <h3>İçindekiler</h3>
+      <ol>
+        <li><a href="#sec-1">Önemli Bilgilendirme</a></li>
+        <li><a href="#sec-2">Sipariş Süreci</a></li>
+        <li><a href="#sec-3">Teslimat Şartları</a></li>
+        <li><a href="#sec-4">Cayma Hakkı ve İade</a></li>
+        <li><a href="#sec-5">İletişim</a></li>
+      </ol>
+    </aside>
+
+    <div class="legal-content">
+      <section class="legal-section" id="sec-1">
+        <h2>Önemli Bilgilendirme</h2>
+        <div class="info-box">
+                <p><strong>Sitemizde otomatik ödeme veya elektronik sözleşme imzalama yoktur.</strong> Tüm siparişler WhatsApp üzerinden manuel olarak alınır ve onaylanır. Bu nedenle klasik bir mesafeli satış sözleşmesi imzalanmaz; bunun yerine WhatsApp üzerinden Birlik ile karşılıklı mutabakat sağlanır.</p>
+              </div>
+      </section>
+      <section class="legal-section" id="sec-2">
+        <h2>Sipariş Süreci</h2>
+        <ol>
+                <li>Sitede sepete ürün eklersiniz.</li>
+                <li>Sepet sayfasından teslimat bilgilerini girersiniz.</li>
+                <li>"WhatsApp ile Sipariş Ver" butonuna tıklarsınız.</li>
+                <li>WhatsApp uygulaması açılır; sepet içeriğinizle hazırlanmış mesaj görünür.</li>
+                <li>Mesajı Birlik'in WhatsApp hattına gönderirsiniz.</li>
+                <li>Birlik personeli en geç 24 saat içinde size dönerek siparişi onaylar.</li>
+                <li>Onay sonrası ödeme bilgilerini ve teslimat tarihini iletir.</li>
+                <li>Ürünleriniz seçilen güne göre soğuk zincirle kargoya verilir.</li>
+              </ol>
+      </section>
+      <section class="legal-section" id="sec-3">
+        <h2>Teslimat Şartları</h2>
+        <ul>
+                <li><strong>Bölge:</strong> Marmara bölgesi (İstanbul, Tekirdağ, Edirne, Kırklareli, Çanakkale, Bursa, Kocaeli, Sakarya, Yalova, Bilecik)</li>
+                <li><strong>Süre:</strong> 24-48 saat arası, soğuk zincirle</li>
+                <li><strong>Teslimat günleri:</strong> Salı, Perşembe, Cumartesi</li>
+                <li><strong>Kargo ücreti:</strong> 350 ₺ üzeri ücretsiz, altı için sabit ücret (güncel ücret site-config'te)</li>
+              </ul>
+      </section>
+      <section class="legal-section" id="sec-4">
+        <h2>Cayma Hakkı ve İade</h2>
+        <p>Tüketici Kanunu kapsamında, gıda ürünleri için cayma hakkı sınırlıdır:</p>
+              <ul>
+                <li>Çabuk bozulan veya son kullanma tarihi geçebilecek ürünlerde cayma hakkı bulunmaz (Mesafeli Sözleşmeler Yönetmeliği madde 15/c).</li>
+                <li>Ürün teslim alındığında <strong>+4°C / +6°C arasında, ambalajı bozulmamış ve son kullanma tarihi geçerli olmalıdır.</strong></li>
+                <li>Aksi durumda Birlik ile WhatsApp üzerinden iletişime geçin: ürünü değiştiririz veya bedeli iade ederiz.</li>
+              </ul>
+              <p><strong>İade için süre:</strong> Teslim alma anından itibaren 24 saat. Sonrasında soğuk zincir bütünlüğü garanti edilemez.</p>
+      </section>
+      <section class="legal-section" id="sec-5">
+        <h2>İletişim</h2>
+        <p>Sipariş, teslimat veya iade ile ilgili her türlü konuda:</p>
+              <ul>
+                <li><strong>WhatsApp:</strong> Sepet sayfasından otomatik açılır</li>
+                <li><strong>Telefon:</strong> +90 282 673 81 50</li>
+                <li><strong>E-posta:</strong> info@malkarasutureticileri.org.tr</li>
+              </ul>
+      </section>
+    </div>
+  </article>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="logo">
+          <div class="logo-mark">M</div>
+          <div class="logo-text">
+            Malkara
+            <small>Süt Üreticileri Birliği</small>
+          </div>
+        </a>
+        <p>Trakya'nın 57 köyünden, 92 soğutma merkezinden, doğrudan sofranıza. Türkiye'nin en büyük süt üreticileri birliklerinden biri.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Alışveriş</h4>
+        <ul>
+          <li><a href="kategori.html">Tüm Ürünler</a></li>
+          <li><a href="kategori.html#sut">Süt</a></li>
+          <li><a href="kategori.html#yogurt">Yoğurt</a></li>
+          <li><a href="kategori.html#peynir">Peynir</a></li>
+          <li><a href="kategori.html#tereyagi">Tereyağı</a></li>
+          <li><a href="kategori.html#setler">Hediye Setleri</a></li>
+          <li><a href="abonelik.html">Abonelik</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Birlik</h4>
+        <ul>
+          <li><a href="hikayemiz.html">Hikâyemiz</a></li>
+          <li><a href="ureticiler.html">Üreticilerimiz</a></li>
+          <li><a href="harita.html">Köy Haritası</a></li>
+          <li><a href="hikayemiz.html#sertifikalar">Sertifikalar</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="blog.html#basinda-biz">Basında Biz</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>İletişim</h4>
+        <ul>
+          <li><a href="tel:+902826738150">+90 282 673 81 50</a></li>
+          <li><a href="mailto:info@malkarasutureticileri.org.tr">info@malkarasutureticileri.org.tr</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Malkara Süt Üreticileri Birliği. Tüm hakları saklıdır.</div>
+      <div class="footer-legal">
+        <a href="kvkk.html">KVKK</a>
+        <a href="cerez-politikasi.html">Çerez Politikası</a>
+        <a href="mesafeli-satis.html">Mesafeli Satış</a>
+        <a href="gizlilik.html">Gizlilik</a>
+      </div>
+      <div class="footer-social">
+        <a href="javascript:void(0)" data-social="instagram" class="social-icon coming-soon" aria-label="Instagram (yakında)" title="Yakında"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg></a>
+        <a href="javascript:void(0)" data-social="facebook" class="social-icon coming-soon" aria-label="Facebook (yakında)" title="Yakında"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="javascript:void(0)" data-social="linkedin" class="social-icon coming-soon" aria-label="LinkedIn (yakında)" title="Yakında"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="javascript:void(0)" data-social="youtube" class="social-icon coming-soon" aria-label="YouTube (yakında)" title="Yakında"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- Mobile menu (slide-in panel, Alpine.js controlled) -->
+<div x-show="mobileOpen"
+     x-transition.opacity.duration.200ms
+     @click="mobileOpen = false"
+     class="mobile-menu-backdrop"
+     style="display:none"></div>
+
+<aside x-show="mobileOpen"
+       x-transition:enter="mobile-menu-enter"
+       x-transition:enter-start="mobile-menu-out"
+       x-transition:enter-end="mobile-menu-in"
+       x-transition:leave="mobile-menu-leave"
+       x-transition:leave-start="mobile-menu-in"
+       x-transition:leave-end="mobile-menu-out"
+       @keydown.escape.window="mobileOpen = false"
+       class="mobile-menu-panel"
+       role="dialog" aria-modal="true" aria-label="Mobil menü"
+       style="display:none">
+  <button @click="mobileOpen = false" aria-label="Menüyü kapat" class="mobile-menu-close">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <nav class="mobile-menu-nav">
+    <ul>
+      <li><a href="kategori.html">Ürünler</a></li>
+      <li><a href="ureticiler.html">Üreticiler</a></li>
+      <li><a href="hikayemiz.html">Hikayemiz</a></li>
+      <li><a href="abonelik.html">Abonelik</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="iletisim.html">İletişim</a></li>
+    </ul>
+  </nav>
+  <div class="mobile-menu-footer">
+    <a href="https://wa.me/905XXXXXXXXX" class="mobile-menu-whatsapp" target="_blank" rel="noopener">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4a7.94 7.94 0 0 0-6.88 11.9L4 20l4.2-1.1a7.94 7.94 0 0 0 3.85.98h.01a7.94 7.94 0 0 0 7.94-7.92 7.88 7.88 0 0 0-2.4-5.64zm-5.55 12.2h-.01a6.59 6.59 0 0 1-3.36-.92l-.24-.14-2.5.65.67-2.43-.16-.25a6.6 6.6 0 1 1 12.24-3.5 6.6 6.6 0 0 1-6.64 6.59zm3.62-4.94c-.2-.1-1.18-.58-1.36-.65-.18-.07-.32-.1-.45.1-.13.2-.51.65-.63.78-.12.13-.23.15-.43.05-.2-.1-.84-.31-1.6-.99a6 6 0 0 1-1.1-1.37c-.12-.2-.01-.31.09-.41.09-.09.2-.23.3-.35.1-.12.13-.2.2-.33.06-.13.03-.25-.02-.35-.05-.1-.45-1.08-.61-1.48-.16-.39-.33-.34-.45-.34h-.39a.74.74 0 0 0-.54.25c-.18.2-.7.69-.7 1.68 0 .99.72 1.94.82 2.08.1.13 1.42 2.16 3.43 3.03.48.21.86.33 1.15.43.48.15.92.13 1.27.08.39-.06 1.18-.48 1.34-.95.17-.46.17-.86.12-.95-.05-.08-.18-.13-.38-.23z"/></svg>
+      WhatsApp ile İletişim
+    </a>
+    <a href="tel:+902826738150" class="mobile-menu-phone">+90 282 673 81 50</a>
+  </div>
+</aside>
+
+<script src="../assets/js/config.js" defer></script>
+<script src="../assets/js/cart.js" defer></script>
+<script src="../assets/js/whatsapp.js" defer></script>
+<script src="../assets/js/cart-ui.js" defer></script>
+<script src="../assets/js/social.js" defer></script>
+<script src="../assets/js/data-loader.js" defer></script>
+
+<!-- Search modal (Alpine-controlled) -->
+<div x-data="{
+       open: false,
+       query: '',
+       results: [],
+       loading: false,
+       async search() {
+         const q = this.query.trim();
+         if (q.length < 2) { this.results = []; return; }
+         this.loading = true;
+         this.results = await window.MSUB.data.searchProducts(q);
+         this.loading = false;
+       }
+     }"
+     @open-search.window="open = true; $nextTick(() => $refs.input && $refs.input.focus())"
+     @keydown.escape.window="open = false"
+     x-show="open"
+     x-cloak
+     x-transition.opacity
+     class="search-modal-overlay"
+     @click.self="open = false"
+     style="display:none">
+  <div class="search-modal" role="dialog" aria-modal="true" aria-label="Ara">
+    <div class="search-header">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="search-icon"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="search"
+             x-ref="input"
+             x-model="query"
+             @input.debounce.200ms="search()"
+             placeholder="Ürün, kategori veya üretici ara…"
+             class="search-input"
+             autocomplete="off">
+      <button @click="open = false" class="search-close" aria-label="Kapat" type="button">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div x-show="!query.trim()" class="search-empty">
+      <h3>Popüler Aramalar</h3>
+      <div class="search-suggestions">
+        <a href="kategori.html?cat=sut">Süt</a>
+        <a href="kategori.html?cat=yogurt">Yoğurt</a>
+        <a href="kategori.html?cat=peynir">Peynir</a>
+        <a href="kategori.html?cat=tereyagi">Tereyağı</a>
+        <a href="ureticiler.html">Üreticilerimiz</a>
+        <a href="abonelik.html">Abonelik</a>
+      </div>
+    </div>
+    <div x-show="query.trim() && results.length > 0" class="search-results">
+      <p class="search-results-count" x-text="results.length + ' ürün bulundu'"></p>
+      <ul class="search-results-list">
+        <template x-for="p in results.slice(0, 8)" :key="p.id">
+          <li>
+            <a :href="'urun-detay.html?id=' + p.id" class="search-result-item">
+              <img :src="p.image" :alt="p.name" loading="lazy">
+              <div>
+                <strong x-text="p.name"></strong>
+                <small><span x-text="p.producerVillage"></span> köyü · <span x-text="p.price + ' ₺'"></span></small>
+              </div>
+            </a>
+          </li>
+        </template>
+      </ul>
+      <a :href="`kategori.html?q=${encodeURIComponent(query)}`" class="search-all-link">
+        Tüm sonuçları gör →
+      </a>
+    </div>
+    <div x-show="query.trim() && query.length >= 2 && !loading && results.length === 0" class="search-empty">
+      <p>"<span x-text="query"></span>" için sonuç bulunamadı.</p>
+      <p class="search-pending">Farklı kelimeler deneyebilir veya kategorilere göz atabilirsiniz.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function cartAddedModal() {
+    return {
+      open: false,
+      product: null,
+      cartCount: 0,
+      cartTotal: 0,
+      get cartUrl() {
+        return window.location.pathname.includes('/pages/') ? 'sepet.html' : 'sepet.html';
+      },
+      show(product) {
+        this.product = product;
+        if (window.MSUB && window.MSUB.cart) {
+          this.cartCount = window.MSUB.cart.getCount();
+          this.cartTotal = window.MSUB.cart.getTotal();
+        }
+        this.open = true;
+      },
+      close() { this.open = false; }
+    };
+  }
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</body>
+</html>
