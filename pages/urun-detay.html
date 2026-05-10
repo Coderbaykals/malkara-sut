@@ -274,16 +274,16 @@
 
 <!-- DETAILS / TABS -->
 <section class="details-section">
-  <div class="tabs">
-    <button class="tab active">Açıklama</button>
-    <button class="tab">Besin Değerleri</button>
-    <button class="tab">İçindekiler & Saklama</button>
-    <button class="tab">Üretici Hikâyesi</button>
-    <button class="tab">Yorumlar (128)</button>
+  <div class="tabs" x-data="{ active: 'desc', go(id) { this.active = id; const el = document.getElementById('tab-' + id); if (el) el.scrollIntoView({behavior:'smooth', block:'start'}); } }">
+    <button class="tab" :class="{ active: active==='desc' }" @click="go('desc')" type="button">Açıklama</button>
+    <button class="tab" :class="{ active: active==='nutrition' }" @click="go('nutrition')" type="button">Besin Değerleri</button>
+    <button class="tab" :class="{ active: active==='storage' }" @click="go('storage')" type="button">İçindekiler & Saklama</button>
+    <button class="tab" :class="{ active: active==='story' }" @click="go('story')" type="button">Üretici Hikâyesi</button>
+    <button class="tab" :class="{ active: active==='reviews' }" @click="go('reviews')" type="button">Yorumlar (128)</button>
   </div>
 
   <div class="details-grid">
-    <div class="details-block">
+    <div class="details-block" id="tab-desc">
       <h3>A2 protein, kremamsı tat, hakiki süt</h3>
       <p>Evrenbey Köyü'ndeki Yıldız ailesi sürüsünden, sadece A2 beta-kazein proteini taşıyan ineklerden elde edilmiş tam yağlı pastörize sütümüz. Sabah sağılır, aynı gün soğutma merkezimize ulaştırılır, düşük ısıda kısa süreli pastörize edilir ve cam şişeye dolum yapılır.</p>
       <p>Tat olarak klasik A1 sütünden daha kremamsı ve yumuşak bir profile sahiptir. Çocuklu aileler ve sindirim hassasiyeti olan tüketiciler tarafından sıkça tercih edilir.</p>
@@ -312,7 +312,7 @@
       </ul>
     </div>
 
-    <div class="nutrition">
+    <div class="nutrition" id="tab-nutrition">
       <div class="nutrition-title">Besin Değerleri</div>
       <div class="nutrition-sub">100 ml süt için</div>
       <table class="nutrition-table">
@@ -326,7 +326,7 @@
         <tr><td>Kalsiyum</td><td>120 mg</td></tr>
         <tr><td>D Vitamini</td><td>1,2 µg</td></tr>
       </table>
-      <div class="ingredients-block">
+      <div class="ingredients-block" id="tab-storage">
         <h4>İçindekiler</h4>
         <p>Pastörize tam yağlı inek sütü (%100). Hiçbir koruyucu, katkı ya da süt tozu içermez.</p>
       </div>
@@ -338,7 +338,7 @@
   </div>
 
   <!-- PRODUCER STORY -->
-  <div class="producer-story">
+  <div class="producer-story" id="tab-story">
     <div class="producer-story-img"></div>
     <div class="producer-story-content">
       <div class="eyebrow">Bu sütü kim sağdı?</div>
@@ -364,7 +364,7 @@
 </section>
 
 <!-- REVIEWS -->
-<section class="reviews-section">
+<section class="reviews-section" id="tab-reviews">
   <div class="reviews-header">
     <div class="review-summary">
       <div class="big-rating">4.9</div>
@@ -450,7 +450,7 @@
   </div>
 
   <div class="all-reviews-link">
-    <a href="#reviews">128 yorumun tümünü gör →</a>
+    <a href="#tab-reviews">128 yorumun tümünü gör →</a>
   </div>
 </section>
 
