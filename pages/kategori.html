@@ -27,6 +27,16 @@
 <link rel="stylesheet" href="../assets/css/base.css">
 <link rel="stylesheet" href="../assets/css/components.css">
 <link rel="stylesheet" href="../assets/css/pages/category.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Anasayfa", "item": "https://coderbaykals.github.io/malkara-sut/" },
+    { "@type": "ListItem", "position": 2, "name": "Tüm Ürünler", "item": "https://coderbaykals.github.io/malkara-sut/pages/kategori.html" }
+  ]
+}
+</script>
 </head>
 <body x-data="{ mobileOpen: false, cartCount: 0 }" :class="{ 'no-scroll': mobileOpen }" @msub:cart-updated.window="cartCount = $event.detail.count; if ($refs.cartBadge) { $refs.cartBadge.classList.add('pop'); setTimeout(() => $refs.cartBadge.classList.remove('pop'), 320); }">
 

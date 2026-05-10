@@ -27,6 +27,33 @@
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/components.css">
 <link rel="stylesheet" href="assets/css/pages/home.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Malkara Süt Üreticileri Birliği",
+  "alternateName": "MSÜB",
+  "url": "https://coderbaykals.github.io/malkara-sut/",
+  "logo": "https://coderbaykals.github.io/malkara-sut/assets/images/logo/logo.svg",
+  "description": "Trakya'nın 57 köyünden gelen süt, yoğurt, peynir ve daha fazlası. Soğuk zincirle Marmara sofralarına 24 saatte teslim.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Gazibey, Tevfikbey Cd. No:3",
+    "addressLocality": "Malkara",
+    "addressRegion": "Tekirdağ",
+    "postalCode": "59310",
+    "addressCountry": "TR"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+90-282-673-81-50",
+    "contactType": "customer service",
+    "email": "info@malkarasutureticileri.org.tr",
+    "availableLanguage": ["Turkish"]
+  },
+  "areaServed": ["İstanbul", "Tekirdağ", "Edirne", "Kırklareli", "Çanakkale", "Bursa", "Kocaeli", "Sakarya", "Yalova", "Bilecik"]
+}
+</script>
 </head>
 <body x-data="{ mobileOpen: false, cartCount: 0 }" :class="{ 'no-scroll': mobileOpen }" @msub:cart-updated.window="cartCount = $event.detail.count; if ($refs.cartBadge) { $refs.cartBadge.classList.add('pop'); setTimeout(() => $refs.cartBadge.classList.remove('pop'), 320); }">
 

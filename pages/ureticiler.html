@@ -27,6 +27,18 @@
 <link rel="stylesheet" href="../assets/css/base.css">
 <link rel="stylesheet" href="../assets/css/components.css">
 <link rel="stylesheet" href="../assets/css/pages/producers.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "İsmail Yıldız — Evrenbey" },
+    { "@type": "ListItem", "position": 2, "name": "Ayşe Kaplan — Karaidemir" },
+    { "@type": "ListItem", "position": 3, "name": "Mehmet Demir — Pirinçeli" },
+    { "@type": "ListItem", "position": 4, "name": "Hasan Şahin — Sağlamtaş" }
+  ]
+}
+</script>
 </head>
 <body x-data="{ mobileOpen: false, cartCount: 0 }" :class="{ 'no-scroll': mobileOpen }" @msub:cart-updated.window="cartCount = $event.detail.count; if ($refs.cartBadge) { $refs.cartBadge.classList.add('pop'); setTimeout(() => $refs.cartBadge.classList.remove('pop'), 320); }">
 

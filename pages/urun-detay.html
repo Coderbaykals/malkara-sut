@@ -764,6 +764,7 @@
           this.relatedProducts = all
             .filter(p => p.category === this.product.category && p.id !== this.product.id)
             .slice(0, 4);
+          this.injectSchemas();
         }
         this.loading = false;
       },
