@@ -321,3 +321,18 @@
   margin-top: 14px;
   line-height: 1.5;
 }
+
+/* "Alışverişe Devam" link in cart header (replaces SSL secure-badge) */
+.cart-back-link {
+  font-size: 14px;
+  color: var(--green-deep);
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s;
+}
+.cart-back-link:hover { color: var(--green-mid); }
+@media (max-width: 600px) {
+  .cart-back-link { font-size: 13px; }
+}

@@ -4,7 +4,7 @@
 // State stored under 'msub_cart':
 //   { items: [{id, name, slug, price, qty, image, unit, producerVillage}], updatedAt }
 //
-// Emits CustomEvent 'msub:cart:updated' on document with detail
+// Emits CustomEvent 'msub:cart-updated' on document with detail
 //   { items, count, subtotal, shipping, total }
 // after every mutation. Header counter and cart page listen for this.
 
@@ -80,11 +80,11 @@
 
   function emitUpdate(state) {
     const detail = summarize(state);
-    // Dispatch on window so Alpine `@msub:cart:updated.window` listeners
+    // Dispatch on window so Alpine `@msub:cart-updated.window` listeners
     // (header cart counter, sepet cartPage refresh) receive the event.
     // Default CustomEvent bubbles is false, so a document.dispatchEvent
     // would not propagate to window listeners.
-    window.dispatchEvent(new CustomEvent('msub:cart:updated', { detail }));
+    window.dispatchEvent(new CustomEvent('msub:cart-updated', { detail }));
   }
 
   const api = {
