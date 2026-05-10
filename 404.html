@@ -151,50 +151,38 @@
       </div>
       <a href="pages/kategori.html">Tüm ürünler →</a>
     </div>
-    <div class="popular-grid">
-      <article class="product-mini">
-        <div class="product-mini-img">
-          <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1550583724-b2692b85b150?w=400&q=80" alt="">
-        </div>
-        <div class="product-mini-info">
-          <div class="pre">Süt · Evrenbey</div>
-          <h4>A2 Tam Yağlı Süt 1L</h4>
-          <span class="price">89₺</span>
-        </div>
-      </article>
-      <article class="product-mini">
-        <div class="product-mini-img">
-          <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&q=80" alt="">
-        </div>
-        <div class="product-mini-info">
-          <div class="pre">Yoğurt · Karaidemir</div>
-          <h4>Süzme Yoğurt 750g</h4>
-          <span class="price">125₺</span>
-        </div>
-      </article>
-      <article class="product-mini">
-        <div class="product-mini-img">
-          <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1452195100486-9cc805987862?w=400&q=80" alt="">
-        </div>
-        <div class="product-mini-info">
-          <div class="pre">Peynir · Pirinçeli</div>
-          <h4>Manda Beyaz Peynir 500g</h4>
-          <span class="price">285₺</span>
-        </div>
-      </article>
-      <article class="product-mini">
-        <div class="product-mini-img">
-          <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=400&q=80" alt="">
-        </div>
-        <div class="product-mini-info">
-          <div class="pre">Tereyağı · Sağlamtaş</div>
-          <h4>Köy Tereyağı, Tuzsuz 250g</h4>
-          <span class="price">165₺</span>
-        </div>
-      </article>
+    <div class="popular-grid" x-data="popular404()" x-init="init()">
+      <template x-for="p in featured" :key="p.id">
+        <a :href="'pages/urun-detay.html?id=' + p.id" class="product-mini">
+          <div class="product-mini-img">
+            <img :src="p.image" :alt="p.name" loading="lazy" decoding="async">
+          </div>
+          <div class="product-mini-info">
+            <div class="pre" x-text="categoryLabel(p.category) + ' · ' + p.producerVillage"></div>
+            <h4 x-text="p.name + ' ' + p.unit"></h4>
+            <span class="price" x-text="p.price + '₺'"></span>
+          </div>
+        </a>
+      </template>
     </div>
-  </div>
-</section>
+  </section>
+
+  <script>
+    function popular404() {
+      return {
+        featured: [],
+        async init() {
+          const list = await window.MSUB.data.getFeaturedProducts();
+          this.featured = list.slice(0, 4);
+        },
+        categoryLabel(cat) {
+          const labels = { sut: 'Süt', yogurt: 'Yoğurt', peynir: 'Peynir',
+            tereyagi: 'Tereyağı', manda: 'Manda', fonksiyonel: 'Fonksiyonel', set: 'Set' };
+          return labels[cat] || cat;
+        }
+      };
+    }
+  </script>
 
 <footer>
   <div class="footer-wrap">
