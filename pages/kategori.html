@@ -102,404 +102,317 @@
 </div>
 
 <!-- MAIN -->
-<main class="main">
+<main class="main" x-data="categoryPage()" x-init="init()">
 
-  <!-- SIDEBAR FILTERS -->
-  <aside class="sidebar">
-    <div class="active-filters">
-      <div class="active-filters-title">Aktif Filtreler</div>
-      <div class="chip-row">
-        <span class="chip">A2 Süt <button>×</button></span>
-        <span class="chip">Tam Yağlı <button>×</button></span>
-        <span class="chip">Evrenbey <button>×</button></span>
-      </div>
-      <button class="clear-all">Tümünü temizle</button>
+  <!-- HERO -->
+  <section class="cat-hero">
+    <div class="cat-hero-wrap">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html">Anasayfa</a>
+        <span class="sep">/</span>
+        <span class="current" aria-current="page" x-text="pageTitle"></span>
+      </nav>
+      <h1 x-text="pageTitle"></h1>
+      <p class="cat-hero-meta" x-text="resultCount + ' ürün'"></p>
     </div>
+  </section>
 
-    <div class="filter-block">
-      <div class="filter-title">
-        Yağ Oranı
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-      </div>
-      <div class="filter-options">
-        <label class="filter-opt"><input type="checkbox" checked> Tam yağlı (3,5%) <span class="count">5</span></label>
-        <label class="filter-opt"><input type="checkbox"> Yarım yağlı (1,8%) <span class="count">4</span></label>
-        <label class="filter-opt"><input type="checkbox"> Yağsız (<0,5%) <span class="count">3</span></label>
-      </div>
-    </div>
+  <div class="catalog-layout">
 
-    <div class="filter-block">
-      <div class="filter-title">
-        Süt Tipi
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+    <!-- FILTERS SIDEBAR -->
+    <aside class="catalog-filters" id="filters">
+      <div class="filters-header">
+        <h3>Filtreler</h3>
+        <button class="filters-clear" @click="clearFilters()" x-show="activeFiltersCount > 0">Temizle</button>
       </div>
-      <div class="filter-options">
-        <label class="filter-opt"><input type="checkbox" checked> A2 protein <span class="count">4</span></label>
-        <label class="filter-opt"><input type="checkbox"> Manda sütü <span class="count">2</span></label>
-        <label class="filter-opt"><input type="checkbox"> Standart inek <span class="count">6</span></label>
-        <label class="filter-opt"><input type="checkbox"> Çocuk için zenginleştirilmiş <span class="count">2</span></label>
-      </div>
-    </div>
 
-    <div class="filter-block">
-      <div class="filter-title">
-        Üretici Köy
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-      </div>
-      <div class="filter-options">
-        <label class="filter-opt"><input type="checkbox" checked> Evrenbey <span class="count">3</span></label>
-        <label class="filter-opt"><input type="checkbox"> Karaidemir <span class="count">2</span></label>
-        <label class="filter-opt"><input type="checkbox"> Sağlamtaş <span class="count">2</span></label>
-        <label class="filter-opt"><input type="checkbox"> Pirinçeli <span class="count">2</span></label>
-        <label class="filter-opt"><input type="checkbox"> Çiftlik karması <span class="count">3</span></label>
-      </div>
-    </div>
-
-    <div class="filter-block">
-      <div class="filter-title">
-        Sertifika
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-      </div>
-      <div class="filter-options">
-        <label class="filter-opt"><input type="checkbox"> Helal <span class="count">12</span></label>
-        <label class="filter-opt"><input type="checkbox"> Organik <span class="count">3</span></label>
-        <label class="filter-opt"><input type="checkbox"> ISO 22000 <span class="count">12</span></label>
-        <label class="filter-opt"><input type="checkbox"> TSE <span class="count">12</span></label>
-      </div>
-    </div>
-
-    <div class="filter-block">
-      <div class="filter-title">
-        Fiyat Aralığı
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-      </div>
-      <div class="range-wrap">
-        <input type="range" min="0" max="200" value="120" class="range-input">
-        <div class="range-vals">
-          <span>40 ₺</span>
-          <span>200 ₺</span>
+      <div class="filter-group">
+        <h4>Kategori</h4>
+        <div class="filter-options">
+          <template x-for="cat in categories" :key="cat.value">
+            <label class="filter-option">
+              <input type="radio" :value="cat.value" x-model="filters.category" @change="updateUrl()">
+              <span x-text="cat.label"></span>
+              <span class="filter-count" x-text="'(' + countByCategory(cat.value) + ')'"></span>
+            </label>
+          </template>
         </div>
       </div>
-    </div>
 
-    <div class="filter-block">
-      <div class="filter-title">
-        Ambalaj
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-      </div>
-      <div class="filter-options">
-        <label class="filter-opt"><input type="checkbox"> Cam şişe (1L) <span class="count">5</span></label>
-        <label class="filter-opt"><input type="checkbox"> Karton kutu (1L) <span class="count">7</span></label>
-        <label class="filter-opt"><input type="checkbox"> Aile boyu (2L) <span class="count">3</span></label>
-      </div>
-    </div>
-
-    <div class="filter-block">
-      <div class="filter-title">
-        Abonelik Uygun
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-      </div>
-      <div class="filter-options">
-        <label class="filter-opt"><input type="checkbox"> Haftalık abonelik <span class="count">10</span></label>
-        <label class="filter-opt"><input type="checkbox"> 2 haftada bir <span class="count">12</span></label>
-      </div>
-    </div>
-  </aside>
-
-  <!-- PRODUCT AREA -->
-  <div class="product-area">
-
-    <!-- TOOLBAR -->
-    <div class="toolbar">
-      <div class="result-count">
-        <strong>12 ürün</strong> bulundu · 1-9 gösteriliyor
-      </div>
-      <button class="filter-mobile-btn">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg>
-        Filtrele
-      </button>
-      <div class="toolbar-right">
-        <select class="sort-select">
-          <option>Önerilen sıralama</option>
-          <option>En yeniler</option>
-          <option>En çok satanlar</option>
-          <option>Fiyat: artan</option>
-          <option>Fiyat: azalan</option>
-          <option>En yüksek puanlı</option>
-        </select>
-        <div class="view-toggle">
-          <button class="active" aria-label="Grid view">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-          </button>
-          <button aria-label="List view">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-          </button>
+      <div class="filter-group">
+        <h4>Üretici</h4>
+        <div class="filter-options">
+          <template x-for="producer in producers" :key="producer.id">
+            <label class="filter-option">
+              <input type="checkbox" :value="producer.id" x-model="filters.producers" @change="updateUrl()">
+              <span x-text="producer.name + ' / ' + producer.village"></span>
+            </label>
+          </template>
         </div>
       </div>
-    </div>
 
-    <!-- FEATURED BANNER -->
-    <div class="feature-banner">
-      <div class="feature-banner-bg"></div>
-      <div class="feature-banner-content">
-        <div class="feature-banner-eyebrow">Üretici Hikâyesi</div>
-        <h3>Evrenbey'in <em>A2 sürüsü</em></h3>
-        <p>İsmail amca 28 yıldır A2 protein üreten ineklerini özel besliyor. Sade beslenme, açık otlatma, antibiyotik yok. Bu kategorideki ürünlerin %40'ı Evrenbey'den.</p>
-        <a href="hikayemiz.html" class="feature-banner-link">Hikâyeyi oku <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <div class="filter-group">
+        <h4>Fiyat Aralığı</h4>
+        <input type="range" class="price-range"
+               :min="priceRange.min" :max="priceRange.max" step="10"
+               x-model.number="filters.priceMax"
+               @change="updateUrl()">
+        <p class="price-range-label">
+          <span x-text="filters.priceMax + ' ₺'"></span> ve altı
+        </p>
       </div>
-    </div>
 
-    <!-- PRODUCT GRID -->
-    <div class="product-grid">
+      <div class="filter-group" x-show="availableTags.length > 0">
+        <h4>Etiketler</h4>
+        <div class="filter-tags">
+          <template x-for="tag in availableTags" :key="tag">
+            <button type="button"
+                    class="filter-tag"
+                    :class="{ active: filters.tags.includes(tag) }"
+                    @click="toggleTag(tag); updateUrl()"
+                    x-text="tag"></button>
+          </template>
+        </div>
+      </div>
+    </aside>
 
-      <article class="product-card">
-        <div class="product-img">
-          <div class="product-tags">
-            <span class="product-tag bio">A2 Süt</span>
-            <span class="product-tag sub">Aboneliğe Uygun</span>
-          </div>
-          <button class="wishlist-btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-          </button>
-          <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?w=600&q=80" alt="A2 Tam Yağlı">
-          <button class="quick-add add-to-cart" data-product-id="p1-a2-tam-yagli-pastorize-sut" data-product-name="A2 Tam Yağlı Pastörize Süt" data-product-price="89" data-product-image="https://images.unsplash.com/photo-1550583724-b2692b85b150?w=600&q=80" data-product-unit="1L" data-product-village="Evrenbey">+ Sepete Ekle</button>
-        </div>
-        <div class="product-info">
-          <div class="product-meta">Evrenbey Köyü <span class="dot"></span> İsmail Yıldız</div>
-          <h3 class="product-name">A2 Tam Yağlı Pastörize Süt</h3>
-          <p class="product-desc">Cam şişede, 24 saat içinde sağılmış. 1L</p>
-          <div class="shelf-info">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            5-7 gün raf ömrüyle ulaşır
-          </div>
-          <div class="product-bottom">
-            <div class="product-price">89₺ <small>/ 1L</small></div>
-            <div class="product-rating">★ 4.9 <span class="review-count">(128)</span></div>
-          </div>
-        </div>
-      </article>
+    <!-- CATALOG MAIN -->
+    <section class="catalog-main">
 
-      <article class="product-card">
-        <div class="product-img">
-          <div class="product-tags">
-            <span class="product-tag bio">A2 Süt</span>
-          </div>
-          <button class="wishlist-btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-          </button>
-          <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?w=600&q=80&hue=10" alt="A2 Yarım Yağlı" style="filter: brightness(1.05);">
-          <button class="quick-add add-to-cart" data-product-id="p2-a2-yarim-yagli-pastorize-sut" data-product-name="A2 Yarım Yağlı Pastörize Süt" data-product-price="79" data-product-image="https://images.unsplash.com/photo-1550583724-b2692b85b150?w=600&q=80&hue=10" data-product-unit="1L" data-product-village="Evrenbey">+ Sepete Ekle</button>
+      <!-- TOOLBAR -->
+      <div class="catalog-toolbar">
+        <div class="active-chips" x-show="activeFiltersCount > 0">
+          <template x-for="chip in activeChips" :key="chip.type + ':' + chip.value">
+            <span class="filter-chip">
+              <span x-text="chip.label"></span>
+              <button @click="removeFilter(chip.type, chip.value); updateUrl()" aria-label="Kaldır">×</button>
+            </span>
+          </template>
         </div>
-        <div class="product-info">
-          <div class="product-meta">Evrenbey Köyü <span class="dot"></span> İsmail Yıldız</div>
-          <h3 class="product-name">A2 Yarım Yağlı Pastörize Süt</h3>
-          <p class="product-desc">Karton kutuda, hafif tüketim. 1L</p>
-          <div class="shelf-info">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            5-7 gün raf ömrüyle ulaşır
-          </div>
-          <div class="product-bottom">
-            <div class="product-price">79₺ <small>/ 1L</small></div>
-            <div class="product-rating">★ 4.8 <span class="review-count">(96)</span></div>
-          </div>
+        <div class="catalog-sort">
+          <label>
+            <span>Sırala</span>
+            <select x-model="sortBy" @change="updateUrl()">
+              <option value="featured">Öne Çıkanlar</option>
+              <option value="price-asc">Fiyat: Düşükten Yükseğe</option>
+              <option value="price-desc">Fiyat: Yüksekten Düşüğe</option>
+              <option value="newest">Yeni Eklenenler</option>
+              <option value="name">İsme Göre</option>
+            </select>
+          </label>
         </div>
-      </article>
+      </div>
 
-      <article class="product-card">
-        <div class="product-img">
-          <div class="product-tags">
-            <span class="product-tag new">Yeni</span>
-            <span class="product-tag">Premium</span>
-          </div>
-          <button class="wishlist-btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-          </button>
-          <img src="https://images.unsplash.com/photo-1628088062854-d1870b4553da?w=600&q=80" alt="Manda Sütü">
-          <button class="quick-add add-to-cart" data-product-id="p3-manda-sutu-tam-yagli" data-product-name="Manda Sütü, Tam Yağlı" data-product-price="145" data-product-image="https://images.unsplash.com/photo-1628088062854-d1870b4553da?w=600&q=80" data-product-unit="500ml" data-product-village="Pirinçeli">+ Sepete Ekle</button>
-        </div>
-        <div class="product-info">
-          <div class="product-meta">Pirinçeli Köyü <span class="dot"></span> Mehmet Demir</div>
-          <h3 class="product-name">Manda Sütü, Tam Yağlı</h3>
-          <p class="product-desc">Yüksek protein, yoğun krema. 500ml cam</p>
-          <div class="shelf-info">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            4-6 gün raf ömrüyle ulaşır
-          </div>
-          <div class="product-bottom">
-            <div class="product-price">145₺ <small>/ 500ml</small></div>
-            <div class="product-rating">★ 5.0 <span class="review-count">(42)</span></div>
-          </div>
-        </div>
-      </article>
+      <!-- EMPTY STATE -->
+      <div x-show="!loading && filteredProducts.length === 0" class="empty-results">
+        <h3>Sonuç bulunamadı</h3>
+        <p>Filtreleri değiştirmeyi veya temizlemeyi deneyin.</p>
+        <button class="btn btn-primary" @click="clearFilters()">Tüm Ürünleri Göster</button>
+      </div>
 
-      <article class="product-card">
-        <div class="product-img">
-          <div class="product-tags">
-            <span class="product-tag sub">Aboneliğe Uygun</span>
-          </div>
-          <button class="wishlist-btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-          </button>
-          <img src="https://images.unsplash.com/photo-1563636619-e9143da7973b?w=600&q=80" alt="Tam Yağlı">
-          <button class="quick-add add-to-cart" data-product-id="p4-klasik-tam-yagli-pastorize-sut" data-product-name="Klasik Tam Yağlı Pastörize Süt" data-product-price="59" data-product-image="https://images.unsplash.com/photo-1563636619-e9143da7973b?w=600&q=80" data-product-unit="1L" data-product-village="">+ Sepete Ekle</button>
-        </div>
-        <div class="product-info">
-          <div class="product-meta">Çiftlik Karması <span class="dot"></span> 4 köyden</div>
-          <h3 class="product-name">Klasik Tam Yağlı Pastörize Süt</h3>
-          <p class="product-desc">Karton kutu, günlük tüketim. 1L</p>
-          <div class="shelf-info">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            5-7 gün raf ömrüyle ulaşır
-          </div>
-          <div class="product-bottom">
-            <div class="product-price">59₺ <small>/ 1L</small></div>
-            <div class="product-rating">★ 4.7 <span class="review-count">(312)</span></div>
-          </div>
-        </div>
-      </article>
+      <!-- LOADING STATE -->
+      <div x-show="loading" class="empty-results">
+        <p>Ürünler yükleniyor…</p>
+      </div>
 
-      <article class="product-card">
-        <div class="product-img">
-          <button class="wishlist-btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-          </button>
-          <img src="https://images.unsplash.com/photo-1604152135912-04a022e23696?w=600&q=80" alt="Yarım Yağlı">
-          <button class="quick-add add-to-cart" data-product-id="p5-klasik-yarim-yagli-pastorize-s" data-product-name="Klasik Yarım Yağlı Pastörize Süt" data-product-price="52" data-product-image="https://images.unsplash.com/photo-1604152135912-04a022e23696?w=600&q=80" data-product-unit="1L" data-product-village="Karaidemir">+ Sepete Ekle</button>
-        </div>
-        <div class="product-info">
-          <div class="product-meta">Karaidemir Köyü <span class="dot"></span> Ayşe Kaplan</div>
-          <h3 class="product-name">Klasik Yarım Yağlı Pastörize Süt</h3>
-          <p class="product-desc">Karton kutu, hafif tüketim. 1L</p>
-          <div class="shelf-info">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            5-7 gün raf ömrüyle ulaşır
-          </div>
-          <div class="product-bottom">
-            <div class="product-price">52₺ <small>/ 1L</small></div>
-            <div class="product-rating">★ 4.6 <span class="review-count">(208)</span></div>
-          </div>
-        </div>
-      </article>
-
-      <article class="product-card">
-        <div class="product-img">
-          <div class="product-tags">
-            <span class="product-tag bio">Çocuk Sütü</span>
-          </div>
-          <button class="wishlist-btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-          </button>
-          <img src="https://images.unsplash.com/photo-1576186726115-4d51596775d1?w=600&q=80" alt="Çocuk Sütü">
-          <button class="quick-add add-to-cart" data-product-id="p6-cocuk-icin-zenginlestirilmis-s" data-product-name="Çocuk için Zenginleştirilmiş Süt" data-product-price="42" data-product-image="https://images.unsplash.com/photo-1576186726115-4d51596775d1?w=600&q=80" data-product-unit="500ml" data-product-village="">+ Sepete Ekle</button>
-        </div>
-        <div class="product-info">
-          <div class="product-meta">Çiftlik Karması <span class="dot"></span> D vit. zenginleştirilmiş</div>
-          <h3 class="product-name">Çocuk için Zenginleştirilmiş Süt</h3>
-          <p class="product-desc">D vitamini + Kalsiyum eklenmiş. 500ml</p>
-          <div class="shelf-info">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            5-7 gün raf ömrüyle ulaşır
-          </div>
-          <div class="product-bottom">
-            <div class="product-price">42₺ <small>/ 500ml</small></div>
-            <div class="product-rating">★ 4.9 <span class="review-count">(174)</span></div>
-          </div>
-        </div>
-      </article>
-
-      <article class="product-card">
-        <div class="product-img">
-          <div class="product-tags">
-            <span class="product-tag">Aile Boyu</span>
-          </div>
-          <button class="wishlist-btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-          </button>
-          <img src="https://images.unsplash.com/photo-1528750717929-32abb73d3bd9?w=600&q=80" alt="Aile Boyu">
-          <button class="quick-add add-to-cart" data-product-id="p7-aile-boyu-tam-yagli-sut" data-product-name="Aile Boyu Tam Yağlı Süt" data-product-price="109" data-product-image="https://images.unsplash.com/photo-1528750717929-32abb73d3bd9?w=600&q=80" data-product-unit="2L" data-product-village="">+ Sepete Ekle</button>
-        </div>
-        <div class="product-info">
-          <div class="product-meta">Çiftlik Karması <span class="dot"></span> 2L tasarruflu</div>
-          <h3 class="product-name">Aile Boyu Tam Yağlı Süt</h3>
-          <p class="product-desc">Çocuklu aileler için ekonomik. 2L</p>
-          <div class="shelf-info">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            5-7 gün raf ömrüyle ulaşır
-          </div>
-          <div class="product-bottom">
-            <div class="product-price">109₺ <small>/ 2L</small></div>
-            <div class="product-rating">★ 4.8 <span class="review-count">(88)</span></div>
-          </div>
-        </div>
-      </article>
-
-      <article class="product-card">
-        <div class="product-img">
-          <div class="product-tags">
-            <span class="product-tag bio">Organik</span>
-          </div>
-          <button class="wishlist-btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-          </button>
-          <img src="https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=600&q=80" alt="Organik Süt">
-          <button class="quick-add add-to-cart" data-product-id="p8-organik-tam-yagli-pastorize-su" data-product-name="Organik Tam Yağlı Pastörize Süt" data-product-price="119" data-product-image="https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=600&q=80" data-product-unit="1L" data-product-village="Sağlamtaş">+ Sepete Ekle</button>
-        </div>
-        <div class="product-info">
-          <div class="product-meta">Sağlamtaş Köyü <span class="dot"></span> Sertifikalı organik</div>
-          <h3 class="product-name">Organik Tam Yağlı Pastörize Süt</h3>
-          <p class="product-desc">Sertifikalı meraya dayalı. Cam şişe. 1L</p>
-          <div class="shelf-info">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            4-6 gün raf ömrüyle ulaşır
-          </div>
-          <div class="product-bottom">
-            <div class="product-price">119₺ <small>/ 1L</small></div>
-            <div class="product-rating">★ 4.9 <span class="review-count">(64)</span></div>
-          </div>
-        </div>
-      </article>
-
-      <article class="product-card">
-        <div class="product-img">
-          <div class="product-tags">
-            <span class="product-tag new">Yeni</span>
-          </div>
-          <button class="wishlist-btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-          </button>
-          <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&q=80" alt="Yağsız Süt">
-          <button class="quick-add add-to-cart" data-product-id="p9-yagsiz-pastorize-sut" data-product-name="Yağsız Pastörize Süt" data-product-price="48" data-product-image="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&q=80" data-product-unit="1L" data-product-village="Karaidemir">+ Sepete Ekle</button>
-        </div>
-        <div class="product-info">
-          <div class="product-meta">Karaidemir Köyü <span class="dot"></span> Düşük yağ</div>
-          <h3 class="product-name">Yağsız Pastörize Süt</h3>
-          <p class="product-desc">Fitness ve diyet için. Karton. 1L</p>
-          <div class="shelf-info">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            5-7 gün raf ömrüyle ulaşır
-          </div>
-          <div class="product-bottom">
-            <div class="product-price">48₺ <small>/ 1L</small></div>
-            <div class="product-rating">★ 4.5 <span class="review-count">(122)</span></div>
-          </div>
-        </div>
-      </article>
-
-    </div>
-
-    <!-- PAGINATION -->
-    <div class="pagination">
-      <button class="page-btn" disabled aria-label="Önceki">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-      </button>
-      <button class="page-btn active">1</button>
-      <button class="page-btn">2</button>
-      <button class="page-btn" aria-label="Sonraki">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-      </button>
-    </div>
-
+      <!-- PRODUCT GRID -->
+      <div class="product-grid" x-show="!loading && filteredProducts.length > 0">
+        <template x-for="product in filteredProducts" :key="product.id">
+          <article class="product-card">
+            <a :href="'urun-detay.html?id=' + product.id" class="product-img">
+              <img :src="product.image" :alt="product.name" loading="lazy">
+              <span class="product-tag new" x-show="product.isNew">YENİ</span>
+              <span class="product-tag bio" x-show="product.isBio">BİO</span>
+            </a>
+            <div class="product-info">
+              <div class="product-meta" x-text="product.producerVillage + ' köyü'"></div>
+              <h3 class="product-name">
+                <a :href="'urun-detay.html?id=' + product.id" x-text="product.name"></a>
+              </h3>
+              <p class="product-desc" x-text="product.shortDescription"></p>
+              <div class="product-bottom">
+                <div class="product-price">
+                  <span x-text="product.price + ' ₺'"></span>
+                  <small x-text="'/ ' + product.unit"></small>
+                </div>
+                <button type="button"
+                        class="add-to-cart"
+                        :data-product-id="product.id"
+                        :data-product-name="product.name"
+                        :data-product-price="product.price"
+                        :data-product-image="product.image"
+                        :data-product-unit="product.unit"
+                        :data-product-village="product.producerVillage"
+                        @click="addToCart(product, $event)">
+                  + Ekle
+                </button>
+              </div>
+            </div>
+          </article>
+        </template>
+      </div>
+    </section>
   </div>
+
+  <script>
+    function categoryPage() {
+      return {
+        loading: true,
+        allProducts: [],
+        producers: [],
+        filters: { category: 'all', producers: [], priceMax: 1000, tags: [] },
+        sortBy: 'featured',
+        priceRange: { min: 0, max: 1000 },
+        categories: [
+          { value: 'all', label: 'Tümü' },
+          { value: 'sut', label: 'Süt' },
+          { value: 'yogurt', label: 'Yoğurt' },
+          { value: 'peynir', label: 'Peynir' },
+          { value: 'tereyagi', label: 'Tereyağı' },
+          { value: 'manda', label: 'Manda Ürünleri' },
+          { value: 'fonksiyonel', label: 'Fonksiyonel' },
+          { value: 'set', label: 'Setler' }
+        ],
+
+        async init() {
+          this.allProducts = await window.MSUB.data.loadProducts();
+          this.producers = await window.MSUB.data.loadProducers();
+          if (this.allProducts.length) {
+            const max = Math.max(...this.allProducts.map(p => p.price));
+            this.priceRange = { min: 0, max };
+            this.filters.priceMax = max;
+          }
+          this.readUrl();
+          this.loading = false;
+          window.addEventListener('popstate', () => this.readUrl());
+          if (window.location.search) {
+            setTimeout(() => {
+              const target = document.getElementById('filters');
+              if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 200);
+          }
+        },
+
+        readUrl() {
+          const params = new URLSearchParams(window.location.search);
+          this.filters.category = params.get('cat') || 'all';
+          this.filters.producers = params.get('producer')?.split(',').filter(Boolean) || [];
+          this.filters.tags = params.get('tag')?.split(',').filter(Boolean) || [];
+          this.filters.priceMax = Number(params.get('priceMax')) || this.priceRange.max;
+          this.sortBy = params.get('sort') || 'featured';
+        },
+
+        updateUrl() {
+          const params = new URLSearchParams();
+          if (this.filters.category !== 'all') params.set('cat', this.filters.category);
+          if (this.filters.producers.length) params.set('producer', this.filters.producers.join(','));
+          if (this.filters.tags.length) params.set('tag', this.filters.tags.join(','));
+          if (this.filters.priceMax < this.priceRange.max) params.set('priceMax', this.filters.priceMax);
+          if (this.sortBy !== 'featured') params.set('sort', this.sortBy);
+          const url = params.toString() ? '?' + params.toString() : window.location.pathname;
+          window.history.pushState({}, '', url);
+        },
+
+        get filteredProducts() {
+          let r = this.allProducts.slice();
+          if (this.filters.category !== 'all') r = r.filter(p => p.category === this.filters.category);
+          if (this.filters.producers.length) r = r.filter(p => this.filters.producers.includes(p.producerId));
+          r = r.filter(p => p.price <= this.filters.priceMax);
+          if (this.filters.tags.length) r = r.filter(p => p.tags && this.filters.tags.some(t => p.tags.includes(t)));
+          switch (this.sortBy) {
+            case 'price-asc':  r.sort((a,b) => a.price - b.price); break;
+            case 'price-desc': r.sort((a,b) => b.price - a.price); break;
+            case 'name':       r.sort((a,b) => a.name.localeCompare(b.name, 'tr')); break;
+            case 'newest':     r.sort((a,b) => (b.isNew?1:0) - (a.isNew?1:0)); break;
+            default:           r.sort((a,b) => (b.featured?1:0) - (a.featured?1:0));
+          }
+          return r;
+        },
+
+        get pageTitle() {
+          if (this.filters.category === 'all') return 'Tüm Ürünler';
+          const c = this.categories.find(c => c.value === this.filters.category);
+          return c ? c.label : 'Ürünler';
+        },
+
+        get resultCount() { return this.filteredProducts.length; },
+
+        get availableTags() {
+          const tags = new Set();
+          this.allProducts.forEach(p => (p.tags || []).forEach(t => tags.add(t)));
+          return Array.from(tags).sort();
+        },
+
+        get activeFiltersCount() {
+          let n = 0;
+          if (this.filters.category !== 'all') n++;
+          n += this.filters.producers.length;
+          n += this.filters.tags.length;
+          if (this.filters.priceMax < this.priceRange.max) n++;
+          return n;
+        },
+
+        get activeChips() {
+          const chips = [];
+          if (this.filters.category !== 'all') {
+            const c = this.categories.find(x => x.value === this.filters.category);
+            chips.push({ type: 'category', value: this.filters.category, label: c?.label || this.filters.category });
+          }
+          this.filters.producers.forEach(pid => {
+            const p = this.producers.find(x => x.id === pid);
+            chips.push({ type: 'producer', value: pid, label: p?.name || pid });
+          });
+          this.filters.tags.forEach(t => chips.push({ type: 'tag', value: t, label: '#' + t }));
+          if (this.filters.priceMax < this.priceRange.max) {
+            chips.push({ type: 'price', value: this.filters.priceMax, label: '≤ ' + this.filters.priceMax + ' ₺' });
+          }
+          return chips;
+        },
+
+        countByCategory(cat) {
+          return cat === 'all'
+            ? this.allProducts.length
+            : this.allProducts.filter(p => p.category === cat).length;
+        },
+
+        toggleTag(tag) {
+          const i = this.filters.tags.indexOf(tag);
+          if (i === -1) this.filters.tags.push(tag);
+          else this.filters.tags.splice(i, 1);
+        },
+
+        removeFilter(type, value) {
+          if (type === 'category') this.filters.category = 'all';
+          else if (type === 'producer') this.filters.producers = this.filters.producers.filter(p => p !== value);
+          else if (type === 'tag') this.filters.tags = this.filters.tags.filter(t => t !== value);
+          else if (type === 'price') this.filters.priceMax = this.priceRange.max;
+        },
+
+        clearFilters() {
+          this.filters = { category: 'all', producers: [], priceMax: this.priceRange.max, tags: [] };
+          this.sortBy = 'featured';
+          this.updateUrl();
+        },
+
+        addToCart(product, ev) {
+          window.MSUB.cart.addItem({
+            id: product.id, name: product.name, slug: product.slug,
+            price: product.price, image: product.image, unit: product.unit,
+            producerVillage: product.producerVillage, qty: 1
+          });
+          window.dispatchEvent(new CustomEvent('cart:added', { detail: { product } }));
+          // Brief button flash
+          if (ev?.target) {
+            const btn = ev.target;
+            const orig = btn.textContent;
+            btn.textContent = '✓';
+            btn.disabled = true;
+            setTimeout(() => { btn.textContent = orig; btn.disabled = false; }, 900);
+          }
+        }
+      };
+    }
+  </script>
 </main>
 
 <!-- PRODUCER STORY BAND -->
