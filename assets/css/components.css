@@ -263,3 +263,37 @@ nav.desktop-nav a[aria-current="page"] {
 .cart-count.pop {
   animation: msub-cart-pop 320ms ease;
 }
+
+/* TOAST NOTIFICATION */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--green-deep);
+  color: var(--cream);
+  padding: 14px 24px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  z-index: 300;
+  opacity: 0;
+  transition: transform 250ms ease, opacity 250ms ease;
+  pointer-events: none;
+  max-width: calc(100vw - 32px);
+  font-size: 14px;
+  font-weight: 500;
+}
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+@media (max-width: 600px) {
+  .toast { bottom: 16px; padding: 12px 18px; }
+}
+
+/* Add-to-cart button "✓ Eklendi" flash state */
+.add-to-cart.is-flashing {
+  background: var(--green-mid) !important;
+  color: var(--cream) !important;
+  cursor: default;
+}
