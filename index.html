@@ -187,7 +187,7 @@
 </section>
 
 <!-- FEATURED PRODUCTS -->
-<section class="products-section">
+<section class="products-section" x-data="featuredHome()" x-init="init()">
   <div class="container">
     <div class="section-header">
       <div>
@@ -197,67 +197,57 @@
       <a href="pages/kategori.html" class="section-link">Tüm Ürünler →</a>
     </div>
     <div class="product-grid">
-      <div class="product-card">
-        <div class="product-img">
-          <span class="product-tag bio">A2 Süt</span>
-          <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?w=600&q=80" alt="A2 Süt">
-          <button class="quick-add add-to-cart" data-product-id="home-feat-1-a2-tam-yagli-pastorize-su" data-product-name="A2 Tam Yağlı Pastörize Süt" data-product-price="89" data-product-image="https://images.unsplash.com/photo-1550583724-b2692b85b150?w=600&q=80" data-product-unit="1L" data-product-village="Günlük Süt · Evrenbey">+ Sepete Ekle</button>
-        </div>
-        <div class="product-info">
-          <div class="product-meta">Günlük Süt · Evrenbey Köyü</div>
-          <h3 class="product-name">A2 Tam Yağlı Pastörize Süt</h3>
-          <div class="product-bottom">
-            <div class="product-price">89₺ <small>/ 1L</small></div>
-            <div class="product-rating">★ 4.9</div>
+      <template x-for="product in featured" :key="product.id">
+        <div class="product-card">
+          <a :href="'pages/urun-detay.html?id=' + product.id" class="product-img">
+            <span class="product-tag new" x-show="product.isNew">YENİ</span>
+            <span class="product-tag bio" x-show="product.isBio">BİO</span>
+            <img :src="product.image" :alt="product.name" loading="lazy">
+            <button type="button" class="quick-add add-to-cart"
+                    :data-product-id="product.id"
+                    :data-product-name="product.name"
+                    :data-product-price="product.price"
+                    :data-product-image="product.image"
+                    :data-product-unit="product.unit"
+                    :data-product-village="product.producerVillage"
+                    @click.prevent.stop="addFeatured(product)">+ Sepete Ekle</button>
+          </a>
+          <div class="product-info">
+            <div class="product-meta" x-text="product.producerVillage + ' Köyü'"></div>
+            <h3 class="product-name">
+              <a :href="'pages/urun-detay.html?id=' + product.id" x-text="product.name"></a>
+            </h3>
+            <div class="product-bottom">
+              <div class="product-price">
+                <span x-text="product.price + ' ₺'"></span>
+                <small x-text="' / ' + product.unit"></small>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="product-card">
-        <div class="product-img">
-          <span class="product-tag new">Yeni</span>
-          <img src="https://images.unsplash.com/photo-1571212515416-fef01fc43637?w=600&q=80" alt="Süzme Yoğurt">
-          <button class="quick-add add-to-cart" data-product-id="home-feat-2-geleneksel-suzme-yogurt" data-product-name="Geleneksel Süzme Yoğurt" data-product-price="125" data-product-image="https://images.unsplash.com/photo-1571212515416-fef01fc43637?w=600&q=80" data-product-unit="750g" data-product-village="Yoğurt · Karaidemir">+ Sepete Ekle</button>
-        </div>
-        <div class="product-info">
-          <div class="product-meta">Yoğurt · Karaidemir Köyü</div>
-          <h3 class="product-name">Geleneksel Süzme Yoğurt</h3>
-          <div class="product-bottom">
-            <div class="product-price">125₺ <small>/ 750g</small></div>
-            <div class="product-rating">★ 5.0</div>
-          </div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-img">
-          <span class="product-tag">Premium</span>
-          <img src="https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=600&q=80" alt="Manda Peyniri">
-          <button class="quick-add add-to-cart" data-product-id="home-feat-3-manda-sutu-beyaz-peynir" data-product-name="Manda Sütü Beyaz Peynir" data-product-price="285" data-product-image="https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=600&q=80" data-product-unit="500g" data-product-village="Peynir · Pirinçeli">+ Sepete Ekle</button>
-        </div>
-        <div class="product-info">
-          <div class="product-meta">Peynir · Pirinçeli Köyü</div>
-          <h3 class="product-name">Manda Sütü Beyaz Peynir</h3>
-          <div class="product-bottom">
-            <div class="product-price">285₺ <small>/ 500g</small></div>
-            <div class="product-rating">★ 4.8</div>
-          </div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="product-img">
-          <img src="https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=600&q=80" alt="Tereyağı">
-          <button class="quick-add add-to-cart" data-product-id="home-feat-4-koy-tereyagi-tuzsuz" data-product-name="Köy Tereyağı, Tuzsuz" data-product-price="165" data-product-image="https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=600&q=80" data-product-unit="250g" data-product-village="Tereyağı · Sağlamtaş">+ Sepete Ekle</button>
-        </div>
-        <div class="product-info">
-          <div class="product-meta">Tereyağı · Sağlamtaş Köyü</div>
-          <h3 class="product-name">Köy Tereyağı, Tuzsuz</h3>
-          <div class="product-bottom">
-            <div class="product-price">165₺ <small>/ 250g</small></div>
-            <div class="product-rating">★ 4.9</div>
-          </div>
-        </div>
-      </div>
+      </template>
     </div>
   </div>
+  <script>
+    function featuredHome() {
+      return {
+        featured: [],
+        async init() {
+          const list = await window.MSUB.data.getFeaturedProducts();
+          // Take first 4 for the homepage strip
+          this.featured = list.slice(0, 4);
+        },
+        addFeatured(product) {
+          window.MSUB.cart.addItem({
+            id: product.id, name: product.name, slug: product.slug,
+            price: product.price, image: product.image, unit: product.unit,
+            producerVillage: product.producerVillage, qty: 1
+          });
+          window.dispatchEvent(new CustomEvent('cart:added', { detail: { product } }));
+        }
+      };
+    }
+  </script>
 </section>
 
 <!-- STORY SECTION -->
