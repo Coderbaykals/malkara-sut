@@ -767,3 +767,54 @@ img[onerror] { /* placeholder for future onerror handlers */ }
 .skip-link:focus {
   top: 8px;
 }
+
+/* Sprint 8 cleanup — minor class polish */
+.footer-legal {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.footer-legal a {
+  font-size: 13px;
+  color: var(--cream);
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+.footer-legal a:hover { opacity: 1; }
+@media (max-width: 600px) {
+  .footer-legal { gap: 12px; font-size: 12px; }
+}
+
+/* search-trigger — extend icon-btn (button vs anchor difference) */
+button.icon-btn.search-trigger {
+  /* button needs explicit reset since icon-btn was sized for <a> */
+  font: inherit;
+}
+
+/* ureticiler section meta + producer link */
+.section-meta {
+  font-size: 13px;
+  color: var(--warm-grey);
+  letter-spacing: 0.04em;
+}
+.producer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--green-deep);
+  margin-top: 12px;
+  border-bottom: 1px solid var(--green-deep);
+  padding-bottom: 2px;
+  transition: color 0.2s;
+  align-self: flex-start;
+}
+.producer-link:hover { color: var(--green-mid); }
+
+/* urun-detay mobile sticky variant */
+.mobile-add-to-cart {
+  width: 100%;
+  justify-content: center;
+}
