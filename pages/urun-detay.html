@@ -4,6 +4,8 @@
 <title>Ürün Detayı — Malkara Süt</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preload" href="../assets/css/tokens.css" as="style">
+<link rel="preload" href="../assets/css/base.css" as="style">
 <meta name="description" content="Trakya'nın seçkin süt ürünlerinden biri. Üreticisi, içeriği ve raf ömrü ile tüm detaylar.">
 <meta name="author" content="Malkara Süt Üreticileri Birliği">
 <link rel="canonical" href="https://coderbaykals.github.io/malkara-sut/pages/urun-detay.html">
@@ -96,23 +98,23 @@
       <button class="zoom-btn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
       </button>
-      <img :src="product?.image || \'https://images.unsplash.com/photo-1550583724-b2692b85b150?w=1200&q=85\'" :alt="product?.name || \'\'">
+      <img loading="lazy" decoding="async" :src="product?.image || \'https://images.unsplash.com/photo-1550583724-b2692b85b150?w=1200&q=85\'" :alt="product?.name || \'\'">
     </div>
     <div class="thumbs">
       <div class="thumb active">
-        <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?w=300&q=80" alt="">
+        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1550583724-b2692b85b150?w=300&q=80" alt="">
       </div>
       <div class="thumb">
-        <img src="https://images.unsplash.com/photo-1563636619-e9143da7973b?w=300&q=80" alt="">
+        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1563636619-e9143da7973b?w=300&q=80" alt="">
       </div>
       <div class="thumb">
-        <img src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=300&q=80" alt="">
+        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=300&q=80" alt="">
       </div>
       <div class="thumb">
-        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&q=80" alt="">
+        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&q=80" alt="">
       </div>
       <div class="thumb video">
-        <img src="https://images.unsplash.com/photo-1605733513597-a8f8341084e6?w=300&q=80" alt="">
+        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1605733513597-a8f8341084e6?w=300&q=80" alt="">
       </div>
     </div>
   </div>
@@ -122,7 +124,7 @@
 
     <div class="product-meta-top">
       <a href="ureticiler.html" class="producer-badge">
-        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80" alt="">
+        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80" alt="">
         <span><strong x-text="(product?.producerVillage || 'Evrenbey') + ' Köyü'"></strong> · <span x-text="producer?.name || 'İsmail Yıldız'"></span></span>
       </a>
       <div class="product-rating-top">
@@ -431,8 +433,8 @@
       <div class="review-title">Çocuğuma rahatça içirebiliyorum</div>
       <p class="review-text">İki çocuğum var ve raf sütlerinden uzaklaşmak istiyordum. Aboneliğimi başlattıktan sonra her perşembe taze geliyor. Cam şişe olması ekstra güzel.</p>
       <div class="review-photos">
-        <div class="review-photo"><img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=200&q=80" alt=""></div>
-        <div class="review-photo"><img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?w=200&q=80" alt=""></div>
+        <div class="review-photo"><img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=200&q=80" alt=""></div>
+        <div class="review-photo"><img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1550583724-b2692b85b150?w=200&q=80" alt=""></div>
       </div>
       <div class="review-author">
         <div class="review-avatar">ZK</div>
