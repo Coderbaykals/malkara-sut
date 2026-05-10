@@ -2,77 +2,12 @@
 
 /* === OVERRIDES (minority pattern; explicit re-declare + reset of base) === */
 /* Override: body (vs base.css) */
-/* Override: .icon-btn (vs base.css) */
-/* Override: .footer-grid (vs base.css) */
-/* Override: .footer-brand .logo (vs base.css) */
-/* Override: .footer-col h4 (vs base.css) */
-/* Override: .footer-col li (vs base.css) */
-/* Override: .footer-col a (vs base.css) */
-/* Override: .footer-bottom (vs base.css) */
-
 body {
   font-family: 'Inter', sans-serif;
   color: var(--charcoal);
   background: var(--milk);
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
-}
-
-.icon-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid var(--line);
-  background: transparent;
-  display: grid;
-  place-items: center;
-  transition: all 0.2s;
-  position: relative;
-  cursor: auto;  /* reset from base */
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 48px;
-  padding-bottom: 40px;
-  border-bottom: 1px solid rgba(247,241,227,0.1);
-}
-
-.footer-brand .logo {
-  color: var(--cream);
-  margin-bottom: 16px;
-}
-
-.footer-col h4 {
-  font-family: 'Inter', sans-serif;
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--wheat);
-  margin-bottom: 16px;
-  font-weight: 600;
-}
-
-.footer-col li {
-  margin-bottom: 8px;
-}
-
-.footer-col a {
-  font-size: 14px;
-  opacity: 0.7;
-  transition: none;  /* reset from base */
-}
-
-.footer-bottom {
-  padding-top: 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
-  font-size: 13px;
-  opacity: 0.6;
 }
 
 /* === PAGE-SPECIFIC RULES === */

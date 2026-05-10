@@ -2,7 +2,6 @@
 
 /* === OVERRIDES (minority pattern; explicit re-declare + reset of base) === */
 /* Override: body (vs base.css) */
-/* Override: .icon-btn (vs base.css) */
 /* Override: .section-link (vs base.css) */
 /* Override: footer (vs base.css) */
 
@@ -12,19 +11,6 @@ body {
   background: var(--cream);
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
-}
-
-.icon-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid var(--line);
-  background: transparent;
-  display: grid;
-  place-items: center;
-  transition: all 0.2s;
-  position: relative;
-  cursor: auto;  /* reset from base */
 }
 
 .section-link {

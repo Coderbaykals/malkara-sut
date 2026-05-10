@@ -1,13 +1,21 @@
 /* Anasayfa-specific styles — index.html only */
 
-/* Override: .btn-primary (cream-bg variant; majority is green-deep) */
-/* Override: footer (80px top padding; majority is 60px) */
+/* Override: minority pre-promote bodies (post-P2 batch promote) */
+/* Pre-promote: .btn-primary (cream variant), footer padding (80px), and 8 promoted-selector minorities */
 .btn-primary {
   background: var(--cream);
   color: var(--green-deep);
 }
 .btn-primary:hover { background: white; transform: translateY(-2px); }
 footer { padding: 80px 32px 30px; }
+.icon-btn { cursor: pointer; }
+.footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr 1fr; padding-bottom: 60px; }
+.footer-col h4 { margin-bottom: 20px; }
+.footer-col li { margin-bottom: 10px; }
+.footer-col a { transition: opacity 0.2s; }
+.footer-bottom { padding-top: 30px; }
+.footer-brand .logo { margin-bottom: 20px; }
+.announce { letter-spacing: 0.02em; }
 
 /* HERO */
 .hero {
