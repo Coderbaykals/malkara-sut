@@ -1,0 +1,625 @@
+{
+  "products": [
+    {
+      "id": "p001",
+      "slug": "a2-tam-yagli-pastorize-sut-1l",
+      "name": "A2 Tam Yağlı Pastörize Süt",
+      "category": "sut",
+      "subCategory": "pastorize",
+      "price": 89,
+      "unit": "1L",
+      "image": "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=800&q=80",
+      "images": [
+        "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=1200&q=80",
+        "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=1200&q=80"
+      ],
+      "producerVillage": "Evrenbey",
+      "producerId": "pr001",
+      "tags": ["a2", "pastorize", "tam-yagli"],
+      "featured": true,
+      "isNew": false,
+      "isBio": false,
+      "inStock": true,
+      "shortDescription": "Evrenbey köyü A2 sütü, soğuk zincirle pastörize. Cam şişede, kremamsı.",
+      "longDescription": "İsmail Yıldız'ın 28 yıllık deneyimiyle yetiştirilen A2 beta-kazein sürüsünden elde ediliyor. Sabah sağılır, aynı gün soğutma merkezimize ulaşır, düşük ısıda kısa süreli pastörize edilir. Klasik A1 sütüne göre daha kremamsı tat profili; sindirimi rahat.",
+      "nutritionFacts": {
+        "calories": "67 kcal/100ml",
+        "protein": "3.4g",
+        "fat": "3.6g",
+        "carbs": "4.8g",
+        "calcium": "120mg"
+      },
+      "shelfLifeDays": 7,
+      "storageInstruction": "+2°C / +6°C arasında buzdolabında saklayın. Açıldıktan sonra 3 gün içinde tüketin."
+    },
+    {
+      "id": "p002",
+      "slug": "yarim-yagli-pastorize-sut-1l",
+      "name": "Yarım Yağlı Pastörize Süt",
+      "category": "sut",
+      "subCategory": "pastorize",
+      "price": 75,
+      "unit": "1L",
+      "image": "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=800&q=80",
+      "images": [
+        "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=1200&q=80"
+      ],
+      "producerVillage": "Evrenbey",
+      "producerId": "pr001",
+      "tags": ["pastorize", "yarim-yagli", "hafif"],
+      "featured": false,
+      "isNew": false,
+      "isBio": false,
+      "inStock": true,
+      "shortDescription": "Karton kutuda, hafif tüketim için yarım yağlı pastörize süt.",
+      "longDescription": "Aynı A2 sürüden, yağ oranı %1.5'a düşürülmüş. Çay ve kahvede tat dengesini korur. Diyet yapanlar veya günlük büyük tüketim için ekonomik tercih.",
+      "nutritionFacts": {
+        "calories": "47 kcal/100ml",
+        "protein": "3.4g",
+        "fat": "1.5g",
+        "carbs": "4.9g",
+        "calcium": "122mg"
+      },
+      "shelfLifeDays": 8,
+      "storageInstruction": "+2°C / +6°C arasında buzdolabında saklayın."
+    },
+    {
+      "id": "p003",
+      "slug": "cig-koy-sutu-2l",
+      "name": "Çiğ Köy Sütü",
+      "category": "sut",
+      "subCategory": "cig",
+      "price": 145,
+      "unit": "2L",
+      "image": "https://images.unsplash.com/photo-1576186726115-4d51596775d1?w=800&q=80",
+      "images": [
+        "https://images.unsplash.com/photo-1576186726115-4d51596775d1?w=1200&q=80"
+      ],
+      "producerVillage": "Sağlamtaş",
+      "producerId": "pr004",
+      "tags": ["cig", "geleneksel"],
+      "featured": false,
+      "isNew": false,
+      "isBio": true,
+      "inStock": true,
+      "shortDescription": "Sağlamtaş köyünden çiğ süt, kullanmadan önce kaynatın.",
+      "longDescription": "Geleneksel kullanım için, hiç işlem görmemiş çiğ süt. Hasan Şahin'in organik sertifikalı sürüsünden. Yoğurt, peynir, sütlaç gibi mutfak hazırlıkları için ideal. Mutlaka kaynatarak tüketin.",
+      "nutritionFacts": {
+        "calories": "68 kcal/100ml",
+        "protein": "3.5g",
+        "fat": "3.8g",
+        "carbs": "4.7g",
+        "calcium": "118mg"
+      },
+      "shelfLifeDays": 3,
+      "storageInstruction": "0-4°C buzdolabında saklayın. Tüketmeden önce mutlaka kaynatın."
+    },
+    {
+      "id": "p004",
+      "slug": "geleneksel-suzme-yogurt-500g",
+      "name": "Geleneksel Süzme Yoğurt",
+      "category": "yogurt",
+      "subCategory": "suzme",
+      "price": 125,
+      "unit": "500g",
+      "image": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&q=80",
+      "images": [
+        "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=1200&q=80"
+      ],
+      "producerVillage": "Karaidemir",
+      "producerId": "pr002",
+      "tags": ["suzme", "geleneksel", "yuksek-protein"],
+      "featured": true,
+      "isNew": false,
+      "isBio": false,
+      "inStock": true,
+      "shortDescription": "Bez torbada süzülmüş, yoğun kıvamlı geleneksel yoğurt.",
+      "longDescription": "Karaidemir Kadın Kooperatifi'nin imzalı süzme yoğurdu. Pastörize sütle yapılır, 24 saat fermente edilir, bez torbada doğal yöntemle suyu süzülür. Yüksek protein, kremamsı kıvam. Salatalarda, kebap yanında veya tek başına yenir.",
+      "nutritionFacts": {
+        "calories": "115 kcal/100g",
+        "protein": "8.5g",
+        "fat": "7g",
+        "carbs": "4g",
+        "calcium": "150mg"
+      },
+      "shelfLifeDays": 14,
+      "storageInstruction": "+2°C / +6°C arasında buzdolabında saklayın."
+    },
+    {
+      "id": "p005",
+      "slug": "klasik-yogurt-1kg",
+      "name": "Klasik Yoğurt",
+      "category": "yogurt",
+      "subCategory": "klasik",
+      "price": 95,
+      "unit": "1kg",
+      "image": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&q=80&hue=10",
+      "images": [
+        "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=1200&q=80&hue=10"
+      ],
+      "producerVillage": "Karaidemir",
+      "producerId": "pr002",
+      "tags": ["klasik", "geleneksel"],
+      "featured": false,
+      "isNew": false,
+      "isBio": false,
+      "inStock": true,
+      "shortDescription": "Geleneksel kase yoğurt, ev kıvamı.",
+      "longDescription": "Hergünlük kullanım için klasik yoğurt. Pastörize tam yağlı sütten, doğal mayalama, 12 saat fermente. Hafif ekşi tat, ev yapımı kıvamı. Her sofrada yeri olan yoğurt.",
+      "nutritionFacts": {
+        "calories": "61 kcal/100g",
+        "protein": "3.5g",
+        "fat": "3.2g",
+        "carbs": "4.7g",
+        "calcium": "121mg"
+      },
+      "shelfLifeDays": 12,
+      "storageInstruction": "+2°C / +6°C arasında buzdolabında saklayın."
+    },
+    {
+      "id": "p006",
+      "slug": "kaymakli-yogurt-750g",
+      "name": "Kaymaklı Yoğurt",
+      "category": "yogurt",
+      "subCategory": "kaymakli",
+      "price": 165,
+      "unit": "750g",
+      "image": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&q=80&hue=20",
+      "images": [
+        "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=1200&q=80&hue=20"
+      ],
+      "producerVillage": "Karaidemir",
+      "producerId": "pr002",
+      "tags": ["kaymakli", "geleneksel", "tam-yagli"],
+      "featured": false,
+      "isNew": false,
+      "isBio": false,
+      "inStock": true,
+      "shortDescription": "Üstünde altın kaymak tabakası, geleneksel kase yoğurt.",
+      "longDescription": "Tam yağlı sütten yapılan, soğutma sırasında üzerinde doğal kaymak tabakası oluşan klasik tarif. Tatlılarda ve kahvaltıda baş tacı. Karaidemir kooperatifinin imza ürünü.",
+      "nutritionFacts": {
+        "calories": "98 kcal/100g",
+        "protein": "3.8g",
+        "fat": "7.5g",
+        "carbs": "4.3g",
+        "calcium": "128mg"
+      },
+      "shelfLifeDays": 12,
+      "storageInstruction": "+2°C / +6°C arasında buzdolabında saklayın."
+    },
+    {
+      "id": "p007",
+      "slug": "manda-yogurdu-500g",
+      "name": "Manda Yoğurdu",
+      "category": "yogurt",
+      "subCategory": "manda",
+      "price": 220,
+      "unit": "500g",
+      "image": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&q=80&sat=-20",
+      "images": [
+        "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=1200&q=80&sat=-20"
+      ],
+      "producerVillage": "Pirinçeli",
+      "producerId": "pr003",
+      "tags": ["manda", "premium", "kaymakli"],
+      "featured": true,
+      "isNew": false,
+      "isBio": false,
+      "inStock": true,
+      "shortDescription": "Pirinçeli manda sütünden, yoğun kremamsı yoğurt.",
+      "longDescription": "Mehmet Demir'in 42 mandasından sağılan tam yağlı manda sütüyle yapılır. İnek yoğurduna göre yaklaşık iki kat yağ ve protein içerir. Tatlılarda, baklavada, eksiksiz bir kahvaltıda; az miktarda bile tat dolu deneyim.",
+      "nutritionFacts": {
+        "calories": "135 kcal/100g",
+        "protein": "5.5g",
+        "fat": "10g",
+        "carbs": "4.8g",
+        "calcium": "180mg"
+      },
+      "shelfLifeDays": 14,
+      "storageInstruction": "+2°C / +6°C arasında buzdolabında saklayın."
+    },
+    {
+      "id": "p008",
+      "slug": "manda-sutu-beyaz-peynir-500g",
+      "name": "Manda Sütü Beyaz Peynir",
+      "category": "peynir",
+      "subCategory": "beyaz",
+      "price": 285,
+      "unit": "500g",
+      "image": "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=800&q=80&hue=20",
+      "images": [
+        "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=1200&q=80&hue=20"
+      ],
+      "producerVillage": "Pirinçeli",
+      "producerId": "pr003",
+      "tags": ["manda", "beyaz-peynir", "premium"],
+      "featured": true,
+      "isNew": false,
+      "isBio": false,
+      "inStock": true,
+      "shortDescription": "Pirinçeli mandalarından, salamura olgunlaşmış beyaz peynir.",
+      "longDescription": "Tam manda sütüyle yapılan, salamurada 60+ gün olgunlaştırılmış beyaz peynir. Tuz dengesi belirgin, dokusu yumuşak ve kremamsı. Kahvaltı tabağında veya salatada öne çıkar.",
+      "nutritionFacts": {
+        "calories": "295 kcal/100g",
+        "protein": "18g",
+        "fat": "24g",
+        "carbs": "1.5g",
+        "calcium": "550mg"
+      },
+      "shelfLifeDays": 60,
+      "storageInstruction": "Kendi salamurasında buzdolabında saklayın."
+    },
+    {
+      "id": "p009",
+      "slug": "tam-yagli-beyaz-peynir-500g",
+      "name": "Tam Yağlı Beyaz Peynir",
+      "category": "peynir",
+      "subCategory": "beyaz",
+      "price": 165,
+      "unit": "500g",
+      "image": "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=800&q=80&hue=10",
+      "images": [
+        "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=1200&q=80&hue=10"
+      ],
+      "producerVillage": "Sağlamtaş",
+      "producerId": "pr004",
+      "tags": ["beyaz-peynir", "tam-yagli", "geleneksel"],
+      "featured": false,
+      "isNew": false,
+      "isBio": true,
+      "inStock": true,
+      "shortDescription": "Geleneksel salamura beyaz peynir, organik sertifikalı.",
+      "longDescription": "Hasan Şahin'in organik sertifikalı sürüsünden inek sütüyle yapılır. Salamurada 45 gün olgunlaştırılır. Klasik kahvaltı peyniri, dengeli tuzluluk.",
+      "nutritionFacts": {
+        "calories": "265 kcal/100g",
+        "protein": "16g",
+        "fat": "21g",
+        "carbs": "2g",
+        "calcium": "490mg"
+      },
+      "shelfLifeDays": 60,
+      "storageInstruction": "Kendi salamurasında buzdolabında saklayın."
+    },
+    {
+      "id": "p010",
+      "slug": "trakya-eski-kasar-250g",
+      "name": "Trakya Eski Kaşar",
+      "category": "peynir",
+      "subCategory": "kasar",
+      "price": 195,
+      "unit": "250g",
+      "image": "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=800&q=80&sat=30",
+      "images": [
+        "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=1200&q=80&sat=30"
+      ],
+      "producerVillage": "Sağlamtaş",
+      "producerId": "pr004",
+      "tags": ["kasar", "eski", "olgunlasmis"],
+      "featured": false,
+      "isNew": false,
+      "isBio": false,
+      "inStock": true,
+      "shortDescription": "12 ay olgunlaştırılmış eski kaşar, yoğun aromalı.",
+      "longDescription": "Trakya'nın geleneksel eski kaşarı. Sağlamtaş köyünde yapılır, mahzende 12 ay olgunlaştırılır. Kuvvetli aromasıyla makarnaya, börek üzerine veya tek başına yenir. Sert dokulu, parlak sarı renk.",
+      "nutritionFacts": {
+        "calories": "385 kcal/100g",
+        "protein": "26g",
+        "fat": "31g",
+        "carbs": "0.8g",
+        "calcium": "780mg"
+      },
+      "shelfLifeDays": 90,
+      "storageInstruction": "Stretch film ile sarıp buzdolabında saklayın."
+    },
+    {
+      "id": "p011",
+      "slug": "taze-kasar-500g",
+      "name": "Taze Kaşar",
+      "category": "peynir",
+      "subCategory": "kasar",
+      "price": 215,
+      "unit": "500g",
+      "image": "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=800&q=80&sat=20",
+      "images": [
+        "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=1200&q=80&sat=20"
+      ],
+      "producerVillage": "Sağlamtaş",
+      "producerId": "pr004",
+      "tags": ["kasar", "taze"],
+      "featured": false,
+      "isNew": false,
+      "isBio": false,
+      "inStock": true,
+      "shortDescription": "Yumuşak doku, hafif tuz; tost ve kahvaltı için ideal.",
+      "longDescription": "30 gün olgunlaştırılmış taze kaşar. Yumuşak, esnek doku; ısıtınca pürüzsüz erir. Tost, pizza ve kahvaltı için klasik tercih.",
+      "nutritionFacts": {
+        "calories": "335 kcal/100g",
+        "protein": "23g",
+        "fat": "26g",
+        "carbs": "1.2g",
+        "calcium": "720mg"
+      },
+      "shelfLifeDays": 60,
+      "storageInstruction": "Stretch film ile sarıp buzdolabında saklayın."
+    },
+    {
+      "id": "p012",
+      "slug": "tulum-peyniri-250g",
+      "name": "Tulum Peyniri",
+      "category": "peynir",
+      "subCategory": "tulum",
+      "price": 245,
+      "unit": "250g",
+      "image": "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=800&q=80&sat=-10",
+      "images": [
+        "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=1200&q=80&sat=-10"
+      ],
+      "producerVillage": "Sağlamtaş",
+      "producerId": "pr004",
+      "tags": ["tulum", "geleneksel", "olgunlasmis"],
+      "featured": false,
+      "isNew": false,
+      "isBio": false,
+      "inStock": true,
+      "shortDescription": "Deri tulumda olgunlaşmış, ovalıp aromalandırılmış peynir.",
+      "longDescription": "Geleneksel deri tulumda 6 ay olgunlaştırılan, ufalanır kıvamlı peynir. Ovalanıp serpilir; kahvaltı veya makarna garnitürü olarak kullanılır. Yoğun ve hafif keskin tat.",
+      "nutritionFacts": {
+        "calories": "365 kcal/100g",
+        "protein": "24g",
+        "fat": "29g",
+        "carbs": "1g",
+        "calcium": "650mg"
+      },
+      "shelfLifeDays": 90,
+      "storageInstruction": "Hava almayan kapta buzdolabında saklayın."
+    },
+    {
+      "id": "p013",
+      "slug": "koy-tereyagi-tuzsuz-250g",
+      "name": "Köy Tereyağı, Tuzsuz",
+      "category": "tereyagi",
+      "subCategory": "tuzsuz",
+      "price": 165,
+      "unit": "250g",
+      "image": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&q=80&hue=40",
+      "images": [
+        "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=1200&q=80&hue=40"
+      ],
+      "producerVillage": "Sağlamtaş",
+      "producerId": "pr004",
+      "tags": ["tereyagi", "tuzsuz", "geleneksel"],
+      "featured": true,
+      "isNew": false,
+      "isBio": false,
+      "inStock": true,
+      "shortDescription": "Krema yayılarak yapılan klasik köy tereyağı. Tuz eklenmemiş.",
+      "longDescription": "Tam yağlı sütten alınan kremanın yayılmasıyla, eski yöntemle yapılır. Pasta, kek, sütlü tatlı yapımı için ideal. Renk kremamsı sarı, doku homojen.",
+      "nutritionFacts": {
+        "calories": "720 kcal/100g",
+        "protein": "0.6g",
+        "fat": "82g",
+        "carbs": "0.4g",
+        "calcium": "24mg"
+      },
+      "shelfLifeDays": 30,
+      "storageInstruction": "+2°C / +6°C arasında buzdolabında saklayın. Dondurulabilir."
+    },
+    {
+      "id": "p014",
+      "slug": "koy-tereyagi-tuzlu-250g",
+      "name": "Köy Tereyağı, Tuzlu",
+      "category": "tereyagi",
+      "subCategory": "tuzlu",
+      "price": 165,
+      "unit": "250g",
+      "image": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&q=80&hue=50",
+      "images": [
+        "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=1200&q=80&hue=50"
+      ],
+      "producerVillage": "Sağlamtaş",
+      "producerId": "pr004",
+      "tags": ["tereyagi", "tuzlu", "geleneksel"],
+      "featured": false,
+      "isNew": false,
+      "isBio": false,
+      "inStock": true,
+      "shortDescription": "Doğal deniz tuzu eklenmiş, klasik kahvaltı tereyağı.",
+      "longDescription": "Aynı krema, aynı yöntem; doğal deniz tuzu ile lezzetlendirilmiş. Ekmek üstüne sürmek için ideal, raf ömrü tuzsuz versiyona göre uzun.",
+      "nutritionFacts": {
+        "calories": "720 kcal/100g",
+        "protein": "0.6g",
+        "fat": "82g",
+        "carbs": "0.4g",
+        "calcium": "24mg"
+      },
+      "shelfLifeDays": 60,
+      "storageInstruction": "+2°C / +6°C arasında buzdolabında saklayın."
+    },
+    {
+      "id": "p015",
+      "slug": "manda-kaymagi-200g",
+      "name": "Manda Kaymağı",
+      "category": "manda",
+      "subCategory": "kaymak",
+      "price": 185,
+      "unit": "200g",
+      "image": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&q=80&hue=30",
+      "images": [
+        "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=1200&q=80&hue=30"
+      ],
+      "producerVillage": "Pirinçeli",
+      "producerId": "pr003",
+      "tags": ["manda", "kaymak", "premium"],
+      "featured": false,
+      "isNew": false,
+      "isBio": false,
+      "inStock": true,
+      "shortDescription": "Manda sütünden, kalın doğal kaymak tabakası.",
+      "longDescription": "Kaynatılan manda sütünün üzerinde oluşan kalın kaymak tabakası, dikkatle alınıp soğutulur. Bal ile, ekmekle veya tatlıların üstünde efsanevi.",
+      "nutritionFacts": {
+        "calories": "385 kcal/100g",
+        "protein": "5g",
+        "fat": "40g",
+        "carbs": "2g",
+        "calcium": "180mg"
+      },
+      "shelfLifeDays": 7,
+      "storageInstruction": "+2°C / +6°C arasında buzdolabında saklayın."
+    },
+    {
+      "id": "p016",
+      "slug": "mozzarella-manda-sutu-250g",
+      "name": "Mozzarella, Manda Sütü",
+      "category": "manda",
+      "subCategory": "peynir",
+      "price": 145,
+      "unit": "250g",
+      "image": "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=800&q=80&hue=30",
+      "images": [
+        "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=1200&q=80&hue=30"
+      ],
+      "producerVillage": "Pirinçeli",
+      "producerId": "pr003",
+      "tags": ["manda", "mozzarella", "italyan-stili"],
+      "featured": false,
+      "isNew": false,
+      "isBio": false,
+      "inStock": true,
+      "shortDescription": "Manda sütünden el yapımı taze mozzarella; pizza için ideal.",
+      "longDescription": "İtalyan stili taze mozzarella, manda sütünden geleneksel yöntemle yapılır. Kendi suyunda saklanır, taze tüketim için. Pizza, salata veya antipasto'da büyüleyici.",
+      "nutritionFacts": {
+        "calories": "260 kcal/100g",
+        "protein": "18g",
+        "fat": "20g",
+        "carbs": "1.5g",
+        "calcium": "415mg"
+      },
+      "shelfLifeDays": 10,
+      "storageInstruction": "Kendi suyunda buzdolabında saklayın."
+    },
+    {
+      "id": "p017",
+      "slug": "manda-sutu-500ml",
+      "name": "Manda Sütü",
+      "category": "manda",
+      "subCategory": "sut",
+      "price": 95,
+      "unit": "500ml",
+      "image": "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=800&q=80&hue=20",
+      "images": [
+        "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=1200&q=80&hue=20"
+      ],
+      "producerVillage": "Pirinçeli",
+      "producerId": "pr003",
+      "tags": ["manda", "sut", "yuksek-yag"],
+      "featured": false,
+      "isNew": false,
+      "isBio": false,
+      "inStock": true,
+      "shortDescription": "Pastörize manda sütü, doğal yüksek yağ oranı.",
+      "longDescription": "İnek sütüne göre %50 daha yağlı, daha kremamsı. Yöresel tatlılarda, sütlaçta ve özel kahvaltılarda kullanılır. Pastörize edilmiştir, doğrudan tüketilebilir.",
+      "nutritionFacts": {
+        "calories": "97 kcal/100ml",
+        "protein": "3.7g",
+        "fat": "6.9g",
+        "carbs": "5.2g",
+        "calcium": "195mg"
+      },
+      "shelfLifeDays": 7,
+      "storageInstruction": "+2°C / +6°C arasında buzdolabında saklayın."
+    },
+    {
+      "id": "p018",
+      "slug": "sade-kefir-500ml",
+      "name": "Sade Kefir",
+      "category": "fonksiyonel",
+      "subCategory": "kefir",
+      "price": 75,
+      "unit": "500ml",
+      "image": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&q=80&sat=10",
+      "images": [
+        "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=1200&q=80&sat=10"
+      ],
+      "producerVillage": "Karaidemir",
+      "producerId": "pr002",
+      "tags": ["kefir", "probiyotik", "fonksiyonel"],
+      "featured": true,
+      "isNew": true,
+      "isBio": false,
+      "inStock": true,
+      "shortDescription": "Geleneksel kefir mayasıyla yapılmış doğal probiyotik içecek.",
+      "longDescription": "Kadın Kooperatifi'nin yeni ürünü. Otantik kefir taneleriyle 24 saat fermente edilen, içeriğinde 10+ probiyotik suşu barındıran fonksiyonel içecek. Aç karna içildiğinde sindirimi destekler.",
+      "nutritionFacts": {
+        "calories": "65 kcal/100ml",
+        "protein": "3.3g",
+        "fat": "3.5g",
+        "carbs": "4.5g",
+        "calcium": "120mg"
+      },
+      "shelfLifeDays": 14,
+      "storageInstruction": "+2°C / +6°C arasında buzdolabında saklayın."
+    },
+    {
+      "id": "p019",
+      "slug": "salgamli-ayran-500ml",
+      "name": "Şalgamlı Ayran",
+      "category": "fonksiyonel",
+      "subCategory": "ayran",
+      "price": 45,
+      "unit": "500ml",
+      "image": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&q=80&sat=20",
+      "images": [
+        "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=1200&q=80&sat=20"
+      ],
+      "producerVillage": "Karaidemir",
+      "producerId": "pr002",
+      "tags": ["ayran", "salgam", "yoresel"],
+      "featured": false,
+      "isNew": true,
+      "isBio": false,
+      "inStock": true,
+      "shortDescription": "Doğal şalgam suyuyla mayalanmış, az tuzlu ayran.",
+      "longDescription": "Klasik yoğurt ayranına Trakya yöresine has bir dokunuş: doğal şalgam suyu ile mayalama. Hafif ekşi tat, doğal tuz dengesi. Et yemekleri yanında öne çıkar.",
+      "nutritionFacts": {
+        "calories": "37 kcal/100ml",
+        "protein": "2.1g",
+        "fat": "1.8g",
+        "carbs": "3g",
+        "calcium": "75mg"
+      },
+      "shelfLifeDays": 10,
+      "storageInstruction": "+2°C / +6°C arasında buzdolabında saklayın."
+    },
+    {
+      "id": "p020",
+      "slug": "trakya-kahvalti-sepeti",
+      "name": "Trakya Kahvaltı Sepeti",
+      "category": "set",
+      "subCategory": "kahvalti",
+      "price": 595,
+      "unit": "Set",
+      "image": "https://images.unsplash.com/photo-1605196560547-b2f7281b8355?w=800&q=80",
+      "images": [
+        "https://images.unsplash.com/photo-1605196560547-b2f7281b8355?w=1200&q=80"
+      ],
+      "producerVillage": "Karma",
+      "producerId": "pr004",
+      "tags": ["set", "hediye", "kahvalti"],
+      "featured": true,
+      "isNew": false,
+      "isBio": false,
+      "inStock": true,
+      "shortDescription": "4 ürünlü kahvaltı setı: süzme yoğurt + beyaz peynir + tereyağ + kefir.",
+      "longDescription": "Trakya'nın 3 köyünden seçilmiş kahvaltı klasikleri tek sepette: Karaidemir süzme yoğurt 500g + Sağlamtaş tam yağlı beyaz peynir 500g + Sağlamtaş tuzsuz köy tereyağı 250g + Karaidemir sade kefir 500ml. Hediye olarak da gönderebilirsiniz, sepete kart eklenebilir.",
+      "nutritionFacts": {
+        "calories": "Set içeriklerine göre değişir",
+        "protein": "—",
+        "fat": "—",
+        "carbs": "—",
+        "calcium": "—"
+      },
+      "shelfLifeDays": 14,
+      "storageInstruction": "Tüm ürünleri buzdolabında saklayın. Detaylar için her ürünün etiketine bakın."
+    }
+  ]
+}
