@@ -53,16 +53,17 @@
   </div>
 </header>
 
+<div x-data="productDetail()" x-init="init()">
 <!-- BREADCRUMB -->
 <div class="crumb-wrap">
   <nav class="breadcrumb" aria-label="Breadcrumb">
     <a href="../index.html">Anasayfa</a>
     <span class="sep">/</span>
-    <a href="kategori.html#sut">Süt</a>
+    <a :href="'kategori.html?cat=' + (product?.category || 'sut')" x-text="categoryLabel"></a>
     <span class="sep">/</span>
     <a href="kategori.html#a2-sut">A2 Süt</a>
     <span class="sep">/</span>
-    <span class="current" aria-current="page">A2 Tam Yağlı Pastörize Süt</span>
+    <span class="current" aria-current="page" x-text="product?.name || 'A2 Tam Yağlı Pastörize Süt'"></span>
   </nav>
 </div>
 
@@ -79,7 +80,7 @@
       <button class="zoom-btn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
       </button>
-      <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?w=1200&q=85" alt="A2 Tam Yağlı Süt">
+      <img :src="product?.image || \'https://images.unsplash.com/photo-1550583724-b2692b85b150?w=1200&q=85\'" :alt="product?.name || \'\'">
     </div>
     <div class="thumbs">
       <div class="thumb active">
@@ -106,7 +107,7 @@
     <div class="product-meta-top">
       <a href="ureticiler.html" class="producer-badge">
         <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80" alt="">
-        <span><strong>Evrenbey Köyü</strong> · İsmail Yıldız</span>
+        <span><strong x-text="(product?.producerVillage || 'Evrenbey') + ' Köyü'"></strong> · <span x-text="producer?.name || 'İsmail Yıldız'"></span></span>
       </a>
       <div class="product-rating-top">
         <span class="stars">★★★★★</span>
@@ -114,14 +115,14 @@
       </div>
     </div>
 
-    <h1>A2 Tam Yağlı Pastörize Süt</h1>
-    <p class="product-tagline">"İsmail amcanın 28 yıllık emeği — cam şişede, sabah sağılmış."</p>
+    <h1 x-text="product?.name || 'A2 Tam Yağlı Pastörize Süt'"></h1>
+    <p class="product-tagline" x-text="product?.shortDescription || 'Evrenbey\'in A2 sütü, soğuk zincirle sofranıza.'"></p>
 
     <!-- PRICE -->
     <div class="price-block">
       <div class="price-row">
-        <span class="price">89 ₺</span>
-        <span class="price-unit">/ 1 Litre</span>
+        <span class="price" x-text="(product?.price || 89) + ' ₺'"></span>
+        <span class="price-unit" x-text="'/ ' + (product?.unit || '1L')"></span>
         <span class="price-old">109 ₺</span>
         <span class="price-save">%18 indirim</span>
       </div>
@@ -168,7 +169,14 @@
         <input type="number" value="1" min="1" max="20">
         <button>+</button>
       </div>
-      <button class="add-to-cart" data-product-id="detail-a2-tam-yagli-pastorize-sut" data-product-name="A2 Tam Yağlı Pastörize Süt" data-product-price="89" data-product-image="https://images.unsplash.com/photo-1550583724-b2692b85b150?w=1200&q=85" data-product-unit="1L" data-product-village="Evrenbey">
+      <button class="add-to-cart" type="button"
+        :data-product-id="product?.id || 'p001'"
+        :data-product-name="product?.name"
+        :data-product-price="product?.price"
+        :data-product-image="product?.image"
+        :data-product-unit="product?.unit"
+        :data-product-village="product?.producerVillage"
+        @click="addToCart()">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
         
         Sepete Ekle — 80 ₺
@@ -342,8 +350,8 @@
     <div class="producer-story-img"></div>
     <div class="producer-story-content">
       <div class="eyebrow">Bu sütü kim sağdı?</div>
-      <h2>İsmail Yıldız, <em>Evrenbey'in</em> A2 sürüsü</h2>
-      <div class="role">28 yıllık çiftçi · Kuşaktan kuşağa</div>
+      <h2 x-show="producer"><span x-text="producer?.name"></span>, <em x-text="producer?.village + '\'in'"></em> sürüsü</h2>
+      <div class="role" x-show="producer"><span x-text="producer?.yearsOfExperience"></span> yıllık çiftçi · <span x-text="producer?.role"></span></div>
       <blockquote>"Babamdan öğrendim. Şimdi oğlumla beraber sürdürüyoruz. 42 inekle başladık, bugün 180'i geçtik. Hayvanın rahatı, sütün tadında belli olur."</blockquote>
       <div class="producer-meta">
         <div>
@@ -464,61 +472,24 @@
       </div>
     </div>
     <div class="related-grid">
-      <article class="related-card">
-        <div class="related-img">
-          <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&q=80" alt="">
-        </div>
-        <div class="related-info">
-          <div class="related-meta">Yoğurt · Karaidemir</div>
-          <h3 class="related-name">Geleneksel Süzme Yoğurt</h3>
-          <div class="related-bottom">
-            <span class="related-price">125 ₺</span>
-            <span class="related-rating">★ 5.0</span>
-          </div>
-        </div>
-      </article>
-      <article class="related-card">
-        <div class="related-img">
-          <img src="https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=400&q=80" alt="">
-        </div>
-        <div class="related-info">
-          <div class="related-meta">Tereyağı · Sağlamtaş</div>
-          <h3 class="related-name">Köy Tereyağı, Tuzsuz</h3>
-          <div class="related-bottom">
-            <span class="related-price">165 ₺</span>
-            <span class="related-rating">★ 4.9</span>
-          </div>
-        </div>
-      </article>
-      <article class="related-card">
-        <div class="related-img">
-          <img src="https://images.unsplash.com/photo-1571212515416-fef01fc43637?w=400&q=80" alt="">
-        </div>
-        <div class="related-info">
-          <div class="related-meta">Fonksiyonel · Karaidemir</div>
-          <h3 class="related-name">Sade Kefir, 500ml</h3>
-          <div class="related-bottom">
-            <span class="related-price">75 ₺</span>
-            <span class="related-rating">★ 4.8</span>
-          </div>
-        </div>
-      </article>
-      <article class="related-card">
-        <div class="related-img">
-          <img src="https://images.unsplash.com/photo-1452195100486-9cc805987862?w=400&q=80" alt="">
-        </div>
-        <div class="related-info">
-          <div class="related-meta">Peynir · Pirinçeli</div>
-          <h3 class="related-name">Manda Beyaz Peynir</h3>
-          <div class="related-bottom">
-            <span class="related-price">285 ₺</span>
-            <span class="related-rating">★ 4.8</span>
-          </div>
-        </div>
-      </article>
-    </div>
+      <template x-for="rp in relatedProducts" :key="rp.id">
+        <article class="related-card">
+          <a :href="'urun-detay.html?id=' + rp.id">
+            <div class="related-img">
+              <img :src="rp.image" :alt="rp.name" loading="lazy">
+            </div>
+            <div class="related-info">
+              <small x-text="rp.producerVillage + ' köyü'"></small>
+              <h3 x-text="rp.name"></h3>
+              <strong x-text="rp.price + ' ₺'"></strong>
+            </div>
+          </a>
+        </article>
+      </template>
   </div>
 </section>
+
+</div>
 
 <!-- FOOTER -->
 <footer>
@@ -595,7 +566,14 @@
 
 <!-- MOBILE STICKY -->
 <div class="mobile-buy-bar">
-  <button class="add-to-cart mobile-add-to-cart" data-product-id="detail-a2-tam-yagli-pastorize-sut" data-product-name="A2 Tam Yağlı Pastörize Süt" data-product-price="89" data-product-image="https://images.unsplash.com/photo-1550583724-b2692b85b150?w=1200&q=85" data-product-unit="1L" data-product-village="Evrenbey"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/></svg> Sepete Ekle — 80 ₺ (Abonelik)
+  <button class="add-to-cart mobile-add-to-cart" type="button"
+    :data-product-id="product?.id || 'p001'"
+    :data-product-name="product?.name"
+    :data-product-price="product?.price"
+    :data-product-image="product?.image"
+    :data-product-unit="product?.unit"
+    :data-product-village="product?.producerVillage"
+    @click="addToCart()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/></svg> Sepete Ekle — 80 ₺ (Abonelik)
   </button>
 </div>
 
@@ -746,5 +724,55 @@
   }
 </script>
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+<script>
+  function productDetail() {
+    return {
+      loading: true,
+      product: null,
+      producer: null,
+      relatedProducts: [],
+      qty: 1,
+
+      async init() {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+        if (id) {
+          this.product = await window.MSUB.data.getProductById(id);
+        }
+        // Fallback: load default product (p001) if no id or not found
+        if (!this.product) {
+          this.product = await window.MSUB.data.getProductById('p001');
+        }
+        if (this.product) {
+          document.title = this.product.name + ' — Malkara Süt Üreticileri Birliği';
+          this.producer = await window.MSUB.data.getProducerById(this.product.producerId);
+          const all = await window.MSUB.data.loadProducts();
+          this.relatedProducts = all
+            .filter(p => p.category === this.product.category && p.id !== this.product.id)
+            .slice(0, 4);
+        }
+        this.loading = false;
+      },
+
+      get categoryLabel() {
+        const labels = { sut: 'Süt', yogurt: 'Yoğurt', peynir: 'Peynir',
+          tereyagi: 'Tereyağı', manda: 'Manda Ürünleri',
+          fonksiyonel: 'Fonksiyonel', set: 'Setler' };
+        return labels[this.product?.category] || 'Kategori';
+      },
+
+      addToCart() {
+        if (!this.product) return;
+        window.MSUB.cart.addItem({
+          id: this.product.id, name: this.product.name, slug: this.product.slug,
+          price: this.product.price, image: this.product.image, unit: this.product.unit,
+          producerVillage: this.product.producerVillage, qty: this.qty
+        });
+        window.dispatchEvent(new CustomEvent('cart:added', { detail: { product: this.product } }));
+      }
+    };
+  }
+</script>
 </body>
 </html>
