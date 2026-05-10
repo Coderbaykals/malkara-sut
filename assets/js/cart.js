@@ -80,9 +80,11 @@
 
   function emitUpdate(state) {
     const detail = summarize(state);
-    document.dispatchEvent(
-      new CustomEvent('msub:cart:updated', { detail })
-    );
+    // Dispatch on window so Alpine `@msub:cart:updated.window` listeners
+    // (header cart counter, sepet cartPage refresh) receive the event.
+    // Default CustomEvent bubbles is false, so a document.dispatchEvent
+    // would not propagate to window listeners.
+    window.dispatchEvent(new CustomEvent('msub:cart:updated', { detail }));
   }
 
   const api = {
