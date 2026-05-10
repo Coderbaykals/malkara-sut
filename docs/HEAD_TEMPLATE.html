@@ -1,42 +1,62 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+  <!-- META -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#1F3A2E">
+  <meta name="format-detection" content="telephone=no">
 
-  <!-- Title & Description -->
+  <!-- SEO -->
   <title>{{PAGE_TITLE}} — Malkara Süt Üreticileri Birliği</title>
   <meta name="description" content="{{PAGE_DESCRIPTION}}">
+  <meta name="author" content="Malkara Süt Üreticileri Birliği">
+  <link rel="canonical" href="{{PAGE_URL}}">
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
+  <!-- OPEN GRAPH -->
+  <meta property="og:type" content="{{OG_TYPE}}">
   <meta property="og:title" content="{{OG_TITLE}}">
   <meta property="og:description" content="{{OG_DESCRIPTION}}">
   <meta property="og:image" content="/assets/images/og/default.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{{OG_IMAGE_ALT}}">
   <meta property="og:locale" content="tr_TR">
   <meta property="og:site_name" content="Malkara Süt Üreticileri Birliği">
+  <meta property="og:url" content="{{PAGE_URL}}">
 
-  <!-- Twitter -->
+  <!-- TWITTER -->
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{OG_TITLE}}">
+  <meta name="twitter:description" content="{{OG_DESCRIPTION}}">
+  <meta name="twitter:image" content="/assets/images/og/default.jpg">
 
-  <!-- Favicon -->
+  <!-- FAVICON -->
   <link rel="icon" type="image/svg+xml" href="/assets/images/logo/favicon.svg">
-  <link rel="apple-touch-icon" href="/assets/images/logo/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/logo/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/logo/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/logo/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
 
-  <!-- Fonts (preconnect + stylesheet) -->
+  <!-- PERFORMANCE -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+  <!-- FONTS -->
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Stylesheets -->
+  <!-- CSS -->
   <link rel="stylesheet" href="/assets/css/tokens.css">
   <link rel="stylesheet" href="/assets/css/base.css">
   <link rel="stylesheet" href="/assets/css/components.css">
 
-  <!-- Alpine.js (defer) -->
+  <!-- JS -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- JSON-LD: sayfa türüne göre Sprint 7'de eklenecek
+       (anasayfa: Organization, ürün: Product, breadcrumb gerekenler:
+       BreadcrumbList) -->
 </head>
