@@ -60,7 +60,7 @@
 
     <div class="form-top">
       <span>Yeni misiniz?</span>
-      <a href="#" id="switchToRegister">Hesap oluştur</a>
+      <a href="#register" id="switchToRegister">Hesap oluştur</a>
     </div>
 
     <div class="form-wrap">
@@ -117,7 +117,7 @@
             <input type="checkbox" checked>
             <span>Beni hatırla</span>
           </label>
-          <a href="#">Şifremi unuttum</a>
+          <a href="iletisim.html?konu=sifre-sifirlama">Şifremi unuttum</a>
         </div>
 
         <button type="submit" class="submit-btn">
@@ -129,7 +129,7 @@
       <!-- MAGIC LINK -->
       <div class="magic-link">
         <strong>🔐 Şifresiz giriş</strong>
-        Sadece e-postanızı girin, <a href="#">tek seferlik bağlantı gönderelim</a>
+        Sadece e-postanızı girin, <a href="iletisim.html?konu=tek-seferlik-baglanti">tek seferlik bağlantı gönderelim</a>
       </div>
 
       <!-- TRUST -->
@@ -265,7 +265,7 @@
 
       <label class="checkbox-row">
         <input type="checkbox">
-        <span><a href="#">Üyelik Sözleşmesi</a> ve <a href="#">KVKK Aydınlatma Metni</a>'ni okudum, onaylıyorum.</span>
+        <span><a href="mesafeli-satis.html">Üyelik Sözleşmesi</a> ve <a href="kvkk.html">KVKK Aydınlatma Metni</a>'ni okudum, onaylıyorum.</span>
       </label>
 
       <button type="submit" class="submit-btn" style="margin-top: 20px;">
@@ -275,7 +275,7 @@
     </form>
 
     <div class="form-bottom">
-      Hesabınız var mı? <a href="#" id="switchToLogin">Giriş yapın →</a>
+      Hesabınız var mı? <a href="#login" id="switchToLogin">Giriş yapın →</a>
     </div>
 
     <div class="trust-footer">
@@ -303,13 +303,13 @@
     if (tl) tl.addEventListener('click', () => {
       formWrap.innerHTML = loginContent;
       attachListeners();
-      document.querySelector('.form-top').innerHTML = '<span>Yeni misiniz?</span><a href="#" id="switchToRegister">Hesap oluştur</a>';
+      document.querySelector('.form-top').innerHTML = '<span>Yeni misiniz?</span><a href="#register" id="switchToRegister">Hesap oluştur</a>';
       attachListeners();
     });
     if (tr) tr.addEventListener('click', () => {
       formWrap.innerHTML = registerContent;
       attachListeners();
-      document.querySelector('.form-top').innerHTML = '<span>Hesabınız var mı?</span><a href="#" id="switchToLogin">Giriş yap</a>';
+      document.querySelector('.form-top').innerHTML = '<span>Hesabınız var mı?</span><a href="#login" id="switchToLogin">Giriş yap</a>';
       attachListeners();
     });
     if (sr) sr.addEventListener('click', (e) => { e.preventDefault(); tr && tr.click(); });
