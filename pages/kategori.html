@@ -286,7 +286,7 @@
         loading: true,
         allProducts: [],
         producers: [],
-        filters: { category: 'all', producers: [], priceMax: 1000, tags: [] },
+        filters: { category: 'all', producers: [], priceMax: 1000, tags: [], searchQuery: '' },
         sortBy: 'featured',
         priceRange: { min: 0, max: 1000 },
         categories: [
@@ -326,6 +326,7 @@
           this.filters.tags = params.get('tag')?.split(',').filter(Boolean) || [];
           this.filters.priceMax = Number(params.get('priceMax')) || this.priceRange.max;
           this.sortBy = params.get('sort') || 'featured';
+          this.filters.searchQuery = params.get('q') || '';
         },
 
         updateUrl() {
@@ -335,12 +336,21 @@
           if (this.filters.tags.length) params.set('tag', this.filters.tags.join(','));
           if (this.filters.priceMax < this.priceRange.max) params.set('priceMax', this.filters.priceMax);
           if (this.sortBy !== 'featured') params.set('sort', this.sortBy);
+          if (this.filters.searchQuery) params.set('q', this.filters.searchQuery);
           const url = params.toString() ? '?' + params.toString() : window.location.pathname;
           window.history.pushState({}, '', url);
         },
 
         get filteredProducts() {
           let r = this.allProducts.slice();
+          if (this.filters.searchQuery && this.filters.searchQuery.trim().length >= 2) {
+            const q = this.filters.searchQuery.toLocaleLowerCase('tr');
+            r = r.filter(p => {
+              const hay = [p.name, p.shortDescription, p.category, p.subCategory, p.producerVillage, ...(p.tags || [])]
+                .filter(Boolean).join(' ').toLocaleLowerCase('tr');
+              return hay.includes(q);
+            });
+          }
           if (this.filters.category !== 'all') r = r.filter(p => p.category === this.filters.category);
           if (this.filters.producers.length) r = r.filter(p => this.filters.producers.includes(p.producerId));
           r = r.filter(p => p.price <= this.filters.priceMax);
@@ -356,6 +366,7 @@
         },
 
         get pageTitle() {
+          if (this.filters.searchQuery) return '"' + this.filters.searchQuery + '" için sonuçlar';
           if (this.filters.category === 'all') return 'Tüm Ürünler';
           const c = this.categories.find(c => c.value === this.filters.category);
           return c ? c.label : 'Ürünler';
@@ -375,6 +386,7 @@
           n += this.filters.producers.length;
           n += this.filters.tags.length;
           if (this.filters.priceMax < this.priceRange.max) n++;
+          if (this.filters.searchQuery) n++;
           return n;
         },
 
@@ -391,6 +403,9 @@
           this.filters.tags.forEach(t => chips.push({ type: 'tag', value: t, label: '#' + t }));
           if (this.filters.priceMax < this.priceRange.max) {
             chips.push({ type: 'price', value: this.filters.priceMax, label: '≤ ' + this.filters.priceMax + ' ₺' });
+          }
+          if (this.filters.searchQuery) {
+            chips.push({ type: 'search', value: this.filters.searchQuery, label: 'Arama: "' + this.filters.searchQuery + '"' });
           }
           return chips;
         },
@@ -412,10 +427,11 @@
           else if (type === 'producer') this.filters.producers = this.filters.producers.filter(p => p !== value);
           else if (type === 'tag') this.filters.tags = this.filters.tags.filter(t => t !== value);
           else if (type === 'price') this.filters.priceMax = this.priceRange.max;
+          else if (type === 'search') this.filters.searchQuery = '';
         },
 
         clearFilters() {
-          this.filters = { category: 'all', producers: [], priceMax: this.priceRange.max, tags: [] };
+          this.filters = { category: 'all', producers: [], priceMax: this.priceRange.max, tags: [], searchQuery: '' };
           this.sortBy = 'featured';
           this.updateUrl();
         },
