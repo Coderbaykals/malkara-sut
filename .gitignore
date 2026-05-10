@@ -1,0 +1,24 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*~
+
+# Logs
+*.log
+npm-debug.log*
+
+# Geçici
+/tmp/
+/input/
+
+# Asset placeholderlar build edilmemişse
+/assets/images/_raw/
+
+# Env
+.env
+.env.local
