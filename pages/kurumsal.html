@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toptan & Kurumsal — Malkara Süt Üreticileri Birliği</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-deep: #1f3a2e;
+    --green-mid: #2d5a3d;
+    --green-light: #5a8a6b;
+    --cream: #f7f1e3;
+    --milk: #fdfbf5;
+    --wheat: #d4a574;
+    --wheat-dark: #b8843f;
+    --charcoal: #2a2826;
+    --warm-grey: #6b6660;
+    --line: #e8e0cf;
+    --success: #2d7a4f;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--charcoal);
+    background: var(--milk);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { font-family: 'Fraunces', serif; font-weight: 500; letter-spacing: -0.01em; }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  button { font-family: inherit; cursor: pointer; }
+
+  .announce {
+    background: var(--green-deep);
+    color: var(--cream);
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--milk);
+    border-bottom: 1px solid var(--line);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .nav-wrap {
+    max-width: 1320px; margin: 0 auto;
+    padding: 18px 32px;
+    display: flex; align-items: center; justify-content: space-between; gap: 32px;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 12px;
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 20px;
+    color: var(--green-deep);
+  }
+  .logo-mark {
+    width: 44px; height: 44px;
+    background: var(--green-deep);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    color: var(--cream);
+    font-size: 18px; font-weight: 700;
+    font-family: 'Fraunces', serif;
+  }
+  .logo-text small {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--warm-grey);
+  }
+  nav ul {
+    display: flex; gap: 32px;
+    list-style: none;
+    font-size: 14px; font-weight: 500;
+  }
+  nav a:hover { color: var(--green-mid); }
+  .nav-actions { display: flex; align-items: center; gap: 20px; }
+  .icon-btn {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: transparent;
+    display: grid; place-items: center;
+    transition: all 0.2s; position: relative;
+  }
+  .icon-btn:hover { border-color: var(--green-mid); background: var(--cream); }
+  .cart-count {
+    position: absolute; top: -4px; right: -4px;
+    background: var(--wheat-dark); color: white;
+    font-size: 10px; width: 18px; height: 18px; border-radius: 50%;
+    display: grid; place-items: center; font-weight: 700;
+  }
+  @media (max-width: 900px) { nav ul { display: none; } }
+
+  /* HERO */
+  .b2b-hero {
+    background: var(--green-deep);
+    color: var(--cream);
+    padding: 100px 32px 120px;
+    position: relative;
+    overflow: hidden;
+  }
+  .b2b-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=1920&q=85') center/cover;
+    opacity: 0.18;
+  }
+  .b2b-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(31,58,46,0.6) 0%, rgba(31,58,46,0.92) 100%);
+  }
+  .b2b-hero-content {
+    max-width: 1320px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    opacity: 0.75;
+    margin-bottom: 32px;
+  }
+  .breadcrumb .sep { opacity: 0.4; }
+  .breadcrumb .current { color: var(--wheat); opacity: 1; }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 60px;
+    align-items: end;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(247,241,227,0.1);
+    border: 1px solid rgba(247,241,227,0.2);
+    padding: 8px 16px;
+    border-radius: 100px;
+    font-size: 13px;
+    margin-bottom: 24px;
+  }
+  .b2b-hero h1 {
+    font-size: clamp(40px, 6.5vw, 80px);
+    line-height: 0.98;
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+  .b2b-hero h1 em { font-style: italic; color: var(--wheat); font-weight: 400; }
+  .b2b-hero .lead {
+    font-size: 18px;
+    opacity: 0.88;
+    max-width: 56ch;
+    line-height: 1.55;
+    margin-bottom: 32px;
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    padding: 16px 28px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: inherit;
+  }
+  .btn-primary {
+    background: var(--cream);
+    color: var(--green-deep);
+  }
+  .btn-primary:hover { background: white; transform: translateY(-2px); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--cream);
+    border: 1.5px solid rgba(247,241,227,0.4);
+  }
+  .btn-ghost:hover { background: rgba(247,241,227,0.1); }
+
+  .hero-card {
+    background: rgba(247,241,227,0.06);
+    border: 1px solid rgba(247,241,227,0.15);
+    border-radius: 16px;
+    padding: 32px;
+    backdrop-filter: blur(10px);
+  }
+  .hero-card h3 {
+    font-size: 18px;
+    color: var(--wheat);
+    margin-bottom: 18px;
+  }
+  .hero-card-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(247,241,227,0.12);
+    font-size: 14px;
+  }
+  .hero-card-row:last-child { border-bottom: none; }
+  .hero-card-row .lbl { opacity: 0.75; }
+  .hero-card-row .val {
+    color: var(--cream);
+    font-weight: 600;
+    font-family: 'Fraunces', serif;
+  }
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; }
+  }
+
+  /* TARGET CUSTOMERS */
+  .targets-section {
+    padding: 100px 32px;
+    background: var(--milk);
+  }
+  .container { max-width: 1320px; margin: 0 auto; }
+  .section-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 60px;
+  }
+  .section-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    font-weight: 600;
+    margin-bottom: 18px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-eyebrow::before, .section-eyebrow::after {
+    content: ''; width: 28px; height: 1px; background: var(--green-mid);
+  }
+  .section-title {
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.1;
+    color: var(--green-deep);
+    font-weight: 500;
+    margin-bottom: 18px;
+  }
+  .section-title em { font-style: italic; color: var(--wheat-dark); }
+  .section-subtitle {
+    color: var(--warm-grey);
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  .targets-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 900px) { .targets-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .targets-grid { grid-template-columns: 1fr; } }
+
+  .target-card {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 0;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .target-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(31,58,46,0.08);
+  }
+  .target-img {
+    aspect-ratio: 4/3;
+    background: var(--cream);
+    overflow: hidden;
+  }
+  .target-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+  .target-card:hover .target-img img { transform: scale(1.04); }
+  .target-body { padding: 28px; }
+  .target-body .pre {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--wheat-dark);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .target-body h3 {
+    font-size: 22px;
+    color: var(--green-deep);
+    margin-bottom: 10px;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+  .target-body p {
+    font-size: 14px;
+    color: var(--warm-grey);
+    line-height: 1.65;
+    margin-bottom: 18px;
+  }
+  .target-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+  }
+  .target-tag {
+    background: var(--milk);
+    border: 1px solid var(--line);
+    padding: 4px 10px;
+    border-radius: 100px;
+    font-size: 11px;
+    color: var(--green-deep);
+  }
+
+  /* WHY CHOOSE BAND */
+  .why-section {
+    padding: 100px 32px;
+    background: var(--cream);
+  }
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 60px;
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+    background: var(--milk);
+  }
+  .why-cell {
+    padding: 36px 28px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .why-icon {
+    width: 48px; height: 48px;
+    background: var(--green-deep);
+    color: var(--cream);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    margin-bottom: 22px;
+  }
+  .why-cell h3 {
+    font-size: 20px;
+    color: var(--green-deep);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .why-cell p {
+    font-size: 14px;
+    color: var(--warm-grey);
+    line-height: 1.65;
+  }
+  @media (max-width: 900px) { .why-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 500px) { .why-grid { grid-template-columns: 1fr; } }
+
+  /* PRICING TIERS */
+  .pricing-section {
+    padding: 100px 32px;
+    background: var(--milk);
+  }
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 60px auto 0;
+  }
+  @media (max-width: 900px) { .pricing-grid { grid-template-columns: 1fr; } }
+
+  .price-card {
+    background: var(--cream);
+    border: 1.5px solid var(--line);
+    border-radius: 20px;
+    padding: 36px;
+    position: relative;
+    transition: all 0.3s;
+  }
+  .price-card.featured {
+    background: var(--green-deep);
+    color: var(--cream);
+    border-color: var(--green-deep);
+    transform: scale(1.02);
+  }
+  .price-card.featured h3, .price-card.featured .price-num { color: var(--cream); }
+  .price-card.featured .price-num em { color: var(--wheat); }
+
+  .price-badge {
+    position: absolute;
+    top: -14px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--wheat);
+    color: var(--green-deep);
+    padding: 6px 18px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .price-tier {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--wheat-dark);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .price-card.featured .price-tier { color: var(--wheat); }
+  .price-card h3 {
+    font-size: 26px;
+    color: var(--green-deep);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .price-card .desc {
+    font-size: 13px;
+    color: var(--warm-grey);
+    margin-bottom: 24px;
+    min-height: 40px;
+  }
+  .price-card.featured .desc { color: rgba(247,241,227,0.8); }
+  .price-num {
+    font-family: 'Fraunces', serif;
+    font-size: 38px;
+    color: var(--green-deep);
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .price-num em { color: var(--wheat-dark); font-style: normal; }
+  .price-num small {
+    font-size: 14px;
+    color: var(--warm-grey);
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+  }
+  .price-card.featured .price-num small { color: rgba(247,241,227,0.7); }
+  .price-period {
+    font-size: 12px;
+    color: var(--warm-grey);
+    margin-bottom: 24px;
+  }
+  .price-card.featured .price-period { color: rgba(247,241,227,0.7); }
+  .price-list {
+    list-style: none;
+    padding: 24px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 24px;
+  }
+  .price-card.featured .price-list { border-color: rgba(247,241,227,0.15); }
+  .price-list li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 7px 0;
+    font-size: 13px;
+    color: var(--charcoal);
+  }
+  .price-card.featured .price-list li { color: var(--cream); }
+  .price-list svg {
+    color: var(--success);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .price-card.featured .price-list svg { color: var(--wheat); }
+  .price-card .btn-cta {
+    width: 100%;
+    padding: 14px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1.5px solid var(--green-deep);
+    background: transparent;
+    color: var(--green-deep);
+    transition: all 0.25s;
+  }
+  .price-card .btn-cta:hover {
+    background: var(--green-deep);
+    color: var(--cream);
+  }
+  .price-card.featured .btn-cta {
+    background: var(--wheat);
+    color: var(--green-deep);
+    border-color: var(--wheat);
+  }
+  .price-card.featured .btn-cta:hover {
+    background: white;
+    border-color: white;
+  }
+
+  /* APPLICATION FORM */
+  .form-section {
+    padding: 100px 32px;
+    background: var(--cream);
+  }
+  .form-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 48px;
+    background: var(--milk);
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .form-side {
+    padding: 56px 48px;
+    background: var(--green-deep);
+    color: var(--cream);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .form-side .section-eyebrow { color: var(--wheat); }
+  .form-side .section-eyebrow::before, .form-side .section-eyebrow::after { background: var(--wheat); }
+  .form-side h2 {
+    font-size: clamp(28px, 3.5vw, 38px);
+    line-height: 1.1;
+    margin-bottom: 18px;
+  }
+  .form-side h2 em { font-style: italic; color: var(--wheat); }
+  .form-side p {
+    font-size: 14px;
+    opacity: 0.85;
+    line-height: 1.65;
+    margin-bottom: 28px;
+  }
+  .form-side-list {
+    list-style: none;
+    margin-bottom: 32px;
+  }
+  .form-side-list li {
+    display: flex;
+    gap: 12px;
+    padding: 6px 0;
+    font-size: 14px;
+    color: var(--cream);
+  }
+  .form-side-list svg { color: var(--wheat); flex-shrink: 0; margin-top: 4px; }
+  .form-contact {
+    padding-top: 24px;
+    border-top: 1px solid rgba(247,241,227,0.15);
+    font-size: 13px;
+    opacity: 0.8;
+  }
+  .form-contact strong {
+    color: var(--wheat);
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    margin-bottom: 6px;
+  }
+  .form-contact a { color: var(--cream); text-decoration: underline; }
+
+  .form-content {
+    padding: 56px 48px;
+  }
+  .form-content h3 {
+    font-size: 22px;
+    color: var(--green-deep);
+    margin-bottom: 6px;
+  }
+  .form-content > p {
+    font-size: 13px;
+    color: var(--warm-grey);
+    margin-bottom: 32px;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .form-row.single { grid-template-columns: 1fr; }
+  @media (max-width: 700px) { .form-row { grid-template-columns: 1fr; } }
+  .form-field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--green-deep);
+    margin-bottom: 6px;
+    letter-spacing: 0.02em;
+  }
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1.5px solid var(--line);
+    border-radius: 10px;
+    background: var(--cream);
+    font-size: 14px;
+    color: var(--charcoal);
+    font-family: inherit;
+    transition: all 0.2s;
+    outline: none;
+  }
+  .form-field input:focus,
+  .form-field select:focus,
+  .form-field textarea:focus {
+    border-color: var(--green-deep);
+    background: var(--milk);
+  }
+  .form-field input::placeholder { color: #b3aea3; }
+  .form-field textarea { min-height: 100px; resize: vertical; }
+
+  .biz-type-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  @media (max-width: 600px) { .biz-type-grid { grid-template-columns: 1fr 1fr; } }
+  .biz-type-card {
+    padding: 14px 8px;
+    border: 1.5px solid var(--line);
+    background: var(--cream);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    font-size: 12px;
+  }
+  .biz-type-card:hover { border-color: var(--green-mid); }
+  .biz-type-card.selected {
+    background: var(--green-deep);
+    color: var(--cream);
+    border-color: var(--green-deep);
+  }
+  .biz-type-card svg { display: block; margin: 0 auto 6px; }
+
+  .checkbox-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--charcoal);
+    cursor: pointer;
+    padding: 10px 0;
+  }
+  .checkbox-row input[type="checkbox"] {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid var(--line);
+    border-radius: 4px;
+    background: var(--milk);
+    position: relative;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .checkbox-row input[type="checkbox"]:checked {
+    background: var(--green-deep);
+    border-color: var(--green-deep);
+  }
+  .checkbox-row input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    left: 5px; top: 1px;
+    width: 5px; height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  .form-submit {
+    margin-top: 14px;
+    width: 100%;
+    background: var(--green-deep);
+    color: var(--cream);
+    border: none;
+    padding: 16px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.25s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .form-submit:hover { background: var(--charcoal); }
+
+  @media (max-width: 900px) {
+    .form-wrap { grid-template-columns: 1fr; }
+    .form-side, .form-content { padding: 36px; }
+  }
+
+  /* CASE STUDY */
+  .case-section {
+    padding: 100px 32px;
+    background: var(--milk);
+  }
+  .case-card {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: var(--cream);
+    border-radius: 20px;
+    padding: 56px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 48px;
+    align-items: center;
+    border: 1px solid var(--line);
+  }
+  .case-img {
+    aspect-ratio: 1;
+    border-radius: 16px;
+    background: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800&q=85') center/cover;
+  }
+  .case-text .pre {
+    font-size: 11px;
+    color: var(--wheat-dark);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .case-text h3 {
+    font-size: 26px;
+    color: var(--green-deep);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .case-text .role {
+    font-size: 13px;
+    color: var(--warm-grey);
+    margin-bottom: 20px;
+  }
+  .case-text blockquote {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    line-height: 1.55;
+    font-style: italic;
+    color: var(--charcoal);
+    border-left: 3px solid var(--wheat);
+    padding-left: 20px;
+    margin-bottom: 24px;
+  }
+  .case-meta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+  }
+  .case-meta strong {
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    color: var(--green-deep);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .case-meta span {
+    font-size: 11px;
+    color: var(--warm-grey);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  @media (max-width: 800px) {
+    .case-card { grid-template-columns: 1fr; padding: 36px; }
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 60px 32px 30px;
+  }
+  .footer-wrap { max-width: 1320px; margin: 0 auto; }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(247,241,227,0.1);
+  }
+  .footer-brand .logo { color: var(--cream); margin-bottom: 16px; }
+  .footer-brand .logo-mark { background: var(--cream); color: var(--green-deep); }
+  .footer-brand p { font-size: 14px; opacity: 0.7; line-height: 1.7; max-width: 30ch; }
+  .footer-col h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--wheat);
+    margin-bottom: 16px; font-weight: 600;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 8px; }
+  .footer-col a { font-size: 14px; opacity: 0.7; }
+  .footer-col a:hover { opacity: 1; }
+  .footer-bottom {
+    padding-top: 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 20px;
+    font-size: 13px; opacity: 0.6;
+  }
+  @media (max-width: 800px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .footer-brand { grid-column: 1/3; }
+  }
+</style>
+</head>
+<body>
+
+<div class="announce">
+  <span>🏢 Kurumsal müşterilerimize özel: %20'ye varan toptan indirim · Sabit teslimat günleri · e-Fatura</span>
+</div>
+
+<header>
+  <div class="nav-wrap">
+    <a href="#" class="logo">
+      <div class="logo-mark">M</div>
+      <div class="logo-text">
+        Malkara
+        <small>Süt Üreticileri Birliği</small>
+      </div>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="#">Süt</a></li>
+        <li><a href="#">Yoğurt</a></li>
+        <li><a href="#">Peynir</a></li>
+        <li><a href="#">Tereyağı</a></li>
+        <li><a href="#">Abonelik</a></li>
+        <li><a href="#">Hikâyemiz</a></li>
+        <li><a href="#">Üreticiler</a></li>
+      </ul>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      </button>
+      <button class="icon-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </button>
+      <button class="icon-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-count">2</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="b2b-hero">
+  <div class="b2b-hero-content">
+    <div class="breadcrumb">
+      <a href="#">Anasayfa</a>
+      <span class="sep">/</span>
+      <span class="current">Toptan & Kurumsal</span>
+    </div>
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eyebrow">B2B · Toptan & Kurumsal Tedarik</div>
+        <h1>İşletmeniz için, <em>doğrudan birlikten</em>.</h1>
+        <p class="lead">Üçüncü dalga kahveciler, oteller, restoranlar, pastaneler, kurumsal catering ve okul-hastane tedariki. Sabit fiyat, sabit gün, sabit kalite — aracısız çözüm.</p>
+        <div class="hero-ctas">
+          <a href="#form" class="btn btn-primary">
+            Başvuru Yap
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#pricing" class="btn btn-ghost">Toptan Fiyatları Gör</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <h3>Bir bakışta</h3>
+        <div class="hero-card-row">
+          <span class="lbl">Aktif kurumsal müşteri</span>
+          <span class="val">120+</span>
+        </div>
+        <div class="hero-card-row">
+          <span class="lbl">Toptan indirim oranı</span>
+          <span class="val">%10 — %20</span>
+        </div>
+        <div class="hero-card-row">
+          <span class="lbl">Minimum sipariş</span>
+          <span class="val">2.500 ₺</span>
+        </div>
+        <div class="hero-card-row">
+          <span class="lbl">Teslimat sıklığı</span>
+          <span class="val">Haftada 2-6 gün</span>
+        </div>
+        <div class="hero-card-row">
+          <span class="lbl">Ödeme vadesi</span>
+          <span class="val">Esnek (15-45 gün)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TARGET CUSTOMERS -->
+<section class="targets-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Müşterilerimiz</div>
+      <h2 class="section-title">Hangi <em>işletmelere</em> tedarik veriyoruz?</h2>
+      <p class="section-subtitle">Farklı ihtiyaçları olan işletmeler için özel paketler ve ödeme planları sunuyoruz.</p>
+    </div>
+
+    <div class="targets-grid">
+
+      <article class="target-card">
+        <div class="target-img">
+          <img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=800&q=80" alt="">
+        </div>
+        <div class="target-body">
+          <div class="pre">B2B · Specialty Coffee</div>
+          <h3>Üçüncü Dalga Kahveciler</h3>
+          <p>Latte, cappuccino ve filtre kahve için tat profili dengeli süt. Yüksek protein, doğru yağ oranı, iyi köpürme — barista tarafında fark belli olur.</p>
+          <div class="target-tags">
+            <span class="target-tag">Barista Süt</span>
+            <span class="target-tag">A2 Süt</span>
+            <span class="target-tag">Yağsız Süt</span>
+            <span class="target-tag">Aile boyu</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="target-card">
+        <div class="target-img">
+          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80" alt="">
+        </div>
+        <div class="target-body">
+          <div class="pre">B2B · HORECA</div>
+          <h3>Otel & Restoran (HORECA)</h3>
+          <p>Açık büfe kahvaltı, mutfak tedariki ve a-la-carte için tam set süt ürünleri. Yoğurt, peynir, tereyağı, manda ürünleri — tek tedarikçi kolaylığı.</p>
+          <div class="target-tags">
+            <span class="target-tag">Tam Set</span>
+            <span class="target-tag">Manda Mozarella</span>
+            <span class="target-tag">Premium Peynir</span>
+            <span class="target-tag">Kahvaltılık</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="target-card">
+        <div class="target-img">
+          <img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=800&q=80" alt="">
+        </div>
+        <div class="target-body">
+          <div class="pre">B2B · Pastane & Fırın</div>
+          <h3>Butik Pastane & Fırın</h3>
+          <p>Tatlı, pasta ve hamur işleri için kaliteli krema, tereyağı, lor ve manda peyniri. Sürekli aynı tat — tarifin tutarlılığı için sabit kalite.</p>
+          <div class="target-tags">
+            <span class="target-tag">Krema</span>
+            <span class="target-tag">Tereyağı</span>
+            <span class="target-tag">Lor</span>
+            <span class="target-tag">Süzme Yoğurt</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="target-card">
+        <div class="target-img">
+          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80" alt="">
+        </div>
+        <div class="target-body">
+          <div class="pre">B2B · Kurumsal Catering</div>
+          <h3>Kurumsal Catering</h3>
+          <p>Ofis, etkinlik ve toplu yemek catering şirketleri için yüksek hacimli, ekonomik paketler. Aile boyu seçenekler, planlı tedarik takvimi.</p>
+          <div class="target-tags">
+            <span class="target-tag">Aile Boyu</span>
+            <span class="target-tag">Yoğurt 3kg</span>
+            <span class="target-tag">Peynir Bloklar</span>
+            <span class="target-tag">Tereyağı Kg</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="target-card">
+        <div class="target-img">
+          <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=800&q=80" alt="">
+        </div>
+        <div class="target-body">
+          <div class="pre">B2B · Eğitim & Sağlık</div>
+          <h3>Okul, Hastane & Kreş</h3>
+          <p>Çocuk ve hasta beslenmesi için özel ürün paketleri. Zenginleştirilmiş süt, hafif yoğurt seçenekleri, küçük porsiyon ambalajlar. Belge dosyalarımız tam.</p>
+          <div class="target-tags">
+            <span class="target-tag">Çocuk Sütü</span>
+            <span class="target-tag">Light Yoğurt</span>
+            <span class="target-tag">Porsiyonluk</span>
+            <span class="target-tag">İhale Belgeleri</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="target-card">
+        <div class="target-img">
+          <img src="https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=800&q=80" alt="">
+        </div>
+        <div class="target-body">
+          <div class="pre">B2B · Perakende</div>
+          <h3>Bakkal, Şarküteri, Manav</h3>
+          <p>Mahalle bakkalları, şarküteriler ve organik manavlar için raf ürünleri. Esnek miktar, kısa raf riski paylaşımı, taze gün teslimi.</p>
+          <div class="target-tags">
+            <span class="target-tag">Cam Şişe Süt</span>
+            <span class="target-tag">Tüm Yelpaze</span>
+            <span class="target-tag">İade Politikası</span>
+            <span class="target-tag">Düşük Min.</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE -->
+<section class="why-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Neden Birlikten?</div>
+      <h2 class="section-title">Aracısız tedarik, <em>somut avantajlar</em>.</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-cell">
+        <div class="why-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 0 1-9 9m9-9a9 9 0 0 0-9-9m9 9H3m9 9a9 9 0 0 1-9-9m9 9c-2.5-2.5-4-5.5-4-9s1.5-6.5 4-9m0 18c2.5-2.5 4-5.5 4-9s-1.5-6.5-4-9"/></svg>
+        </div>
+        <h3>Aracısız fiyat</h3>
+        <p>Distribütör marjı yok, doğrudan üretici birliğinden tedarik. Toptan zincire göre %15-20 daha avantajlı maliyet.</p>
+      </div>
+      <div class="why-cell">
+        <div class="why-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <h3>Sabit teslimat takvimi</h3>
+        <p>Sizinle birlikte belirlediğimiz sabit günlerde teslimat. İşletmenizin ritmine göre haftada 2-6 gün esneklik.</p>
+      </div>
+      <div class="why-cell">
+        <div class="why-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <h3>e-Fatura & Ön muhasebe</h3>
+        <p>Otomatik e-fatura, e-arşiv. Ödeme vadesi 15-45 gün arasında esneklik. Logo, Mikro, Paraşüt entegrasyonu.</p>
+      </div>
+      <div class="why-cell">
+        <div class="why-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/></svg>
+        </div>
+        <h3>Hikâye paylaşımı</h3>
+        <p>İşletmenizde "Trakya'nın 57 köyünden" hikâyesini paylaşma hakkı. Menüde, ambalajda, sosyal medyada kullanılabilir görsel destek paketi.</p>
+      </div>
+      <div class="why-cell">
+        <div class="why-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <h3>Tek noktadan tedarik</h3>
+        <p>Süt, yoğurt, peynir, tereyağı, fonksiyonel — tüm yelpaze tek tedarikçiden. Birden fazla cari hesap yönetmeyin.</p>
+      </div>
+      <div class="why-cell">
+        <div class="why-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>
+        </div>
+        <h3>Belge ve sertifika</h3>
+        <p>İhale, denetim ve hijyen sertifikası dosyaları talep üzerine eksiksiz teslim. ISO 22000, HACCP, Helal, TSE.</p>
+      </div>
+      <div class="why-cell">
+        <div class="why-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+        <h3>Soğuk zincir garantisi</h3>
+        <p>Tüm tedarik soğutmalı araçlarla. Kapıda 4°C garantisi. Uyumsuzluk halinde parti iade hakkı.</p>
+      </div>
+      <div class="why-cell">
+        <div class="why-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Atanmış müşteri temsilcisi</h3>
+        <p>Her kurumsal müşteriye özel temsilci. WhatsApp Business hattı, hızlı sipariş, sorun çözümü tek noktadan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING TIERS -->
+<section class="pricing-section" id="pricing">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Toptan Paketler</div>
+      <h2 class="section-title">İşletmeniz için <em>doğru paket</em></h2>
+      <p class="section-subtitle">Hacim ve ihtiyaca göre üç farklı kademe. Tüm paketlerimizde e-fatura, soğuk zincir kargo ve hikâye paylaşım hakkı dahil.</p>
+    </div>
+    <div class="pricing-grid">
+
+      <article class="price-card">
+        <div class="price-tier">Butik</div>
+        <h3>Mahalle Tedarik</h3>
+        <p class="desc">Bakkal, mini kafe, şarküteri için.</p>
+        <div class="price-num">%10 <small>indirim</small></div>
+        <div class="price-period">Liste fiyatına göre · Ay başı tek ödeme</div>
+        <ul class="price-list">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Min. sipariş 2.500 ₺</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Haftada 2 gün teslimat</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> e-Fatura otomatik</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Standart ürün yelpazesi</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> 15 gün vade</li>
+        </ul>
+        <button class="btn-cta">Başvuru Yap</button>
+      </article>
+
+      <article class="price-card featured">
+        <div class="price-badge">En Popüler</div>
+        <div class="price-tier">Profesyonel</div>
+        <h3>HORECA & Pastane</h3>
+        <p class="desc">Kafe, restoran, otel, butik pastane.</p>
+        <div class="price-num"><em>%15</em> <small>indirim</small></div>
+        <div class="price-period">Liste fiyatına göre · 2 haftada bir tek ödeme</div>
+        <ul class="price-list">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Min. sipariş 5.000 ₺</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Haftada 4-6 gün teslimat</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Atanmış müşteri temsilcisi</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Manda + premium ürünler</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Görsel ve hikâye paketi</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> 30 gün vade</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> WhatsApp B2B hattı</li>
+        </ul>
+        <button class="btn-cta">Başvuru Yap</button>
+      </article>
+
+      <article class="price-card">
+        <div class="price-tier">Kurumsal</div>
+        <h3>Catering & İhale</h3>
+        <p class="desc">Catering, okul, hastane, ihale.</p>
+        <div class="price-num">%20'ye <small>kadar</small></div>
+        <div class="price-period">Hacim sözleşmesi ile · Aylık fatura</div>
+        <ul class="price-list">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Min. sipariş 25.000 ₺/ay</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Günlük teslimat opsiyonu</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Özel ambalaj çözümleri</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Sözleşmeli sabit fiyat</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Tam belge dosyası</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> 45 gün vade</li>
+        </ul>
+        <button class="btn-cta">Görüşme Talep Et</button>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDY -->
+<section class="case-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Müşteri Hikâyesi</div>
+      <h2 class="section-title">Üçüncü dalga bir <em>kahvecinin</em> deneyimi</h2>
+    </div>
+    <div class="case-card">
+      <div class="case-img"></div>
+      <div class="case-text">
+        <div class="pre">Beyoğlu · İstanbul</div>
+        <h3>Uçuş Kahve · Selin Bektaş</h3>
+        <div class="role">Kafe sahibi · Specialty coffee · 8 yıl tecrübe</div>
+        <blockquote>"Önceki tedarikçimizle 4 yıl çalıştık ama tat tutarlılığı sorunluydu. Birliğe geçtikten sonra hem maliyet hem kalite hem de hikâyenin kendisi tüm farkı yarattı. Müşteriler kahvenin tadını sorduğunda 'sütten' diyebiliyoruz."</blockquote>
+        <div class="case-meta">
+          <div>
+            <strong>%18</strong>
+            <span>Maliyet azalması</span>
+          </div>
+          <div>
+            <strong>+%12</strong>
+            <span>Müşteri övgüsü</span>
+          </div>
+          <div>
+            <strong>2.5y</strong>
+            <span>Birlikte çalışma</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPLICATION FORM -->
+<section class="form-section" id="form">
+  <div class="form-wrap">
+
+    <div class="form-side">
+      <div>
+        <div class="section-eyebrow" style="margin-bottom: 18px;">Başvuru</div>
+        <h2>İşletmenizi <em>tanımak</em> için sadece 2 dakika.</h2>
+        <p>Formu doldurun, kurumsal müşteri ekibimiz 1 iş günü içinde sizinle iletişime geçsin. İhtiyaçlarınıza özel teklif hazırlayalım.</p>
+        <ul class="form-side-list">
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
+            <span>İlk teklif 24 saat içinde</span>
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
+            <span>Numune ürün gönderimi (ücretsiz)</span>
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
+            <span>Yerinde tat denemesi (İstanbul içi)</span>
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
+            <span>Sözleşme ve sertifika dosyası</span>
+          </li>
+        </ul>
+      </div>
+      <div class="form-contact">
+        <strong>Kurumsal Hat</strong>
+        <span style="display: block;"><a href="tel:+902826738150">+90 282 673 81 50</a> · Dahili 200</span>
+        <span style="display: block; margin-top: 8px;"><a href="mailto:kurumsal@malkarasutureticileri.org.tr">kurumsal@malkarasutureticileri.org.tr</a></span>
+      </div>
+    </div>
+
+    <div class="form-content">
+      <h3>Başvuru Formu</h3>
+      <p>Yıldızlı (★) alanlar zorunludur</p>
+
+      <div class="form-row single">
+        <div class="form-field">
+          <label>İşletme Türü ★</label>
+          <div class="biz-type-grid">
+            <div class="biz-type-card selected">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/></svg>
+              Kafe / Kahveci
+            </div>
+            <div class="biz-type-card">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11h18v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-9z"/><path d="M3 7h18v4H3z"/></svg>
+              Otel / Restoran
+            </div>
+            <div class="biz-type-card">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/></svg>
+              Pastane / Fırın
+            </div>
+            <div class="biz-type-card">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+              Catering
+            </div>
+            <div class="biz-type-card">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z"/></svg>
+              Okul / Hastane
+            </div>
+            <div class="biz-type-card">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+              Bakkal / Diğer
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label>İşletme Adı ★</label>
+          <input type="text" placeholder="Uçuş Kahve">
+        </div>
+        <div class="form-field">
+          <label>Vergi Numarası</label>
+          <input type="text" placeholder="10 hane">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label>Yetkili Ad Soyad ★</label>
+          <input type="text" placeholder="Selin Bektaş">
+        </div>
+        <div class="form-field">
+          <label>Görev / Pozisyon</label>
+          <input type="text" placeholder="Sahip / Satın alma sorumlusu">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label>E-posta ★</label>
+          <input type="email" placeholder="ornek@isletme.com">
+        </div>
+        <div class="form-field">
+          <label>Telefon ★</label>
+          <input type="tel" placeholder="+90 5__ ___ __ __">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label>Şehir ★</label>
+          <select>
+            <option>İstanbul</option>
+            <option>Ankara</option>
+            <option>İzmir</option>
+            <option>Tekirdağ</option>
+            <option>Bursa</option>
+            <option>Kocaeli</option>
+            <option>Diğer</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>İlçe / Bölge</label>
+          <input type="text" placeholder="Beyoğlu, Galata">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label>Tahmini Aylık Hacim ★</label>
+          <select>
+            <option>2.500 — 5.000 ₺</option>
+            <option>5.000 — 15.000 ₺</option>
+            <option>15.000 — 50.000 ₺</option>
+            <option>50.000 ₺+</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Hangi Pakete İlgileniyorsunuz?</label>
+          <select>
+            <option>Butik Mahalle Tedarik</option>
+            <option>Profesyonel HORECA</option>
+            <option>Kurumsal Catering</option>
+            <option>Henüz emin değilim</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row single">
+        <div class="form-field">
+          <label>Hangi Ürünlerle İlgileniyorsunuz?</label>
+          <textarea placeholder="Örn: Barista süt (haftada 80L), tereyağı (5kg/ay), beyaz peynir (3kg/hafta)..."></textarea>
+        </div>
+      </div>
+
+      <div class="form-row single">
+        <div class="form-field">
+          <label>Eklemek İstedikleriniz</label>
+          <textarea placeholder="Özel istekler, mevcut tedarikçi durumu, başlama tarihi vb."></textarea>
+        </div>
+      </div>
+
+      <label class="checkbox-row">
+        <input type="checkbox">
+        <span>Numune ürün almak istiyorum (İstanbul, Ankara, İzmir, Tekirdağ için ücretsiz)</span>
+      </label>
+      <label class="checkbox-row">
+        <input type="checkbox" checked>
+        <span><a href="#" style="color: var(--green-deep); text-decoration: underline;">KVKK Aydınlatma Metni</a>'ni okudum ve onaylıyorum.</span>
+      </label>
+
+      <button class="form-submit">
+        Başvuruyu Gönder
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <div class="logo-mark">M</div>
+          <div class="logo-text">
+            Malkara
+            <small style="opacity: 0.7;">Süt Üreticileri Birliği</small>
+          </div>
+        </a>
+        <p>Trakya'nın 57 köyünden, 92 soğutma merkezinden, doğrudan sofranıza.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Alışveriş</h4>
+        <ul>
+          <li><a href="#">Tüm Ürünler</a></li>
+          <li><a href="#">Süt</a></li>
+          <li><a href="#">Yoğurt</a></li>
+          <li><a href="#">Abonelik</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Birlik</h4>
+        <ul>
+          <li><a href="#">Hikâyemiz</a></li>
+          <li><a href="#">Üreticiler</a></li>
+          <li><a href="#">Köy Haritası</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>İletişim</h4>
+        <ul>
+          <li style="opacity: 0.7; font-size: 14px;">Gazibey, Tevfikbey Cd. No:3<br>59310 Malkara/Tekirdağ</li>
+          <li><a href="tel:+902826738150">+90 282 673 81 50</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Malkara Süt Üreticileri Birliği</div>
+      <div style="display: flex; gap: 24px;">
+        <a href="#">KVKK</a>
+        <a href="#">Çerez</a>
+        <a href="#">Mesafeli Satış</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

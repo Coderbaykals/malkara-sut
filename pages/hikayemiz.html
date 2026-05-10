@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hikâyemiz — Malkara Süt Üreticileri Birliği</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-deep: #1f3a2e;
+    --green-mid: #2d5a3d;
+    --green-light: #5a8a6b;
+    --cream: #f7f1e3;
+    --milk: #fdfbf5;
+    --wheat: #d4a574;
+    --wheat-dark: #b8843f;
+    --charcoal: #2a2826;
+    --warm-grey: #6b6660;
+    --line: #e8e0cf;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--charcoal);
+    background: var(--milk);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { font-family: 'Fraunces', serif; font-weight: 500; letter-spacing: -0.01em; }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+
+  .announce {
+    background: var(--green-deep);
+    color: var(--cream);
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--milk);
+    border-bottom: 1px solid var(--line);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .nav-wrap {
+    max-width: 1320px; margin: 0 auto;
+    padding: 18px 32px;
+    display: flex; align-items: center; justify-content: space-between; gap: 32px;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 12px;
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 20px;
+    color: var(--green-deep);
+  }
+  .logo-mark {
+    width: 44px; height: 44px;
+    background: var(--green-deep);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    color: var(--cream);
+    font-size: 18px; font-weight: 700;
+    font-family: 'Fraunces', serif;
+  }
+  .logo-text small {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--warm-grey);
+  }
+  nav ul {
+    display: flex; gap: 32px;
+    list-style: none;
+    font-size: 14px; font-weight: 500;
+  }
+  nav a:hover, nav a.active { color: var(--green-mid); }
+  nav a.active { font-weight: 600; }
+  .nav-actions { display: flex; align-items: center; gap: 20px; }
+  .icon-btn {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: transparent;
+    display: grid; place-items: center;
+    transition: all 0.2s; position: relative;
+  }
+  .icon-btn:hover { border-color: var(--green-mid); background: var(--cream); }
+  .cart-count {
+    position: absolute; top: -4px; right: -4px;
+    background: var(--wheat-dark); color: white;
+    font-size: 10px; width: 18px; height: 18px; border-radius: 50%;
+    display: grid; place-items: center; font-weight: 700;
+  }
+  @media (max-width: 900px) { nav ul { display: none; } }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    background: var(--green-deep);
+    color: var(--cream);
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=1920&q=85') center/cover;
+    opacity: 0.32;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(31,58,46,0.45) 0%, rgba(31,58,46,0.92) 100%);
+  }
+  .hero-content {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 32px;
+    width: 100%;
+    text-align: center;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(247,241,227,0.1);
+    border: 1px solid rgba(247,241,227,0.2);
+    padding: 8px 18px;
+    border-radius: 100px;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    margin-bottom: 32px;
+  }
+  .hero h1 {
+    font-size: clamp(48px, 8vw, 120px);
+    line-height: 0.95;
+    margin-bottom: 32px;
+    font-weight: 500;
+    max-width: 18ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero h1 em { font-style: italic; color: var(--wheat); font-weight: 400; }
+  .hero p {
+    font-size: clamp(17px, 1.7vw, 21px);
+    max-width: 56ch;
+    margin: 0 auto;
+    opacity: 0.92;
+    line-height: 1.55;
+  }
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    animation: bob 2s ease-in-out infinite;
+  }
+  @keyframes bob {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  /* INTRO STATEMENT */
+  .intro-section {
+    padding: 140px 32px;
+    background: var(--milk);
+    text-align: center;
+  }
+  .intro-content {
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  .intro-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    font-weight: 600;
+    margin-bottom: 24px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .intro-eyebrow::before, .intro-eyebrow::after {
+    content: ''; width: 28px; height: 1px; background: var(--green-mid);
+  }
+  .intro-content h2 {
+    font-size: clamp(32px, 4vw, 52px);
+    line-height: 1.15;
+    color: var(--green-deep);
+    font-weight: 500;
+    margin-bottom: 28px;
+  }
+  .intro-content h2 em { font-style: italic; color: var(--wheat-dark); }
+  .intro-content p {
+    font-size: 18px;
+    color: var(--charcoal);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  .intro-content .lead {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-style: italic;
+    color: var(--green-deep);
+    line-height: 1.5;
+    border-left: 2px solid var(--wheat);
+    padding-left: 24px;
+    margin: 32px auto;
+    max-width: 700px;
+    text-align: left;
+  }
+
+  /* TIMELINE */
+  .timeline-section {
+    background: var(--cream);
+    padding: 120px 32px;
+  }
+  .container { max-width: 1320px; margin: 0 auto; }
+  .section-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 72px;
+  }
+  .section-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    font-weight: 600;
+    margin-bottom: 18px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-eyebrow::before {
+    content: ''; width: 28px; height: 1px; background: var(--green-mid);
+  }
+  .section-title {
+    font-size: clamp(32px, 4.5vw, 52px);
+    line-height: 1.1;
+    color: var(--green-deep);
+    font-weight: 500;
+  }
+  .section-title em { font-style: italic; color: var(--wheat-dark); }
+  .section-subtitle {
+    font-size: 16px;
+    color: var(--warm-grey);
+    margin-top: 18px;
+    line-height: 1.6;
+  }
+
+  .timeline {
+    max-width: 880px;
+    margin: 0 auto;
+    position: relative;
+    padding-left: 100px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 36px;
+    top: 12px;
+    bottom: 12px;
+    width: 2px;
+    background: var(--green-light);
+    opacity: 0.4;
+  }
+  .timeline-item {
+    position: relative;
+    padding-bottom: 60px;
+  }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-year {
+    position: absolute;
+    left: -100px;
+    top: 0;
+    width: 80px;
+    text-align: right;
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--green-deep);
+    line-height: 1;
+  }
+  .timeline-dot {
+    position: absolute;
+    left: -68px;
+    top: 8px;
+    width: 18px; height: 18px;
+    background: var(--milk);
+    border: 3px solid var(--green-deep);
+    border-radius: 50%;
+  }
+  .timeline-item.current .timeline-dot {
+    background: var(--wheat);
+    border-color: var(--wheat-dark);
+  }
+  .timeline-item h3 {
+    font-size: 22px;
+    color: var(--green-deep);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .timeline-item p {
+    color: var(--charcoal);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  @media (max-width: 700px) {
+    .timeline { padding-left: 50px; }
+    .timeline::before { left: 8px; }
+    .timeline-year {
+      position: static;
+      text-align: left;
+      width: auto;
+      font-size: 20px;
+      margin-bottom: 6px;
+    }
+    .timeline-dot { left: -42px; }
+  }
+
+  /* MISSION & VISION */
+  .mv-section {
+    padding: 120px 32px;
+    background: var(--milk);
+  }
+  .mv-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .mv-card {
+    background: var(--cream);
+    border-radius: 20px;
+    padding: 48px;
+    border: 1px solid var(--line);
+  }
+  .mv-card .icon-circle {
+    width: 56px; height: 56px;
+    background: var(--green-deep);
+    color: var(--cream);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    margin-bottom: 28px;
+  }
+  .mv-card h2 {
+    font-size: 32px;
+    color: var(--green-deep);
+    margin-bottom: 16px;
+  }
+  .mv-card h2 em { font-style: italic; color: var(--wheat-dark); }
+  .mv-card .lead {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--charcoal);
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+  .mv-list {
+    list-style: none;
+  }
+  .mv-list li {
+    padding: 10px 0;
+    font-size: 14px;
+    color: var(--charcoal);
+    border-bottom: 1px solid rgba(31,58,46,0.08);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .mv-list li:last-child { border-bottom: none; }
+  .mv-list svg { color: var(--green-mid); flex-shrink: 0; }
+  @media (max-width: 800px) { .mv-grid { grid-template-columns: 1fr; } .mv-card { padding: 36px; } }
+
+  /* QUOTE BAND */
+  .quote-band {
+    background: var(--green-deep);
+    color: var(--cream);
+    padding: 120px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .quote-band-bg {
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=1920&q=85') center/cover;
+    opacity: 0.12;
+  }
+  .quote-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+  }
+  .quote-content::before {
+    content: '"';
+    font-family: 'Fraunces', serif;
+    font-size: 140px;
+    line-height: 0.7;
+    color: var(--wheat);
+    display: block;
+    margin-bottom: 12px;
+  }
+  .quote-content blockquote {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(24px, 3.5vw, 40px);
+    line-height: 1.35;
+    font-style: italic;
+    margin-bottom: 40px;
+    font-weight: 400;
+  }
+  .quote-content blockquote em {
+    color: var(--wheat);
+    font-weight: 500;
+  }
+  .quote-author {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .quote-author .avatar {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--green-mid);
+    color: var(--cream);
+    display: grid; place-items: center;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    border: 2px solid var(--wheat);
+  }
+  .quote-author .meta { text-align: left; }
+  .quote-author strong {
+    display: block;
+    font-size: 15px;
+    color: var(--wheat);
+  }
+  .quote-author span {
+    font-size: 13px;
+    opacity: 0.75;
+  }
+
+  /* NUMBERS */
+  .numbers-section {
+    padding: 120px 32px;
+    background: var(--cream);
+  }
+  .numbers-grid {
+    max-width: 1100px;
+    margin: 60px auto 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+  .number-card {
+    text-align: center;
+    padding: 32px 16px;
+    background: var(--milk);
+    border-radius: 16px;
+    border: 1px solid var(--line);
+    transition: transform 0.3s;
+  }
+  .number-card:hover { transform: translateY(-4px); }
+  .number-card .num {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(40px, 5vw, 60px);
+    color: var(--green-deep);
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .number-card .num em { color: var(--wheat-dark); font-style: normal; }
+  .number-card .lbl {
+    font-size: 13px;
+    color: var(--warm-grey);
+    line-height: 1.5;
+  }
+  .number-card .sublbl {
+    font-size: 11px;
+    color: var(--green-mid);
+    margin-top: 8px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  @media (max-width: 800px) { .numbers-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
+
+  /* TEAM */
+  .team-section {
+    padding: 120px 32px;
+    background: var(--milk);
+  }
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 60px;
+  }
+  .team-card {
+    text-align: left;
+  }
+  .team-img {
+    aspect-ratio: 4/5;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 18px;
+    background: var(--cream);
+  }
+  .team-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+  .team-card:hover .team-img img { transform: scale(1.04); }
+  .team-card h3 {
+    font-size: 19px;
+    color: var(--green-deep);
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+  .team-card .role {
+    font-size: 13px;
+    color: var(--wheat-dark);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    margin-bottom: 12px;
+  }
+  .team-card p {
+    font-size: 13px;
+    color: var(--warm-grey);
+    line-height: 1.6;
+  }
+  @media (max-width: 900px) { .team-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 500px) { .team-grid { grid-template-columns: 1fr; } }
+
+  /* VALUES */
+  .values-section {
+    background: var(--green-deep);
+    color: var(--cream);
+    padding: 120px 32px;
+  }
+  .values-section .section-eyebrow { color: var(--wheat); }
+  .values-section .section-eyebrow::before { background: var(--wheat); }
+  .values-section .section-title { color: var(--cream); }
+  .values-section .section-title em { color: var(--wheat); }
+  .values-section .section-subtitle { color: rgba(247,241,227,0.75); }
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    max-width: 1200px;
+    margin: 60px auto 0;
+    border-top: 1px solid rgba(247,241,227,0.15);
+    border-left: 1px solid rgba(247,241,227,0.15);
+  }
+  .value-cell {
+    padding: 48px 36px;
+    border-right: 1px solid rgba(247,241,227,0.15);
+    border-bottom: 1px solid rgba(247,241,227,0.15);
+  }
+  .value-num {
+    font-family: 'Fraunces', serif;
+    font-size: 14px;
+    color: var(--wheat);
+    margin-bottom: 18px;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+  }
+  .value-cell h3 {
+    font-size: 24px;
+    margin-bottom: 14px;
+    font-weight: 500;
+    color: var(--cream);
+  }
+  .value-cell p {
+    font-size: 14px;
+    opacity: 0.78;
+    line-height: 1.7;
+  }
+  @media (max-width: 900px) { .values-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .values-grid { grid-template-columns: 1fr; } }
+
+  /* CERTIFICATES */
+  .certs-section {
+    padding: 120px 32px;
+    background: var(--cream);
+  }
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    max-width: 1100px;
+    margin: 60px auto 0;
+  }
+  .cert-card {
+    background: var(--milk);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 28px 18px;
+    text-align: center;
+    transition: transform 0.3s;
+  }
+  .cert-card:hover { transform: translateY(-2px); }
+  .cert-mark {
+    width: 56px; height: 56px;
+    background: var(--cream);
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    display: grid; place-items: center;
+    font-family: 'Fraunces', serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--green-deep);
+    border: 2px solid var(--green-deep);
+  }
+  .cert-card h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--green-deep);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .cert-card p {
+    font-size: 11px;
+    color: var(--warm-grey);
+    line-height: 1.5;
+  }
+  @media (max-width: 800px) { .certs-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  /* SUSTAINABILITY */
+  .sustain-section {
+    padding: 120px 32px;
+    background: var(--milk);
+  }
+  .sustain-grid {
+    max-width: 1320px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .sustain-img {
+    aspect-ratio: 4/5;
+    border-radius: 20px;
+    background: url('https://images.unsplash.com/photo-1605733513597-a8f8341084e6?w=1200&q=85') center/cover;
+  }
+  .sustain-text h2 {
+    font-size: clamp(32px, 4.5vw, 48px);
+    color: var(--green-deep);
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .sustain-text h2 em { font-style: italic; color: var(--wheat-dark); }
+  .sustain-text > p {
+    color: var(--charcoal);
+    font-size: 16px;
+    margin-bottom: 32px;
+    line-height: 1.7;
+  }
+  .sustain-points {
+    display: grid;
+    gap: 18px;
+  }
+  .sustain-point {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    padding: 20px;
+    background: var(--cream);
+    border-radius: 12px;
+  }
+  .sustain-point-icon {
+    width: 40px; height: 40px;
+    background: var(--green-deep);
+    color: var(--cream);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    flex-shrink: 0;
+  }
+  .sustain-point h4 {
+    font-size: 16px;
+    color: var(--green-deep);
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+  .sustain-point p {
+    font-size: 13px;
+    color: var(--warm-grey);
+    line-height: 1.6;
+  }
+  @media (max-width: 900px) {
+    .sustain-grid { grid-template-columns: 1fr; gap: 48px; }
+  }
+
+  /* CTA BAND */
+  .cta-band {
+    background: var(--wheat);
+    padding: 100px 32px;
+    text-align: center;
+  }
+  .cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .cta-content h2 {
+    font-size: clamp(32px, 4.5vw, 52px);
+    color: var(--green-deep);
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .cta-content h2 em { font-style: italic; }
+  .cta-content p {
+    color: var(--green-deep);
+    opacity: 0.85;
+    font-size: 17px;
+    margin-bottom: 36px;
+    line-height: 1.6;
+  }
+  .cta-buttons {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn {
+    padding: 16px 32px;
+    border-radius: 100px;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Inter', sans-serif;
+  }
+  .btn-primary {
+    background: var(--green-deep);
+    color: var(--cream);
+  }
+  .btn-primary:hover { background: var(--charcoal); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent;
+    color: var(--green-deep);
+    border: 1.5px solid var(--green-deep);
+  }
+  .btn-outline:hover { background: var(--green-deep); color: var(--cream); }
+
+  /* FOOTER */
+  footer {
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 60px 32px 30px;
+  }
+  .footer-wrap { max-width: 1320px; margin: 0 auto; }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(247,241,227,0.1);
+  }
+  .footer-brand .logo { color: var(--cream); margin-bottom: 16px; }
+  .footer-brand .logo-mark { background: var(--cream); color: var(--green-deep); }
+  .footer-brand p { font-size: 14px; opacity: 0.7; line-height: 1.7; max-width: 30ch; }
+  .footer-col h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--wheat);
+    margin-bottom: 16px; font-weight: 600;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 8px; }
+  .footer-col a { font-size: 14px; opacity: 0.7; }
+  .footer-col a:hover { opacity: 1; }
+  .footer-bottom {
+    padding-top: 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 20px;
+    font-size: 13px; opacity: 0.6;
+  }
+  @media (max-width: 800px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .footer-brand { grid-column: 1/3; }
+  }
+</style>
+</head>
+<body>
+
+<div class="announce">
+  <span>🚚 İstanbul ve Marmara'ya soğuk zincirle 24 saatte teslim · 350 ₺ üzeri ücretsiz kargo</span>
+</div>
+
+<header>
+  <div class="nav-wrap">
+    <a href="#" class="logo">
+      <div class="logo-mark">M</div>
+      <div class="logo-text">
+        Malkara
+        <small>Süt Üreticileri Birliği</small>
+      </div>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="#">Süt</a></li>
+        <li><a href="#">Yoğurt</a></li>
+        <li><a href="#">Peynir</a></li>
+        <li><a href="#">Tereyağı</a></li>
+        <li><a href="#">Abonelik</a></li>
+        <li><a href="#" class="active">Hikâyemiz</a></li>
+        <li><a href="#">Üreticiler</a></li>
+      </ul>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      </button>
+      <button class="icon-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </button>
+      <button class="icon-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-count">2</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Hikâyemiz · Trakya · 1987'den beri</div>
+    <h1>57 köyün <em>ortak emeği</em>.</h1>
+    <p>Bir bardağın içinde 38 yıllık birlik, binlerce çiftçi ve Trakya'nın bereketli toprakları var. Bu, sütün hikâyesi değil — birlikte üretmenin hikâyesi.</p>
+  </div>
+  <div class="scroll-hint">
+    <span>Aşağı kaydırın</span>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+  </div>
+</section>
+
+<!-- INTRO STATEMENT -->
+<section class="intro-section">
+  <div class="intro-content">
+    <div class="intro-eyebrow">Özetle</div>
+    <h2>Süt nereden geliyor? <em>Biliyoruz.</em></h2>
+    <p>Malkara Süt Üreticileri Birliği, Trakya'nın bereketli topraklarında 1987'de kurulmuş bir kooperatif. Bugün 57 köyden, binlerce çiftçinin ortak emeğiyle günde 105 ton süt topluyor, soğutuyor ve değere dönüştürüyoruz.</p>
+    <p>Üretici tarafında güçlüyüz. Ama bir hayalimiz var: tüketicinin sofrasındaki süte dair bilinmeyenleri ortadan kaldırmak. Hangi köyden, hangi sürüden, hangi gün geldiğini bilebileceğiniz bir süt sistemi kurmak.</p>
+    <p class="lead">Bu site, o hayalin başlangıcı. Aracıları kısaltıp, üretici emeğini doğrudan tüketici sofrasına bağlayan, şeffaf, izlenebilir, sürdürülebilir bir köprü kurmak.</p>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Yolculuğumuz</div>
+      <h2 class="section-title">38 yıl, <em>kuşak kuşak</em>.</h2>
+      <p class="section-subtitle">Küçük bir kooperatif olarak başladık. Bugün Trakya'nın en büyük süt üreticileri birliklerinden biriyiz. Ama yolculuk daha bitmedi.</p>
+    </div>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-year">1987</div>
+        <div class="timeline-dot"></div>
+        <h3>Kuruluş — 12 üretici, bir kararlılık</h3>
+        <p>Malkara'nın 12 çiftçisi, üretim emeğini birleştirmek ve aracılara karşı pazarlık gücü kazanmak için bir araya geldi. Birlik, bir köy odasında imzalanan tüzükle başladı.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">1995</div>
+        <div class="timeline-dot"></div>
+        <h3>İlk soğutma merkezi</h3>
+        <p>Tekirdağ Birlik Yem işbirliğiyle ilk soğutma merkezi kuruldu. Süt, sağıldıktan sonra 4°C'ye düşürülerek depolanmaya başlandı — kalite ve hijyen sıçraması.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2003</div>
+        <div class="timeline-dot"></div>
+        <h3>30 köy, 40 soğutma merkezi</h3>
+        <p>Birlik, Trakya bölgesinde önemli bir aktör hâline geldi. Sanayicilere düzenli ve standartlaşmış süt tedariki başladı.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2014</div>
+        <div class="timeline-dot"></div>
+        <h3>ISO 22000 ve modern laboratuvar</h3>
+        <p>Gıda güvenliği yönetimi sertifikalandırıldı. Birlik bünyesine kurulan modern süt analiz laboratuvarı, her toplama merkezinden gelen sütü test etme imkânı sağladı.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2021</div>
+        <div class="timeline-dot"></div>
+        <h3>Kadın kooperatif girişimi</h3>
+        <p>Karaidemir köyünde 14 kadın çiftçinin liderliğinde, geleneksel yoğurt ve peynir üretimi için kadın kooperatifi alt birimi kuruldu.</p>
+      </div>
+
+      <div class="timeline-item current">
+        <div class="timeline-year">2026</div>
+        <div class="timeline-dot"></div>
+        <h3>Tüketiciye yolculuk başlıyor</h3>
+        <p>57 köy, 92 soğutma merkezi, günde 105 ton süt — ve şimdi doğrudan tüketici sofrasına ulaşan ilk dijital satış kanalımız. Üretici hikâyelerinin ürünle birleştiği yeni bir dönem.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MISSION & VISION -->
+<section class="mv-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Yön</div>
+      <h2 class="section-title">Vizyon ve <em>misyon</em></h2>
+    </div>
+    <div class="mv-grid">
+
+      <div class="mv-card">
+        <div class="icon-circle">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        </div>
+        <h2>Vizyonumuz</h2>
+        <p class="lead">"Türkiye'nin sütte referans markası olmak. Üretici emeğinin tüketici sofrasında hak ettiği değeri bulduğu, şeffaf ve dijital bir süt ekosistemi kurmak."</p>
+      </div>
+
+      <div class="mv-card">
+        <div class="icon-circle">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h2>Misyonumuz</h2>
+        <ul class="mv-list">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Üyelerimizin emeğini en yüksek değere dönüştürmek</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Tüketiciye kaynağı belli, izlenebilir ürünler sunmak</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Bölgesel kalkınma ve yerel istihdama katkı sağlamak</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Sürdürülebilir, çevreye duyarlı üretimi teşvik etmek</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE BAND -->
+<section class="quote-band">
+  <div class="quote-band-bg"></div>
+  <div class="quote-content">
+    <blockquote>Süt, yalnızca bir gıda değil; bir <em>köyün</em>, bir mevsimin, bir el emeğinin <em>hikâyesidir</em>.</blockquote>
+    <div class="quote-author">
+      <div class="avatar">HŞ</div>
+      <div class="meta">
+        <strong>Hasan Şahin</strong>
+        <span>Birlik Yönetim Kurulu Başkanı · 22 yıllık üye</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section class="numbers-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Rakamlarla</div>
+      <h2 class="section-title">Trakya'nın <em>en büyüğü</em>.</h2>
+      <p class="section-subtitle">Soyut sözler değil, somut rakamlar. Birliğimizin bugünkü ölçeği.</p>
+    </div>
+    <div class="numbers-grid">
+      <div class="number-card">
+        <div class="num"><em>57</em></div>
+        <div class="lbl">Üretici köy</div>
+        <div class="sublbl">Trakya geneli</div>
+      </div>
+      <div class="number-card">
+        <div class="num"><em>92</em></div>
+        <div class="lbl">Soğutma merkezi</div>
+        <div class="sublbl">Tüm köy ağında</div>
+      </div>
+      <div class="number-card">
+        <div class="num"><em>105</em>t</div>
+        <div class="lbl">Günlük süt</div>
+        <div class="sublbl">Toplama kapasitesi</div>
+      </div>
+      <div class="number-card">
+        <div class="num"><em>4.200</em>+</div>
+        <div class="lbl">Üye çiftçi</div>
+        <div class="sublbl">Aktif üretici</div>
+      </div>
+      <div class="number-card">
+        <div class="num"><em>38</em></div>
+        <div class="lbl">Yıllık deneyim</div>
+        <div class="sublbl">1987'den beri</div>
+      </div>
+      <div class="number-card">
+        <div class="num"><em>%30</em></div>
+        <div class="lbl">Trakya'nın süt arzı</div>
+        <div class="sublbl">Bölgesel pay</div>
+      </div>
+      <div class="number-card">
+        <div class="num"><em>4</em>°C</div>
+        <div class="lbl">Soğuk zincir</div>
+        <div class="sublbl">Sağımdan kapıya</div>
+      </div>
+      <div class="number-card">
+        <div class="num"><em>14</em></div>
+        <div class="lbl">Kadın kooperatifi</div>
+        <div class="sublbl">Karaidemir köyü</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Birlik Yönetimi</div>
+      <h2 class="section-title">Sorumluluğu <em>paylaşan ekip</em></h2>
+      <p class="section-subtitle">Üyelerimizin oyuyla seçilmiş, hesap veren, şeffaf bir yönetim. 4 yılda bir genel kurul, yılda 12 toplantı.</p>
+    </div>
+    <div class="team-grid">
+
+      <div class="team-card">
+        <div class="team-img">
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80" alt="Hasan Şahin">
+        </div>
+        <h3>Hasan Şahin</h3>
+        <div class="role">Yönetim Kurulu Başkanı</div>
+        <p>Sağlamtaş Köyü · 22 yıllık üye. 1995'ten beri birlik aktivitesi içinde. Önceki dönemlerde 2 kez başkanlık yaptı.</p>
+      </div>
+
+      <div class="team-card">
+        <div class="team-img">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80" alt="Ayşe Kaplan">
+        </div>
+        <h3>Ayşe Kaplan</h3>
+        <div class="role">Başkan Yardımcısı</div>
+        <p>Karaidemir Köyü · Kadın kooperatifi başkanı. Birliği temsil eden ilk kadın yöneticilerden. Geleneksel ürün sorumlusu.</p>
+      </div>
+
+      <div class="team-card">
+        <div class="team-img">
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=80" alt="İsmail Yıldız">
+        </div>
+        <h3>İsmail Yıldız</h3>
+        <div class="role">Yönetim Kurulu Üyesi</div>
+        <p>Evrenbey Köyü · A2 sürü öncüsü. Kalite kontrol komisyonunda. 28 yıllık çiftçilik deneyimi.</p>
+      </div>
+
+      <div class="team-card">
+        <div class="team-img">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" alt="Dr. Özlem Yiğit">
+        </div>
+        <h3>Dr. Özlem Yiğit</h3>
+        <div class="role">Genel Sekreter</div>
+        <p>Süt teknolojisi doktora · Laboratuvar ve kalite süreçlerinden sorumlu. 8 yıldır birlik bünyesinde.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Değerlerimiz</div>
+      <h2 class="section-title">Pusula <em>olarak</em></h2>
+      <p class="section-subtitle">Karar verirken kendimize sorduğumuz altı ilke. Pratik kararların arkasındaki düşünce.</p>
+    </div>
+    <div class="values-grid">
+
+      <div class="value-cell">
+        <div class="value-num">01 / Şeffaflık</div>
+        <h3>Söylediğimiz, yaptığımız</h3>
+        <p>Hangi sütün hangi köyden geldiğini, hangi gün sağıldığını gizli tutmuyoruz. İzlenebilirliğimiz dijital. Vaatlerimiz ölçülebilir.</p>
+      </div>
+
+      <div class="value-cell">
+        <div class="value-num">02 / Üretici</div>
+        <h3>Önce çiftçinin emeği</h3>
+        <p>Birliğin kuruluş amacı, üyenin gelirini stabilize etmek. Her büyüme, her satış, her ürün bu amaca hizmet ediyor mu — bunu sorarız.</p>
+      </div>
+
+      <div class="value-cell">
+        <div class="value-num">03 / Kalite</div>
+        <h3>Kısa raf, uzun değer</h3>
+        <p>UHT'ye geçmedik. Pastörizasyonda kaldık. Daha kısa rafa razıyız ama tat ve besin değerinden ödün vermiyoruz.</p>
+      </div>
+
+      <div class="value-cell">
+        <div class="value-num">04 / Yerellik</div>
+        <h3>Trakya'nın ortağıyız</h3>
+        <p>Her satışın bir kısmı bölgeye geri döner. Yerel istihdam, yerel okul-hastane bağışları, yerel altyapı — bizim sorumluluğumuz.</p>
+      </div>
+
+      <div class="value-cell">
+        <div class="value-num">05 / Hayvan refahı</div>
+        <h3>Hayvan rahatı = süt kalitesi</h3>
+        <p>Açık otlatma, yeterli alan, hormon ve antibiyotiksiz. Hayvanın iyi bakıldığı yerde sütün tadı belli olur.</p>
+      </div>
+
+      <div class="value-cell">
+        <div class="value-num">06 / Sürdürülebilir</div>
+        <h3>Bir sonraki kuşak için</h3>
+        <p>Su, toprak, mera — bu üç kaynağı koruyamazsak, 38 yıllık emek de boşa gider. Yenilenebilir enerji ve atık yönetiminde yatırım yapıyoruz.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATES -->
+<section class="certs-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Sertifikalar</div>
+      <h2 class="section-title">Güvencenin <em>belgelenmiş hâli</em></h2>
+      <p class="section-subtitle">Her yıl bağımsız denetim. Her sertifikanın bir kuruluşu, bir tarihi, bir geçerliliği var.</p>
+    </div>
+    <div class="certs-grid">
+      <div class="cert-card">
+        <div class="cert-mark">ISO</div>
+        <h4>ISO 22000</h4>
+        <p>Gıda güvenliği yönetimi</p>
+      </div>
+      <div class="cert-card">
+        <div class="cert-mark">HEL</div>
+        <h4>Helal</h4>
+        <p>GİMDES sertifikalı</p>
+      </div>
+      <div class="cert-card">
+        <div class="cert-mark">TSE</div>
+        <h4>TSE</h4>
+        <p>Türk Standartları</p>
+      </div>
+      <div class="cert-card">
+        <div class="cert-mark">ORG</div>
+        <h4>Organik</h4>
+        <p>3 köy onaylı</p>
+      </div>
+      <div class="cert-card">
+        <div class="cert-mark">HCP</div>
+        <h4>HACCP</h4>
+        <p>Tehlike analizi</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUSTAINABILITY -->
+<section class="sustain-section">
+  <div class="sustain-grid">
+    <div class="sustain-img"></div>
+    <div class="sustain-text">
+      <div class="section-eyebrow">Sürdürülebilirlik</div>
+      <h2>Bir sonraki <em>kuşak için</em>.</h2>
+      <p>Sütün hikâyesi su, toprak ve mera olmadan başlamaz. Bu üç kaynağı 38 yıldır koruduk; ileriki 38 yıl için de koruma altına alıyoruz. Her yatırım kararını çevreye etkisiyle birlikte değerlendiriyoruz.</p>
+      <div class="sustain-points">
+        <div class="sustain-point">
+          <div class="sustain-point-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/></svg>
+          </div>
+          <div>
+            <h4>Güneş enerjisi entegrasyonu</h4>
+            <p>32 soğutma merkezimiz çatı GES sistemiyle çalışıyor. Hedef 2027'ye kadar 92 merkezin tamamı.</p>
+          </div>
+        </div>
+        <div class="sustain-point">
+          <div class="sustain-point-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          </div>
+          <div>
+            <h4>Ambalajda cam ve karton tercihi</h4>
+            <p>Süt ürünlerimizin %60'ı geri dönüştürülebilir cam ya da karton ambalajda. Plastiği aktif olarak azaltıyoruz.</p>
+          </div>
+        </div>
+        <div class="sustain-point">
+          <div class="sustain-point-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12c-1 0-2-1-2-2s1-2 2-2 2 1 2 2-1 2-2 2zM3 12c-1 0-2-1-2-2s1-2 2-2 2 1 2 2-1 2-2 2zM12 3c-1 0-2-1-2-2s1-2 2-2 2 1 2 2-1 2-2 2zM12 23c-1 0-2-1-2-2s1-2 2-2 2 1 2 2-1 2-2 2z"/><line x1="6.5" y1="6.5" x2="9.5" y2="9.5"/><line x1="14.5" y1="14.5" x2="17.5" y2="17.5"/><line x1="6.5" y1="17.5" x2="9.5" y2="14.5"/><line x1="14.5" y1="9.5" x2="17.5" y2="6.5"/></svg>
+          </div>
+          <div>
+            <h4>Su geri dönüşüm sistemleri</h4>
+            <p>Soğutma ve temizlik suyunun %40'ı geri dönüştürülerek tarımsal sulama amacıyla yeniden kullanılıyor.</p>
+          </div>
+        </div>
+        <div class="sustain-point">
+          <div class="sustain-point-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div>
+            <h4>Hayvan refahı denetimleri</h4>
+            <p>Üye köylerin tamamında yılda 2 kez bağımsız hayvan refahı denetimi. Standartları karşılamayan üyelere destek programı.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <div class="cta-content">
+    <h2>Hikâyenin <em>parçası olun</em>.</h2>
+    <p>Sütün arkasındaki yüzleri tanıyın, üreticilerimizin emeğini sofranıza taşıyın. İlk siparişiniz, hikâyenin başlangıcı.</p>
+    <div class="cta-buttons">
+      <a href="#" class="btn btn-primary">
+        Ürünleri Keşfet
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="#" class="btn btn-outline">Üreticileri Tanı</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <div class="logo-mark">M</div>
+          <div class="logo-text">
+            Malkara
+            <small style="opacity: 0.7;">Süt Üreticileri Birliği</small>
+          </div>
+        </a>
+        <p>Trakya'nın 57 köyünden, 92 soğutma merkezinden, doğrudan sofranıza.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Alışveriş</h4>
+        <ul>
+          <li><a href="#">Tüm Ürünler</a></li>
+          <li><a href="#">Süt</a></li>
+          <li><a href="#">Yoğurt</a></li>
+          <li><a href="#">Abonelik</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Birlik</h4>
+        <ul>
+          <li><a href="#">Hikâyemiz</a></li>
+          <li><a href="#">Üreticiler</a></li>
+          <li><a href="#">Köy Haritası</a></li>
+          <li><a href="#">Sertifikalar</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>İletişim</h4>
+        <ul>
+          <li style="opacity: 0.7; font-size: 14px;">Gazibey, Tevfikbey Cd. No:3<br>59310 Malkara/Tekirdağ</li>
+          <li><a href="tel:+902826738150">+90 282 673 81 50</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Malkara Süt Üreticileri Birliği</div>
+      <div style="display: flex; gap: 24px;">
+        <a href="#">KVKK</a>
+        <a href="#">Çerez</a>
+        <a href="#">Mesafeli Satış</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Süt — Malkara Süt Üreticileri Birliği</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-deep: #1f3a2e;
+    --green-mid: #2d5a3d;
+    --green-light: #5a8a6b;
+    --cream: #f7f1e3;
+    --milk: #fdfbf5;
+    --wheat: #d4a574;
+    --wheat-dark: #b8843f;
+    --charcoal: #2a2826;
+    --warm-grey: #6b6660;
+    --line: #e8e0cf;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--charcoal);
+    background: var(--milk);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { font-family: 'Fraunces', serif; font-weight: 500; letter-spacing: -0.01em; }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  button { font-family: inherit; cursor: pointer; }
+
+  /* ANNOUNCEMENT */
+  .announce {
+    background: var(--green-deep);
+    color: var(--cream);
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+
+  /* HEADER (consistent with anasayfa) */
+  header {
+    background: var(--milk);
+    border-bottom: 1px solid var(--line);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-wrap {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 18px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--green-deep);
+  }
+  .logo-mark {
+    width: 44px; height: 44px;
+    background: var(--green-deep);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    color: var(--cream);
+    font-size: 18px; font-weight: 700;
+    font-family: 'Fraunces', serif;
+  }
+  .logo-text { line-height: 1.1; }
+  .logo-text small {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--warm-grey);
+  }
+  nav ul {
+    display: flex; gap: 32px;
+    list-style: none;
+    font-size: 14px; font-weight: 500;
+  }
+  nav a { transition: color 0.2s; }
+  nav a:hover, nav a.active { color: var(--green-mid); }
+  nav a.active { font-weight: 600; }
+  .nav-actions { display: flex; align-items: center; gap: 20px; }
+  .icon-btn {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: transparent;
+    display: grid; place-items: center;
+    transition: all 0.2s;
+    position: relative;
+  }
+  .icon-btn:hover { border-color: var(--green-mid); background: var(--cream); }
+  .cart-count {
+    position: absolute; top: -4px; right: -4px;
+    background: var(--wheat-dark);
+    color: white; font-size: 10px;
+    width: 18px; height: 18px; border-radius: 50%;
+    display: grid; place-items: center; font-weight: 700;
+  }
+  @media (max-width: 900px) { nav ul { display: none; } }
+
+  /* CATEGORY HERO */
+  .cat-hero {
+    background: var(--green-deep);
+    color: var(--cream);
+    padding: 60px 32px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cat-hero-bg {
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1563636619-e9143da7973b?w=1920&q=80') center/cover;
+    opacity: 0.18;
+  }
+  .cat-hero-content {
+    max-width: 1320px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    opacity: 0.75;
+    margin-bottom: 32px;
+  }
+  .breadcrumb a { transition: opacity 0.2s; }
+  .breadcrumb a:hover { opacity: 1; }
+  .breadcrumb .sep { opacity: 0.4; }
+  .breadcrumb .current { color: var(--wheat); opacity: 1; }
+
+  .cat-title-wrap {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 48px;
+    align-items: end;
+  }
+  .cat-hero h1 {
+    font-size: clamp(40px, 6vw, 76px);
+    line-height: 0.98;
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  .cat-hero h1 em { color: var(--wheat); font-style: italic; }
+  .cat-hero p {
+    font-size: 17px;
+    opacity: 0.85;
+    max-width: 60ch;
+    line-height: 1.55;
+  }
+  .cat-hero-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    text-align: right;
+  }
+  .cat-hero-meta-item {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 14px;
+    font-size: 14px;
+  }
+  .cat-hero-meta-item strong {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    color: var(--wheat);
+    font-weight: 500;
+  }
+  @media (max-width: 800px) {
+    .cat-title-wrap { grid-template-columns: 1fr; }
+    .cat-hero-meta { text-align: left; }
+    .cat-hero-meta-item { justify-content: flex-start; }
+  }
+
+  /* SUB-CATEGORY PILLS */
+  .sub-cats {
+    background: var(--milk);
+    border-bottom: 1px solid var(--line);
+    padding: 20px 32px;
+    position: sticky;
+    top: 80px;
+    z-index: 50;
+  }
+  .sub-cats-wrap {
+    max-width: 1320px;
+    margin: 0 auto;
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .sub-cats-wrap::-webkit-scrollbar { display: none; }
+  .pill {
+    padding: 10px 20px;
+    border-radius: 100px;
+    border: 1px solid var(--line);
+    background: var(--milk);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--charcoal);
+    white-space: nowrap;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+  .pill:hover { border-color: var(--green-mid); }
+  .pill.active {
+    background: var(--green-deep);
+    color: var(--cream);
+    border-color: var(--green-deep);
+  }
+
+  /* MAIN GRID */
+  .main {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 40px 32px 80px;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 48px;
+  }
+  @media (max-width: 900px) {
+    .main { grid-template-columns: 1fr; gap: 24px; }
+  }
+
+  /* SIDEBAR FILTERS */
+  .sidebar {
+    position: sticky;
+    top: 160px;
+    align-self: start;
+    max-height: calc(100vh - 180px);
+    overflow-y: auto;
+    padding-right: 8px;
+  }
+  .sidebar::-webkit-scrollbar { width: 4px; }
+  .sidebar::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
+
+  .filter-block {
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+  }
+  .filter-block:last-child { border-bottom: none; }
+  .filter-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--green-deep);
+    margin-bottom: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  }
+  .filter-title svg { transition: transform 0.2s; }
+  .filter-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .filter-opt {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--charcoal);
+    transition: color 0.15s;
+  }
+  .filter-opt:hover { color: var(--green-deep); }
+  .filter-opt input[type="checkbox"] {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid var(--line);
+    border-radius: 4px;
+    background: var(--milk);
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+    transition: all 0.15s;
+  }
+  .filter-opt input[type="checkbox"]:checked {
+    background: var(--green-deep);
+    border-color: var(--green-deep);
+  }
+  .filter-opt input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    left: 5px; top: 1px;
+    width: 5px; height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  .filter-opt .count {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--warm-grey);
+  }
+
+  /* Range slider */
+  .range-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .range-vals {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--warm-grey);
+  }
+  .range-input {
+    width: 100%;
+    height: 4px;
+    background: var(--line);
+    border-radius: 4px;
+    appearance: none;
+    outline: none;
+  }
+  .range-input::-webkit-slider-thumb {
+    appearance: none;
+    width: 18px; height: 18px;
+    background: var(--green-deep);
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid var(--milk);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+
+  /* Active filters */
+  .active-filters {
+    background: var(--cream);
+    padding: 14px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  .active-filters-title {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--green-deep);
+    margin-bottom: 10px;
+  }
+  .chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .chip {
+    background: var(--milk);
+    border: 1px solid var(--line);
+    padding: 4px 10px;
+    border-radius: 100px;
+    font-size: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--charcoal);
+  }
+  .chip button {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--warm-grey);
+    line-height: 1;
+    font-size: 14px;
+  }
+  .clear-all {
+    background: none;
+    border: none;
+    color: var(--green-deep);
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: underline;
+    margin-top: 8px;
+    padding: 0;
+  }
+
+  /* PRODUCT AREA */
+  .product-area { min-width: 0; }
+  .toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .result-count {
+    font-size: 14px;
+    color: var(--warm-grey);
+  }
+  .result-count strong { color: var(--green-deep); }
+  .toolbar-right {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .sort-select {
+    padding: 10px 36px 10px 16px;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    background: var(--milk) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%231f3a2e' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center;
+    appearance: none;
+    font-size: 13px;
+    font-family: inherit;
+    color: var(--charcoal);
+    cursor: pointer;
+  }
+  .view-toggle {
+    display: flex;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    padding: 3px;
+    background: var(--milk);
+  }
+  .view-toggle button {
+    border: none;
+    background: transparent;
+    padding: 6px 10px;
+    border-radius: 100px;
+    color: var(--warm-grey);
+    transition: all 0.2s;
+    display: grid;
+    place-items: center;
+  }
+  .view-toggle button.active {
+    background: var(--green-deep);
+    color: var(--cream);
+  }
+  .filter-mobile-btn {
+    display: none;
+    padding: 10px 18px;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    background: var(--milk);
+    font-size: 13px;
+    font-weight: 500;
+    align-items: center;
+    gap: 8px;
+  }
+  @media (max-width: 900px) {
+    .filter-mobile-btn { display: inline-flex; }
+    .sidebar { display: none; }
+  }
+
+  /* FEATURED BANNER */
+  .feature-banner {
+    background: var(--green-deep);
+    color: var(--cream);
+    border-radius: 16px;
+    padding: 36px;
+    margin-bottom: 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+  }
+  .feature-banner-bg {
+    position: absolute;
+    right: -40px; bottom: -40px;
+    width: 280px; height: 280px;
+    background: url('https://images.unsplash.com/photo-1605733513597-a8f8341084e6?w=600&q=80') center/cover;
+    border-radius: 50%;
+    opacity: 0.25;
+  }
+  .feature-banner-content {
+    position: relative;
+    z-index: 2;
+  }
+  .feature-banner-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--wheat);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .feature-banner h3 {
+    font-size: 26px;
+    margin-bottom: 10px;
+    line-height: 1.15;
+  }
+  .feature-banner h3 em { color: var(--wheat); font-style: italic; }
+  .feature-banner p {
+    font-size: 14px;
+    opacity: 0.85;
+    margin-bottom: 18px;
+  }
+  .feature-banner-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--wheat);
+    font-weight: 600;
+    font-size: 14px;
+    border-bottom: 1px solid var(--wheat);
+    padding-bottom: 4px;
+  }
+  @media (max-width: 700px) {
+    .feature-banner { grid-template-columns: 1fr; padding: 28px; }
+  }
+
+  /* PRODUCT GRID */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 1100px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 500px) { .product-grid { grid-template-columns: 1fr; } }
+
+  .product-card {
+    background: var(--milk);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    border: 1px solid var(--line);
+    position: relative;
+  }
+  .product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(31,58,46,0.08);
+  }
+  .product-img {
+    aspect-ratio: 1;
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+  .product-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+  .product-card:hover .product-img img { transform: scale(1.04); }
+  .product-tags {
+    position: absolute;
+    top: 14px; left: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .product-tag {
+    background: var(--green-deep);
+    color: var(--cream);
+    padding: 5px 11px;
+    border-radius: 100px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    width: fit-content;
+  }
+  .product-tag.new { background: var(--wheat-dark); }
+  .product-tag.bio { background: var(--green-mid); }
+  .product-tag.sub { background: var(--milk); color: var(--green-deep); border: 1px solid var(--line); }
+
+  .wishlist-btn {
+    position: absolute;
+    top: 14px; right: 14px;
+    width: 36px; height: 36px;
+    background: var(--milk);
+    border-radius: 50%;
+    border: none;
+    display: grid; place-items: center;
+    color: var(--warm-grey);
+    transition: all 0.2s;
+    z-index: 2;
+  }
+  .wishlist-btn:hover { color: var(--wheat-dark); }
+
+  .quick-add {
+    position: absolute;
+    bottom: 14px; right: 14px;
+    background: var(--milk);
+    border-radius: 100px;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--green-deep);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.3s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  .product-card:hover .quick-add {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .quick-add:hover { background: var(--green-deep); color: var(--cream); }
+
+  .product-info { padding: 20px; }
+  .product-meta {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--warm-grey);
+    margin-bottom: 8px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .product-meta .dot {
+    width: 4px; height: 4px;
+    background: var(--wheat-dark);
+    border-radius: 50%;
+  }
+  .product-name {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    color: var(--green-deep);
+    margin-bottom: 6px;
+    font-weight: 500;
+    line-height: 1.25;
+  }
+  .product-desc {
+    font-size: 13px;
+    color: var(--warm-grey);
+    margin-bottom: 14px;
+    line-height: 1.5;
+  }
+  .shelf-info {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--green-mid);
+    margin-bottom: 12px;
+  }
+  .product-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+  }
+  .product-price {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    color: var(--green-deep);
+    font-weight: 600;
+  }
+  .product-price small {
+    font-size: 12px;
+    color: var(--warm-grey);
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
+  }
+  .product-rating {
+    font-size: 13px;
+    color: var(--wheat-dark);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .product-rating .review-count {
+    color: var(--warm-grey);
+    font-size: 12px;
+  }
+
+  /* PAGINATION */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 60px;
+  }
+  .page-btn {
+    width: 42px; height: 42px;
+    border: 1px solid var(--line);
+    background: var(--milk);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--charcoal);
+    transition: all 0.2s;
+  }
+  .page-btn:hover:not(:disabled) {
+    border-color: var(--green-deep);
+    color: var(--green-deep);
+  }
+  .page-btn.active {
+    background: var(--green-deep);
+    color: var(--cream);
+    border-color: var(--green-deep);
+  }
+  .page-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* PRODUCER STORY BAND */
+  .producer-band {
+    background: var(--cream);
+    margin-top: 80px;
+    padding: 80px 32px;
+    border-top: 1px solid var(--line);
+  }
+  .producer-band-wrap {
+    max-width: 1320px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .producer-band-img {
+    aspect-ratio: 4/3;
+    border-radius: 16px;
+    background: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=1200&q=80') center/cover;
+  }
+  .producer-band-text .section-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .producer-band-text .section-eyebrow::before {
+    content: ''; width: 28px; height: 1px; background: var(--green-mid);
+  }
+  .producer-band-text h2 {
+    font-size: clamp(28px, 3.5vw, 42px);
+    color: var(--green-deep);
+    margin-bottom: 20px;
+    line-height: 1.1;
+  }
+  .producer-band-text h2 em { font-style: italic; color: var(--wheat-dark); }
+  .producer-band-text p {
+    font-size: 15px;
+    color: var(--warm-grey);
+    margin-bottom: 24px;
+  }
+  .btn {
+    padding: 14px 28px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid var(--green-deep);
+    background: var(--green-deep);
+    color: var(--cream);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.25s;
+  }
+  .btn:hover { background: var(--charcoal); transform: translateY(-1px); }
+  @media (max-width: 800px) {
+    .producer-band-wrap { grid-template-columns: 1fr; }
+  }
+
+  /* FAQ */
+  .faq-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 80px 32px;
+  }
+  .faq-section h2 {
+    font-size: clamp(28px, 4vw, 42px);
+    color: var(--green-deep);
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  .faq-section h2 em { font-style: italic; color: var(--wheat-dark); }
+  .faq-section > p {
+    text-align: center;
+    color: var(--warm-grey);
+    margin-bottom: 40px;
+  }
+  .faq-item {
+    border-bottom: 1px solid var(--line);
+    padding: 20px 0;
+  }
+  .faq-q {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    color: var(--green-deep);
+    font-weight: 500;
+  }
+  .faq-q svg {
+    transition: transform 0.3s;
+    flex-shrink: 0;
+    margin-left: 16px;
+  }
+  .faq-item.open .faq-q svg { transform: rotate(45deg); }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    color: var(--warm-grey);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .faq-item.open .faq-a {
+    max-height: 200px;
+    padding-top: 12px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 80px 32px 30px;
+  }
+  .footer-wrap { max-width: 1320px; margin: 0 auto; }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid rgba(247,241,227,0.1);
+  }
+  .footer-brand .logo { color: var(--cream); margin-bottom: 20px; }
+  .footer-brand .logo-mark { background: var(--cream); color: var(--green-deep); }
+  .footer-brand p {
+    font-size: 14px;
+    opacity: 0.7;
+    line-height: 1.7;
+    max-width: 30ch;
+  }
+  .footer-col h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--wheat);
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 10px; }
+  .footer-col a {
+    font-size: 14px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .footer-col a:hover { opacity: 1; }
+  .footer-bottom {
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    font-size: 13px;
+    opacity: 0.6;
+  }
+  @media (max-width: 900px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .footer-brand { grid-column: 1/3; }
+  }
+</style>
+</head>
+<body>
+
+<div class="announce">
+  <span>🚚 İstanbul ve Marmara'ya soğuk zincirle 24 saatte teslim · 350 ₺ üzeri ücretsiz kargo</span>
+</div>
+
+<header>
+  <div class="nav-wrap">
+    <a href="#" class="logo">
+      <div class="logo-mark">M</div>
+      <div class="logo-text">
+        Malkara
+        <small>Süt Üreticileri Birliği</small>
+      </div>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="#" class="active">Süt</a></li>
+        <li><a href="#">Yoğurt</a></li>
+        <li><a href="#">Peynir</a></li>
+        <li><a href="#">Tereyağı</a></li>
+        <li><a href="#">Fonksiyonel</a></li>
+        <li><a href="#">Setler</a></li>
+        <li><a href="#">Hikâyemiz</a></li>
+        <li><a href="#">Üreticiler</a></li>
+      </ul>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      </button>
+      <button class="icon-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </button>
+      <button class="icon-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-count">2</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- CATEGORY HERO -->
+<section class="cat-hero">
+  <div class="cat-hero-bg"></div>
+  <div class="cat-hero-content">
+    <div class="breadcrumb">
+      <a href="#">Anasayfa</a>
+      <span class="sep">/</span>
+      <a href="#">Ürünler</a>
+      <span class="sep">/</span>
+      <span class="current">Süt</span>
+    </div>
+    <div class="cat-title-wrap">
+      <div>
+        <h1>Günlük <em>Süt</em></h1>
+        <p>Trakya'nın 57 köyünden, 24 saat içinde sofranıza ulaşan pastörize süt çeşitlerimiz. A2 protein içeriği, yağ oranı ve raf ömrü detaylarıyla şeffaf üretim.</p>
+      </div>
+      <div class="cat-hero-meta">
+        <div class="cat-hero-meta-item">
+          <span style="opacity: 0.7;">Üretici köy</span>
+          <strong>57</strong>
+        </div>
+        <div class="cat-hero-meta-item">
+          <span style="opacity: 0.7;">Günlük üretim</span>
+          <strong>105t</strong>
+        </div>
+        <div class="cat-hero-meta-item">
+          <span style="opacity: 0.7;">Raf ömrü</span>
+          <strong>5-7 gün</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUB CATEGORIES -->
+<div class="sub-cats">
+  <div class="sub-cats-wrap">
+    <button class="pill active">Tüm Sütler (12)</button>
+    <button class="pill">Tam Yağlı</button>
+    <button class="pill">Yarım Yağlı</button>
+    <button class="pill">Yağsız</button>
+    <button class="pill">A2 Süt</button>
+    <button class="pill">Manda Sütü</button>
+    <button class="pill">Aromalı</button>
+    <button class="pill">Çocuk Sütü</button>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- SIDEBAR FILTERS -->
+  <aside class="sidebar">
+    <div class="active-filters">
+      <div class="active-filters-title">Aktif Filtreler</div>
+      <div class="chip-row">
+        <span class="chip">A2 Süt <button>×</button></span>
+        <span class="chip">Tam Yağlı <button>×</button></span>
+        <span class="chip">Evrenbey <button>×</button></span>
+      </div>
+      <button class="clear-all">Tümünü temizle</button>
+    </div>
+
+    <div class="filter-block">
+      <div class="filter-title">
+        Yağ Oranı
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="filter-options">
+        <label class="filter-opt"><input type="checkbox" checked> Tam yağlı (3,5%) <span class="count">5</span></label>
+        <label class="filter-opt"><input type="checkbox"> Yarım yağlı (1,8%) <span class="count">4</span></label>
+        <label class="filter-opt"><input type="checkbox"> Yağsız (<0,5%) <span class="count">3</span></label>
+      </div>
+    </div>
+
+    <div class="filter-block">
+      <div class="filter-title">
+        Süt Tipi
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="filter-options">
+        <label class="filter-opt"><input type="checkbox" checked> A2 protein <span class="count">4</span></label>
+        <label class="filter-opt"><input type="checkbox"> Manda sütü <span class="count">2</span></label>
+        <label class="filter-opt"><input type="checkbox"> Standart inek <span class="count">6</span></label>
+        <label class="filter-opt"><input type="checkbox"> Çocuk için zenginleştirilmiş <span class="count">2</span></label>
+      </div>
+    </div>
+
+    <div class="filter-block">
+      <div class="filter-title">
+        Üretici Köy
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="filter-options">
+        <label class="filter-opt"><input type="checkbox" checked> Evrenbey <span class="count">3</span></label>
+        <label class="filter-opt"><input type="checkbox"> Karaidemir <span class="count">2</span></label>
+        <label class="filter-opt"><input type="checkbox"> Sağlamtaş <span class="count">2</span></label>
+        <label class="filter-opt"><input type="checkbox"> Pirinçeli <span class="count">2</span></label>
+        <label class="filter-opt"><input type="checkbox"> Çiftlik karması <span class="count">3</span></label>
+      </div>
+    </div>
+
+    <div class="filter-block">
+      <div class="filter-title">
+        Sertifika
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="filter-options">
+        <label class="filter-opt"><input type="checkbox"> Helal <span class="count">12</span></label>
+        <label class="filter-opt"><input type="checkbox"> Organik <span class="count">3</span></label>
+        <label class="filter-opt"><input type="checkbox"> ISO 22000 <span class="count">12</span></label>
+        <label class="filter-opt"><input type="checkbox"> TSE <span class="count">12</span></label>
+      </div>
+    </div>
+
+    <div class="filter-block">
+      <div class="filter-title">
+        Fiyat Aralığı
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="range-wrap">
+        <input type="range" min="0" max="200" value="120" class="range-input">
+        <div class="range-vals">
+          <span>40 ₺</span>
+          <span>200 ₺</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="filter-block">
+      <div class="filter-title">
+        Ambalaj
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="filter-options">
+        <label class="filter-opt"><input type="checkbox"> Cam şişe (1L) <span class="count">5</span></label>
+        <label class="filter-opt"><input type="checkbox"> Karton kutu (1L) <span class="count">7</span></label>
+        <label class="filter-opt"><input type="checkbox"> Aile boyu (2L) <span class="count">3</span></label>
+      </div>
+    </div>
+
+    <div class="filter-block">
+      <div class="filter-title">
+        Abonelik Uygun
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="filter-options">
+        <label class="filter-opt"><input type="checkbox"> Haftalık abonelik <span class="count">10</span></label>
+        <label class="filter-opt"><input type="checkbox"> 2 haftada bir <span class="count">12</span></label>
+      </div>
+    </div>
+  </aside>
+
+  <!-- PRODUCT AREA -->
+  <div class="product-area">
+
+    <!-- TOOLBAR -->
+    <div class="toolbar">
+      <div class="result-count">
+        <strong>12 ürün</strong> bulundu · 1-9 gösteriliyor
+      </div>
+      <button class="filter-mobile-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg>
+        Filtrele
+      </button>
+      <div class="toolbar-right">
+        <select class="sort-select">
+          <option>Önerilen sıralama</option>
+          <option>En yeniler</option>
+          <option>En çok satanlar</option>
+          <option>Fiyat: artan</option>
+          <option>Fiyat: azalan</option>
+          <option>En yüksek puanlı</option>
+        </select>
+        <div class="view-toggle">
+          <button class="active" aria-label="Grid view">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          </button>
+          <button aria-label="List view">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEATURED BANNER -->
+    <div class="feature-banner">
+      <div class="feature-banner-bg"></div>
+      <div class="feature-banner-content">
+        <div class="feature-banner-eyebrow">Üretici Hikâyesi</div>
+        <h3>Evrenbey'in <em>A2 sürüsü</em></h3>
+        <p>İsmail amca 28 yıldır A2 protein üreten ineklerini özel besliyor. Sade beslenme, açık otlatma, antibiyotik yok. Bu kategorideki ürünlerin %40'ı Evrenbey'den.</p>
+        <a href="#" class="feature-banner-link">Hikâyeyi oku <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+
+    <!-- PRODUCT GRID -->
+    <div class="product-grid">
+
+      <article class="product-card">
+        <div class="product-img">
+          <div class="product-tags">
+            <span class="product-tag bio">A2 Süt</span>
+            <span class="product-tag sub">Aboneliğe Uygun</span>
+          </div>
+          <button class="wishlist-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+          <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?w=600&q=80" alt="A2 Tam Yağlı">
+          <button class="quick-add">+ Sepete Ekle</button>
+        </div>
+        <div class="product-info">
+          <div class="product-meta">Evrenbey Köyü <span class="dot"></span> İsmail Yıldız</div>
+          <h3 class="product-name">A2 Tam Yağlı Pastörize Süt</h3>
+          <p class="product-desc">Cam şişede, 24 saat içinde sağılmış. 1L</p>
+          <div class="shelf-info">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            5-7 gün raf ömrüyle ulaşır
+          </div>
+          <div class="product-bottom">
+            <div class="product-price">89₺ <small>/ 1L</small></div>
+            <div class="product-rating">★ 4.9 <span class="review-count">(128)</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-img">
+          <div class="product-tags">
+            <span class="product-tag bio">A2 Süt</span>
+          </div>
+          <button class="wishlist-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+          <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?w=600&q=80&hue=10" alt="A2 Yarım Yağlı" style="filter: brightness(1.05);">
+          <button class="quick-add">+ Sepete Ekle</button>
+        </div>
+        <div class="product-info">
+          <div class="product-meta">Evrenbey Köyü <span class="dot"></span> İsmail Yıldız</div>
+          <h3 class="product-name">A2 Yarım Yağlı Pastörize Süt</h3>
+          <p class="product-desc">Karton kutuda, hafif tüketim. 1L</p>
+          <div class="shelf-info">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            5-7 gün raf ömrüyle ulaşır
+          </div>
+          <div class="product-bottom">
+            <div class="product-price">79₺ <small>/ 1L</small></div>
+            <div class="product-rating">★ 4.8 <span class="review-count">(96)</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-img">
+          <div class="product-tags">
+            <span class="product-tag new">Yeni</span>
+            <span class="product-tag">Premium</span>
+          </div>
+          <button class="wishlist-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+          <img src="https://images.unsplash.com/photo-1628088062854-d1870b4553da?w=600&q=80" alt="Manda Sütü">
+          <button class="quick-add">+ Sepete Ekle</button>
+        </div>
+        <div class="product-info">
+          <div class="product-meta">Pirinçeli Köyü <span class="dot"></span> Mehmet Demir</div>
+          <h3 class="product-name">Manda Sütü, Tam Yağlı</h3>
+          <p class="product-desc">Yüksek protein, yoğun krema. 500ml cam</p>
+          <div class="shelf-info">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            4-6 gün raf ömrüyle ulaşır
+          </div>
+          <div class="product-bottom">
+            <div class="product-price">145₺ <small>/ 500ml</small></div>
+            <div class="product-rating">★ 5.0 <span class="review-count">(42)</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-img">
+          <div class="product-tags">
+            <span class="product-tag sub">Aboneliğe Uygun</span>
+          </div>
+          <button class="wishlist-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+          <img src="https://images.unsplash.com/photo-1563636619-e9143da7973b?w=600&q=80" alt="Tam Yağlı">
+          <button class="quick-add">+ Sepete Ekle</button>
+        </div>
+        <div class="product-info">
+          <div class="product-meta">Çiftlik Karması <span class="dot"></span> 4 köyden</div>
+          <h3 class="product-name">Klasik Tam Yağlı Pastörize Süt</h3>
+          <p class="product-desc">Karton kutu, günlük tüketim. 1L</p>
+          <div class="shelf-info">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            5-7 gün raf ömrüyle ulaşır
+          </div>
+          <div class="product-bottom">
+            <div class="product-price">59₺ <small>/ 1L</small></div>
+            <div class="product-rating">★ 4.7 <span class="review-count">(312)</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-img">
+          <button class="wishlist-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+          <img src="https://images.unsplash.com/photo-1604152135912-04a022e23696?w=600&q=80" alt="Yarım Yağlı">
+          <button class="quick-add">+ Sepete Ekle</button>
+        </div>
+        <div class="product-info">
+          <div class="product-meta">Karaidemir Köyü <span class="dot"></span> Ayşe Kaplan</div>
+          <h3 class="product-name">Klasik Yarım Yağlı Pastörize Süt</h3>
+          <p class="product-desc">Karton kutu, hafif tüketim. 1L</p>
+          <div class="shelf-info">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            5-7 gün raf ömrüyle ulaşır
+          </div>
+          <div class="product-bottom">
+            <div class="product-price">52₺ <small>/ 1L</small></div>
+            <div class="product-rating">★ 4.6 <span class="review-count">(208)</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-img">
+          <div class="product-tags">
+            <span class="product-tag bio">Çocuk Sütü</span>
+          </div>
+          <button class="wishlist-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+          <img src="https://images.unsplash.com/photo-1576186726115-4d51596775d1?w=600&q=80" alt="Çocuk Sütü">
+          <button class="quick-add">+ Sepete Ekle</button>
+        </div>
+        <div class="product-info">
+          <div class="product-meta">Çiftlik Karması <span class="dot"></span> D vit. zenginleştirilmiş</div>
+          <h3 class="product-name">Çocuk için Zenginleştirilmiş Süt</h3>
+          <p class="product-desc">D vitamini + Kalsiyum eklenmiş. 500ml</p>
+          <div class="shelf-info">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            5-7 gün raf ömrüyle ulaşır
+          </div>
+          <div class="product-bottom">
+            <div class="product-price">42₺ <small>/ 500ml</small></div>
+            <div class="product-rating">★ 4.9 <span class="review-count">(174)</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-img">
+          <div class="product-tags">
+            <span class="product-tag">Aile Boyu</span>
+          </div>
+          <button class="wishlist-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+          <img src="https://images.unsplash.com/photo-1528750717929-32abb73d3bd9?w=600&q=80" alt="Aile Boyu">
+          <button class="quick-add">+ Sepete Ekle</button>
+        </div>
+        <div class="product-info">
+          <div class="product-meta">Çiftlik Karması <span class="dot"></span> 2L tasarruflu</div>
+          <h3 class="product-name">Aile Boyu Tam Yağlı Süt</h3>
+          <p class="product-desc">Çocuklu aileler için ekonomik. 2L</p>
+          <div class="shelf-info">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            5-7 gün raf ömrüyle ulaşır
+          </div>
+          <div class="product-bottom">
+            <div class="product-price">109₺ <small>/ 2L</small></div>
+            <div class="product-rating">★ 4.8 <span class="review-count">(88)</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-img">
+          <div class="product-tags">
+            <span class="product-tag bio">Organik</span>
+          </div>
+          <button class="wishlist-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+          <img src="https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=600&q=80" alt="Organik Süt">
+          <button class="quick-add">+ Sepete Ekle</button>
+        </div>
+        <div class="product-info">
+          <div class="product-meta">Sağlamtaş Köyü <span class="dot"></span> Sertifikalı organik</div>
+          <h3 class="product-name">Organik Tam Yağlı Pastörize Süt</h3>
+          <p class="product-desc">Sertifikalı meraya dayalı. Cam şişe. 1L</p>
+          <div class="shelf-info">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            4-6 gün raf ömrüyle ulaşır
+          </div>
+          <div class="product-bottom">
+            <div class="product-price">119₺ <small>/ 1L</small></div>
+            <div class="product-rating">★ 4.9 <span class="review-count">(64)</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-img">
+          <div class="product-tags">
+            <span class="product-tag new">Yeni</span>
+          </div>
+          <button class="wishlist-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+          <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&q=80" alt="Yağsız Süt">
+          <button class="quick-add">+ Sepete Ekle</button>
+        </div>
+        <div class="product-info">
+          <div class="product-meta">Karaidemir Köyü <span class="dot"></span> Düşük yağ</div>
+          <h3 class="product-name">Yağsız Pastörize Süt</h3>
+          <p class="product-desc">Fitness ve diyet için. Karton. 1L</p>
+          <div class="shelf-info">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            5-7 gün raf ömrüyle ulaşır
+          </div>
+          <div class="product-bottom">
+            <div class="product-price">48₺ <small>/ 1L</small></div>
+            <div class="product-rating">★ 4.5 <span class="review-count">(122)</span></div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- PAGINATION -->
+    <div class="pagination">
+      <button class="page-btn" disabled aria-label="Önceki">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="page-btn active">1</button>
+      <button class="page-btn">2</button>
+      <button class="page-btn" aria-label="Sonraki">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+
+  </div>
+</main>
+
+<!-- PRODUCER STORY BAND -->
+<section class="producer-band">
+  <div class="producer-band-wrap">
+    <div class="producer-band-img"></div>
+    <div class="producer-band-text">
+      <div class="section-eyebrow">Köyden Sofraya</div>
+      <h2>Sütü <em>kim sağdı</em>, biliyoruz.</h2>
+      <p>Her ürünün arkasında bir köy, bir aile, bir çiftçi var. Hangi sütü hangi gün, hangi sürüden alıp size ulaştırdığımızı tek tıkla görebilirsiniz. Çünkü güven, izlenebilirlikle başlar.</p>
+      <a href="#" class="btn">Üreticileri Tanı →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <h2>Süt hakkında <em>sıkça sorulanlar</em></h2>
+  <p>Aklınıza takılan soruların büyük çoğunluğunun cevabı burada.</p>
+
+  <div class="faq-item open">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+      A2 süt nedir, normal sütten ne farkı vardır?
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </div>
+    <div class="faq-a">A2 süt, beta-kazein proteininin yalnızca A2 formunu içeren ineklerden elde edilir. Bazı kişilerde A1 proteinine bağlı sindirim güçlüğü gözlenebilir. A2 sütü bu açıdan daha hafif olarak konumlandırılır. Bilimsel yan haricinde tat olarak da daha kremamsı bir profile sahiptir.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+      Soğuk zincir nasıl korunuyor? Kapıda kaç derece geliyor?
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </div>
+    <div class="faq-a">Sütleriniz +2°C / +4°C arasında soğuk zincirle ulaşır. Soğutmalı kargo araçları ve termal ambalaj kullanırız.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+      Kaç günde teslim ediliyor?
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </div>
+    <div class="faq-a">İstanbul ve Marmara: ertesi gün. Ankara, İzmir: 2 gün. Diğer iller: 2-3 iş günü. Sipariş verirken teslimat günü seçebilirsiniz.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+      Pastörize ile UHT arasında ne fark var? Sizin sütleriniz hangisi?
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </div>
+    <div class="faq-a">Tüm günlük sütlerimiz pastörizedir — düşük ısıda kısa süreli işlemden geçer, besin değerini ve doğal tadını korur. UHT işlenmiş süt satışımız bulunmamaktadır. Bu sebeple raf ömrümüz kısadır (5-7 gün), buzdolabı saklamak zorunludur.</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <div class="logo-mark">M</div>
+          <div class="logo-text">
+            Malkara
+            <small style="opacity: 0.7;">Süt Üreticileri Birliği</small>
+          </div>
+        </a>
+        <p>Trakya'nın 57 köyünden, 92 soğutma merkezinden, doğrudan sofranıza.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Alışveriş</h4>
+        <ul>
+          <li><a href="#">Tüm Ürünler</a></li>
+          <li><a href="#">Süt</a></li>
+          <li><a href="#">Yoğurt</a></li>
+          <li><a href="#">Peynir</a></li>
+          <li><a href="#">Tereyağı</a></li>
+          <li><a href="#">Hediye Setleri</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Birlik</h4>
+        <ul>
+          <li><a href="#">Hikâyemiz</a></li>
+          <li><a href="#">Üreticiler</a></li>
+          <li><a href="#">Köy Haritası</a></li>
+          <li><a href="#">Sertifikalar</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Yardım</h4>
+        <ul>
+          <li><a href="#">SSS</a></li>
+          <li><a href="#">Kargo & Teslimat</a></li>
+          <li><a href="#">İade</a></li>
+          <li><a href="#">İletişim</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>İletişim</h4>
+        <ul>
+          <li style="opacity: 0.7; font-size: 14px;">Gazibey, Tevfikbey Cd. No:3<br>59310 Malkara/Tekirdağ</li>
+          <li><a href="tel:+902826738150">+90 282 673 81 50</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Malkara Süt Üreticileri Birliği</div>
+      <div style="display: flex; gap: 24px;">
+        <a href="#">KVKK</a>
+        <a href="#">Çerez</a>
+        <a href="#">Mesafeli Satış</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

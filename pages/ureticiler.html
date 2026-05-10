@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Üreticilerimiz — Malkara Süt Üreticileri Birliği</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-deep: #1f3a2e;
+    --green-mid: #2d5a3d;
+    --green-light: #5a8a6b;
+    --cream: #f7f1e3;
+    --milk: #fdfbf5;
+    --wheat: #d4a574;
+    --wheat-dark: #b8843f;
+    --charcoal: #2a2826;
+    --warm-grey: #6b6660;
+    --line: #e8e0cf;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--charcoal);
+    background: var(--milk);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { font-family: 'Fraunces', serif; font-weight: 500; letter-spacing: -0.01em; }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  button { font-family: inherit; cursor: pointer; }
+
+  .announce {
+    background: var(--green-deep);
+    color: var(--cream);
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--milk);
+    border-bottom: 1px solid var(--line);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .nav-wrap {
+    max-width: 1320px; margin: 0 auto;
+    padding: 18px 32px;
+    display: flex; align-items: center; justify-content: space-between; gap: 32px;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 12px;
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 20px;
+    color: var(--green-deep);
+  }
+  .logo-mark {
+    width: 44px; height: 44px;
+    background: var(--green-deep);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    color: var(--cream);
+    font-size: 18px; font-weight: 700;
+    font-family: 'Fraunces', serif;
+  }
+  .logo-text small {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--warm-grey);
+  }
+  nav ul {
+    display: flex; gap: 32px;
+    list-style: none;
+    font-size: 14px; font-weight: 500;
+  }
+  nav a:hover, nav a.active { color: var(--green-mid); }
+  nav a.active { font-weight: 600; }
+  .nav-actions { display: flex; align-items: center; gap: 20px; }
+  .icon-btn {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: transparent;
+    display: grid; place-items: center;
+    transition: all 0.2s; position: relative;
+  }
+  .icon-btn:hover { border-color: var(--green-mid); background: var(--cream); }
+  .cart-count {
+    position: absolute; top: -4px; right: -4px;
+    background: var(--wheat-dark); color: white;
+    font-size: 10px; width: 18px; height: 18px; border-radius: 50%;
+    display: grid; place-items: center; font-weight: 700;
+  }
+  @media (max-width: 900px) { nav ul { display: none; } }
+
+  /* HERO */
+  .producers-hero {
+    background: var(--green-deep);
+    color: var(--cream);
+    padding: 80px 32px 100px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=1920&q=85') center/cover;
+    opacity: 0.22;
+  }
+  .hero-content {
+    max-width: 1320px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    opacity: 0.75;
+    margin-bottom: 32px;
+  }
+  .breadcrumb .sep { opacity: 0.4; }
+  .breadcrumb .current { color: var(--wheat); opacity: 1; }
+
+  .hero-title-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 48px;
+    align-items: end;
+  }
+  .producers-hero h1 {
+    font-size: clamp(40px, 7vw, 88px);
+    line-height: 0.96;
+    margin-bottom: 20px;
+    font-weight: 500;
+    max-width: 12ch;
+  }
+  .producers-hero h1 em { font-style: italic; color: var(--wheat); font-weight: 400; }
+  .producers-hero .lead {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    font-style: italic;
+    opacity: 0.9;
+    max-width: 50ch;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+  .producers-hero .desc {
+    font-size: 16px;
+    opacity: 0.8;
+    max-width: 56ch;
+    line-height: 1.65;
+  }
+  .hero-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .hero-stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(247,241,227,0.12);
+    gap: 14px;
+  }
+  .hero-stat .lbl {
+    font-size: 13px;
+    opacity: 0.75;
+  }
+  .hero-stat .num {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    color: var(--wheat);
+    font-weight: 500;
+  }
+  @media (max-width: 800px) {
+    .hero-title-row { grid-template-columns: 1fr; }
+  }
+
+  /* FILTER BAR */
+  .filter-bar {
+    background: var(--milk);
+    border-bottom: 1px solid var(--line);
+    padding: 20px 32px;
+    position: sticky;
+    top: 80px;
+    z-index: 50;
+  }
+  .filter-wrap {
+    max-width: 1320px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .filter-pills {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex: 1;
+    min-width: 0;
+  }
+  .filter-pills::-webkit-scrollbar { display: none; }
+  .filter-pill {
+    padding: 9px 18px;
+    border-radius: 100px;
+    border: 1px solid var(--line);
+    background: var(--milk);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--charcoal);
+    white-space: nowrap;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+  .filter-pill:hover { border-color: var(--green-mid); }
+  .filter-pill.active {
+    background: var(--green-deep);
+    color: var(--cream);
+    border-color: var(--green-deep);
+  }
+  .search-input {
+    flex-shrink: 0;
+    position: relative;
+  }
+  .search-input input {
+    padding: 10px 16px 10px 38px;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    background: var(--cream);
+    font-size: 13px;
+    font-family: inherit;
+    color: var(--charcoal);
+    width: 200px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .search-input input:focus { border-color: var(--green-deep); }
+  .search-input svg {
+    position: absolute;
+    left: 14px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--warm-grey);
+  }
+
+  /* INTERACTIVE MAP STRIP */
+  .map-strip {
+    padding: 60px 32px;
+    background: var(--cream);
+  }
+  .map-strip-wrap {
+    max-width: 1320px;
+    margin: 0 auto;
+    background: var(--milk);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .map-strip-text h2 {
+    font-size: clamp(24px, 3vw, 32px);
+    color: var(--green-deep);
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+  .map-strip-text h2 em { font-style: italic; color: var(--wheat-dark); }
+  .map-strip-text p {
+    color: var(--warm-grey);
+    font-size: 14px;
+    margin-bottom: 20px;
+    line-height: 1.65;
+  }
+  .map-strip .btn {
+    background: var(--green-deep);
+    color: var(--cream);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.25s;
+  }
+  .map-strip .btn:hover { background: var(--charcoal); }
+  .mini-map {
+    aspect-ratio: 1.4;
+    background: var(--cream);
+    border-radius: 14px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .mini-map svg { width: 100%; height: 100%; }
+  @media (max-width: 800px) {
+    .map-strip-wrap { grid-template-columns: 1fr; padding: 28px; gap: 28px; }
+  }
+
+  /* FEATURED PRODUCER */
+  .featured-section {
+    padding: 80px 32px;
+    background: var(--milk);
+  }
+  .container { max-width: 1320px; margin: 0 auto; }
+  .section-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    font-weight: 600;
+    margin-bottom: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-eyebrow::before {
+    content: ''; width: 28px; height: 1px; background: var(--green-mid);
+  }
+  .section-title {
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.1;
+    color: var(--green-deep);
+    font-weight: 500;
+  }
+  .section-title em { font-style: italic; color: var(--wheat-dark); }
+
+  .featured-card {
+    margin-top: 40px;
+    background: var(--green-deep);
+    color: var(--cream);
+    border-radius: 24px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    align-items: stretch;
+    position: relative;
+  }
+  .featured-img {
+    background: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=1200&q=85') center/cover;
+    min-height: 460px;
+    position: relative;
+  }
+  .featured-week {
+    position: absolute;
+    top: 24px; left: 24px;
+    background: var(--wheat);
+    color: var(--green-deep);
+    padding: 8px 16px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .featured-content {
+    padding: 56px 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .featured-village {
+    font-size: 12px;
+    color: var(--wheat);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .featured-content h2 {
+    font-size: clamp(28px, 3.5vw, 40px);
+    margin-bottom: 6px;
+    line-height: 1.1;
+    font-weight: 500;
+  }
+  .featured-content .role {
+    font-size: 14px;
+    opacity: 0.7;
+    margin-bottom: 28px;
+  }
+  .featured-content blockquote {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    line-height: 1.55;
+    font-style: italic;
+    border-left: 3px solid var(--wheat);
+    padding-left: 20px;
+    margin-bottom: 32px;
+    opacity: 0.95;
+  }
+  .featured-meta {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 32px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(247,241,227,0.15);
+  }
+  .featured-meta-item strong {
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    color: var(--wheat);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .featured-meta-item span {
+    font-size: 11px;
+    opacity: 0.7;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .featured-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--cream);
+    color: var(--green-deep);
+    padding: 14px 26px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 14px;
+    align-self: flex-start;
+    transition: transform 0.2s;
+  }
+  .featured-cta:hover { transform: translateX(4px); }
+  @media (max-width: 900px) {
+    .featured-card { grid-template-columns: 1fr; }
+    .featured-img { min-height: 320px; }
+    .featured-content { padding: 40px 32px; }
+    .featured-meta { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* PRODUCER GRID */
+  .producers-section {
+    padding: 80px 32px 100px;
+  }
+  .section-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .result-info {
+    color: var(--warm-grey);
+    font-size: 13px;
+  }
+  .result-info strong { color: var(--green-deep); font-weight: 600; }
+  .sort-select {
+    padding: 10px 36px 10px 16px;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    background: var(--milk) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%231f3a2e' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center;
+    appearance: none;
+    font-size: 13px;
+    font-family: inherit;
+    color: var(--charcoal);
+    cursor: pointer;
+  }
+
+  .producer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  @media (max-width: 1000px) { .producer-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .producer-grid { grid-template-columns: 1fr; } }
+
+  .producer-card {
+    background: var(--cream);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+  }
+  .producer-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(31,58,46,0.08);
+  }
+  .producer-img-wrap {
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    position: relative;
+    background: var(--cream);
+  }
+  .producer-img-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s;
+  }
+  .producer-card:hover .producer-img-wrap img { transform: scale(1.05); }
+  .producer-badges {
+    position: absolute;
+    top: 16px; left: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .producer-badge {
+    background: rgba(253,251,245,0.95);
+    color: var(--green-deep);
+    padding: 5px 12px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+    width: fit-content;
+  }
+  .producer-badge.women {
+    background: var(--wheat);
+    color: var(--green-deep);
+  }
+  .producer-badge.organic {
+    background: var(--green-mid);
+    color: var(--cream);
+  }
+  .producer-badge.young {
+    background: var(--green-deep);
+    color: var(--cream);
+  }
+  .producer-info { padding: 24px; }
+  .producer-village {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--wheat-dark);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .producer-info h3 {
+    font-size: 22px;
+    color: var(--green-deep);
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+  .producer-info .role {
+    font-size: 13px;
+    color: var(--warm-grey);
+    margin-bottom: 16px;
+  }
+  .producer-info blockquote {
+    font-family: 'Fraunces', serif;
+    font-size: 14px;
+    font-style: italic;
+    line-height: 1.55;
+    color: var(--charcoal);
+    border-left: 2px solid var(--wheat);
+    padding-left: 14px;
+    margin-bottom: 18px;
+  }
+  .producer-stats {
+    display: flex;
+    gap: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(31,58,46,0.08);
+  }
+  .producer-stat strong {
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    color: var(--green-deep);
+    font-weight: 600;
+    line-height: 1;
+  }
+  .producer-stat span {
+    font-size: 11px;
+    color: var(--warm-grey);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-top: 4px;
+    display: block;
+  }
+  .producer-products {
+    margin-top: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .producer-product-tag {
+    background: var(--milk);
+    border: 1px solid var(--line);
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-size: 11px;
+    color: var(--green-deep);
+  }
+
+  /* PAGINATION */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 60px;
+  }
+  .page-btn {
+    width: 42px; height: 42px;
+    border: 1px solid var(--line);
+    background: var(--milk);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--charcoal);
+    transition: all 0.2s;
+  }
+  .page-btn:hover:not(:disabled) {
+    border-color: var(--green-deep);
+    color: var(--green-deep);
+  }
+  .page-btn.active {
+    background: var(--green-deep);
+    color: var(--cream);
+    border-color: var(--green-deep);
+  }
+  .page-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* JOIN CTA */
+  .join-section {
+    background: var(--cream);
+    padding: 100px 32px;
+  }
+  .join-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: var(--milk);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding: 64px;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .join-text h2 {
+    font-size: clamp(28px, 4vw, 40px);
+    color: var(--green-deep);
+    line-height: 1.1;
+    margin-bottom: 18px;
+  }
+  .join-text h2 em { font-style: italic; color: var(--wheat-dark); }
+  .join-text p {
+    color: var(--warm-grey);
+    font-size: 15px;
+    margin-bottom: 24px;
+    line-height: 1.7;
+  }
+  .join-list {
+    list-style: none;
+    margin-bottom: 32px;
+  }
+  .join-list li {
+    display: flex;
+    gap: 12px;
+    padding: 8px 0;
+    font-size: 14px;
+    color: var(--charcoal);
+  }
+  .join-list svg { color: var(--green-mid); flex-shrink: 0; margin-top: 4px; }
+  .btn {
+    padding: 14px 28px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: inherit;
+  }
+  .btn-primary {
+    background: var(--green-deep);
+    color: var(--cream);
+  }
+  .btn-primary:hover { background: var(--charcoal); transform: translateY(-1px); }
+  .join-image {
+    aspect-ratio: 1;
+    border-radius: 16px;
+    background: url('https://images.unsplash.com/photo-1605733513597-a8f8341084e6?w=800&q=85') center/cover;
+  }
+  @media (max-width: 800px) {
+    .join-wrap { grid-template-columns: 1fr; padding: 36px; }
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 60px 32px 30px;
+  }
+  .footer-wrap { max-width: 1320px; margin: 0 auto; }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(247,241,227,0.1);
+  }
+  .footer-brand .logo { color: var(--cream); margin-bottom: 16px; }
+  .footer-brand .logo-mark { background: var(--cream); color: var(--green-deep); }
+  .footer-brand p { font-size: 14px; opacity: 0.7; line-height: 1.7; max-width: 30ch; }
+  .footer-col h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--wheat);
+    margin-bottom: 16px; font-weight: 600;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 8px; }
+  .footer-col a { font-size: 14px; opacity: 0.7; }
+  .footer-col a:hover { opacity: 1; }
+  .footer-bottom {
+    padding-top: 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 20px;
+    font-size: 13px; opacity: 0.6;
+  }
+  @media (max-width: 800px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .footer-brand { grid-column: 1/3; }
+  }
+
+  .village-dot { transition: all 0.3s; cursor: pointer; }
+  .village-dot:hover { r: 5; }
+</style>
+</head>
+<body>
+
+<div class="announce">
+  <span>👨‍🌾 Bu hafta öne çıkan üretici: İsmail Yıldız · Evrenbey Köyü · A2 sürü</span>
+</div>
+
+<header>
+  <div class="nav-wrap">
+    <a href="#" class="logo">
+      <div class="logo-mark">M</div>
+      <div class="logo-text">
+        Malkara
+        <small>Süt Üreticileri Birliği</small>
+      </div>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="#">Süt</a></li>
+        <li><a href="#">Yoğurt</a></li>
+        <li><a href="#">Peynir</a></li>
+        <li><a href="#">Tereyağı</a></li>
+        <li><a href="#">Abonelik</a></li>
+        <li><a href="#">Hikâyemiz</a></li>
+        <li><a href="#" class="active">Üreticiler</a></li>
+      </ul>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      </button>
+      <button class="icon-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </button>
+      <button class="icon-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-count">2</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="producers-hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="breadcrumb">
+      <a href="#">Anasayfa</a>
+      <span class="sep">/</span>
+      <span class="current">Üreticiler</span>
+    </div>
+    <div class="hero-title-row">
+      <div>
+        <h1>57 köy. <em>4.200 çiftçi.</em> Sayısız hikâye.</h1>
+        <p class="lead">Bu sayfada sütünüzü, yoğurdunuzu, peynirinizi gerçekten kim ürettiğini öğrenebilirsiniz. Kuşaktan kuşağa ulaşan emek, ortak bir çatı altında.</p>
+        <p class="desc">Her ürün etiketinde gördüğünüz "Evrenbey · İsmail Yıldız" gibi her bir not, gerçek bir köy ve gerçek bir çiftçinin emeği. Filtreleyerek ürün, köy veya değer (kadın kooperatifi, organik, manda, A2) bazlı keşfedebilirsiniz.</p>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="lbl">Üretici köy</div>
+          <div class="num">57</div>
+        </div>
+        <div class="hero-stat">
+          <div class="lbl">Aktif çiftçi</div>
+          <div class="num">4.200+</div>
+        </div>
+        <div class="hero-stat">
+          <div class="lbl">Kadın kooperatifi</div>
+          <div class="num">14</div>
+        </div>
+        <div class="hero-stat">
+          <div class="lbl">Organik onaylı</div>
+          <div class="num">3 köy</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <div class="filter-wrap">
+    <div class="filter-pills">
+      <button class="filter-pill active">Tüm Üreticiler (24)</button>
+      <button class="filter-pill">Süt Üreticileri</button>
+      <button class="filter-pill">Yoğurt & Peynir</button>
+      <button class="filter-pill">A2 Sürü</button>
+      <button class="filter-pill">Manda</button>
+      <button class="filter-pill">Organik</button>
+      <button class="filter-pill">Kadın Kooperatifi</button>
+      <button class="filter-pill">Genç Çiftçi</button>
+    </div>
+    <div class="search-input">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" placeholder="Köy veya isim ara...">
+    </div>
+  </div>
+</div>
+
+<!-- MAP STRIP -->
+<section class="map-strip">
+  <div class="map-strip-wrap">
+    <div class="map-strip-text">
+      <div class="section-eyebrow">Coğrafi Görünüm</div>
+      <h2>Trakya'nın <em>her köşesinde</em> bir üretici.</h2>
+      <p>Üreticilerimizin tamamını interaktif Trakya haritasında görün. Bir köye tıklayın, oradaki çiftçileri, ürünleri ve hikâyeleri keşfedin.</p>
+      <a href="#" class="btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Tam Haritaya Git
+      </a>
+    </div>
+    <div class="mini-map">
+      <svg viewBox="0 0 500 360" xmlns="http://www.w3.org/2000/svg">
+        <path d="M40,160 Q80,100 160,90 Q240,80 320,90 Q400,100 460,140 Q480,200 440,260 Q380,290 300,280 Q220,290 140,270 Q70,240 40,200 Z"
+              fill="#f7f1e3" stroke="#5a8a6b" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.7"/>
+        <circle cx="250" cy="180" r="12" fill="#1f3a2e"/>
+        <text x="250" y="215" text-anchor="middle" font-family="Fraunces, serif" font-size="11" font-weight="600" fill="#1f3a2e">MALKARA</text>
+
+        <circle class="village-dot" cx="140" cy="130" r="3" fill="#5a8a6b"/>
+        <circle class="village-dot" cx="180" cy="110" r="3" fill="#5a8a6b"/>
+        <circle class="village-dot" cx="220" cy="135" r="3" fill="#5a8a6b"/>
+        <circle class="village-dot" cx="270" cy="120" r="3" fill="#5a8a6b"/>
+        <circle class="village-dot" cx="310" cy="135" r="3" fill="#5a8a6b"/>
+        <circle class="village-dot" cx="340" cy="120" r="3" fill="#5a8a6b"/>
+        <circle class="village-dot" cx="380" cy="160" r="3" fill="#5a8a6b"/>
+        <circle class="village-dot" cx="160" cy="170" r="3" fill="#5a8a6b"/>
+        <circle class="village-dot" cx="190" cy="200" r="3" fill="#5a8a6b"/>
+        <circle class="village-dot" cx="220" cy="220" r="3" fill="#5a8a6b"/>
+        <circle class="village-dot" cx="290" cy="220" r="3" fill="#5a8a6b"/>
+        <circle class="village-dot" cx="330" cy="200" r="3" fill="#5a8a6b"/>
+        <circle class="village-dot" cx="370" cy="220" r="3" fill="#5a8a6b"/>
+        <circle class="village-dot" cx="200" cy="250" r="3" fill="#5a8a6b"/>
+        <circle class="village-dot" cx="260" cy="260" r="3" fill="#5a8a6b"/>
+        <circle class="village-dot" cx="320" cy="250" r="3" fill="#5a8a6b"/>
+        <circle class="village-dot" cx="115" cy="180" r="3" fill="#5a8a6b"/>
+        <circle class="village-dot" cx="410" cy="180" r="3" fill="#5a8a6b"/>
+        <circle class="village-dot" cx="240" cy="280" r="3" fill="#5a8a6b"/>
+        <circle class="village-dot" cx="290" cy="290" r="3" fill="#5a8a6b"/>
+
+        <line x1="250" y1="180" x2="160" y2="170" stroke="#1f3a2e" stroke-width="0.5" opacity="0.2"/>
+        <line x1="250" y1="180" x2="370" y2="220" stroke="#1f3a2e" stroke-width="0.5" opacity="0.2"/>
+        <line x1="250" y1="180" x2="220" y2="135" stroke="#1f3a2e" stroke-width="0.5" opacity="0.2"/>
+        <line x1="250" y1="180" x2="290" y2="220" stroke="#1f3a2e" stroke-width="0.5" opacity="0.2"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PRODUCER -->
+<section class="featured-section">
+  <div class="container">
+    <div class="section-eyebrow">Bu Haftanın Üreticisi</div>
+    <h2 class="section-title">Bir köy, bir <em>aile, bir hikâye</em>.</h2>
+
+    <article class="featured-card">
+      <div class="featured-img">
+        <span class="featured-week">★ Bu Hafta</span>
+      </div>
+      <div class="featured-content">
+        <div class="featured-village">Evrenbey Köyü, Tekirdağ</div>
+        <h2>İsmail Yıldız ve Yıldız Ailesi</h2>
+        <div class="role">A2 sürü öncüsü · 28 yıllık çiftçi · Kuşaktan kuşağa</div>
+        <blockquote>"Babamdan öğrendim. Şimdi oğlumla beraber sürdürüyoruz. 42 inekle başladık, bugün 180'i geçtik. Hayvanın rahatı sütün tadında belli olur — bu bizim ailenin kuralı."</blockquote>
+        <div class="featured-meta">
+          <div class="featured-meta-item">
+            <strong>180+</strong>
+            <span>İnek</span>
+          </div>
+          <div class="featured-meta-item">
+            <strong>2.400 L</strong>
+            <span>Günlük süt</span>
+          </div>
+          <div class="featured-meta-item">
+            <strong>%100</strong>
+            <span>A2 sürü</span>
+          </div>
+          <div class="featured-meta-item">
+            <strong>3. kuşak</strong>
+            <span>Aile geleneği</span>
+          </div>
+        </div>
+        <a href="#" class="featured-cta">
+          Tam Hikâyeyi Oku
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ALL PRODUCERS GRID -->
+<section class="producers-section">
+  <div class="container">
+    <div class="section-header-flex">
+      <div>
+        <div class="section-eyebrow">Tüm Üreticiler</div>
+        <h2 class="section-title">Sofranıza süt, yoğurt, peynir <em>ulaştıranlar</em></h2>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span class="result-info"><strong>24 üretici</strong> bulundu</span>
+        <select class="sort-select">
+          <option>Önerilen</option>
+          <option>İsim (A-Z)</option>
+          <option>Köy (A-Z)</option>
+          <option>En tecrübeli</option>
+          <option>En genç</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="producer-grid">
+
+      <article class="producer-card">
+        <div class="producer-img-wrap">
+          <div class="producer-badges">
+            <span class="producer-badge">A2 Sürü</span>
+          </div>
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=800&q=80" alt="">
+        </div>
+        <div class="producer-info">
+          <div class="producer-village">Evrenbey Köyü</div>
+          <h3>İsmail Yıldız</h3>
+          <div class="role">28 yıllık üretici · Kuşaktan kuşağa</div>
+          <blockquote>"Babamdan öğrendim. Şimdi oğlumla beraber sürdürüyoruz. Hayvanın rahatı sütün tadında belli olur."</blockquote>
+          <div class="producer-products">
+            <span class="producer-product-tag">A2 Süt</span>
+            <span class="producer-product-tag">Tam Yağlı</span>
+            <span class="producer-product-tag">Yarım Yağlı</span>
+          </div>
+          <div class="producer-stats">
+            <div class="producer-stat"><strong>180</strong><span>İnek</span></div>
+            <div class="producer-stat"><strong>2.4t</strong><span>Günlük</span></div>
+            <div class="producer-stat"><strong>28y</strong><span>Deneyim</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="producer-card">
+        <div class="producer-img-wrap">
+          <div class="producer-badges">
+            <span class="producer-badge women">Kadın Kooperatifi</span>
+          </div>
+          <img src="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?w=800&q=80" alt="">
+        </div>
+        <div class="producer-info">
+          <div class="producer-village">Karaidemir Köyü</div>
+          <h3>Ayşe Kaplan</h3>
+          <div class="role">Kadın Kooperatifi Başkanı · 16 yıl</div>
+          <blockquote>"Birlik sayesinde fiyatımız düzene girdi. Köydeki 14 kadınla beraber yoğurt ve peynir de üretiyoruz artık."</blockquote>
+          <div class="producer-products">
+            <span class="producer-product-tag">Süzme Yoğurt</span>
+            <span class="producer-product-tag">Beyaz Peynir</span>
+            <span class="producer-product-tag">Tereyağı</span>
+          </div>
+          <div class="producer-stats">
+            <div class="producer-stat"><strong>14</strong><span>Kadın üye</span></div>
+            <div class="producer-stat"><strong>800kg</strong><span>Aylık</span></div>
+            <div class="producer-stat"><strong>16y</strong><span>Deneyim</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="producer-card">
+        <div class="producer-img-wrap">
+          <div class="producer-badges">
+            <span class="producer-badge">Manda</span>
+          </div>
+          <img src="https://images.unsplash.com/photo-1605733513597-a8f8341084e6?w=800&q=80" alt="">
+        </div>
+        <div class="producer-info">
+          <div class="producer-village">Pirinçeli Köyü</div>
+          <h3>Mehmet Demir</h3>
+          <div class="role">Manda Yetiştiricisi · 22 yıl</div>
+          <blockquote>"Manda sütü ayrı bir el ister. Trakya'da bunu sürdürebilen az kaldık. Birlik bu işi koruyor — biz de geleneği."</blockquote>
+          <div class="producer-products">
+            <span class="producer-product-tag">Manda Sütü</span>
+            <span class="producer-product-tag">Manda Yoğurt</span>
+            <span class="producer-product-tag">Manda Peynir</span>
+          </div>
+          <div class="producer-stats">
+            <div class="producer-stat"><strong>42</strong><span>Manda</span></div>
+            <div class="producer-stat"><strong>320L</strong><span>Günlük</span></div>
+            <div class="producer-stat"><strong>22y</strong><span>Deneyim</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="producer-card">
+        <div class="producer-img-wrap">
+          <div class="producer-badges">
+            <span class="producer-badge organic">Organik</span>
+          </div>
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&q=80" alt="">
+        </div>
+        <div class="producer-info">
+          <div class="producer-village">Sağlamtaş Köyü</div>
+          <h3>Hasan Şahin</h3>
+          <div class="role">Birlik Başkanı · Üretici · 32 yıl</div>
+          <blockquote>"Sertifikalı meraya dayalı çiftçilik kolay değil. Ama torunlarımıza daha temiz bir toprak bırakmak için bu yola girdik."</blockquote>
+          <div class="producer-products">
+            <span class="producer-product-tag">Organik Süt</span>
+            <span class="producer-product-tag">Tereyağı</span>
+          </div>
+          <div class="producer-stats">
+            <div class="producer-stat"><strong>95</strong><span>İnek</span></div>
+            <div class="producer-stat"><strong>1.2t</strong><span>Günlük</span></div>
+            <div class="producer-stat"><strong>32y</strong><span>Deneyim</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="producer-card">
+        <div class="producer-img-wrap">
+          <div class="producer-badges">
+            <span class="producer-badge young">Genç Çiftçi</span>
+          </div>
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80" alt="">
+        </div>
+        <div class="producer-info">
+          <div class="producer-village">Ahmetpaşa Köyü</div>
+          <h3>Selim Akın</h3>
+          <div class="role">Veteriner · 4 yıllık üretici</div>
+          <blockquote>"Şehirden köye döndüğümde herkes şaşırdı. Ama hayvancılığın bilimsel ayağını güçlendirme arzusu beni geri çağırdı."</blockquote>
+          <div class="producer-products">
+            <span class="producer-product-tag">Tam Yağlı Süt</span>
+            <span class="producer-product-tag">Kefir</span>
+          </div>
+          <div class="producer-stats">
+            <div class="producer-stat"><strong>65</strong><span>İnek</span></div>
+            <div class="producer-stat"><strong>900L</strong><span>Günlük</span></div>
+            <div class="producer-stat"><strong>4y</strong><span>Deneyim</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="producer-card">
+        <div class="producer-img-wrap">
+          <div class="producer-badges">
+            <span class="producer-badge women">Kadın Kooperatifi</span>
+            <span class="producer-badge">Geleneksel</span>
+          </div>
+          <img src="https://images.unsplash.com/photo-1546961342-1ca15ee0c4f5?w=800&q=80" alt="">
+        </div>
+        <div class="producer-info">
+          <div class="producer-village">Karaidemir Köyü</div>
+          <h3>Fatma Aydın</h3>
+          <div class="role">Kooperatif Üyesi · 12 yıl</div>
+          <blockquote>"Anneannemden öğrendiğim peynir mayalama tekniğini bugün de sürdürüyorum. Modern donanım, geleneksel el."</blockquote>
+          <div class="producer-products">
+            <span class="producer-product-tag">Beyaz Peynir</span>
+            <span class="producer-product-tag">Lor</span>
+            <span class="producer-product-tag">Çökelek</span>
+          </div>
+          <div class="producer-stats">
+            <div class="producer-stat"><strong>—</strong><span>Kooperatif</span></div>
+            <div class="producer-stat"><strong>240kg</strong><span>Aylık</span></div>
+            <div class="producer-stat"><strong>12y</strong><span>Deneyim</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="producer-card">
+        <div class="producer-img-wrap">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80" alt="">
+        </div>
+        <div class="producer-info">
+          <div class="producer-village">Gözsüz Köyü</div>
+          <h3>Ramazan Polat</h3>
+          <div class="role">Çiftçi · Tereyağı uzmanı · 18 yıl</div>
+          <blockquote>"Tereyağının sırrı tek başına süt değil, tutuş süresi ve sıcaklık. Ben hâlâ ilk gün ki disiplinle çalışıyorum."</blockquote>
+          <div class="producer-products">
+            <span class="producer-product-tag">Köy Tereyağı</span>
+            <span class="producer-product-tag">Krema</span>
+          </div>
+          <div class="producer-stats">
+            <div class="producer-stat"><strong>50</strong><span>İnek</span></div>
+            <div class="producer-stat"><strong>180kg</strong><span>Aylık tereyağı</span></div>
+            <div class="producer-stat"><strong>18y</strong><span>Deneyim</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="producer-card">
+        <div class="producer-img-wrap">
+          <div class="producer-badges">
+            <span class="producer-badge">A2 Sürü</span>
+          </div>
+          <img src="https://images.unsplash.com/photo-1501286353178-1ec881214838?w=800&q=80" alt="">
+        </div>
+        <div class="producer-info">
+          <div class="producer-village">Kozyörük Köyü</div>
+          <h3>Mustafa Çelik</h3>
+          <div class="role">Üretici · 25 yıl</div>
+          <blockquote>"Sürümün yarısını A2'ye çevirmek 6 yıl sürdü. Sabır ve iyi genetik — bu işin formülü bu."</blockquote>
+          <div class="producer-products">
+            <span class="producer-product-tag">A2 Süt</span>
+            <span class="producer-product-tag">Yoğurt</span>
+          </div>
+          <div class="producer-stats">
+            <div class="producer-stat"><strong>120</strong><span>İnek</span></div>
+            <div class="producer-stat"><strong>1.6t</strong><span>Günlük</span></div>
+            <div class="producer-stat"><strong>25y</strong><span>Deneyim</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="producer-card">
+        <div class="producer-img-wrap">
+          <div class="producer-badges">
+            <span class="producer-badge young">Genç Çiftçi</span>
+          </div>
+          <img src="https://images.unsplash.com/photo-1521252659862-eec69941b071?w=800&q=80" alt="">
+        </div>
+        <div class="producer-info">
+          <div class="producer-village">Yenice Köyü</div>
+          <h3>Ebru Yılmaz</h3>
+          <div class="role">Ziraat mühendisi · 6 yıllık üretici</div>
+          <blockquote>"Aile çiftliğini ben devraldım. Geleneksel bilgiyi modern hijyen ve veri analiziyle birleştirmeye çalışıyorum."</blockquote>
+          <div class="producer-products">
+            <span class="producer-product-tag">Tam Yağlı Süt</span>
+            <span class="producer-product-tag">Kefir</span>
+            <span class="producer-product-tag">Light Yoğurt</span>
+          </div>
+          <div class="producer-stats">
+            <div class="producer-stat"><strong>78</strong><span>İnek</span></div>
+            <div class="producer-stat"><strong>1.1t</strong><span>Günlük</span></div>
+            <div class="producer-stat"><strong>6y</strong><span>Deneyim</span></div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- PAGINATION -->
+    <div class="pagination">
+      <button class="page-btn" disabled>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="page-btn active">1</button>
+      <button class="page-btn">2</button>
+      <button class="page-btn">3</button>
+      <button class="page-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- JOIN SECTION -->
+<section class="join-section">
+  <div class="join-wrap">
+    <div class="join-text">
+      <div class="section-eyebrow">Sen de Katıl</div>
+      <h2>Trakya'da bir <em>çiftçiyseniz</em>...</h2>
+      <p>Birlik üyeliği yalnızca süt satmak değil, bir topluluğun parçası olmak demek. 1987'den beri büyüyen bu yapıya katılmak için kapılarımız açık.</p>
+      <ul class="join-list">
+        <li>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
+          <span>Sabit fiyat garantisi ve düzenli ödeme</span>
+        </li>
+        <li>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
+          <span>Soğutma merkezi erişimi ve ücretsiz toplama</span>
+        </li>
+        <li>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
+          <span>Veteriner ve gıda mühendisi danışmanlık</span>
+        </li>
+        <li>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
+          <span>Yem ve girdi tedariğinde indirimli fiyat</span>
+        </li>
+        <li>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
+          <span>D2C kanalda öne çıkma ve hikâye paylaşımı</span>
+        </li>
+      </ul>
+      <a href="#" class="btn btn-primary">
+        Üyelik Başvurusu →
+      </a>
+    </div>
+    <div class="join-image"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <div class="logo-mark">M</div>
+          <div class="logo-text">
+            Malkara
+            <small style="opacity: 0.7;">Süt Üreticileri Birliği</small>
+          </div>
+        </a>
+        <p>Trakya'nın 57 köyünden, 92 soğutma merkezinden, doğrudan sofranıza.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Alışveriş</h4>
+        <ul>
+          <li><a href="#">Tüm Ürünler</a></li>
+          <li><a href="#">Süt</a></li>
+          <li><a href="#">Yoğurt</a></li>
+          <li><a href="#">Abonelik</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Birlik</h4>
+        <ul>
+          <li><a href="#">Hikâyemiz</a></li>
+          <li><a href="#">Üreticiler</a></li>
+          <li><a href="#">Köy Haritası</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>İletişim</h4>
+        <ul>
+          <li style="opacity: 0.7; font-size: 14px;">Gazibey, Tevfikbey Cd. No:3<br>59310 Malkara/Tekirdağ</li>
+          <li><a href="tel:+902826738150">+90 282 673 81 50</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Malkara Süt Üreticileri Birliği</div>
+      <div style="display: flex; gap: 24px;">
+        <a href="#">KVKK</a>
+        <a href="#">Çerez</a>
+        <a href="#">Mesafeli Satış</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

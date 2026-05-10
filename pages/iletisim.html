@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>İletişim — Malkara Süt Üreticileri Birliği</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-deep: #1f3a2e;
+    --green-mid: #2d5a3d;
+    --green-light: #5a8a6b;
+    --cream: #f7f1e3;
+    --milk: #fdfbf5;
+    --wheat: #d4a574;
+    --wheat-dark: #b8843f;
+    --charcoal: #2a2826;
+    --warm-grey: #6b6660;
+    --line: #e8e0cf;
+    --success: #2d7a4f;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--charcoal);
+    background: var(--milk);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { font-family: 'Fraunces', serif; font-weight: 500; letter-spacing: -0.01em; }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  button { font-family: inherit; cursor: pointer; }
+
+  /* HEADER */
+  header {
+    background: var(--milk);
+    border-bottom: 1px solid var(--line);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .nav-wrap {
+    max-width: 1320px; margin: 0 auto;
+    padding: 18px 32px;
+    display: flex; align-items: center; justify-content: space-between; gap: 32px;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 12px;
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 20px;
+    color: var(--green-deep);
+  }
+  .logo-mark {
+    width: 44px; height: 44px;
+    background: var(--green-deep);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    color: var(--cream);
+    font-size: 18px; font-weight: 700;
+    font-family: 'Fraunces', serif;
+  }
+  .logo-text small {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--warm-grey);
+  }
+  nav ul {
+    display: flex; gap: 32px;
+    list-style: none;
+    font-size: 14px; font-weight: 500;
+  }
+  nav a:hover { color: var(--green-mid); }
+  .nav-actions { display: flex; align-items: center; gap: 20px; }
+  .icon-btn {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: transparent;
+    display: grid; place-items: center;
+    transition: all 0.2s; position: relative;
+  }
+  .icon-btn:hover { border-color: var(--green-mid); background: var(--cream); }
+  .cart-count {
+    position: absolute; top: -4px; right: -4px;
+    background: var(--wheat-dark); color: white;
+    font-size: 10px; width: 18px; height: 18px; border-radius: 50%;
+    display: grid; place-items: center; font-weight: 700;
+  }
+  @media (max-width: 900px) { nav ul { display: none; } }
+
+  /* HERO */
+  .contact-hero {
+    background: var(--green-deep);
+    color: var(--cream);
+    padding: 80px 32px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=1920&q=80') center/cover;
+    opacity: 0.18;
+  }
+  .contact-hero-wrap {
+    max-width: 1320px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    opacity: 0.75;
+    margin-bottom: 28px;
+  }
+  .breadcrumb a:hover { opacity: 1; }
+  .breadcrumb .sep { opacity: 0.4; }
+  .breadcrumb .current { color: var(--wheat); opacity: 1; }
+
+  .contact-hero h1 {
+    font-size: clamp(40px, 6vw, 72px);
+    line-height: 0.98;
+    margin-bottom: 20px;
+    font-weight: 500;
+    max-width: 12ch;
+  }
+  .contact-hero h1 em { font-style: italic; color: var(--wheat); font-weight: 400; }
+  .contact-hero p {
+    font-size: 17px;
+    opacity: 0.88;
+    max-width: 60ch;
+    line-height: 1.6;
+  }
+
+  /* CHANNELS */
+  .channels-section {
+    padding: 80px 32px;
+  }
+  .container { max-width: 1320px; margin: 0 auto; }
+  .channels-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 60px;
+  }
+  .channels-header .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .channels-header .eyebrow::before, .channels-header .eyebrow::after {
+    content: ''; width: 28px; height: 1px; background: var(--green-mid);
+  }
+  .channels-header h2 {
+    font-size: clamp(28px, 4vw, 44px);
+    color: var(--green-deep);
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .channels-header h2 em { font-style: italic; color: var(--wheat-dark); }
+  .channels-header p {
+    color: var(--warm-grey);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .channels-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 1000px) { .channels-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .channels-grid { grid-template-columns: 1fr; } }
+
+  .channel-card {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 32px 28px;
+    transition: all 0.3s;
+    text-align: left;
+  }
+  .channel-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(31,58,46,0.08);
+    border-color: var(--green-deep);
+  }
+  .channel-card.featured {
+    background: var(--green-deep);
+    color: var(--cream);
+    border-color: var(--green-deep);
+  }
+  .channel-card.featured h3 { color: var(--cream); }
+  .channel-card.featured .desc { color: rgba(247,241,227,0.75); }
+  .channel-card.featured .channel-icon {
+    background: var(--wheat);
+    color: var(--green-deep);
+  }
+  .channel-icon {
+    width: 52px; height: 52px;
+    background: var(--green-deep);
+    color: var(--cream);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    margin-bottom: 22px;
+  }
+  .channel-card .pre {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--wheat-dark);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .channel-card.featured .pre { color: var(--wheat); }
+  .channel-card h3 {
+    font-size: 20px;
+    color: var(--green-deep);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .channel-card .desc {
+    font-size: 13px;
+    color: var(--warm-grey);
+    margin-bottom: 18px;
+    line-height: 1.6;
+    min-height: 60px;
+  }
+  .channel-card .value {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    color: var(--green-deep);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .channel-card.featured .value { color: var(--wheat); }
+  .channel-card .hours {
+    font-size: 12px;
+    color: var(--warm-grey);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+  }
+  .channel-card.featured .hours {
+    color: rgba(247,241,227,0.7);
+    border-top-color: rgba(247,241,227,0.15);
+  }
+  .channel-card .hours .live {
+    width: 8px; height: 8px;
+    background: var(--success);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  /* FORM + MAP */
+  .form-map-section {
+    padding: 80px 32px;
+    background: var(--cream);
+  }
+  .form-map-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .form-map-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  .form-card {
+    background: var(--milk);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 40px;
+  }
+  .form-card .pre {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .form-card h2 {
+    font-size: clamp(24px, 3vw, 32px);
+    color: var(--green-deep);
+    margin-bottom: 12px;
+    line-height: 1.15;
+  }
+  .form-card h2 em { font-style: italic; color: var(--wheat-dark); }
+  .form-card > p {
+    color: var(--warm-grey);
+    font-size: 14px;
+    margin-bottom: 28px;
+  }
+
+  .topic-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+  .topic-pill {
+    padding: 8px 14px;
+    border: 1.5px solid var(--line);
+    background: var(--cream);
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--charcoal);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .topic-pill:hover { border-color: var(--green-mid); }
+  .topic-pill.active {
+    background: var(--green-deep);
+    color: var(--cream);
+    border-color: var(--green-deep);
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .form-row.single { grid-template-columns: 1fr; }
+  @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+  .form-field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--green-deep);
+    margin-bottom: 6px;
+    letter-spacing: 0.02em;
+  }
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid var(--line);
+    border-radius: 10px;
+    background: var(--cream);
+    font-size: 14px;
+    color: var(--charcoal);
+    font-family: inherit;
+    transition: all 0.2s;
+    outline: none;
+  }
+  .form-field input:focus,
+  .form-field select:focus,
+  .form-field textarea:focus {
+    border-color: var(--green-deep);
+    background: var(--milk);
+  }
+  .form-field input::placeholder { color: #b3aea3; }
+  .form-field textarea { min-height: 130px; resize: vertical; }
+  .checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--charcoal);
+    cursor: pointer;
+    padding: 10px 0;
+  }
+  .checkbox-row input[type="checkbox"] {
+    appearance: none;
+    width: 18px; height: 18px;
+    border: 1.5px solid var(--line);
+    border-radius: 4px;
+    background: var(--milk);
+    position: relative;
+    flex-shrink: 0;
+  }
+  .checkbox-row input[type="checkbox"]:checked {
+    background: var(--green-deep);
+    border-color: var(--green-deep);
+  }
+  .checkbox-row input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    left: 5px; top: 1px;
+    width: 5px; height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  .form-submit {
+    margin-top: 14px;
+    width: 100%;
+    background: var(--green-deep);
+    color: var(--cream);
+    border: none;
+    padding: 16px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.25s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .form-submit:hover { background: var(--charcoal); }
+
+  /* MAP CARD */
+  .map-card {
+    background: var(--milk);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    overflow: hidden;
+    position: sticky;
+    top: 100px;
+  }
+  .map-visual {
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, #faf6e8 0%, #f0e8d2 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .map-visual svg { width: 100%; height: 100%; display: block; }
+  .map-info {
+    padding: 32px;
+  }
+  .map-info h3 {
+    font-size: 22px;
+    color: var(--green-deep);
+    margin-bottom: 6px;
+  }
+  .map-info .addr {
+    font-size: 14px;
+    color: var(--warm-grey);
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+
+  .info-list {
+    display: grid;
+    gap: 16px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+  }
+  .info-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .info-item .icon {
+    width: 36px; height: 36px;
+    background: var(--cream);
+    color: var(--green-deep);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    flex-shrink: 0;
+  }
+  .info-item .info-text {
+    flex: 1;
+  }
+  .info-item strong {
+    display: block;
+    font-size: 12px;
+    color: var(--green-deep);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .info-item span {
+    font-size: 14px;
+    color: var(--charcoal);
+    line-height: 1.5;
+    display: block;
+  }
+  .info-item small {
+    font-size: 12px;
+    color: var(--warm-grey);
+    display: block;
+    margin-top: 2px;
+  }
+
+  .directions-btn {
+    margin-top: 24px;
+    width: 100%;
+    background: transparent;
+    border: 1.5px solid var(--green-deep);
+    color: var(--green-deep);
+    padding: 14px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .directions-btn:hover {
+    background: var(--green-deep);
+    color: var(--cream);
+  }
+
+  /* HOURS */
+  .hours-section {
+    padding: 80px 32px;
+  }
+  .hours-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  @media (max-width: 800px) { .hours-grid { grid-template-columns: 1fr; } }
+  .hours-card {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 28px;
+  }
+  .hours-card h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    color: var(--green-deep);
+    margin-bottom: 18px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .hours-card h4 .live {
+    width: 8px; height: 8px;
+    background: var(--success);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  .hours-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    font-size: 13px;
+    color: var(--charcoal);
+    border-bottom: 1px solid rgba(31,58,46,0.06);
+  }
+  .hours-row:last-child { border-bottom: none; }
+  .hours-row.closed { color: var(--warm-grey); }
+  .hours-row strong { font-family: 'Fraunces', serif; color: var(--green-deep); font-weight: 600; }
+  .hours-row.closed strong { color: var(--warm-grey); font-weight: 400; }
+
+  /* SOCIAL */
+  .social-section {
+    background: var(--green-deep);
+    color: var(--cream);
+    padding: 80px 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .social-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=1920&q=80') center/cover;
+    opacity: 0.12;
+  }
+  .social-wrap {
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .social-section h2 {
+    font-size: clamp(28px, 4vw, 42px);
+    margin-bottom: 14px;
+    line-height: 1.1;
+  }
+  .social-section h2 em { font-style: italic; color: var(--wheat); }
+  .social-section p {
+    opacity: 0.85;
+    margin-bottom: 36px;
+  }
+  .social-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .social-btn {
+    background: rgba(247,241,227,0.08);
+    border: 1px solid rgba(247,241,227,0.2);
+    color: var(--cream);
+    padding: 14px 24px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.25s;
+    backdrop-filter: blur(10px);
+  }
+  .social-btn:hover { background: rgba(247,241,227,0.15); border-color: var(--wheat); color: var(--wheat); }
+
+  /* FOOTER */
+  footer {
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 60px 32px 30px;
+  }
+  .footer-wrap { max-width: 1320px; margin: 0 auto; }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(247,241,227,0.1);
+  }
+  .footer-brand .logo { color: var(--cream); margin-bottom: 16px; }
+  .footer-brand .logo-mark { background: var(--cream); color: var(--green-deep); }
+  .footer-brand p { font-size: 14px; opacity: 0.7; line-height: 1.7; max-width: 30ch; }
+  .footer-col h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--wheat);
+    margin-bottom: 16px; font-weight: 600;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 8px; }
+  .footer-col a { font-size: 14px; opacity: 0.7; }
+  .footer-col a:hover { opacity: 1; }
+  .footer-bottom {
+    padding-top: 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 20px;
+    font-size: 13px; opacity: 0.6;
+  }
+  @media (max-width: 800px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .footer-brand { grid-column: 1/3; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a href="#" class="logo">
+      <div class="logo-mark">M</div>
+      <div class="logo-text">
+        Malkara
+        <small>Süt Üreticileri Birliği</small>
+      </div>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="#">Süt</a></li>
+        <li><a href="#">Yoğurt</a></li>
+        <li><a href="#">Peynir</a></li>
+        <li><a href="#">Tereyağı</a></li>
+        <li><a href="#">Abonelik</a></li>
+        <li><a href="#">Hikâyemiz</a></li>
+        <li><a href="#">Üreticiler</a></li>
+      </ul>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      </button>
+      <button class="icon-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </button>
+      <button class="icon-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-count">2</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="contact-hero">
+  <div class="contact-hero-wrap">
+    <div class="breadcrumb">
+      <a href="#">Anasayfa</a>
+      <span class="sep">/</span>
+      <span class="current">İletişim</span>
+    </div>
+    <h1>Bize <em>ulaşın</em>.</h1>
+    <p>Sipariş, abonelik, kurumsal tedarik veya basın talepleri için doğru kapıyı bulun. WhatsApp Business hattımız 7/24 yanıt veriyor.</p>
+  </div>
+</section>
+
+<!-- CHANNELS -->
+<section class="channels-section">
+  <div class="container">
+    <div class="channels-header">
+      <div class="eyebrow">İletişim Kanalları</div>
+      <h2>Doğru kapıya, <em>doğrudan</em>.</h2>
+      <p>Konunuza göre en hızlı yanıt alacağınız kanalı seçin. Genel bir soru için aşağıdaki form yeterli.</p>
+    </div>
+
+    <div class="channels-grid">
+
+      <!-- WhatsApp - Featured -->
+      <article class="channel-card featured">
+        <div class="channel-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+        </div>
+        <div class="pre">★ En Hızlı Yanıt</div>
+        <h3>WhatsApp Business</h3>
+        <p class="desc">Sipariş takibi, abonelik yönetimi ve hızlı sorular için anlık yanıt.</p>
+        <span class="value">+90 282 673 81 50</span>
+        <div class="hours">
+          <span class="live"></span>
+          7/24 aktif · Ortalama 5 dk yanıt
+        </div>
+      </article>
+
+      <!-- Customer Support -->
+      <article class="channel-card">
+        <div class="channel-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div class="pre">B2C · Müşteri Hizmetleri</div>
+        <h3>Sipariş & Destek</h3>
+        <p class="desc">Bireysel sipariş, iade, ürün ve teslimat konuları için.</p>
+        <span class="value">+90 282 673 81 50</span>
+        <small style="font-size: 12px; color: var(--warm-grey);">destek@malkarasutureticileri.org.tr</small>
+        <div class="hours">
+          <span class="live"></span>
+          Hafta içi 09:00 — 18:00
+        </div>
+      </article>
+
+      <!-- Corporate -->
+      <article class="channel-card">
+        <div class="channel-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z"/></svg>
+        </div>
+        <div class="pre">B2B · Kurumsal & HORECA</div>
+        <h3>Toptan Tedarik</h3>
+        <p class="desc">Kafe, otel, restoran, pastane, catering ve okul tedariği talepleri için.</p>
+        <span class="value">+90 282 673 81 50 / 200</span>
+        <small style="font-size: 12px; color: var(--warm-grey);">kurumsal@malkarasutureticileri.org.tr</small>
+        <div class="hours">
+          Hafta içi 09:00 — 18:00
+        </div>
+      </article>
+
+      <!-- Producer -->
+      <article class="channel-card">
+        <div class="channel-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="pre">Üretici Birliği · Çiftçi</div>
+        <h3>Üyelik Başvurusu</h3>
+        <p class="desc">Trakya'daki çiftçiler için birlik üyeliği ve üretici başvuruları.</p>
+        <span class="value">+90 282 673 81 50 / 100</span>
+        <small style="font-size: 12px; color: var(--warm-grey);">uretici@malkarasutureticileri.org.tr</small>
+        <div class="hours">
+          Hafta içi 08:00 — 17:00
+        </div>
+      </article>
+
+      <!-- Press -->
+      <article class="channel-card">
+        <div class="channel-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8v4h-8V6z"/></svg>
+        </div>
+        <div class="pre">Basın & Medya</div>
+        <h3>Basın Talepleri</h3>
+        <p class="desc">Röportaj, basın bülteni, içerik kullanımı ve etkinlik talepleri için.</p>
+        <span class="value">+90 282 673 81 50 / 300</span>
+        <small style="font-size: 12px; color: var(--warm-grey);">basin@malkarasutureticileri.org.tr</small>
+        <div class="hours">
+          Hafta içi 10:00 — 17:00
+        </div>
+      </article>
+
+      <!-- KVKK -->
+      <article class="channel-card">
+        <div class="channel-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <div class="pre">KVKK & Yasal</div>
+        <h3>Veri Sorumlusu</h3>
+        <p class="desc">Kişisel veri talepleri, hak kullanım başvuruları ve yasal bildirimler için.</p>
+        <span class="value">KVKK Aydınlatma Metni</span>
+        <small style="font-size: 12px; color: var(--warm-grey);">kvkk@malkarasutureticileri.org.tr</small>
+        <div class="hours">
+          30 gün içinde yanıt
+        </div>
+      </article>
+
+      <!-- Influencer -->
+      <article class="channel-card">
+        <div class="channel-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="pre">İşbirliği</div>
+        <h3>İçerik Üretici & Şef</h3>
+        <p class="desc">İnfluencer, şef, beslenme uzmanı işbirlikleri ve marka teklifleri için.</p>
+        <span class="value">+90 282 673 81 50 / 400</span>
+        <small style="font-size: 12px; color: var(--warm-grey);">marketing@malkarasutureticileri.org.tr</small>
+        <div class="hours">
+          Hafta içi 10:00 — 18:00
+        </div>
+      </article>
+
+      <!-- General -->
+      <article class="channel-card">
+        <div class="channel-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div class="pre">Genel</div>
+        <h3>Genel Bilgi</h3>
+        <p class="desc">Hangi kanal sizin için doğru emin değil misiniz? Bize aşağıdaki formdan yazın.</p>
+        <span class="value">info@malkarasutureticileri.org.tr</span>
+        <div class="hours">
+          24-48 saat içinde yanıt
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- FORM + MAP -->
+<section class="form-map-section">
+  <div class="container">
+    <div class="form-map-grid">
+
+      <!-- FORM -->
+      <div class="form-card">
+        <div class="pre">İletişim Formu</div>
+        <h2>Bize <em>yazın</em></h2>
+        <p>Aşağıdaki formu doldurun, en geç 24 saat içinde size dönüş yapalım.</p>
+
+        <label style="display: block; font-size: 12px; font-weight: 600; color: var(--green-deep); margin-bottom: 10px; letter-spacing: 0.02em;">Konunuz nedir?</label>
+        <div class="topic-pills">
+          <button class="topic-pill active">📦 Sipariş</button>
+          <button class="topic-pill">↻ Abonelik</button>
+          <button class="topic-pill">🏢 Kurumsal</button>
+          <button class="topic-pill">👨‍🌾 Üretici</button>
+          <button class="topic-pill">📰 Basın</button>
+          <button class="topic-pill">💬 Genel</button>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label>Ad Soyad</label>
+            <input type="text" placeholder="Zeynep Kara">
+          </div>
+          <div class="form-field">
+            <label>E-posta</label>
+            <input type="email" placeholder="ornek@email.com">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label>Telefon (opsiyonel)</label>
+            <input type="tel" placeholder="+90 5__ ___ __ __">
+          </div>
+          <div class="form-field">
+            <label>Sipariş Numarası (varsa)</label>
+            <input type="text" placeholder="ML-26-XXXXX">
+          </div>
+        </div>
+        <div class="form-row single">
+          <div class="form-field">
+            <label>Konu</label>
+            <input type="text" placeholder="Mesajınızın kısa başlığı">
+          </div>
+        </div>
+        <div class="form-row single">
+          <div class="form-field">
+            <label>Mesajınız</label>
+            <textarea placeholder="Detaylı olarak yazın, doğru kişiye yönlendirelim..."></textarea>
+          </div>
+        </div>
+
+        <label class="checkbox-row">
+          <input type="checkbox" checked>
+          <span><a href="#" style="color: var(--green-deep); text-decoration: underline;">KVKK Aydınlatma Metni</a>'ni okudum, formdaki bilgilerimin işlenmesini onaylıyorum.</span>
+        </label>
+
+        <button class="form-submit">
+          Mesajı Gönder
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+
+      <!-- MAP -->
+      <div class="map-card">
+        <div class="map-visual">
+          <svg viewBox="0 0 600 450" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <pattern id="g2" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#e8e0cf" stroke-width="0.5" opacity="0.5"/>
+              </pattern>
+              <radialGradient id="centerPulse">
+                <stop offset="0%" stop-color="#1f3a2e" stop-opacity="0.2"/>
+                <stop offset="100%" stop-color="#1f3a2e" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="600" height="450" fill="url(#g2)"/>
+
+            <!-- City roads -->
+            <path d="M0,250 L600,260" stroke="#5a8a6b" stroke-width="3" opacity="0.3"/>
+            <path d="M280,0 L290,450" stroke="#5a8a6b" stroke-width="3" opacity="0.3"/>
+            <path d="M100,180 L500,310" stroke="#5a8a6b" stroke-width="2" opacity="0.2" stroke-dasharray="4,4"/>
+            <path d="M150,400 L500,180" stroke="#5a8a6b" stroke-width="2" opacity="0.2" stroke-dasharray="4,4"/>
+
+            <!-- Buildings (abstract) -->
+            <rect x="60" y="200" width="40" height="50" fill="#f0e8d2" stroke="#5a8a6b" stroke-width="1" opacity="0.6"/>
+            <rect x="120" y="220" width="50" height="40" fill="#f0e8d2" stroke="#5a8a6b" stroke-width="1" opacity="0.6"/>
+            <rect x="200" y="180" width="60" height="60" fill="#f0e8d2" stroke="#5a8a6b" stroke-width="1" opacity="0.6"/>
+            <rect x="350" y="200" width="40" height="50" fill="#f0e8d2" stroke="#5a8a6b" stroke-width="1" opacity="0.6"/>
+            <rect x="420" y="180" width="50" height="60" fill="#f0e8d2" stroke="#5a8a6b" stroke-width="1" opacity="0.6"/>
+            <rect x="490" y="220" width="40" height="40" fill="#f0e8d2" stroke="#5a8a6b" stroke-width="1" opacity="0.6"/>
+
+            <rect x="80" y="320" width="50" height="40" fill="#f0e8d2" stroke="#5a8a6b" stroke-width="1" opacity="0.6"/>
+            <rect x="160" y="310" width="60" height="50" fill="#f0e8d2" stroke="#5a8a6b" stroke-width="1" opacity="0.6"/>
+            <rect x="350" y="320" width="60" height="50" fill="#f0e8d2" stroke="#5a8a6b" stroke-width="1" opacity="0.6"/>
+            <rect x="440" y="310" width="50" height="60" fill="#f0e8d2" stroke="#5a8a6b" stroke-width="1" opacity="0.6"/>
+
+            <rect x="100" y="80" width="40" height="50" fill="#f0e8d2" stroke="#5a8a6b" stroke-width="1" opacity="0.6"/>
+            <rect x="200" y="60" width="60" height="60" fill="#f0e8d2" stroke="#5a8a6b" stroke-width="1" opacity="0.6"/>
+            <rect x="380" y="80" width="50" height="40" fill="#f0e8d2" stroke="#5a8a6b" stroke-width="1" opacity="0.6"/>
+            <rect x="450" y="60" width="40" height="60" fill="#f0e8d2" stroke="#5a8a6b" stroke-width="1" opacity="0.6"/>
+
+            <!-- Pin -->
+            <circle cx="290" cy="240" r="60" fill="url(#centerPulse)"/>
+            <g transform="translate(290, 240)">
+              <path d="M0,-30 C-12,-30 -22,-20 -22,-8 C-22,4 0,28 0,28 C0,28 22,4 22,-8 C22,-20 12,-30 0,-30 Z" fill="#1f3a2e" stroke="#fdfbf5" stroke-width="3"/>
+              <circle cx="0" cy="-8" r="6" fill="#d4a574"/>
+            </g>
+            <text x="290" y="290" text-anchor="middle" font-family="Fraunces, serif" font-size="13" font-weight="600" fill="#1f3a2e">Birlik Merkezi</text>
+            <text x="290" y="306" text-anchor="middle" font-family="Inter" font-size="10" fill="#6b6660">Tevfikbey Cd. No:3</text>
+
+            <!-- Labels -->
+            <text x="80" y="50" font-family="Inter" font-size="9" fill="#6b6660" letter-spacing="1.5">MALKARA MERKEZ</text>
+          </svg>
+        </div>
+        <div class="map-info">
+          <h3>Malkara Birlik Merkezi</h3>
+          <p class="addr">Gazibey, Tevfikbey Cd. No:3<br>59310 Malkara / Tekirdağ</p>
+
+          <div class="info-list">
+            <div class="info-item">
+              <div class="icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div class="info-text">
+                <strong>Telefon</strong>
+                <span>+90 282 673 81 50</span>
+                <small>Santral - dahili numaralar yukarıda</small>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div class="info-text">
+                <strong>E-Posta</strong>
+                <span>info@malkarasutureticileri.org.tr</span>
+                <small>Genel bilgi ve yönlendirme</small>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div class="info-text">
+                <strong>Mesai Saatleri</strong>
+                <span>Hafta içi 09:00 — 18:00</span>
+                <small>Cumartesi 09:00 — 13:00 · Pazar kapalı</small>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="22"/><path d="M22 12c-5 0-7-2-7-2s-2-2-7-2-7 2-7 2 2 2 7 2 7-2 7-2 5 0 7 0z"/></svg>
+              </div>
+              <div class="info-text">
+                <strong>Mağazadan Teslim Al</strong>
+                <span>Online sipariş + mağaza teslim</span>
+                <small>Tekirdağ ve civarındaki müşteriler için ücretsiz</small>
+              </div>
+            </div>
+          </div>
+
+          <button class="directions-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+            Yol Tarifi Al
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOURS -->
+<section class="hours-section">
+  <div class="container">
+    <div class="channels-header">
+      <div class="eyebrow">Çalışma Saatleri</div>
+      <h2>Sizinle <em>her zaman</em>.</h2>
+    </div>
+    <div class="hours-grid">
+
+      <div class="hours-card">
+        <h4>
+          <span class="live"></span>
+          WhatsApp Business
+        </h4>
+        <div class="hours-row"><span>Pazartesi — Cuma</span><strong>7/24 Aktif</strong></div>
+        <div class="hours-row"><span>Cumartesi — Pazar</span><strong>7/24 Aktif</strong></div>
+        <div class="hours-row"><span>Yanıt süresi</span><strong>Ortalama 5 dk</strong></div>
+        <div class="hours-row closed"><span>Resmi tatiller</span><strong>Aktif (gecikme olabilir)</strong></div>
+      </div>
+
+      <div class="hours-card">
+        <h4>
+          <span class="live"></span>
+          Telefon Hattı
+        </h4>
+        <div class="hours-row"><span>Pazartesi — Cuma</span><strong>09:00 — 18:00</strong></div>
+        <div class="hours-row"><span>Cumartesi</span><strong>09:00 — 13:00</strong></div>
+        <div class="hours-row closed"><span>Pazar</span><strong>Kapalı</strong></div>
+        <div class="hours-row closed"><span>Resmi tatiller</span><strong>Kapalı</strong></div>
+      </div>
+
+      <div class="hours-card">
+        <h4>Birlik Merkezi (Fiziksel)</h4>
+        <div class="hours-row"><span>Pazartesi — Cuma</span><strong>08:30 — 17:30</strong></div>
+        <div class="hours-row"><span>Cumartesi</span><strong>09:00 — 13:00</strong></div>
+        <div class="hours-row closed"><span>Pazar</span><strong>Kapalı</strong></div>
+        <div class="hours-row closed"><span>Resmi tatiller</span><strong>Kapalı</strong></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL -->
+<section class="social-section">
+  <div class="social-wrap">
+    <h2>Bizi <em>takip edin</em>.</h2>
+    <p>57 köyün hikâyeleri, yeni ürünler, mevsimsel kampanyalar ve mutfak ilhamı — sosyal medyada günlük paylaşımlar.</p>
+    <div class="social-buttons">
+      <a href="#" class="social-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        Instagram · 32K
+      </a>
+      <a href="#" class="social-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.1z"/></svg>
+        TikTok · 24K
+      </a>
+      <a href="#" class="social-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+        YouTube · 8K
+      </a>
+      <a href="#" class="social-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        Facebook · 18K
+      </a>
+      <a href="#" class="social-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <div class="logo-mark">M</div>
+          <div class="logo-text">
+            Malkara
+            <small style="opacity: 0.7;">Süt Üreticileri Birliği</small>
+          </div>
+        </a>
+        <p>Trakya'nın 57 köyünden, 92 soğutma merkezinden, doğrudan sofranıza.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Alışveriş</h4>
+        <ul>
+          <li><a href="#">Tüm Ürünler</a></li>
+          <li><a href="#">Süt</a></li>
+          <li><a href="#">Yoğurt</a></li>
+          <li><a href="#">Abonelik</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Birlik</h4>
+        <ul>
+          <li><a href="#">Hikâyemiz</a></li>
+          <li><a href="#">Üreticiler</a></li>
+          <li><a href="#">Köy Haritası</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>İletişim</h4>
+        <ul>
+          <li style="opacity: 0.7; font-size: 14px;">Gazibey, Tevfikbey Cd. No:3<br>59310 Malkara/Tekirdağ</li>
+          <li><a href="tel:+902826738150">+90 282 673 81 50</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Malkara Süt Üreticileri Birliği</div>
+      <div style="display: flex; gap: 24px;">
+        <a href="#">KVKK</a>
+        <a href="#">Çerez</a>
+        <a href="#">Mesafeli Satış</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

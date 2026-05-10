@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Çiftlikten Sofraya Haritası — Malkara Süt Üreticileri Birliği</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-deep: #1f3a2e;
+    --green-mid: #2d5a3d;
+    --green-light: #5a8a6b;
+    --cream: #f7f1e3;
+    --milk: #fdfbf5;
+    --wheat: #d4a574;
+    --wheat-dark: #b8843f;
+    --charcoal: #2a2826;
+    --warm-grey: #6b6660;
+    --line: #e8e0cf;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--charcoal);
+    background: var(--milk);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { font-family: 'Fraunces', serif; font-weight: 500; letter-spacing: -0.01em; }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  button { font-family: inherit; cursor: pointer; }
+
+  .announce {
+    background: var(--green-deep);
+    color: var(--cream);
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--milk);
+    border-bottom: 1px solid var(--line);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .nav-wrap {
+    max-width: 1320px; margin: 0 auto;
+    padding: 18px 32px;
+    display: flex; align-items: center; justify-content: space-between; gap: 32px;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 12px;
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 20px;
+    color: var(--green-deep);
+  }
+  .logo-mark {
+    width: 44px; height: 44px;
+    background: var(--green-deep);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    color: var(--cream);
+    font-size: 18px; font-weight: 700;
+    font-family: 'Fraunces', serif;
+  }
+  .logo-text small {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--warm-grey);
+  }
+  nav ul {
+    display: flex; gap: 32px;
+    list-style: none;
+    font-size: 14px; font-weight: 500;
+  }
+  nav a:hover { color: var(--green-mid); }
+  .nav-actions { display: flex; align-items: center; gap: 20px; }
+  .icon-btn {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: transparent;
+    display: grid; place-items: center;
+    transition: all 0.2s; position: relative;
+  }
+  .icon-btn:hover { border-color: var(--green-mid); background: var(--cream); }
+  .cart-count {
+    position: absolute; top: -4px; right: -4px;
+    background: var(--wheat-dark); color: white;
+    font-size: 10px; width: 18px; height: 18px; border-radius: 50%;
+    display: grid; place-items: center; font-weight: 700;
+  }
+  @media (max-width: 900px) { nav ul { display: none; } }
+
+  /* PAGE INTRO */
+  .map-intro {
+    background: var(--green-deep);
+    color: var(--cream);
+    padding: 60px 32px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .map-intro::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=1920&q=85') center/cover;
+    opacity: 0.15;
+  }
+  .intro-wrap {
+    max-width: 1320px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    opacity: 0.75;
+    margin-bottom: 24px;
+  }
+  .breadcrumb .sep { opacity: 0.4; }
+  .breadcrumb .current { color: var(--wheat); opacity: 1; }
+  .intro-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 48px;
+    align-items: end;
+  }
+  .map-intro h1 {
+    font-size: clamp(36px, 6vw, 68px);
+    line-height: 1;
+    margin-bottom: 14px;
+    font-weight: 500;
+    max-width: 14ch;
+  }
+  .map-intro h1 em { font-style: italic; color: var(--wheat); font-weight: 400; }
+  .map-intro p {
+    font-size: 16px;
+    opacity: 0.85;
+    max-width: 60ch;
+    line-height: 1.6;
+  }
+  .intro-stats {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .intro-stat {
+    flex: 1;
+    min-width: 100px;
+    padding: 14px 0;
+    border-top: 1px solid rgba(247,241,227,0.15);
+    text-align: right;
+  }
+  .intro-stat .num {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    color: var(--wheat);
+    font-weight: 500;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .intro-stat .lbl {
+    font-size: 11px;
+    opacity: 0.7;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  @media (max-width: 800px) {
+    .intro-row { grid-template-columns: 1fr; }
+    .intro-stat { text-align: left; }
+  }
+
+  /* MAP CONTROLS */
+  .map-controls {
+    background: var(--milk);
+    border-bottom: 1px solid var(--line);
+    padding: 18px 32px;
+    position: sticky;
+    top: 80px;
+    z-index: 50;
+  }
+  .controls-wrap {
+    max-width: 1320px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .layer-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .layer-pill {
+    padding: 9px 16px;
+    border-radius: 100px;
+    border: 1px solid var(--line);
+    background: var(--milk);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--charcoal);
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .layer-pill:hover { border-color: var(--green-mid); }
+  .layer-pill.active {
+    background: var(--green-deep);
+    color: var(--cream);
+    border-color: var(--green-deep);
+  }
+  .layer-pill .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+  }
+  .layer-pill.koy .dot { background: var(--green-light); }
+  .layer-pill.merkez .dot { background: var(--wheat-dark); }
+  .layer-pill.dagitim .dot { background: var(--green-deep); }
+  .controls-search {
+    position: relative;
+  }
+  .controls-search input {
+    padding: 10px 16px 10px 38px;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    background: var(--cream);
+    font-size: 13px;
+    font-family: inherit;
+    color: var(--charcoal);
+    width: 220px;
+    outline: none;
+  }
+  .controls-search svg {
+    position: absolute;
+    left: 14px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--warm-grey);
+  }
+
+  /* MAP MAIN */
+  .map-main {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    height: calc(100vh - 220px);
+    min-height: 600px;
+  }
+  @media (max-width: 1000px) {
+    .map-main {
+      grid-template-columns: 1fr;
+      height: auto;
+    }
+  }
+
+  /* SIDE PANEL */
+  .side-panel {
+    background: var(--milk);
+    border-right: 1px solid var(--line);
+    overflow-y: auto;
+  }
+  .side-panel::-webkit-scrollbar { width: 6px; }
+  .side-panel::-webkit-scrollbar-thumb { background: var(--line); border-radius: 6px; }
+
+  .panel-section {
+    padding: 24px;
+    border-bottom: 1px solid var(--line);
+  }
+  .panel-section:last-child { border-bottom: none; }
+  .panel-section-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green-deep);
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  /* SELECTED LOCATION CARD */
+  .location-card {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .location-card-img {
+    aspect-ratio: 4/3;
+    background: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=800&q=80') center/cover;
+    position: relative;
+  }
+  .location-card-tag {
+    position: absolute;
+    top: 12px; left: 12px;
+    background: var(--green-deep);
+    color: var(--cream);
+    padding: 5px 12px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .location-card-body {
+    padding: 20px;
+  }
+  .location-card-body .pre {
+    font-size: 11px;
+    color: var(--wheat-dark);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .location-card-body h3 {
+    font-size: 22px;
+    color: var(--green-deep);
+    margin-bottom: 4px;
+    font-weight: 500;
+    line-height: 1.15;
+  }
+  .location-card-body .sub {
+    font-size: 13px;
+    color: var(--warm-grey);
+    margin-bottom: 14px;
+  }
+  .location-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+  }
+  .location-stat {
+    text-align: center;
+  }
+  .location-stat strong {
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    color: var(--green-deep);
+    font-weight: 600;
+    line-height: 1;
+  }
+  .location-stat span {
+    font-size: 10px;
+    color: var(--warm-grey);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-top: 4px;
+    display: block;
+  }
+  .location-products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .location-product-tag {
+    background: var(--milk);
+    border: 1px solid var(--line);
+    padding: 4px 10px;
+    border-radius: 100px;
+    font-size: 11px;
+    color: var(--green-deep);
+  }
+  .location-card-body blockquote {
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--charcoal);
+    border-left: 2px solid var(--wheat);
+    padding-left: 12px;
+    margin-bottom: 16px;
+  }
+  .location-card-body .btn-mini {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--green-deep);
+    color: var(--cream);
+    padding: 10px 18px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  /* JOURNEY TIMELINE */
+  .journey-timeline {
+    position: relative;
+    padding-left: 28px;
+  }
+  .journey-timeline::before {
+    content: '';
+    position: absolute;
+    left: 9px;
+    top: 6px;
+    bottom: 6px;
+    width: 1.5px;
+    background: var(--green-light);
+    opacity: 0.5;
+  }
+  .journey-step {
+    position: relative;
+    padding-bottom: 18px;
+  }
+  .journey-step:last-child { padding-bottom: 0; }
+  .journey-step::before {
+    content: '';
+    position: absolute;
+    left: -28px;
+    top: 4px;
+    width: 12px; height: 12px;
+    background: var(--milk);
+    border: 2px solid var(--green-mid);
+    border-radius: 50%;
+  }
+  .journey-step.active::before {
+    background: var(--wheat);
+    border-color: var(--wheat-dark);
+  }
+  .journey-step.done::before {
+    background: var(--green-deep);
+    border-color: var(--green-deep);
+  }
+  .journey-step strong {
+    display: block;
+    font-size: 13px;
+    color: var(--green-deep);
+    margin-bottom: 2px;
+    font-weight: 600;
+  }
+  .journey-step span {
+    font-size: 12px;
+    color: var(--warm-grey);
+    line-height: 1.5;
+  }
+  .journey-step .time {
+    font-size: 10px;
+    color: var(--wheat-dark);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 4px;
+    display: block;
+  }
+
+  /* MAP CANVAS */
+  .map-canvas {
+    background: linear-gradient(135deg, #faf6e8 0%, #f0e8d2 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .map-canvas svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .map-zoom {
+    position: absolute;
+    bottom: 24px;
+    right: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: var(--milk);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 4px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  }
+  .map-zoom button {
+    width: 36px; height: 36px;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    color: var(--green-deep);
+    transition: background 0.2s;
+    display: grid; place-items: center;
+  }
+  .map-zoom button:hover { background: var(--cream); }
+
+  .map-legend-floating {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    background: rgba(253,251,245,0.95);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 14px 18px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    max-width: 280px;
+  }
+  .map-legend-floating h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--green-deep);
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    color: var(--charcoal);
+    padding: 4px 0;
+  }
+  .legend-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .legend-dot.line {
+    width: 18px;
+    height: 2px;
+    border-radius: 0;
+  }
+
+  /* INFO TOOLTIP */
+  .map-tooltip {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-100px);
+    background: var(--milk);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    pointer-events: none;
+    min-width: 180px;
+    display: none;
+  }
+  .map-tooltip.visible { display: block; }
+  .map-tooltip strong {
+    display: block;
+    color: var(--green-deep);
+    font-family: 'Fraunces', serif;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .map-tooltip span {
+    color: var(--warm-grey);
+    font-size: 11px;
+    display: block;
+  }
+
+  /* TRACEABILITY SECTION */
+  .trace-section {
+    padding: 100px 32px;
+    background: var(--cream);
+  }
+  .container { max-width: 1320px; margin: 0 auto; }
+  .section-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    font-weight: 600;
+    margin-bottom: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-eyebrow::before {
+    content: ''; width: 28px; height: 1px; background: var(--green-mid);
+  }
+  .section-title {
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.1;
+    color: var(--green-deep);
+    font-weight: 500;
+    margin-bottom: 18px;
+  }
+  .section-title em { font-style: italic; color: var(--wheat-dark); }
+  .section-subtitle {
+    color: var(--warm-grey);
+    font-size: 16px;
+    max-width: 60ch;
+    line-height: 1.6;
+  }
+  .section-header-center { text-align: center; max-width: 700px; margin: 0 auto 60px; }
+  .section-header-center .section-eyebrow::after {
+    content: ''; width: 28px; height: 1px; background: var(--green-mid);
+    margin-left: 12px;
+  }
+
+  .trace-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+    background: var(--milk);
+  }
+  .trace-cell {
+    padding: 36px 28px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    position: relative;
+  }
+  .trace-num {
+    position: absolute;
+    top: 24px; right: 24px;
+    font-family: 'Fraunces', serif;
+    font-size: 14px;
+    color: var(--wheat-dark);
+    font-weight: 500;
+  }
+  .trace-icon {
+    width: 48px; height: 48px;
+    background: var(--cream);
+    border: 1.5px solid var(--green-deep);
+    border-radius: 50%;
+    margin-bottom: 20px;
+    display: grid; place-items: center;
+    color: var(--green-deep);
+  }
+  .trace-cell h3 {
+    font-size: 19px;
+    color: var(--green-deep);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .trace-cell .time {
+    display: inline-block;
+    background: var(--cream);
+    color: var(--wheat-dark);
+    font-size: 10px;
+    padding: 3px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .trace-cell p {
+    font-size: 13px;
+    color: var(--warm-grey);
+    line-height: 1.65;
+  }
+  @media (max-width: 900px) { .trace-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 500px) { .trace-grid { grid-template-columns: 1fr; } }
+
+  /* SCAN CTA */
+  .scan-section {
+    padding: 100px 32px;
+    background: var(--green-deep);
+    color: var(--cream);
+    overflow: hidden;
+    position: relative;
+  }
+  .scan-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .scan-section .section-eyebrow { color: var(--wheat); }
+  .scan-section .section-eyebrow::before { background: var(--wheat); }
+  .scan-section h2 {
+    font-size: clamp(32px, 4.5vw, 48px);
+    line-height: 1.1;
+    margin-bottom: 18px;
+  }
+  .scan-section h2 em { font-style: italic; color: var(--wheat); }
+  .scan-section p {
+    opacity: 0.85;
+    margin-bottom: 28px;
+    line-height: 1.65;
+  }
+  .qr-mock {
+    aspect-ratio: 1;
+    max-width: 360px;
+    margin: 0 auto;
+    background: var(--cream);
+    border-radius: 24px;
+    padding: 32px;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+  .qr-pattern {
+    width: 100%;
+    aspect-ratio: 1;
+    background: repeating-conic-gradient(var(--green-deep) 0% 25%, var(--milk) 0% 50%) 50% / 14px 14px;
+    border-radius: 8px;
+    position: relative;
+  }
+  .qr-pattern::before, .qr-pattern::after {
+    content: '';
+    position: absolute;
+    width: 56px; height: 56px;
+    border: 12px solid var(--green-deep);
+    background: var(--milk);
+  }
+  .qr-pattern::before { top: 8px; left: 8px; }
+  .qr-pattern::after { top: 8px; right: 8px; }
+  .qr-corner {
+    position: absolute;
+    bottom: 8px; left: 8px;
+    width: 56px; height: 56px;
+    border: 12px solid var(--green-deep);
+    background: var(--milk);
+  }
+  @media (max-width: 800px) {
+    .scan-grid { grid-template-columns: 1fr; }
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 60px 32px 30px;
+  }
+  .footer-wrap { max-width: 1320px; margin: 0 auto; }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(247,241,227,0.1);
+  }
+  .footer-brand .logo { color: var(--cream); margin-bottom: 16px; }
+  .footer-brand .logo-mark { background: var(--cream); color: var(--green-deep); }
+  .footer-brand p { font-size: 14px; opacity: 0.7; line-height: 1.7; max-width: 30ch; }
+  .footer-col h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--wheat);
+    margin-bottom: 16px; font-weight: 600;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 8px; }
+  .footer-col a { font-size: 14px; opacity: 0.7; }
+  .footer-col a:hover { opacity: 1; }
+  .footer-bottom {
+    padding-top: 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 20px;
+    font-size: 13px; opacity: 0.6;
+  }
+  @media (max-width: 800px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .footer-brand { grid-column: 1/3; }
+  }
+
+  .village-dot {
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .village-dot:hover { r: 8; }
+  .village-dot.selected { r: 10; fill: var(--wheat-dark) !important; stroke: var(--wheat); stroke-width: 3; }
+
+  .pulse {
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.6; r: 14; }
+    50% { opacity: 0; r: 30; }
+  }
+</style>
+</head>
+<body>
+
+<div class="announce">
+  <span>📍 Her ürünün etiketinden kendi köyünü ve üreticisini görebilirsin · Tam izlenebilirlik</span>
+</div>
+
+<header>
+  <div class="nav-wrap">
+    <a href="#" class="logo">
+      <div class="logo-mark">M</div>
+      <div class="logo-text">
+        Malkara
+        <small>Süt Üreticileri Birliği</small>
+      </div>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="#">Süt</a></li>
+        <li><a href="#">Yoğurt</a></li>
+        <li><a href="#">Peynir</a></li>
+        <li><a href="#">Tereyağı</a></li>
+        <li><a href="#">Abonelik</a></li>
+        <li><a href="#">Hikâyemiz</a></li>
+        <li><a href="#">Üreticiler</a></li>
+      </ul>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      </button>
+      <button class="icon-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </button>
+      <button class="icon-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-count">2</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- INTRO -->
+<section class="map-intro">
+  <div class="intro-wrap">
+    <div class="breadcrumb">
+      <a href="#">Anasayfa</a>
+      <span class="sep">/</span>
+      <span class="current">Çiftlikten Sofraya Haritası</span>
+    </div>
+    <div class="intro-row">
+      <div>
+        <h1>Sütün <em>yolculuğu</em>, harita üzerinde.</h1>
+        <p>57 köyün her biri bir nokta, 92 soğutma merkezi her biri bir durak, 105 ton günlük süt akışı her gün bu hat üzerinde hareket ediyor. Bir köye tıklayın — orada üretilen ürünleri, üreticileri, sütün size nasıl ulaştığını görün.</p>
+      </div>
+      <div class="intro-stats">
+        <div class="intro-stat">
+          <div class="num">57</div>
+          <div class="lbl">Köy</div>
+        </div>
+        <div class="intro-stat">
+          <div class="num">92</div>
+          <div class="lbl">Soğutma Merkezi</div>
+        </div>
+        <div class="intro-stat">
+          <div class="num">105t</div>
+          <div class="lbl">Günlük Süt</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTROLS -->
+<div class="map-controls">
+  <div class="controls-wrap">
+    <div class="layer-pills">
+      <button class="layer-pill active koy">
+        <span class="dot"></span>
+        Köyler (57)
+      </button>
+      <button class="layer-pill active merkez">
+        <span class="dot"></span>
+        Soğutma Merkezleri (92)
+      </button>
+      <button class="layer-pill dagitim">
+        <span class="dot"></span>
+        Dağıtım Hatları
+      </button>
+      <button class="layer-pill">
+        Kadın Kooperatifi
+      </button>
+      <button class="layer-pill">
+        Manda Üretimi
+      </button>
+      <button class="layer-pill">
+        Organik
+      </button>
+    </div>
+    <div class="controls-search">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" placeholder="Köy, üretici veya ürün ara...">
+    </div>
+  </div>
+</div>
+
+<!-- MAP MAIN -->
+<div class="map-main">
+
+  <!-- SIDE PANEL -->
+  <aside class="side-panel">
+    <div class="panel-section">
+      <div class="panel-section-title">Seçili Konum</div>
+      <div class="location-card">
+        <div class="location-card-img">
+          <span class="location-card-tag">★ Üretici Köy</span>
+        </div>
+        <div class="location-card-body">
+          <div class="pre">Tekirdağ · Malkara</div>
+          <h3>Evrenbey Köyü</h3>
+          <div class="sub">Birlikten 8 km · 18 üye çiftçi</div>
+          <blockquote>"Babamdan öğrendim. Şimdi oğlumla beraber sürdürüyoruz." — İsmail Yıldız</blockquote>
+          <div class="location-stats">
+            <div class="location-stat"><strong>18</strong><span>Üye</span></div>
+            <div class="location-stat"><strong>2.4t</strong><span>Günlük</span></div>
+            <div class="location-stat"><strong>3</strong><span>Soğutma</span></div>
+          </div>
+          <div class="location-products">
+            <span class="location-product-tag">A2 Süt</span>
+            <span class="location-product-tag">Tam Yağlı</span>
+            <span class="location-product-tag">Yoğurt</span>
+          </div>
+          <a href="#" class="btn-mini">
+            Üreticileri Gör
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-section">
+      <div class="panel-section-title">Sütün Yolculuğu (Bugün)</div>
+      <div class="journey-timeline">
+        <div class="journey-step done">
+          <span class="time">04:30 · Bugün</span>
+          <strong>Sağım başladı</strong>
+          <span>Yıldız ailesi sürüsü, 180 inek</span>
+        </div>
+        <div class="journey-step done">
+          <span class="time">06:15 · Bugün</span>
+          <strong>Köy soğutma merkezine taşındı</strong>
+          <span>Evrenbey-1 merkezinde 4°C'ye çekildi</span>
+        </div>
+        <div class="journey-step active">
+          <span class="time">10:00 · Bugün</span>
+          <strong>Birlik merkezine sevk</strong>
+          <span>Soğuk zincir tankerle Malkara merkez</span>
+        </div>
+        <div class="journey-step">
+          <span class="time">14:00 · Bugün</span>
+          <strong>Pastörizasyon ve dolum</strong>
+          <span>Cam şişe veya karton ambalaja dolum</span>
+        </div>
+        <div class="journey-step">
+          <span class="time">22:00 · Bugün</span>
+          <strong>Soğuk zincir kargo çıkışı</strong>
+          <span>Aras Soğuk ile İstanbul yolu</span>
+        </div>
+        <div class="journey-step">
+          <span class="time">14 Mayıs · Yarın</span>
+          <strong>Sofranızda</strong>
+          <span>+4°C ile kapıda teslim</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-section">
+      <div class="panel-section-title">Bu Köyden Ürünler</div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <a href="#" style="display: flex; gap: 12px; padding: 10px; border: 1px solid var(--line); border-radius: 10px; transition: all 0.2s; align-items: center;">
+          <div style="width: 44px; height: 44px; border-radius: 8px; overflow: hidden; flex-shrink: 0;">
+            <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?w=200&q=80" alt="" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <div style="flex: 1; min-width: 0;">
+            <div style="font-family: 'Fraunces', serif; font-size: 13px; color: var(--green-deep); font-weight: 500;">A2 Tam Yağlı Süt 1L</div>
+            <div style="font-size: 11px; color: var(--warm-grey);">İsmail Yıldız</div>
+          </div>
+          <div style="font-family: 'Fraunces', serif; font-size: 14px; color: var(--green-deep); font-weight: 600;">89₺</div>
+        </a>
+        <a href="#" style="display: flex; gap: 12px; padding: 10px; border: 1px solid var(--line); border-radius: 10px; align-items: center;">
+          <div style="width: 44px; height: 44px; border-radius: 8px; overflow: hidden; flex-shrink: 0;">
+            <img src="https://images.unsplash.com/photo-1604152135912-04a022e23696?w=200&q=80" alt="" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <div style="flex: 1; min-width: 0;">
+            <div style="font-family: 'Fraunces', serif; font-size: 13px; color: var(--green-deep); font-weight: 500;">A2 Yarım Yağlı Süt 1L</div>
+            <div style="font-size: 11px; color: var(--warm-grey);">İsmail Yıldız</div>
+          </div>
+          <div style="font-family: 'Fraunces', serif; font-size: 14px; color: var(--green-deep); font-weight: 600;">79₺</div>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAP CANVAS -->
+  <div class="map-canvas">
+    <svg viewBox="0 0 900 700" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+
+      <!-- Grid background -->
+      <defs>
+        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#e8e0cf" stroke-width="0.5" opacity="0.5"/>
+        </pattern>
+        <radialGradient id="centerGlow">
+          <stop offset="0%" stop-color="#1f3a2e" stop-opacity="0.15"/>
+          <stop offset="100%" stop-color="#1f3a2e" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect width="900" height="700" fill="url(#grid)"/>
+
+      <!-- Trakya region outline -->
+      <path d="M80,260 Q140,160 260,140 Q380,120 500,140 Q620,160 740,200 Q820,250 820,330 Q800,420 700,460 Q580,490 460,480 Q340,490 220,470 Q120,440 80,360 Z"
+            fill="#f7f1e3" stroke="#5a8a6b" stroke-width="2" stroke-dasharray="6,4" opacity="0.7"/>
+
+      <!-- Rivers -->
+      <path d="M120,300 Q260,330 400,320 Q540,300 700,330" stroke="#5a8a6b" stroke-width="2" fill="none" opacity="0.4"/>
+      <path d="M280,180 Q320,260 350,360 Q380,420 410,470" stroke="#5a8a6b" stroke-width="1.5" fill="none" opacity="0.3"/>
+
+      <!-- Center: Malkara -->
+      <circle cx="450" cy="320" r="30" fill="url(#centerGlow)"/>
+      <circle class="pulse" cx="450" cy="320" r="14" fill="#1f3a2e" opacity="0.3"/>
+      <circle cx="450" cy="320" r="14" fill="#1f3a2e"/>
+      <circle cx="450" cy="320" r="6" fill="#d4a574"/>
+      <text x="450" y="370" text-anchor="middle" font-family="Fraunces, serif" font-size="16" font-weight="600" fill="#1f3a2e">MALKARA</text>
+      <text x="450" y="388" text-anchor="middle" font-family="Inter" font-size="10" fill="#6b6660" letter-spacing="2">BİRLİK MERKEZİ</text>
+
+      <!-- Distribution lines from center to villages (under dots) -->
+      <line x1="450" y1="320" x2="240" y2="220" stroke="#1f3a2e" stroke-width="1" opacity="0.15" stroke-dasharray="3,3"/>
+      <line x1="450" y1="320" x2="320" y2="180" stroke="#1f3a2e" stroke-width="1" opacity="0.15" stroke-dasharray="3,3"/>
+      <line x1="450" y1="320" x2="380" y2="200" stroke="#1f3a2e" stroke-width="1" opacity="0.15" stroke-dasharray="3,3"/>
+      <line x1="450" y1="320" x2="540" y2="200" stroke="#1f3a2e" stroke-width="1" opacity="0.15" stroke-dasharray="3,3"/>
+      <line x1="450" y1="320" x2="640" y2="240" stroke="#1f3a2e" stroke-width="1" opacity="0.15" stroke-dasharray="3,3"/>
+      <line x1="450" y1="320" x2="700" y2="320" stroke="#1f3a2e" stroke-width="1" opacity="0.15" stroke-dasharray="3,3"/>
+      <line x1="450" y1="320" x2="280" y2="380" stroke="#1f3a2e" stroke-width="1" opacity="0.15" stroke-dasharray="3,3"/>
+      <line x1="450" y1="320" x2="380" y2="430" stroke="#1f3a2e" stroke-width="1" opacity="0.15" stroke-dasharray="3,3"/>
+      <line x1="450" y1="320" x2="540" y2="450" stroke="#1f3a2e" stroke-width="1" opacity="0.15" stroke-dasharray="3,3"/>
+      <line x1="450" y1="320" x2="640" y2="430" stroke="#1f3a2e" stroke-width="1" opacity="0.15" stroke-dasharray="3,3"/>
+
+      <!-- Cooling centers (smaller wheat dots, behind villages) -->
+      <circle cx="320" cy="200" r="3" fill="#b8843f" opacity="0.7"/>
+      <circle cx="280" cy="240" r="3" fill="#b8843f" opacity="0.7"/>
+      <circle cx="350" cy="220" r="3" fill="#b8843f" opacity="0.7"/>
+      <circle cx="410" cy="200" r="3" fill="#b8843f" opacity="0.7"/>
+      <circle cx="480" cy="220" r="3" fill="#b8843f" opacity="0.7"/>
+      <circle cx="560" cy="220" r="3" fill="#b8843f" opacity="0.7"/>
+      <circle cx="610" cy="270" r="3" fill="#b8843f" opacity="0.7"/>
+      <circle cx="650" cy="280" r="3" fill="#b8843f" opacity="0.7"/>
+      <circle cx="700" cy="350" r="3" fill="#b8843f" opacity="0.7"/>
+      <circle cx="640" cy="390" r="3" fill="#b8843f" opacity="0.7"/>
+      <circle cx="580" cy="420" r="3" fill="#b8843f" opacity="0.7"/>
+      <circle cx="500" cy="430" r="3" fill="#b8843f" opacity="0.7"/>
+      <circle cx="420" cy="440" r="3" fill="#b8843f" opacity="0.7"/>
+      <circle cx="340" cy="430" r="3" fill="#b8843f" opacity="0.7"/>
+      <circle cx="280" cy="400" r="3" fill="#b8843f" opacity="0.7"/>
+      <circle cx="220" cy="360" r="3" fill="#b8843f" opacity="0.7"/>
+      <circle cx="200" cy="290" r="3" fill="#b8843f" opacity="0.7"/>
+      <circle cx="240" cy="190" r="3" fill="#b8843f" opacity="0.7"/>
+      <circle cx="380" cy="160" r="3" fill="#b8843f" opacity="0.7"/>
+      <circle cx="500" cy="180" r="3" fill="#b8843f" opacity="0.7"/>
+      <circle cx="180" cy="240" r="3" fill="#b8843f" opacity="0.7"/>
+      <circle cx="160" cy="320" r="3" fill="#b8843f" opacity="0.7"/>
+      <circle cx="380" cy="380" r="3" fill="#b8843f" opacity="0.7"/>
+      <circle cx="460" cy="370" r="3" fill="#b8843f" opacity="0.7"/>
+      <circle cx="550" cy="370" r="3" fill="#b8843f" opacity="0.7"/>
+
+      <!-- Villages (selected = Evrenbey, larger wheat) -->
+      <circle class="village-dot selected" cx="380" cy="200" r="10" fill="#b8843f" stroke="#d4a574" stroke-width="3"/>
+      <text x="380" y="178" text-anchor="middle" font-family="Inter" font-size="11" font-weight="600" fill="#1f3a2e">Evrenbey</text>
+
+      <!-- Other villages -->
+      <circle class="village-dot" cx="240" cy="220" r="5" fill="#5a8a6b"/>
+      <text x="240" y="208" text-anchor="middle" font-family="Inter" font-size="10" fill="#6b6660">Kozyörük</text>
+
+      <circle class="village-dot" cx="320" cy="180" r="5" fill="#5a8a6b"/>
+      <text x="320" y="168" text-anchor="middle" font-family="Inter" font-size="10" fill="#6b6660">Karaidemir</text>
+
+      <circle class="village-dot" cx="540" cy="200" r="5" fill="#5a8a6b"/>
+      <text x="540" y="188" text-anchor="middle" font-family="Inter" font-size="10" fill="#6b6660">Sağlamtaş</text>
+
+      <circle class="village-dot" cx="640" cy="240" r="5" fill="#5a8a6b"/>
+      <text x="640" y="228" text-anchor="middle" font-family="Inter" font-size="10" fill="#6b6660">Pirinçeli</text>
+
+      <circle class="village-dot" cx="700" cy="320" r="5" fill="#5a8a6b"/>
+      <text x="700" y="308" text-anchor="middle" font-family="Inter" font-size="10" fill="#6b6660">Yenice</text>
+
+      <circle class="village-dot" cx="280" cy="380" r="5" fill="#5a8a6b"/>
+      <text x="280" y="368" text-anchor="middle" font-family="Inter" font-size="10" fill="#6b6660">Ahmetpaşa</text>
+
+      <circle class="village-dot" cx="380" cy="430" r="5" fill="#5a8a6b"/>
+      <text x="380" y="450" text-anchor="middle" font-family="Inter" font-size="10" fill="#6b6660">Gözsüz</text>
+
+      <circle class="village-dot" cx="540" cy="450" r="5" fill="#5a8a6b"/>
+      <text x="540" y="470" text-anchor="middle" font-family="Inter" font-size="10" fill="#6b6660">Süleymanpaşa</text>
+
+      <circle class="village-dot" cx="640" cy="430" r="5" fill="#5a8a6b"/>
+      <text x="640" y="450" text-anchor="middle" font-family="Inter" font-size="10" fill="#6b6660">Yenikarabey</text>
+
+      <!-- More smaller villages without labels -->
+      <circle class="village-dot" cx="200" cy="280" r="4" fill="#5a8a6b"/>
+      <circle class="village-dot" cx="160" cy="240" r="4" fill="#5a8a6b"/>
+      <circle class="village-dot" cx="140" cy="320" r="4" fill="#5a8a6b"/>
+      <circle class="village-dot" cx="220" cy="340" r="4" fill="#5a8a6b"/>
+      <circle class="village-dot" cx="280" cy="280" r="4" fill="#5a8a6b"/>
+      <circle class="village-dot" cx="340" cy="260" r="4" fill="#5a8a6b"/>
+      <circle class="village-dot" cx="420" cy="180" r="4" fill="#5a8a6b"/>
+      <circle class="village-dot" cx="480" cy="160" r="4" fill="#5a8a6b"/>
+      <circle class="village-dot" cx="580" cy="280" r="4" fill="#5a8a6b"/>
+      <circle class="village-dot" cx="600" cy="180" r="4" fill="#5a8a6b"/>
+      <circle class="village-dot" cx="680" cy="200" r="4" fill="#5a8a6b"/>
+      <circle class="village-dot" cx="720" cy="280" r="4" fill="#5a8a6b"/>
+      <circle class="village-dot" cx="660" cy="370" r="4" fill="#5a8a6b"/>
+      <circle class="village-dot" cx="600" cy="380" r="4" fill="#5a8a6b"/>
+      <circle class="village-dot" cx="500" cy="400" r="4" fill="#5a8a6b"/>
+      <circle class="village-dot" cx="440" cy="400" r="4" fill="#5a8a6b"/>
+      <circle class="village-dot" cx="320" cy="400" r="4" fill="#5a8a6b"/>
+      <circle class="village-dot" cx="240" cy="420" r="4" fill="#5a8a6b"/>
+      <circle class="village-dot" cx="180" cy="380" r="4" fill="#5a8a6b"/>
+      <circle class="village-dot" cx="320" cy="360" r="4" fill="#5a8a6b"/>
+      <circle class="village-dot" cx="380" cy="320" r="4" fill="#5a8a6b"/>
+      <circle class="village-dot" cx="540" cy="320" r="4" fill="#5a8a6b"/>
+      <circle class="village-dot" cx="420" cy="240" r="4" fill="#5a8a6b"/>
+      <circle class="village-dot" cx="500" cy="280" r="4" fill="#5a8a6b"/>
+      <circle class="village-dot" cx="460" cy="460" r="4" fill="#5a8a6b"/>
+      <circle class="village-dot" cx="380" cy="470" r="4" fill="#5a8a6b"/>
+      <circle class="village-dot" cx="600" cy="460" r="4" fill="#5a8a6b"/>
+      <circle class="village-dot" cx="560" cy="170" r="4" fill="#5a8a6b"/>
+      <circle class="village-dot" cx="640" cy="160" r="4" fill="#5a8a6b"/>
+      <circle class="village-dot" cx="280" cy="160" r="4" fill="#5a8a6b"/>
+      <circle class="village-dot" cx="180" cy="200" r="4" fill="#5a8a6b"/>
+      <circle class="village-dot" cx="120" cy="280" r="4" fill="#5a8a6b"/>
+      <circle class="village-dot" cx="700" cy="400" r="4" fill="#5a8a6b"/>
+      <circle class="village-dot" cx="740" cy="350" r="4" fill="#5a8a6b"/>
+
+      <!-- Compass -->
+      <g transform="translate(810, 60)">
+        <circle r="22" fill="#fdfbf5" stroke="#e8e0cf" stroke-width="1"/>
+        <path d="M0,-12 L4,4 L0,1 L-4,4 Z" fill="#1f3a2e"/>
+        <text y="-26" text-anchor="middle" font-family="Inter" font-size="10" font-weight="700" fill="#1f3a2e">N</text>
+      </g>
+
+      <!-- Scale -->
+      <g transform="translate(40, 660)">
+        <line x1="0" y1="0" x2="80" y2="0" stroke="#1f3a2e" stroke-width="2"/>
+        <line x1="0" y1="-4" x2="0" y2="4" stroke="#1f3a2e" stroke-width="2"/>
+        <line x1="40" y1="-3" x2="40" y2="3" stroke="#1f3a2e" stroke-width="1"/>
+        <line x1="80" y1="-4" x2="80" y2="4" stroke="#1f3a2e" stroke-width="2"/>
+        <text x="0" y="18" font-family="Inter" font-size="10" fill="#6b6660">0</text>
+        <text x="80" y="18" text-anchor="end" font-family="Inter" font-size="10" fill="#6b6660">25 km</text>
+      </g>
+    </svg>
+
+    <!-- ZOOM CONTROLS -->
+    <div class="map-zoom">
+      <button>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </button>
+      <button>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </button>
+      <button>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+      </button>
+    </div>
+
+    <!-- LEGEND -->
+    <div class="map-legend-floating">
+      <h4>Lejant</h4>
+      <div class="legend-item">
+        <div class="legend-dot" style="background: #1f3a2e;"></div>
+        Birlik Merkezi (Malkara)
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background: #b8843f;"></div>
+        Seçili Köy
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background: #5a8a6b;"></div>
+        Üretici Köy (57)
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background: #b8843f; opacity: 0.7;"></div>
+        Soğutma Merkezi (92)
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot line" style="background: #1f3a2e; opacity: 0.3;"></div>
+        Dağıtım Hattı
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TRACEABILITY -->
+<section class="trace-section">
+  <div class="container">
+    <div class="section-header-center">
+      <div class="section-eyebrow">İzlenebilirlik</div>
+      <h2 class="section-title">Sütünüzün <em>her adımı kayıt altında</em>.</h2>
+      <p class="section-subtitle">Her ürün ambalajındaki QR kodunu okutarak, sütünüzün tarladan sofranıza yolculuğunu adım adım izleyebilirsiniz. 6 aşamalı şeffaf süreç.</p>
+    </div>
+    <div class="trace-grid">
+
+      <div class="trace-cell">
+        <div class="trace-num">01</div>
+        <div class="trace-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z"/></svg>
+        </div>
+        <h3>Sağım</h3>
+        <span class="time">04:30 · Köy</span>
+        <p>Sabah erken saatlerde otomatik sağım sistemi ya da elle, hijyenik koşullarda. Hayvan refahı kontrolü yapılır.</p>
+      </div>
+
+      <div class="trace-cell">
+        <div class="trace-num">02</div>
+        <div class="trace-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        </div>
+        <h3>Köy soğutma</h3>
+        <span class="time">06:00 · Köy merkezi</span>
+        <p>Süt 90 dakika içinde köy soğutma merkezine ulaşır. 4°C'ye düşürülerek hijyenik tankta saklanır.</p>
+      </div>
+
+      <div class="trace-cell">
+        <div class="trace-num">03</div>
+        <div class="trace-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+        <h3>Birlik sevki</h3>
+        <span class="time">10:00 · Soğuk tanker</span>
+        <p>İzole soğuk tankerle birlik merkezine taşınır. Yolda sıcaklık takibi yapılır, sapma olursa parti reddedilir.</p>
+      </div>
+
+      <div class="trace-cell">
+        <div class="trace-num">04</div>
+        <div class="trace-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>Pastörizasyon</h3>
+        <span class="time">14:00 · Birlik tesisi</span>
+        <p>Düşük ısı pastörizasyonu uygulanır. Laboratuvarda kalite, mikrobiyolojik ve protein analizleri yapılır.</p>
+      </div>
+
+      <div class="trace-cell">
+        <div class="trace-num">05</div>
+        <div class="trace-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/></svg>
+        </div>
+        <h3>Ambalaj & QR</h3>
+        <span class="time">18:00 · Dolum hattı</span>
+        <p>Cam şişe veya karton kutu doluma alınır. Her ambalaja parti, üretim tarihi, köy ve üretici bilgisi içeren QR kod basılır.</p>
+      </div>
+
+      <div class="trace-cell">
+        <div class="trace-num">06</div>
+        <div class="trace-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>Sofranızda</h3>
+        <span class="time">Ertesi gün · Kapınız</span>
+        <p>Soğuk zincir kargo aracılığıyla, +4°C ile evinize ulaşır. Termal ambalaj ve dış kutu içinde tam korumalı.</p>
+      </div>
+
+      <div class="trace-cell" style="grid-column: 1 / -1; background: var(--cream); text-align: center; padding: 40px;">
+        <h3 style="font-size: 22px; margin-bottom: 8px;">Bu yolculuğu kendi sütünüz için izleyin</h3>
+        <p style="margin-bottom: 18px; color: var(--charcoal);">Aldığınız üründeki QR kodunu okutun, sütünüze özel hikâyeyi görün.</p>
+        <a href="#scan" style="display: inline-flex; align-items: center; gap: 8px; background: var(--green-deep); color: var(--cream); padding: 12px 24px; border-radius: 100px; font-weight: 600; font-size: 13px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          QR Kod Okut
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SCAN CTA -->
+<section class="scan-section" id="scan">
+  <div class="scan-grid">
+    <div>
+      <div class="section-eyebrow">Şeffaflık</div>
+      <h2>QR koda <em>bakın, hikâyeyi görün</em>.</h2>
+      <p>Her ambalajın üzerindeki QR kod, o ürünün özelinde bir izleme bağlantısıdır. Hangi köyde hangi gün sağıldığı, hangi laboratuvarda test edildiği, hangi araçla taşındığı — hepsi tek tıkla.</p>
+      <p style="margin-bottom: 0;"><strong style="color: var(--wheat);">Demo:</strong> Sağdaki örnek QR'ı telefonunuzla okutarak gerçek bir izleme deneyimi yaşayabilirsiniz.</p>
+    </div>
+    <div>
+      <div class="qr-mock">
+        <div class="qr-pattern">
+          <div class="qr-corner"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <div class="logo-mark">M</div>
+          <div class="logo-text">
+            Malkara
+            <small style="opacity: 0.7;">Süt Üreticileri Birliği</small>
+          </div>
+        </a>
+        <p>Trakya'nın 57 köyünden, 92 soğutma merkezinden, doğrudan sofranıza.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Alışveriş</h4>
+        <ul>
+          <li><a href="#">Tüm Ürünler</a></li>
+          <li><a href="#">Süt</a></li>
+          <li><a href="#">Yoğurt</a></li>
+          <li><a href="#">Abonelik</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Birlik</h4>
+        <ul>
+          <li><a href="#">Hikâyemiz</a></li>
+          <li><a href="#">Üreticiler</a></li>
+          <li><a href="#">Köy Haritası</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>İletişim</h4>
+        <ul>
+          <li style="opacity: 0.7; font-size: 14px;">Gazibey, Tevfikbey Cd. No:3<br>59310 Malkara/Tekirdağ</li>
+          <li><a href="tel:+902826738150">+90 282 673 81 50</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Malkara Süt Üreticileri Birliği</div>
+      <div style="display: flex; gap: 24px;">
+        <a href="#">KVKK</a>
+        <a href="#">Çerez</a>
+        <a href="#">Mesafeli Satış</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

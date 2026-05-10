@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marka Kılavuzu — Malkara Süt Üreticileri Birliği</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-deep: #1f3a2e;
+    --green-mid: #2d5a3d;
+    --green-light: #5a8a6b;
+    --cream: #f7f1e3;
+    --milk: #fdfbf5;
+    --wheat: #d4a574;
+    --wheat-dark: #b8843f;
+    --charcoal: #2a2826;
+    --warm-grey: #6b6660;
+    --line: #e8e0cf;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--charcoal);
+    background: var(--milk);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { font-family: 'Fraunces', serif; font-weight: 500; letter-spacing: -0.01em; }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  button { font-family: inherit; cursor: pointer; }
+
+  /* DOC HEADER */
+  .doc-header {
+    background: var(--green-deep);
+    color: var(--cream);
+    padding: 80px 32px 100px;
+    position: relative;
+    overflow: hidden;
+  }
+  .doc-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=1920&q=85') center/cover;
+    opacity: 0.12;
+  }
+  .doc-header-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .doc-meta {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: 32px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .doc-meta strong { color: var(--wheat); font-weight: 600; }
+  .doc-header h1 {
+    font-size: clamp(40px, 6vw, 76px);
+    line-height: 0.98;
+    margin-bottom: 24px;
+    font-weight: 500;
+    max-width: 16ch;
+  }
+  .doc-header h1 em { font-style: italic; color: var(--wheat); font-weight: 400; }
+  .doc-header p {
+    font-size: 17px;
+    opacity: 0.85;
+    max-width: 60ch;
+    line-height: 1.6;
+  }
+  .doc-version {
+    margin-top: 48px;
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(247,241,227,0.08);
+    border: 1px solid rgba(247,241,227,0.2);
+    padding: 12px 20px;
+    border-radius: 100px;
+    font-size: 13px;
+    backdrop-filter: blur(10px);
+  }
+  .doc-version .badge {
+    background: var(--wheat);
+    color: var(--green-deep);
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+  }
+
+  /* SECTION CONTAINER */
+  .doc-container {
+    max-width: 1200px;
+    margin: -60px auto 0;
+    padding: 0 32px 80px;
+    position: relative;
+  }
+
+  /* TOC */
+  .toc {
+    background: var(--milk);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 80px;
+    box-shadow: 0 20px 60px rgba(31,58,46,0.08);
+  }
+  .toc h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green-deep);
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 800px) { .toc-grid { grid-template-columns: 1fr 1fr; } }
+  .toc a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--cream);
+    font-size: 13px;
+    color: var(--charcoal);
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+  .toc a:hover {
+    border-color: var(--green-deep);
+    color: var(--green-deep);
+  }
+  .toc-num {
+    font-family: 'Fraunces', serif;
+    color: var(--wheat-dark);
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  /* SECTION */
+  .section {
+    margin-bottom: 100px;
+    scroll-margin-top: 32px;
+  }
+  .section-header {
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 2px solid var(--line);
+    position: relative;
+  }
+  .section-num {
+    font-family: 'Fraunces', serif;
+    font-size: 14px;
+    color: var(--wheat-dark);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+  .section h2 {
+    font-size: clamp(32px, 4vw, 48px);
+    color: var(--green-deep);
+    line-height: 1.05;
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+  .section h2 em { font-style: italic; color: var(--wheat-dark); }
+  .section > p {
+    font-size: 17px;
+    color: var(--warm-grey);
+    line-height: 1.65;
+    max-width: 60ch;
+  }
+
+  /* LOGO SHOWCASE */
+  .logo-showcase {
+    background: var(--cream);
+    border-radius: 20px;
+    padding: 80px 40px;
+    text-align: center;
+    margin-bottom: 24px;
+    border: 1px solid var(--line);
+  }
+  .logo-mark-big {
+    width: 180px; height: 180px;
+    background: var(--green-deep);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    color: var(--cream);
+    font-size: 88px;
+    font-weight: 700;
+    font-family: 'Fraunces', serif;
+    margin: 0 auto 32px;
+  }
+  .logo-text-big {
+    font-family: 'Fraunces', serif;
+    font-size: 56px;
+    color: var(--green-deep);
+    font-weight: 500;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .logo-text-big em { font-style: italic; color: var(--wheat-dark); font-weight: 400; }
+  .logo-tagline {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--warm-grey);
+    font-weight: 500;
+  }
+
+  /* LOGO VARIANTS */
+  .logo-variants {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 800px) { .logo-variants { grid-template-columns: 1fr 1fr; } }
+  .logo-variant {
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .logo-variant-display {
+    aspect-ratio: 4/3;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+  }
+  .logo-variant-display.bg-cream { background: var(--cream); }
+  .logo-variant-display.bg-green { background: var(--green-deep); }
+  .logo-variant-display.bg-wheat { background: var(--wheat); }
+  .logo-variant-display.bg-milk { background: var(--milk); border-bottom: 1px solid var(--line); }
+
+  .logo-mini-mark {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    display: grid; place-items: center;
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 700;
+  }
+  .logo-mini-mark.dark { background: var(--green-deep); color: var(--cream); }
+  .logo-mini-mark.light { background: var(--cream); color: var(--green-deep); }
+  .logo-mini-mark.outline {
+    background: transparent;
+    color: var(--green-deep);
+    border: 3px solid var(--green-deep);
+  }
+  .logo-mini-mark.solid-light {
+    background: var(--milk);
+    color: var(--green-deep);
+  }
+
+  .logo-variant-label {
+    padding: 14px 18px;
+    font-size: 12px;
+    color: var(--warm-grey);
+    background: var(--milk);
+    text-align: center;
+  }
+  .logo-variant-label strong { color: var(--green-deep); display: block; margin-bottom: 2px; font-weight: 600; }
+
+  /* COLOR PALETTE */
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 800px) { .color-grid { grid-template-columns: 1fr 1fr; } }
+  .color-card {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .color-swatch {
+    aspect-ratio: 4/3;
+    position: relative;
+  }
+  .color-swatch.deep { background: var(--green-deep); }
+  .color-swatch.mid { background: var(--green-mid); }
+  .color-swatch.light { background: var(--green-light); }
+  .color-swatch.cream { background: var(--cream); }
+  .color-swatch.milk { background: var(--milk); }
+  .color-swatch.wheat { background: var(--wheat); }
+  .color-swatch.wheat-dark { background: var(--wheat-dark); }
+  .color-swatch.charcoal { background: var(--charcoal); }
+
+  .color-info {
+    padding: 18px;
+    background: var(--milk);
+  }
+  .color-info h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    color: var(--green-deep);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .color-info code {
+    display: block;
+    font-family: monospace;
+    font-size: 11px;
+    color: var(--warm-grey);
+    margin: 2px 0;
+  }
+  .color-tag {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 8px;
+    background: var(--cream);
+    color: var(--wheat-dark);
+    border-radius: 100px;
+    letter-spacing: 0.04em;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+  .color-tag.primary { background: var(--green-deep); color: var(--cream); }
+
+  /* TYPOGRAPHY */
+  .typo-section {
+    background: var(--cream);
+    border-radius: 20px;
+    padding: 48px;
+    margin-bottom: 32px;
+    border: 1px solid var(--line);
+  }
+  @media (max-width: 700px) { .typo-section { padding: 32px 24px; } }
+  .typo-section h3 {
+    font-size: 14px;
+    color: var(--wheat-dark);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 12px;
+  }
+  .typo-name {
+    font-family: 'Fraunces', serif;
+    font-size: 64px;
+    color: var(--green-deep);
+    margin-bottom: 8px;
+    font-weight: 500;
+    line-height: 1;
+  }
+  .typo-name.sans {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 56px;
+    letter-spacing: -0.03em;
+  }
+  .typo-meta {
+    color: var(--warm-grey);
+    font-size: 13px;
+    margin-bottom: 28px;
+  }
+  .typo-meta code {
+    font-family: monospace;
+    background: var(--milk);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    color: var(--green-deep);
+    margin-left: 6px;
+  }
+  .typo-alphabet {
+    background: var(--milk);
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid var(--line);
+  }
+  .typo-alphabet-large {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    color: var(--green-deep);
+    line-height: 1.3;
+    margin-bottom: 14px;
+    word-spacing: 4px;
+  }
+  .typo-alphabet-large.sans {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .typo-alphabet-small {
+    font-size: 14px;
+    color: var(--charcoal);
+    word-spacing: 2px;
+  }
+  .typo-alphabet-small.sans {
+    font-family: 'Inter', sans-serif;
+  }
+  .typo-alphabet-small.serif {
+    font-family: 'Fraunces', serif;
+  }
+
+  /* TYPE SCALE */
+  .type-scale {
+    display: grid;
+    gap: 18px;
+    margin-top: 32px;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+  }
+  .type-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 24px;
+    align-items: baseline;
+  }
+  .type-row code {
+    font-family: monospace;
+    font-size: 11px;
+    color: var(--warm-grey);
+    letter-spacing: 0.04em;
+  }
+  .type-h1 { font-family: 'Fraunces', serif; font-size: 48px; color: var(--green-deep); font-weight: 500; line-height: 1.05; }
+  .type-h2 { font-family: 'Fraunces', serif; font-size: 36px; color: var(--green-deep); font-weight: 500; line-height: 1.1; }
+  .type-h3 { font-family: 'Fraunces', serif; font-size: 24px; color: var(--green-deep); font-weight: 500; line-height: 1.15; }
+  .type-h4 { font-family: 'Fraunces', serif; font-size: 18px; color: var(--green-deep); font-weight: 500; }
+  .type-body { font-family: 'Inter', sans-serif; font-size: 16px; color: var(--charcoal); }
+  .type-small { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--charcoal); }
+  .type-caption { font-family: 'Inter', sans-serif; font-size: 11px; color: var(--warm-grey); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* VOICE & TONE */
+  .voice-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 700px) { .voice-grid { grid-template-columns: 1fr; } }
+  .voice-card {
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .voice-card-header {
+    padding: 14px 20px;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .voice-card.do .voice-card-header {
+    background: rgba(45,122,79,0.12);
+    color: #2d7a4f;
+  }
+  .voice-card.dont .voice-card-header {
+    background: rgba(176,72,72,0.1);
+    color: #b04848;
+  }
+  .voice-card-body {
+    padding: 24px 20px;
+    background: var(--milk);
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    color: var(--green-deep);
+    line-height: 1.5;
+    font-style: italic;
+  }
+  .voice-card.dont .voice-card-body { color: var(--warm-grey); }
+
+  .archetype-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 32px;
+  }
+  @media (max-width: 700px) { .archetype-grid { grid-template-columns: 1fr; } }
+  .archetype-card {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 28px;
+  }
+  .archetype-card h4 {
+    font-size: 22px;
+    color: var(--green-deep);
+    margin-bottom: 8px;
+  }
+  .archetype-card .role {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--wheat-dark);
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .archetype-card p {
+    font-size: 14px;
+    color: var(--charcoal);
+    line-height: 1.6;
+  }
+
+  /* TAGLINE SHOWCASE */
+  .taglines {
+    background: var(--green-deep);
+    color: var(--cream);
+    border-radius: 20px;
+    padding: 60px 48px;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 700px) { .taglines { padding: 40px 24px; } }
+  .taglines h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--wheat);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+  .tagline-list {
+    list-style: none;
+    display: grid;
+    gap: 14px;
+  }
+  .tagline-list li {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(20px, 2.4vw, 28px);
+    line-height: 1.3;
+    padding-left: 36px;
+    position: relative;
+    font-style: italic;
+    opacity: 0.92;
+  }
+  .tagline-list li::before {
+    content: '"';
+    font-size: 48px;
+    line-height: 0.8;
+    color: var(--wheat);
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .tagline-list li.primary {
+    color: var(--wheat);
+    font-weight: 500;
+    opacity: 1;
+  }
+  .tagline-tag {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    background: rgba(212,165,116,0.2);
+    color: var(--wheat);
+    font-size: 10px;
+    padding: 3px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.06em;
+    margin-left: 14px;
+    vertical-align: middle;
+    font-weight: 700;
+  }
+
+  /* COMPONENT SHOWCASE */
+  .component-row {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 36px 40px;
+    margin-bottom: 16px;
+  }
+  .component-label {
+    font-size: 11px;
+    color: var(--wheat-dark);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+  .component-display {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .btn {
+    padding: 14px 26px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: inherit;
+  }
+  .btn-primary {
+    background: var(--green-deep);
+    color: var(--cream);
+  }
+  .btn-secondary {
+    background: var(--wheat);
+    color: var(--green-deep);
+  }
+  .btn-outline {
+    background: transparent;
+    color: var(--green-deep);
+    border: 1.5px solid var(--green-deep);
+  }
+  .btn-ghost {
+    background: var(--milk);
+    color: var(--green-deep);
+    border: 1px solid var(--line);
+  }
+  .btn-text {
+    background: transparent;
+    color: var(--green-deep);
+    border-bottom: 1px solid var(--green-deep);
+    border-radius: 0;
+    padding: 6px 0;
+  }
+
+  /* TAG/CHIP STYLES */
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 5px 12px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .tag-default { background: var(--green-deep); color: var(--cream); }
+  .tag-bio { background: var(--green-mid); color: var(--cream); }
+  .tag-new { background: var(--wheat-dark); color: white; }
+  .tag-sub { background: var(--milk); color: var(--green-deep); border: 1px solid var(--line); }
+  .tag-success { background: rgba(45,122,79,0.15); color: #2d7a4f; }
+
+  /* IMAGERY */
+  .imagery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 800px) { .imagery-grid { grid-template-columns: 1fr 1fr; } }
+  .imagery-cell {
+    aspect-ratio: 1;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--cream);
+    position: relative;
+  }
+  .imagery-cell img { width: 100%; height: 100%; object-fit: cover; }
+  .imagery-cell .label {
+    position: absolute;
+    bottom: 12px; left: 12px;
+    background: rgba(253,251,245,0.95);
+    color: var(--green-deep);
+    padding: 4px 10px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    backdrop-filter: blur(8px);
+  }
+
+  /* PACKAGING MOCKUP */
+  .pack-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 800px) { .pack-grid { grid-template-columns: 1fr; } }
+  .pack-mock {
+    aspect-ratio: 3/4;
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+  }
+  .pack-mock.dark { background: var(--green-deep); color: var(--cream); }
+  .pack-mock.wheat { background: var(--wheat); color: var(--green-deep); }
+
+  .pack-mock-top {
+    text-align: center;
+    padding-top: 8px;
+  }
+  .pack-mini-logo {
+    width: 48px; height: 48px;
+    background: var(--green-deep);
+    color: var(--cream);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    margin: 0 auto 12px;
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 22px;
+  }
+  .pack-mock.dark .pack-mini-logo { background: var(--cream); color: var(--green-deep); }
+  .pack-mock.wheat .pack-mini-logo { background: var(--green-deep); color: var(--cream); }
+
+  .pack-mock-name {
+    font-family: 'Fraunces', serif;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 2px;
+    opacity: 0.7;
+  }
+  .pack-mock-product {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.05;
+    margin-bottom: 4px;
+  }
+  .pack-mock-product em { font-style: italic; }
+  .pack-mock-volume {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+  .pack-mock-bottom {
+    text-align: center;
+  }
+  .pack-mock-village {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+  .pack-mock-batch {
+    font-family: monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    opacity: 0.5;
+  }
+
+  /* DON'T SECTION */
+  .donts {
+    background: var(--milk);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 32px;
+  }
+  .donts h4 {
+    font-size: 14px;
+    color: #b04848;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-family: 'Inter', sans-serif;
+  }
+  .donts ul {
+    list-style: none;
+    display: grid;
+    gap: 12px;
+  }
+  .donts li {
+    display: flex;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--charcoal);
+    line-height: 1.6;
+  }
+  .donts svg { color: #b04848; flex-shrink: 0; margin-top: 4px; }
+
+  /* FOOTER */
+  footer {
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 40px 32px;
+    text-align: center;
+    font-size: 13px;
+    opacity: 0.85;
+  }
+  footer a { color: var(--cream); margin: 0 12px; }
+</style>
+</head>
+<body>
+
+<!-- DOC HEADER -->
+<header class="doc-header">
+  <div class="doc-header-wrap">
+    <div class="doc-meta">
+      <span><strong>BRAND GUIDELINE</strong></span>
+      <span>v2.0</span>
+      <span>Mayıs 2026</span>
+      <span>40 sayfa</span>
+    </div>
+    <h1>Marka <em>Kılavuzu</em></h1>
+    <p>Malkara Süt Üreticileri Birliği'nin marka kimliğini doğru ve tutarlı bir biçimde uygulamak için referans rehberi. Tasarımcılar, yazarlar, ajanslar ve birlik çalışanları için.</p>
+    <div class="doc-version">
+      <span class="badge">v2.0</span>
+      <span>Son güncelleme: 9 Mayıs 2026</span>
+      <span style="opacity: 0.6;">·</span>
+      <a href="#" style="color: var(--wheat); text-decoration: underline;">PDF olarak indir</a>
+    </div>
+  </div>
+</header>
+
+<div class="doc-container">
+
+  <!-- TOC -->
+  <nav class="toc">
+    <h3>İçindekiler</h3>
+    <div class="toc-grid">
+      <a href="#logo"><span class="toc-num">01</span><span>Logo</span></a>
+      <a href="#renkler"><span class="toc-num">02</span><span>Renk Paleti</span></a>
+      <a href="#tipografi"><span class="toc-num">03</span><span>Tipografi</span></a>
+      <a href="#ses-ton"><span class="toc-num">04</span><span>Ses & Ton</span></a>
+      <a href="#sloganlar"><span class="toc-num">05</span><span>Sloganlar</span></a>
+      <a href="#bilesenler"><span class="toc-num">06</span><span>Bileşenler</span></a>
+      <a href="#fotograf"><span class="toc-num">07</span><span>Fotoğraf</span></a>
+      <a href="#ambalaj"><span class="toc-num">08</span><span>Ambalaj</span></a>
+    </div>
+  </nav>
+
+  <!-- 01 LOGO -->
+  <section class="section" id="logo">
+    <div class="section-header">
+      <div class="section-num">— Bölüm 01 —</div>
+      <h2>Logo <em>kullanımı</em></h2>
+    </div>
+    <p style="margin-bottom: 32px;">Logomuz, tüm marka iletişiminin görsel kimliğinin merkezindedir. "M" monogramı, Trakya yeşili daire içinde Fraunces tipografisi ile oluşturulmuştur. Cam şişe sütteki temizlik hissi, monogramın yumuşak yuvarlak hatlarıyla yansıtılır.</p>
+
+    <!-- PRIMARY LOGO -->
+    <div class="logo-showcase">
+      <div class="logo-mark-big">M</div>
+      <div class="logo-text-big">Malkara <em>Süt</em></div>
+      <div class="logo-tagline">Süt Üreticileri Birliği · Trakya · 1987</div>
+    </div>
+
+    <!-- LOGO VARIANTS -->
+    <h4 style="font-family: Inter; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green-deep); font-weight: 600; margin: 32px 0 14px;">Logo Varyasyonları</h4>
+    <div class="logo-variants">
+      <div class="logo-variant">
+        <div class="logo-variant-display bg-milk">
+          <div class="logo-mini-mark dark">M</div>
+        </div>
+        <div class="logo-variant-label">
+          <strong>Ana — Açık zemin</strong>
+          Beyaz/krema arkaplanlar
+        </div>
+      </div>
+      <div class="logo-variant">
+        <div class="logo-variant-display bg-green">
+          <div class="logo-mini-mark light">M</div>
+        </div>
+        <div class="logo-variant-label">
+          <strong>Negatif — Koyu zemin</strong>
+          Koyu yeşil/charcoal arkaplanlar
+        </div>
+      </div>
+      <div class="logo-variant">
+        <div class="logo-variant-display bg-wheat">
+          <div class="logo-mini-mark dark">M</div>
+        </div>
+        <div class="logo-variant-label">
+          <strong>Vurgu — Buğday zemin</strong>
+          Kampanya/öne çıkan görseller
+        </div>
+      </div>
+      <div class="logo-variant">
+        <div class="logo-variant-display bg-cream">
+          <div class="logo-mini-mark outline">M</div>
+        </div>
+        <div class="logo-variant-label">
+          <strong>Outline — Tek renk</strong>
+          Embosing, gravür, baskı tek renk
+        </div>
+      </div>
+    </div>
+
+    <!-- DON'TS -->
+    <div class="donts" style="margin-top: 32px;">
+      <h4>✗ Logo Kullanılmamalı</h4>
+      <ul>
+        <li>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+          <span>Logo deforme edilmemeli, oranı bozulmamalı, eğilmemelidir</span>
+        </li>
+        <li>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+          <span>Marka renkleri dışında renklendirilmemeli (yeşil/krema/buğday haricinde)</span>
+        </li>
+        <li>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+          <span>Karmaşık veya yoğun arkaplanlar üzerinde direkt kullanılmamalı</span>
+        </li>
+        <li>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+          <span>Minimum 32px boyutunun altında dijital, 12mm'in altında baskı kullanılmamalı</span>
+        </li>
+        <li>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+          <span>Çevresinde minimum boşluk (yarı çap kadar) bırakılmadan kullanılmamalı</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 02 RENKLER -->
+  <section class="section" id="renkler">
+    <div class="section-header">
+      <div class="section-num">— Bölüm 02 —</div>
+      <h2>Renk <em>paleti</em></h2>
+    </div>
+    <p style="margin-bottom: 32px;">Trakya yeşili merkezde, krema/süt beyazı sıcaklık katar, buğday tonu hasat ve kalite hissi verir. Klasik "baby blue" süt klişesinden bilinçli olarak uzak durulmuştur.</p>
+
+    <h4 style="font-family: Inter; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green-deep); font-weight: 600; margin-bottom: 14px;">Ana Renkler</h4>
+    <div class="color-grid">
+      <div class="color-card">
+        <div class="color-swatch deep"></div>
+        <div class="color-info">
+          <h4>Trakya Yeşili</h4>
+          <code>HEX #1F3A2E</code>
+          <code>RGB 31, 58, 46</code>
+          <code>CMYK 78, 55, 75, 65</code>
+          <span class="color-tag primary">Ana</span>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch cream"></div>
+        <div class="color-info">
+          <h4>Krema Sarısı</h4>
+          <code>HEX #F7F1E3</code>
+          <code>RGB 247, 241, 227</code>
+          <code>CMYK 3, 4, 14, 0</code>
+          <span class="color-tag primary">Ana</span>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch wheat"></div>
+        <div class="color-info">
+          <h4>Buğday Tonu</h4>
+          <code>HEX #D4A574</code>
+          <code>RGB 212, 165, 116</code>
+          <code>CMYK 18, 38, 60, 5</code>
+          <span class="color-tag">Vurgu</span>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch milk"></div>
+        <div class="color-info">
+          <h4>Süt Beyazı</h4>
+          <code>HEX #FDFBF5</code>
+          <code>RGB 253, 251, 245</code>
+          <code>CMYK 1, 1, 5, 0</code>
+          <span class="color-tag">Nötr</span>
+        </div>
+      </div>
+    </div>
+
+    <h4 style="font-family: Inter; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green-deep); font-weight: 600; margin: 32px 0 14px;">İkincil Renkler</h4>
+    <div class="color-grid">
+      <div class="color-card">
+        <div class="color-swatch mid"></div>
+        <div class="color-info">
+          <h4>Çayır Yeşili</h4>
+          <code>HEX #2D5A3D</code>
+          <code>RGB 45, 90, 61</code>
+          <span class="color-tag">İkincil</span>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch light"></div>
+        <div class="color-info">
+          <h4>Mera Yeşili</h4>
+          <code>HEX #5A8A6B</code>
+          <code>RGB 90, 138, 107</code>
+          <span class="color-tag">İkincil</span>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch wheat-dark"></div>
+        <div class="color-info">
+          <h4>Hasat Toprağı</h4>
+          <code>HEX #B8843F</code>
+          <code>RGB 184, 132, 63</code>
+          <span class="color-tag">Vurgu</span>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch charcoal"></div>
+        <div class="color-info">
+          <h4>Antrasit</h4>
+          <code>HEX #2A2826</code>
+          <code>RGB 42, 40, 38</code>
+          <span class="color-tag">Metin</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 TIPOGRAFI -->
+  <section class="section" id="tipografi">
+    <div class="section-header">
+      <div class="section-num">— Bölüm 03 —</div>
+      <h2>Tipografi <em>sistemi</em></h2>
+    </div>
+    <p style="margin-bottom: 32px;">Karakterli ama okunaklı bir serif (Fraunces) ile yüksek okunaklı bir sans-serif (Inter) kombinasyonu. Türkçe karakter desteği zorunlu — tüm Türkçe glyph'ler test edilmiştir.</p>
+
+    <!-- FRAUNCES -->
+    <div class="typo-section">
+      <h3>Birincil — Başlıklar</h3>
+      <div class="typo-name">Fraunces</div>
+      <div class="typo-meta">Stilistik, kontrastlı serif · Google Fonts <code>500/Italic 400</code></div>
+      <div class="typo-alphabet">
+        <div class="typo-alphabet-large">Aa Bb Cc Çç Dd Ee Ff Gg Ğğ</div>
+        <div class="typo-alphabet-small serif">ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ · abcçdefgğhıijklmnoöpqrsştuüvwxyz · 0123456789 · ! ? . , ; : " ' — ( )</div>
+      </div>
+    </div>
+
+    <!-- INTER -->
+    <div class="typo-section">
+      <h3>İkincil — Metin</h3>
+      <div class="typo-name sans">Inter</div>
+      <div class="typo-meta">Geometrik, dijital-uyumlu sans-serif · Google Fonts <code>400/500/600/700</code></div>
+      <div class="typo-alphabet">
+        <div class="typo-alphabet-large sans">Aa Bb Cc Çç Dd Ee Ff Gg Ğğ</div>
+        <div class="typo-alphabet-small sans">ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ · abcçdefgğhıijklmnoöpqrsştuüvwxyz · 0123456789 · ! ? . , ; : " ' — ( )</div>
+      </div>
+    </div>
+
+    <!-- TYPE SCALE -->
+    <h4 style="font-family: Inter; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green-deep); font-weight: 600; margin: 32px 0 14px;">Tip Hiyerarşisi</h4>
+    <div class="typo-section" style="padding: 32px 40px;">
+      <div class="type-scale">
+        <div class="type-row">
+          <code>H1</code>
+          <span class="type-h1">Sofranızda <em style="font-style: italic; color: var(--wheat-dark);">aynı tazelik</em></span>
+        </div>
+        <div class="type-row">
+          <code>H2</code>
+          <span class="type-h2">57 köyün ortak emeği</span>
+        </div>
+        <div class="type-row">
+          <code>H3</code>
+          <span class="type-h3">A2 Tam Yağlı Süt</span>
+        </div>
+        <div class="type-row">
+          <code>H4</code>
+          <span class="type-h4">Üretici hikâyesi</span>
+        </div>
+        <div class="type-row">
+          <code>BODY</code>
+          <span class="type-body">Trakya'nın bereketli topraklarında 1987'den beri çalışan birliğimiz, 57 köyden gelen sütleri sofralara taşıyor.</span>
+        </div>
+        <div class="type-row">
+          <code>SMALL</code>
+          <span class="type-small">Soğuk zincirle 24 saat içinde kapınızda.</span>
+        </div>
+        <div class="type-row">
+          <code>CAPTION</code>
+          <span class="type-caption">EN ÇOK SATAN · KARAIDEMIR KÖYÜ</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 SES & TON -->
+  <section class="section" id="ses-ton">
+    <div class="section-header">
+      <div class="section-num">— Bölüm 04 —</div>
+      <h2>Ses & <em>ton</em></h2>
+    </div>
+    <p style="margin-bottom: 32px;">Sıcak, samimi, dürüst, abartısız. "Köy ağzı" değil ama "köyün öz değeri". Güvenilir komşu, bilgili çiftçi, yeni nesil kooperatif duruşu.</p>
+
+    <!-- ARCHETYPE -->
+    <div class="archetype-grid">
+      <div class="archetype-card">
+        <div class="role">Ana Arketip</div>
+        <h4>Bakım Veren</h4>
+        <p>Çocuğunun beslenmesini düşünen anne, sevdiklerini koruyan ev sahibi gibi. Şefkat, güven, sorumluluk hisleri uyandırır. Ürünlerimize ve müşterilere bu duyguyla yaklaşırız.</p>
+      </div>
+      <div class="archetype-card">
+        <div class="role">Yan Arketip</div>
+        <h4>Sıradan İnsan</h4>
+        <p>Klişe pastoral köylü değil, çağdaş yerli. Üretici emeğini kibirsiz vurgulayan, her gün herkesin sofrasında olan dürüst bir ses. Lüks tüketim değil, hakiki bir tercih.</p>
+      </div>
+    </div>
+
+    <!-- DO / DON'T -->
+    <h4 style="font-family: Inter; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green-deep); font-weight: 600; margin: 40px 0 14px;">Yazma Stili</h4>
+    <div class="voice-grid">
+      <div class="voice-card do">
+        <div class="voice-card-header">✓ Böyle yazarız</div>
+        <div class="voice-card-body">
+          "Bu süt bu sabah Evrenbey'de İsmail amcanın sürüsünden sağıldı. Akşam sofranıza ulaşır."
+        </div>
+      </div>
+      <div class="voice-card dont">
+        <div class="voice-card-header">✗ Böyle yazmayız</div>
+        <div class="voice-card-body">
+          "Premium kalite, gourmet sınıf, A1+ standartlarında özel seçilmiş süt ürünlerimiz hizmetinizdedir."
+        </div>
+      </div>
+
+      <div class="voice-card do">
+        <div class="voice-card-header">✓ Böyle yazarız</div>
+        <div class="voice-card-body">
+          "57 köyün ortak emeği. Trakya'nın bereketli topraklarından sofranıza."
+        </div>
+      </div>
+      <div class="voice-card dont">
+        <div class="voice-card-header">✗ Böyle yazmayız</div>
+        <div class="voice-card-body">
+          "Anadolu'nun bin yıllık geleneksel hazinesi, sofralarınızı şenlendiriyor!"
+        </div>
+      </div>
+
+      <div class="voice-card do">
+        <div class="voice-card-header">✓ Böyle yazarız</div>
+        <div class="voice-card-body">
+          "Kapıda 4°C ile ulaşır. 5-7 gün raf ömrüyle. Buzdolabında saklayın."
+        </div>
+      </div>
+      <div class="voice-card dont">
+        <div class="voice-card-header">✗ Böyle yazmayız</div>
+        <div class="voice-card-body">
+          "Eşsiz lezzetimizi keşfedin, ailenize en iyisini layık görün! Gönderim ücretsiz!"
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 SLOGANLAR -->
+  <section class="section" id="sloganlar">
+    <div class="section-header">
+      <div class="section-num">— Bölüm 05 —</div>
+      <h2>Sloganlar & <em>tag line</em></h2>
+    </div>
+    <p style="margin-bottom: 32px;">Marka iletişiminde tutarlı kullanılan sloganlar. Ana slogan birinci derecede, diğerleri kampanya/içerik özelinde değiştirilebilir.</p>
+
+    <div class="taglines">
+      <h3>Marka Sloganları</h3>
+      <ul class="tagline-list">
+        <li class="primary">
+          Trakya'nın bereketi, çatımızın altında.
+          <span class="tagline-tag">ANA</span>
+        </li>
+        <li>57 köyün ortak emeği. <span class="tagline-tag">KURUMSAL</span></li>
+        <li>Süt nereden geliyor? Biliyoruz. <span class="tagline-tag">İZLENEBİLİRLİK</span></li>
+        <li>Üreticiden, tek çatı altından, size. <span class="tagline-tag">D2C</span></li>
+        <li>Malkara: Sütün öz hâli. <span class="tagline-tag">KISA</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 06 BILESENLER -->
+  <section class="section" id="bilesenler">
+    <div class="section-header">
+      <div class="section-num">— Bölüm 06 —</div>
+      <h2>UI <em>bileşenleri</em></h2>
+    </div>
+    <p style="margin-bottom: 32px;">Web ve dijital uygulamalarda kullanılan temel bileşenler — buton stilleri, etiketler, formlar.</p>
+
+    <div class="component-row">
+      <div class="component-label">Butonlar</div>
+      <div class="component-display">
+        <button class="btn btn-primary">Birincil Buton</button>
+        <button class="btn btn-secondary">İkincil Buton</button>
+        <button class="btn btn-outline">Outline Buton</button>
+        <button class="btn btn-ghost">Ghost Buton</button>
+        <button class="btn btn-text">Text Link →</button>
+      </div>
+    </div>
+
+    <div class="component-row">
+      <div class="component-label">Etiketler / Tag'ler</div>
+      <div class="component-display">
+        <span class="tag tag-default">Standart</span>
+        <span class="tag tag-bio">A2 Süt</span>
+        <span class="tag tag-new">Yeni</span>
+        <span class="tag tag-sub">↻ Aboneliğe Uygun</span>
+        <span class="tag tag-success">✓ Onaylı</span>
+      </div>
+    </div>
+
+    <div class="component-row">
+      <div class="component-label">Form Alanları</div>
+      <div class="component-display" style="flex-direction: column; align-items: stretch; max-width: 400px;">
+        <label style="font-size: 12px; font-weight: 600; color: var(--green-deep); letter-spacing: 0.02em;">E-posta adresi</label>
+        <input type="email" placeholder="ornek@email.com" style="width: 100%; padding: 14px 16px; border: 1.5px solid var(--line); border-radius: 12px; background: var(--milk); font-size: 15px; font-family: inherit; outline: none; margin-top: 6px;">
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 FOTOGRAF -->
+  <section class="section" id="fotograf">
+    <div class="section-header">
+      <div class="section-num">— Bölüm 07 —</div>
+      <h2>Fotoğraf <em>yönlendirmesi</em></h2>
+    </div>
+    <p style="margin-bottom: 32px;">Doğal ışık öncelikli, sahici, dokunulabilir hisli kompozisyonlar. Stüdyo set'leri yerine saha ve mutfak gerçekliği.</p>
+
+    <div class="imagery-grid">
+      <div class="imagery-cell">
+        <img src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=600&q=85" alt="Kırsal manzara">
+        <span class="label">Saha & Mera</span>
+      </div>
+      <div class="imagery-cell">
+        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=85" alt="Üretici portre">
+        <span class="label">Üretici Portre</span>
+      </div>
+      <div class="imagery-cell">
+        <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?w=600&q=85" alt="Ürün">
+        <span class="label">Ürün — Cam Şişe</span>
+      </div>
+      <div class="imagery-cell">
+        <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&q=85" alt="Mutfak">
+        <span class="label">Mutfak & Tarif</span>
+      </div>
+      <div class="imagery-cell">
+        <img src="https://images.unsplash.com/photo-1605733513597-a8f8341084e6?w=600&q=85" alt="Doğa">
+        <span class="label">Doğa & Hayvan</span>
+      </div>
+      <div class="imagery-cell">
+        <img src="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?w=600&q=85" alt="İnsan">
+        <span class="label">Topluluk</span>
+      </div>
+    </div>
+
+    <div class="donts" style="margin-top: 32px;">
+      <h4>✗ Bu tarz fotoğraflardan kaçının</h4>
+      <ul>
+        <li>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+          <span>Aşırı işlenmiş, suni doygunluk/satürasyonu yüksek görüntüler</span>
+        </li>
+        <li>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+          <span>Stok fotoğraf hissi veren, tipik "süt reklamı" görüntüleri</span>
+        </li>
+        <li>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+          <span>Steril, soğuk, pürüzsüz beyaz arkaplan ürün çekimleri (tek başına)</span>
+        </li>
+        <li>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+          <span>Aşırı romantize edilmiş, fazla pastoral, gerçeklikten kopuk sahneler</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 08 AMBALAJ -->
+  <section class="section" id="ambalaj">
+    <div class="section-header">
+      <div class="section-num">— Bölüm 08 —</div>
+      <h2>Ambalaj <em>uygulaması</em></h2>
+    </div>
+    <p style="margin-bottom: 32px;">Cam şişe, karton kutu ve kraft kâğıt ambalajlar. Plastiği aktif olarak azaltıyoruz. Her ambalaj üreticisinin köyünü ve adını taşır.</p>
+
+    <div class="pack-grid">
+      <div class="pack-mock">
+        <div class="pack-mock-top">
+          <div class="pack-mini-logo">M</div>
+          <div class="pack-mock-name">Trakya · A2</div>
+          <div class="pack-mock-product">Tam Yağlı <em>Süt</em></div>
+          <div class="pack-mock-volume">1 LİTRE · PASTÖRİZE</div>
+        </div>
+        <div class="pack-mock-bottom">
+          <div class="pack-mock-village">Evrenbey · İsmail Yıldız</div>
+          <div class="pack-mock-batch">LOT 2026-05-09 · 0142</div>
+        </div>
+      </div>
+
+      <div class="pack-mock dark">
+        <div class="pack-mock-top">
+          <div class="pack-mini-logo">M</div>
+          <div class="pack-mock-name">Premium</div>
+          <div class="pack-mock-product">Manda <em>Peyniri</em></div>
+          <div class="pack-mock-volume">500 GRAM</div>
+        </div>
+        <div class="pack-mock-bottom">
+          <div class="pack-mock-village">Pirinçeli · Mehmet Demir</div>
+          <div class="pack-mock-batch">LOT 2026-05-09 · 0089</div>
+        </div>
+      </div>
+
+      <div class="pack-mock wheat">
+        <div class="pack-mock-top">
+          <div class="pack-mini-logo">M</div>
+          <div class="pack-mock-name">Geleneksel</div>
+          <div class="pack-mock-product">Süzme <em>Yoğurt</em></div>
+          <div class="pack-mock-volume">750 GRAM</div>
+        </div>
+        <div class="pack-mock-bottom">
+          <div class="pack-mock-village">Karaidemir · Ayşe Kaplan</div>
+          <div class="pack-mock-batch">LOT 2026-05-09 · 0211</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="donts" style="margin-top: 32px;">
+      <h4>Ambalaj Anatomisi · Olmazsa Olmaz Bilgiler</h4>
+      <ul style="color: var(--charcoal);">
+        <li>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--green-mid);"><path d="M20 6 9 17l-5-5"/></svg>
+          <span>"M" monogramı veya tam logo (üst orta veya tepe)</span>
+        </li>
+        <li>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--green-mid);"><path d="M20 6 9 17l-5-5"/></svg>
+          <span>Ürün adı (Fraunces, italik vurgu ile)</span>
+        </li>
+        <li>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--green-mid);"><path d="M20 6 9 17l-5-5"/></svg>
+          <span>Hacim/ağırlık (Inter, küçük, harf aralığı geniş)</span>
+        </li>
+        <li>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--green-mid);"><path d="M20 6 9 17l-5-5"/></svg>
+          <span>Üretici köy ve isim (Fraunces italik, alt orta)</span>
+        </li>
+        <li>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--green-mid);"><path d="M20 6 9 17l-5-5"/></svg>
+          <span>Parti numarası ve tarih (monospace, küçük, alt)</span>
+        </li>
+        <li>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--green-mid);"><path d="M20 6 9 17l-5-5"/></svg>
+          <span>QR kod (izlenebilirlik için, arka yüz)</span>
+        </li>
+        <li>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--green-mid);"><path d="M20 6 9 17l-5-5"/></svg>
+          <span>Besin değeri tablosu, içindekiler, saklama (arka yüz)</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  © 2026 Malkara Süt Üreticileri Birliği · Marka Kılavuzu v2.0
+  <a href="#">PDF İndir</a>
+  <a href="#">Tasarım Dosyaları</a>
+  <a href="#">Geri Bildirim</a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog & Tarifler — Malkara Süt Üreticileri Birliği</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-deep: #1f3a2e;
+    --green-mid: #2d5a3d;
+    --green-light: #5a8a6b;
+    --cream: #f7f1e3;
+    --milk: #fdfbf5;
+    --wheat: #d4a574;
+    --wheat-dark: #b8843f;
+    --charcoal: #2a2826;
+    --warm-grey: #6b6660;
+    --line: #e8e0cf;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--charcoal);
+    background: var(--milk);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { font-family: 'Fraunces', serif; font-weight: 500; letter-spacing: -0.01em; }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  button { font-family: inherit; cursor: pointer; }
+
+  .announce {
+    background: var(--green-deep);
+    color: var(--cream);
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--milk);
+    border-bottom: 1px solid var(--line);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .nav-wrap {
+    max-width: 1320px; margin: 0 auto;
+    padding: 18px 32px;
+    display: flex; align-items: center; justify-content: space-between; gap: 32px;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 12px;
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 20px;
+    color: var(--green-deep);
+  }
+  .logo-mark {
+    width: 44px; height: 44px;
+    background: var(--green-deep);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    color: var(--cream);
+    font-size: 18px; font-weight: 700;
+    font-family: 'Fraunces', serif;
+  }
+  .logo-text small {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--warm-grey);
+  }
+  nav ul {
+    display: flex; gap: 32px;
+    list-style: none;
+    font-size: 14px; font-weight: 500;
+  }
+  nav a:hover { color: var(--green-mid); }
+  .nav-actions { display: flex; align-items: center; gap: 20px; }
+  .icon-btn {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: transparent;
+    display: grid; place-items: center;
+    transition: all 0.2s; position: relative;
+  }
+  .icon-btn:hover { border-color: var(--green-mid); background: var(--cream); }
+  .cart-count {
+    position: absolute; top: -4px; right: -4px;
+    background: var(--wheat-dark); color: white;
+    font-size: 10px; width: 18px; height: 18px; border-radius: 50%;
+    display: grid; place-items: center; font-weight: 700;
+  }
+  @media (max-width: 900px) { nav ul { display: none; } }
+
+  /* HERO */
+  .blog-hero {
+    background: var(--cream);
+    padding: 80px 32px 60px;
+    border-bottom: 1px solid var(--line);
+  }
+  .blog-hero-wrap { max-width: 1320px; margin: 0 auto; }
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--warm-grey);
+    margin-bottom: 32px;
+  }
+  .breadcrumb a:hover { color: var(--green-deep); }
+  .breadcrumb .sep { opacity: 0.5; }
+  .breadcrumb .current { color: var(--green-deep); font-weight: 500; }
+
+  .blog-hero h1 {
+    font-size: clamp(40px, 6vw, 72px);
+    line-height: 0.98;
+    color: var(--green-deep);
+    margin-bottom: 20px;
+    font-weight: 500;
+    max-width: 16ch;
+  }
+  .blog-hero h1 em { font-style: italic; color: var(--wheat-dark); }
+  .blog-hero p {
+    font-size: 17px;
+    color: var(--warm-grey);
+    max-width: 60ch;
+    line-height: 1.6;
+  }
+
+  /* CATEGORY PILLS */
+  .category-bar {
+    background: var(--milk);
+    border-bottom: 1px solid var(--line);
+    padding: 18px 32px;
+    position: sticky;
+    top: 80px;
+    z-index: 50;
+  }
+  .category-wrap {
+    max-width: 1320px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .category-pills {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .category-pills::-webkit-scrollbar { display: none; }
+  .pill {
+    padding: 9px 18px;
+    border-radius: 100px;
+    border: 1px solid var(--line);
+    background: var(--milk);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--charcoal);
+    white-space: nowrap;
+    transition: all 0.2s;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .pill:hover { border-color: var(--green-mid); }
+  .pill.active {
+    background: var(--green-deep);
+    color: var(--cream);
+    border-color: var(--green-deep);
+  }
+  .pill .count {
+    background: rgba(31,58,46,0.08);
+    padding: 2px 8px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .pill.active .count {
+    background: rgba(247,241,227,0.15);
+    color: var(--cream);
+  }
+
+  .search-wrap {
+    position: relative;
+    flex-shrink: 0;
+  }
+  .search-wrap input {
+    padding: 10px 16px 10px 38px;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    background: var(--cream);
+    font-size: 13px;
+    font-family: inherit;
+    color: var(--charcoal);
+    width: 220px;
+    outline: none;
+  }
+  .search-wrap svg {
+    position: absolute;
+    left: 14px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--warm-grey);
+  }
+
+  /* CONTAINER */
+  .container { max-width: 1320px; margin: 0 auto; }
+
+  /* FEATURED ARTICLE */
+  .featured-section {
+    padding: 60px 32px;
+  }
+  .featured-card {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 56px;
+    align-items: center;
+    background: var(--cream);
+    border-radius: 24px;
+    padding: 56px;
+    border: 1px solid var(--line);
+  }
+  .featured-img {
+    aspect-ratio: 4/3;
+    border-radius: 16px;
+    overflow: hidden;
+    order: 2;
+  }
+  .featured-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s;
+  }
+  .featured-card:hover .featured-img img { transform: scale(1.04); }
+  .featured-text { min-width: 0; }
+  .featured-tag {
+    display: inline-block;
+    background: var(--wheat);
+    color: var(--green-deep);
+    padding: 5px 14px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .featured-text h2 {
+    font-size: clamp(28px, 4vw, 44px);
+    color: var(--green-deep);
+    line-height: 1.1;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .featured-text h2 em { font-style: italic; color: var(--wheat-dark); }
+  .featured-text p {
+    color: var(--charcoal);
+    font-size: 16px;
+    margin-bottom: 24px;
+    line-height: 1.65;
+  }
+  .featured-meta {
+    display: flex;
+    gap: 20px;
+    font-size: 13px;
+    color: var(--warm-grey);
+    margin-bottom: 28px;
+    align-items: center;
+  }
+  .author-mini {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .author-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--green-mid);
+    color: var(--cream);
+    display: grid; place-items: center;
+    font-weight: 600;
+    font-size: 13px;
+    font-family: 'Fraunces', serif;
+  }
+  .author-mini strong {
+    color: var(--green-deep);
+    font-weight: 600;
+    display: block;
+    font-size: 13px;
+  }
+  .author-mini span {
+    color: var(--warm-grey);
+    font-size: 11px;
+  }
+  .featured-meta .dot {
+    width: 4px; height: 4px;
+    background: var(--warm-grey);
+    border-radius: 50%;
+  }
+  .featured-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--green-deep);
+    color: var(--cream);
+    padding: 14px 26px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.25s;
+  }
+  .featured-cta:hover { background: var(--charcoal); transform: translateX(4px); }
+  @media (max-width: 900px) {
+    .featured-card { grid-template-columns: 1fr; padding: 32px; gap: 32px; }
+    .featured-img { order: 0; }
+  }
+
+  /* ARTICLE GRID */
+  .articles-section {
+    padding: 40px 32px 100px;
+  }
+  .section-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .section-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    font-weight: 600;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-eyebrow::before {
+    content: ''; width: 28px; height: 1px; background: var(--green-mid);
+  }
+  .section-title {
+    font-size: clamp(28px, 4vw, 40px);
+    line-height: 1.1;
+    color: var(--green-deep);
+    font-weight: 500;
+  }
+  .section-title em { font-style: italic; color: var(--wheat-dark); }
+  .sort-select {
+    padding: 10px 36px 10px 16px;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    background: var(--milk) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%231f3a2e' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center;
+    appearance: none;
+    font-size: 13px;
+    font-family: inherit;
+    color: var(--charcoal);
+    cursor: pointer;
+  }
+
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  @media (max-width: 1000px) { .articles-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .articles-grid { grid-template-columns: 1fr; } }
+
+  .article-card {
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  .article-card:hover { transform: translateY(-4px); }
+  .article-img {
+    aspect-ratio: 4/3;
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 18px;
+    background: var(--cream);
+    position: relative;
+  }
+  .article-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s;
+  }
+  .article-card:hover .article-img img { transform: scale(1.04); }
+  .article-tag {
+    position: absolute;
+    top: 14px; left: 14px;
+    background: rgba(253,251,245,0.95);
+    color: var(--green-deep);
+    padding: 5px 12px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    backdrop-filter: blur(10px);
+  }
+  .article-tag.recipe { background: var(--wheat); color: var(--green-deep); }
+  .article-tag.story { background: var(--green-deep); color: var(--cream); }
+  .article-tag.science { background: var(--green-mid); color: var(--cream); }
+  .article-meta {
+    font-size: 12px;
+    color: var(--warm-grey);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .article-meta .dot {
+    width: 3px; height: 3px;
+    background: var(--warm-grey);
+    border-radius: 50%;
+  }
+  .article-card h3 {
+    font-size: 22px;
+    line-height: 1.2;
+    color: var(--green-deep);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .article-card p {
+    font-size: 14px;
+    color: var(--warm-grey);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .article-author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+  }
+  .article-author .avatar {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--green-mid);
+    color: var(--cream);
+    display: grid; place-items: center;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: 'Fraunces', serif;
+  }
+  .article-author strong {
+    color: var(--green-deep);
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .article-author span {
+    color: var(--warm-grey);
+    font-size: 11px;
+    margin-left: 4px;
+  }
+
+  /* RECIPE-SPECIFIC ELEMENTS */
+  .recipe-info {
+    position: absolute;
+    bottom: 14px; left: 14px; right: 14px;
+    display: flex;
+    gap: 8px;
+    z-index: 2;
+  }
+  .recipe-info-pill {
+    background: rgba(253,251,245,0.95);
+    color: var(--green-deep);
+    padding: 5px 12px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  /* PAGINATION */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 60px;
+  }
+  .page-btn {
+    width: 42px; height: 42px;
+    border: 1px solid var(--line);
+    background: var(--milk);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--charcoal);
+    transition: all 0.2s;
+  }
+  .page-btn:hover:not(:disabled) {
+    border-color: var(--green-deep);
+    color: var(--green-deep);
+  }
+  .page-btn.active {
+    background: var(--green-deep);
+    color: var(--cream);
+    border-color: var(--green-deep);
+  }
+  .page-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* RECIPE BAND */
+  .recipe-band {
+    background: var(--cream);
+    padding: 80px 32px;
+  }
+  .recipe-band-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .recipe-band-text h2 {
+    font-size: clamp(28px, 3.8vw, 44px);
+    color: var(--green-deep);
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .recipe-band-text h2 em { font-style: italic; color: var(--wheat-dark); }
+  .recipe-band-text p {
+    color: var(--warm-grey);
+    margin-bottom: 28px;
+    line-height: 1.65;
+    font-size: 15px;
+  }
+  .recipe-mini-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .recipe-mini {
+    background: var(--milk);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    transition: transform 0.2s;
+  }
+  .recipe-mini:hover { transform: translateY(-2px); }
+  .recipe-mini-img {
+    aspect-ratio: 4/3;
+    overflow: hidden;
+  }
+  .recipe-mini-img img { width: 100%; height: 100%; object-fit: cover; }
+  .recipe-mini-body { padding: 14px 16px; }
+  .recipe-mini-body h4 {
+    font-size: 15px;
+    color: var(--green-deep);
+    margin-bottom: 4px;
+    line-height: 1.25;
+    font-weight: 500;
+  }
+  .recipe-mini-meta {
+    font-size: 11px;
+    color: var(--warm-grey);
+    display: flex;
+    gap: 10px;
+  }
+  @media (max-width: 800px) {
+    .recipe-band-grid { grid-template-columns: 1fr; }
+  }
+
+  /* NEWSLETTER */
+  .newsletter-section {
+    background: var(--green-deep);
+    color: var(--cream);
+    padding: 100px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .newsletter-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1488477181946-6428a0291777?w=1920&q=80') center/cover;
+    opacity: 0.15;
+  }
+  .newsletter-wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+  }
+  .newsletter-wrap .section-eyebrow {
+    color: var(--wheat);
+    justify-content: center;
+    display: inline-flex;
+  }
+  .newsletter-wrap .section-eyebrow::before { background: var(--wheat); }
+  .newsletter-wrap h2 {
+    font-size: clamp(28px, 4vw, 42px);
+    margin-bottom: 18px;
+    line-height: 1.1;
+  }
+  .newsletter-wrap h2 em { font-style: italic; color: var(--wheat); }
+  .newsletter-wrap p {
+    opacity: 0.85;
+    margin-bottom: 32px;
+    line-height: 1.65;
+  }
+  .news-form {
+    display: flex;
+    gap: 6px;
+    background: var(--milk);
+    padding: 6px;
+    border-radius: 100px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  }
+  .news-form input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 14px 20px;
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--charcoal);
+    outline: none;
+  }
+  .news-form button {
+    background: var(--green-deep);
+    color: var(--cream);
+    border: none;
+    padding: 14px 28px;
+    border-radius: 100px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s;
+  }
+  .news-form button:hover { background: var(--charcoal); }
+  .news-disclaimer {
+    margin-top: 16px;
+    font-size: 12px;
+    opacity: 0.65;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 60px 32px 30px;
+  }
+  .footer-wrap { max-width: 1320px; margin: 0 auto; }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(247,241,227,0.1);
+  }
+  .footer-brand .logo { color: var(--cream); margin-bottom: 16px; }
+  .footer-brand .logo-mark { background: var(--cream); color: var(--green-deep); }
+  .footer-brand p { font-size: 14px; opacity: 0.7; line-height: 1.7; max-width: 30ch; }
+  .footer-col h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--wheat);
+    margin-bottom: 16px; font-weight: 600;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 8px; }
+  .footer-col a { font-size: 14px; opacity: 0.7; }
+  .footer-col a:hover { opacity: 1; }
+  .footer-bottom {
+    padding-top: 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 20px;
+    font-size: 13px; opacity: 0.6;
+  }
+  @media (max-width: 800px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .footer-brand { grid-column: 1/3; }
+  }
+</style>
+</head>
+<body>
+
+<div class="announce">
+  <span>📚 Yeni: "Trakya usulü süzme yoğurt evde nasıl yapılır?" — tam tarif</span>
+</div>
+
+<header>
+  <div class="nav-wrap">
+    <a href="#" class="logo">
+      <div class="logo-mark">M</div>
+      <div class="logo-text">
+        Malkara
+        <small>Süt Üreticileri Birliği</small>
+      </div>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="#">Süt</a></li>
+        <li><a href="#">Yoğurt</a></li>
+        <li><a href="#">Peynir</a></li>
+        <li><a href="#">Tereyağı</a></li>
+        <li><a href="#">Abonelik</a></li>
+        <li><a href="#">Hikâyemiz</a></li>
+        <li><a href="#">Üreticiler</a></li>
+      </ul>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      </button>
+      <button class="icon-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </button>
+      <button class="icon-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-count">2</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="blog-hero">
+  <div class="blog-hero-wrap">
+    <div class="breadcrumb">
+      <a href="#">Anasayfa</a>
+      <span class="sep">/</span>
+      <span class="current">Blog & Tarifler</span>
+    </div>
+    <h1>Mutfak, hikâye ve <em>bilim</em>.</h1>
+    <p>Tarifler, üretici hikâyeleri, süt biliminin ardındaki gerçekler ve mutfağınızda iş görecek pratik rehberler. Haftada iki yeni içerik.</p>
+  </div>
+</section>
+
+<!-- CATEGORY BAR -->
+<div class="category-bar">
+  <div class="category-wrap">
+    <div class="category-pills">
+      <button class="pill active">Tümü <span class="count">48</span></button>
+      <button class="pill">🍴 Tarifler <span class="count">22</span></button>
+      <button class="pill">🌾 Köyden Hikâye <span class="count">12</span></button>
+      <button class="pill">🔬 Bilim & Beslenme <span class="count">8</span></button>
+      <button class="pill">📰 Birlik Haberleri <span class="count">6</span></button>
+      <button class="pill">☕ Barista Köşesi <span class="count">4</span></button>
+    </div>
+    <div class="search-wrap">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" placeholder="Yazı veya tarif ara...">
+    </div>
+  </div>
+</div>
+
+<!-- FEATURED -->
+<section class="featured-section">
+  <div class="container">
+    <article class="featured-card">
+      <div class="featured-text">
+        <span class="featured-tag">★ Bu Haftanın Yazısı</span>
+        <h2>Trakya usulü <em>süzme yoğurt</em>: evde nasıl yapılır?</h2>
+        <p>Geleneksel yöntemle, sade malzemelerle, her seferinde kıvamı tutturan bir tarif. Anneanne mutfağından modern mutfağa, üç adımlık bir şehir efsanesi.</p>
+        <div class="featured-meta">
+          <div class="author-mini">
+            <div class="author-avatar">AK</div>
+            <div>
+              <strong>Ayşe Kaplan</strong>
+              <span>Karaidemir kooperatifi</span>
+            </div>
+          </div>
+          <span class="dot"></span>
+          <span>9 dakika okuma</span>
+          <span class="dot"></span>
+          <span>1.240 okundu</span>
+        </div>
+        <a href="#" class="featured-cta">
+          Yazıyı Oku
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <div class="featured-img">
+        <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=1200&q=85" alt="Süzme yoğurt">
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ARTICLES GRID -->
+<section class="articles-section">
+  <div class="container">
+
+    <div class="section-row">
+      <div>
+        <div class="section-eyebrow">En Yeniler</div>
+        <h2 class="section-title">Mutfak için <em>ilham</em>, mutfak için <em>bilim</em></h2>
+      </div>
+      <select class="sort-select">
+        <option>En yeni</option>
+        <option>En çok okunan</option>
+        <option>En çok kaydedilen</option>
+      </select>
+    </div>
+
+    <div class="articles-grid">
+
+      <article class="article-card">
+        <div class="article-img">
+          <span class="article-tag recipe">🍴 Tarif</span>
+          <div class="recipe-info">
+            <span class="recipe-info-pill">⏱ 25 dk</span>
+            <span class="recipe-info-pill">★ Kolay</span>
+          </div>
+          <img src="https://images.unsplash.com/photo-1571212515416-fef01fc43637?w=800&q=85" alt="">
+        </div>
+        <div class="article-meta">
+          <span>Tarif · Kahvaltı</span>
+          <span class="dot"></span>
+          <span>3 gün önce</span>
+        </div>
+        <h3>Süzme yoğurt + nar pekmezli kahvaltı kasesi</h3>
+        <p>Sabah aceleniz olmadığında bile gözünüzü mutlu edecek bir kâse. 5 malzeme, 3 adım, sıfır karmaşa.</p>
+        <div class="article-author">
+          <div class="avatar">SY</div>
+          <div>
+            <strong>Sevgi Yıldız</strong>
+            <span>Mutfak editörü</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-card">
+        <div class="article-img">
+          <span class="article-tag science">🔬 Bilim</span>
+          <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?w=800&q=85" alt="">
+        </div>
+        <div class="article-meta">
+          <span>Bilim · 6 dk okuma</span>
+          <span class="dot"></span>
+          <span>1 hafta önce</span>
+        </div>
+        <h3>A2 süt nedir, neden farklı? Bilimin söylediği</h3>
+        <p>Beta-kazein protein farkı, sindirim üzerindeki etkisi ve A2'nin gerçekleri. Pazarlama mı, gerçek mi?</p>
+        <div class="article-author">
+          <div class="avatar">ÖY</div>
+          <div>
+            <strong>Dr. Özlem Yiğit</strong>
+            <span>Süt teknolojisi · Birlik</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-card">
+        <div class="article-img">
+          <span class="article-tag story">🌾 Hikâye</span>
+          <img src="https://images.unsplash.com/photo-1605733513597-a8f8341084e6?w=800&q=85" alt="">
+        </div>
+        <div class="article-meta">
+          <span>Köyden Hikâye · 4 dk</span>
+          <span class="dot"></span>
+          <span>1 hafta önce</span>
+        </div>
+        <h3>Evrenbey'de bir gün: İsmail amcanın 28 yılı</h3>
+        <p>Sabah 5'te başlayan bir günde, üç kuşaklık bir mesleğin sürdürülmesi üzerine bir hikâye.</p>
+        <div class="article-author">
+          <div class="avatar">MY</div>
+          <div>
+            <strong>Mehmet Yıldırım</strong>
+            <span>Saha gazetecisi</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-card">
+        <div class="article-img">
+          <span class="article-tag recipe">🍴 Tarif</span>
+          <div class="recipe-info">
+            <span class="recipe-info-pill">⏱ 45 dk</span>
+            <span class="recipe-info-pill">★ Orta</span>
+          </div>
+          <img src="https://images.unsplash.com/photo-1452195100486-9cc805987862?w=800&q=85" alt="">
+        </div>
+        <div class="article-meta">
+          <span>Tarif · Pastane</span>
+          <span class="dot"></span>
+          <span>10 gün önce</span>
+        </div>
+        <h3>Manda peyniri ile spanakopita: Trakya-Yunan füzyonu</h3>
+        <p>Geleneksel ıspanaklı börek tarifinin manda peyniri eklenmiş hâli. Ekstra kremamsı, ekstra lezzetli.</p>
+        <div class="article-author">
+          <div class="avatar">CD</div>
+          <div>
+            <strong>Cem Demir</strong>
+            <span>Şef, Konuk Yazar</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-card">
+        <div class="article-img">
+          <span class="article-tag" style="background: var(--charcoal); color: var(--cream);">☕ Barista</span>
+          <img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=800&q=85" alt="">
+        </div>
+        <div class="article-meta">
+          <span>Barista · 5 dk okuma</span>
+          <span class="dot"></span>
+          <span>2 hafta önce</span>
+        </div>
+        <h3>Latte sanatı için doğru süt nasıl seçilir?</h3>
+        <p>Yağ oranı, protein içeriği ve sıcaklık — bir baristanın gözünden süt seçimi rehberi.</p>
+        <div class="article-author">
+          <div class="avatar">SB</div>
+          <div>
+            <strong>Selin Bektaş</strong>
+            <span>Uçuş Kahve · Barista</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-card">
+        <div class="article-img">
+          <span class="article-tag recipe">🍴 Tarif</span>
+          <div class="recipe-info">
+            <span class="recipe-info-pill">⏱ 15 dk</span>
+            <span class="recipe-info-pill">★ Çok Kolay</span>
+          </div>
+          <img src="https://images.unsplash.com/photo-1570696516188-ade861b84a49?w=800&q=85" alt="">
+        </div>
+        <div class="article-meta">
+          <span>Tarif · İçecek</span>
+          <span class="dot"></span>
+          <span>2 hafta önce</span>
+        </div>
+        <h3>Ev yapımı taze meyveli kefir smoothie</h3>
+        <p>Probiyotik kefirin meyvelerle dansı. Kahvaltıdan önce, antrenmandan sonra ya da sıcak günlerde.</p>
+        <div class="article-author">
+          <div class="avatar">SY</div>
+          <div>
+            <strong>Sevgi Yıldız</strong>
+            <span>Mutfak editörü</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-card">
+        <div class="article-img">
+          <span class="article-tag story">🌾 Hikâye</span>
+          <img src="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?w=800&q=85" alt="">
+        </div>
+        <div class="article-meta">
+          <span>Köyden Hikâye · 7 dk</span>
+          <span class="dot"></span>
+          <span>3 hafta önce</span>
+        </div>
+        <h3>Karaidemir'de 14 kadın, bir kooperatif: Ayşe Kaplan'ın yolculuğu</h3>
+        <p>Köyde bir araya gelmenin, ortak iş yapmanın ve geleneksel yoğurdu modern bir markaya dönüştürmenin hikâyesi.</p>
+        <div class="article-author">
+          <div class="avatar">MY</div>
+          <div>
+            <strong>Mehmet Yıldırım</strong>
+            <span>Saha gazetecisi</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-card">
+        <div class="article-img">
+          <span class="article-tag science">🔬 Bilim</span>
+          <img src="https://images.unsplash.com/photo-1494390248081-4e521a5940db?w=800&q=85" alt="">
+        </div>
+        <div class="article-meta">
+          <span>Beslenme · 8 dk</span>
+          <span class="dot"></span>
+          <span>3 hafta önce</span>
+        </div>
+        <h3>Pastörize vs UHT: ikisi arasındaki gerçek fark</h3>
+        <p>Marketten aldığınız sütün arkasındaki süreç, raf ömrünü neyin belirlediği ve neden bizim hâlâ pastörizede olduğumuz.</p>
+        <div class="article-author">
+          <div class="avatar">ÖY</div>
+          <div>
+            <strong>Dr. Özlem Yiğit</strong>
+            <span>Süt teknolojisi · Birlik</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-card">
+        <div class="article-img">
+          <span class="article-tag recipe">🍴 Tarif</span>
+          <div class="recipe-info">
+            <span class="recipe-info-pill">⏱ 1.5 saat</span>
+            <span class="recipe-info-pill">★ Orta</span>
+          </div>
+          <img src="https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=800&q=85" alt="">
+        </div>
+        <div class="article-meta">
+          <span>Tarif · Tatlı</span>
+          <span class="dot"></span>
+          <span>1 ay önce</span>
+        </div>
+        <h3>Cheesecake: hakiki manda peyniriyle yepyeni bir tat</h3>
+        <p>Klasik cheesecake'in manda peyniri ile zenginleşmiş hâli. Üst düzey kremamsı doku, hafif tuzlu nüans.</p>
+        <div class="article-author">
+          <div class="avatar">CD</div>
+          <div>
+            <strong>Cem Demir</strong>
+            <span>Şef, Konuk Yazar</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="pagination">
+      <button class="page-btn" disabled>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="page-btn active">1</button>
+      <button class="page-btn">2</button>
+      <button class="page-btn">3</button>
+      <button class="page-btn">4</button>
+      <button class="page-btn">5</button>
+      <button class="page-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- RECIPE BAND -->
+<section class="recipe-band">
+  <div class="container">
+    <div class="recipe-band-grid">
+      <div class="recipe-band-text">
+        <div class="section-eyebrow">En Çok Yapılan Tarifler</div>
+        <h2><em>20 dakikada</em> hazır olanlar</h2>
+        <p>Sabah aceleniz olduğunda ya da bir akşam yemeği için hızlı bir yan menü gerektiğinde — kısa, basit, lezzetli tarifler.</p>
+        <a href="#" class="featured-cta" style="display: inline-flex;">Tüm Hızlı Tarifler →</a>
+      </div>
+      <div class="recipe-mini-grid">
+        <article class="recipe-mini">
+          <div class="recipe-mini-img">
+            <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&q=80" alt="">
+          </div>
+          <div class="recipe-mini-body">
+            <h4>Yoğurtlu kahvaltı kasesi</h4>
+            <div class="recipe-mini-meta">
+              <span>⏱ 10 dk</span>
+              <span>★ Kolay</span>
+            </div>
+          </div>
+        </article>
+        <article class="recipe-mini">
+          <div class="recipe-mini-img">
+            <img src="https://images.unsplash.com/photo-1571212515416-fef01fc43637?w=600&q=80" alt="">
+          </div>
+          <div class="recipe-mini-body">
+            <h4>Meyveli kefir smoothie</h4>
+            <div class="recipe-mini-meta">
+              <span>⏱ 5 dk</span>
+              <span>★ Çok Kolay</span>
+            </div>
+          </div>
+        </article>
+        <article class="recipe-mini">
+          <div class="recipe-mini-img">
+            <img src="https://images.unsplash.com/photo-1452195100486-9cc805987862?w=600&q=80" alt="">
+          </div>
+          <div class="recipe-mini-body">
+            <h4>Beyaz peynirli omlet</h4>
+            <div class="recipe-mini-meta">
+              <span>⏱ 12 dk</span>
+              <span>★ Kolay</span>
+            </div>
+          </div>
+        </article>
+        <article class="recipe-mini">
+          <div class="recipe-mini-img">
+            <img src="https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=600&q=80" alt="">
+          </div>
+          <div class="recipe-mini-body">
+            <h4>Tereyağlı sebzeli sote</h4>
+            <div class="recipe-mini-meta">
+              <span>⏱ 18 dk</span>
+              <span>★ Kolay</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter-section">
+  <div class="newsletter-wrap">
+    <div class="section-eyebrow">Mutfak Bülteni</div>
+    <h2>Her hafta <em>iki tarif</em>, bir hikâye.</h2>
+    <p>Yeni tarifler, üretici hikâyeleri ve süt bilimine dair makaleler — her cumartesi sabahı kahvenizle birlikte. Spam yok, indirim yok, sadece içerik.</p>
+    <form class="news-form" onsubmit="event.preventDefault(); alert('Teşekkürler! Aboneliğiniz onaylandı.');">
+      <input type="email" placeholder="ornek@email.com" required>
+      <button type="submit">Abone Ol</button>
+    </form>
+    <p class="news-disclaimer">İstediğiniz zaman abonelikten çıkabilirsiniz. KVKK uyumlu.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <div class="logo-mark">M</div>
+          <div class="logo-text">
+            Malkara
+            <small style="opacity: 0.7;">Süt Üreticileri Birliği</small>
+          </div>
+        </a>
+        <p>Trakya'nın 57 köyünden, 92 soğutma merkezinden, doğrudan sofranıza.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Alışveriş</h4>
+        <ul>
+          <li><a href="#">Tüm Ürünler</a></li>
+          <li><a href="#">Süt</a></li>
+          <li><a href="#">Yoğurt</a></li>
+          <li><a href="#">Abonelik</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Birlik</h4>
+        <ul>
+          <li><a href="#">Hikâyemiz</a></li>
+          <li><a href="#">Üreticiler</a></li>
+          <li><a href="#">Köy Haritası</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>İletişim</h4>
+        <ul>
+          <li style="opacity: 0.7; font-size: 14px;">Gazibey, Tevfikbey Cd. No:3<br>59310 Malkara/Tekirdağ</li>
+          <li><a href="tel:+902826738150">+90 282 673 81 50</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Malkara Süt Üreticileri Birliği</div>
+      <div style="display: flex; gap: 24px;">
+        <a href="#">KVKK</a>
+        <a href="#">Çerez</a>
+        <a href="#">Mesafeli Satış</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yardım Merkezi — Malkara Süt Üreticileri Birliği</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-deep: #1f3a2e;
+    --green-mid: #2d5a3d;
+    --green-light: #5a8a6b;
+    --cream: #f7f1e3;
+    --milk: #fdfbf5;
+    --wheat: #d4a574;
+    --wheat-dark: #b8843f;
+    --charcoal: #2a2826;
+    --warm-grey: #6b6660;
+    --line: #e8e0cf;
+    --success: #2d7a4f;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--charcoal);
+    background: var(--milk);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { font-family: 'Fraunces', serif; font-weight: 500; letter-spacing: -0.01em; }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  button { font-family: inherit; cursor: pointer; }
+
+  /* HEADER */
+  header {
+    background: var(--milk);
+    border-bottom: 1px solid var(--line);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .nav-wrap {
+    max-width: 1320px; margin: 0 auto;
+    padding: 18px 32px;
+    display: flex; align-items: center; justify-content: space-between; gap: 32px;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 12px;
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 20px;
+    color: var(--green-deep);
+  }
+  .logo-mark {
+    width: 44px; height: 44px;
+    background: var(--green-deep);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    color: var(--cream);
+    font-size: 18px; font-weight: 700;
+    font-family: 'Fraunces', serif;
+  }
+  .logo-text small {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--warm-grey);
+  }
+  nav ul {
+    display: flex; gap: 32px;
+    list-style: none;
+    font-size: 14px; font-weight: 500;
+  }
+  nav a:hover { color: var(--green-mid); }
+  .nav-actions { display: flex; align-items: center; gap: 20px; }
+  .icon-btn {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: transparent;
+    display: grid; place-items: center;
+    transition: all 0.2s; position: relative;
+  }
+  .icon-btn:hover { border-color: var(--green-mid); background: var(--cream); }
+  .cart-count {
+    position: absolute; top: -4px; right: -4px;
+    background: var(--wheat-dark); color: white;
+    font-size: 10px; width: 18px; height: 18px; border-radius: 50%;
+    display: grid; place-items: center; font-weight: 700;
+  }
+  @media (max-width: 900px) { nav ul { display: none; } }
+
+  /* HERO */
+  .help-hero {
+    background: var(--green-deep);
+    color: var(--cream);
+    padding: 80px 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .help-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1488477181946-6428a0291777?w=1920&q=80') center/cover;
+    opacity: 0.12;
+  }
+  .help-hero-wrap {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 13px;
+    opacity: 0.75;
+    margin-bottom: 24px;
+  }
+  .breadcrumb a:hover { opacity: 1; }
+  .breadcrumb .sep { opacity: 0.4; }
+  .breadcrumb .current { color: var(--wheat); opacity: 1; }
+  .help-hero h1 {
+    font-size: clamp(36px, 5.5vw, 60px);
+    line-height: 1.05;
+    margin-bottom: 18px;
+    font-weight: 500;
+  }
+  .help-hero h1 em { font-style: italic; color: var(--wheat); }
+  .help-hero p {
+    font-size: 17px;
+    opacity: 0.85;
+    margin-bottom: 36px;
+  }
+  .help-search {
+    background: var(--milk);
+    padding: 6px;
+    border-radius: 100px;
+    display: flex;
+    gap: 6px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  }
+  .help-search svg { color: var(--warm-grey); margin-left: 14px; align-self: center; }
+  .help-search input {
+    flex: 1;
+    border: none;
+    padding: 12px;
+    background: transparent;
+    font-size: 14px;
+    color: var(--charcoal);
+    outline: none;
+    font-family: inherit;
+  }
+  .help-search button {
+    background: var(--green-deep);
+    color: var(--cream);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 13px;
+  }
+
+  /* QUICK CATEGORIES */
+  .quick-cats {
+    background: var(--milk);
+    padding: 60px 32px 40px;
+    border-bottom: 1px solid var(--line);
+  }
+  .container { max-width: 1320px; margin: 0 auto; }
+  .quick-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 1000px) { .quick-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 600px) { .quick-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .quick-cat {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 24px 16px;
+    text-align: center;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .quick-cat:hover {
+    border-color: var(--green-deep);
+    transform: translateY(-2px);
+  }
+  .quick-cat .icon {
+    width: 44px; height: 44px;
+    background: var(--milk);
+    color: var(--green-deep);
+    border-radius: 50%;
+    margin: 0 auto 14px;
+    display: grid; place-items: center;
+  }
+  .quick-cat strong {
+    display: block;
+    font-size: 13px;
+    color: var(--green-deep);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .quick-cat span {
+    font-size: 11px;
+    color: var(--warm-grey);
+  }
+
+  /* MAIN CONTENT */
+  .main {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 60px 32px 100px;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 48px;
+  }
+  @media (max-width: 1000px) {
+    .main { grid-template-columns: 1fr; gap: 24px; }
+  }
+
+  /* TAB SIDEBAR */
+  .tab-sidebar {
+    align-self: start;
+    position: sticky;
+    top: 100px;
+  }
+  .tab-list {
+    list-style: none;
+  }
+  .tab-list li {
+    margin-bottom: 4px;
+  }
+  .tab-list a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+    color: var(--charcoal);
+    transition: all 0.2s;
+    border-left: 3px solid transparent;
+  }
+  .tab-list a:hover { background: var(--cream); }
+  .tab-list a.active {
+    background: var(--cream);
+    color: var(--green-deep);
+    font-weight: 600;
+    border-left-color: var(--green-deep);
+  }
+  .tab-list a svg { flex-shrink: 0; }
+
+  /* CONTENT TABS */
+  .tab-content { min-width: 0; }
+  .tab-section { margin-bottom: 80px; scroll-margin-top: 100px; }
+  .tab-section:last-child { margin-bottom: 0; }
+
+  .tab-section-header {
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+  }
+  .tab-section-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .tab-section-header h2 {
+    font-size: clamp(28px, 3.5vw, 40px);
+    color: var(--green-deep);
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+  .tab-section-header h2 em { font-style: italic; color: var(--wheat-dark); }
+  .tab-section-header p {
+    color: var(--warm-grey);
+    font-size: 15px;
+  }
+
+  /* FAQ */
+  .faq-item {
+    border-bottom: 1px solid var(--line);
+  }
+  .faq-q {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    color: var(--green-deep);
+    font-weight: 500;
+    padding: 22px 0;
+  }
+  .faq-q svg {
+    transition: transform 0.3s;
+    flex-shrink: 0;
+    margin-left: 16px;
+    color: var(--warm-grey);
+  }
+  .faq-item.open .faq-q svg { transform: rotate(45deg); }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    color: var(--charcoal);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  .faq-item.open .faq-a {
+    max-height: 600px;
+    padding-bottom: 24px;
+  }
+  .faq-a p { margin-bottom: 12px; }
+  .faq-a p:last-child { margin-bottom: 0; }
+  .faq-a ul { padding-left: 18px; margin: 8px 0; }
+  .faq-a ul li { margin-bottom: 6px; }
+  .faq-a strong { color: var(--green-deep); }
+
+  /* SHIPPING ZONES */
+  .zone-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--cream);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .zone-table th {
+    background: var(--green-deep);
+    color: var(--cream);
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .zone-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--line);
+    font-size: 13px;
+  }
+  .zone-table tr:last-child td { border-bottom: none; }
+  .zone-table .price { font-weight: 600; color: var(--green-deep); font-family: 'Fraunces', serif; font-size: 14px; }
+  .zone-table .free { color: var(--success); font-weight: 600; }
+
+  /* INFO CALLOUT */
+  .info-callout {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--wheat-dark);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 24px 0;
+    font-size: 14px;
+  }
+  .info-callout strong { color: var(--green-deep); display: block; margin-bottom: 6px; }
+  .info-callout p { color: var(--charcoal); line-height: 1.7; }
+
+  /* HEAVY TEXT (KVKK) */
+  .legal-content {
+    color: var(--charcoal);
+  }
+  .legal-content h3 {
+    font-size: 19px;
+    color: var(--green-deep);
+    margin: 32px 0 12px;
+    font-weight: 500;
+  }
+  .legal-content h3:first-child { margin-top: 0; }
+  .legal-content p {
+    font-size: 14px;
+    margin-bottom: 14px;
+    line-height: 1.75;
+  }
+  .legal-content ul, .legal-content ol {
+    margin: 12px 0 18px 22px;
+    font-size: 14px;
+  }
+  .legal-content ul li, .legal-content ol li {
+    margin-bottom: 8px;
+    line-height: 1.7;
+  }
+  .legal-content strong { color: var(--green-deep); }
+  .legal-content .legal-meta {
+    background: var(--cream);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 12px;
+    color: var(--warm-grey);
+    margin-bottom: 24px;
+  }
+  .legal-content .legal-meta strong { color: var(--green-deep); }
+
+  /* CONTACT BOX */
+  .contact-box {
+    background: var(--green-deep);
+    color: var(--cream);
+    border-radius: 16px;
+    padding: 40px;
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: center;
+  }
+  .contact-box h3 {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+  .contact-box h3 em { font-style: italic; color: var(--wheat); }
+  .contact-box p {
+    opacity: 0.85;
+    font-size: 14px;
+  }
+  .contact-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .contact-btn {
+    background: var(--wheat);
+    color: var(--green-deep);
+    padding: 14px 24px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .contact-btn:hover { background: white; }
+  .contact-btn.outline {
+    background: transparent;
+    color: var(--cream);
+    border: 1px solid rgba(247,241,227,0.4);
+  }
+  .contact-btn.outline:hover { background: rgba(247,241,227,0.1); }
+  @media (max-width: 700px) {
+    .contact-box { grid-template-columns: 1fr; padding: 28px; }
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 60px 32px 30px;
+  }
+  .footer-wrap { max-width: 1320px; margin: 0 auto; }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(247,241,227,0.1);
+  }
+  .footer-brand .logo { color: var(--cream); margin-bottom: 16px; }
+  .footer-brand .logo-mark { background: var(--cream); color: var(--green-deep); }
+  .footer-brand p { font-size: 14px; opacity: 0.7; line-height: 1.7; max-width: 30ch; }
+  .footer-col h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--wheat);
+    margin-bottom: 16px; font-weight: 600;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 8px; }
+  .footer-col a { font-size: 14px; opacity: 0.7; }
+  .footer-col a:hover { opacity: 1; }
+  .footer-bottom {
+    padding-top: 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 20px;
+    font-size: 13px; opacity: 0.6;
+  }
+  @media (max-width: 800px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .footer-brand { grid-column: 1/3; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a href="#" class="logo">
+      <div class="logo-mark">M</div>
+      <div class="logo-text">
+        Malkara
+        <small>Süt Üreticileri Birliği</small>
+      </div>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="#">Süt</a></li>
+        <li><a href="#">Yoğurt</a></li>
+        <li><a href="#">Peynir</a></li>
+        <li><a href="#">Tereyağı</a></li>
+        <li><a href="#">Abonelik</a></li>
+        <li><a href="#">Hikâyemiz</a></li>
+        <li><a href="#">Üreticiler</a></li>
+      </ul>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      </button>
+      <button class="icon-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </button>
+      <button class="icon-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-count">2</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="help-hero">
+  <div class="help-hero-wrap">
+    <div class="breadcrumb">
+      <a href="#">Anasayfa</a>
+      <span class="sep">/</span>
+      <span class="current">Yardım Merkezi</span>
+    </div>
+    <h1>Nasıl <em>yardımcı olabiliriz?</em></h1>
+    <p>Sıkça sorulan sorular, kargo ve iade detayları, sözleşme metinleri ve doğrudan iletişim — hepsi tek yerde.</p>
+    <div class="help-search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" placeholder="Sorularınızı yazın... (örn: 'iade nasıl yapılır?')">
+      <button>Ara</button>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK CATEGORIES -->
+<section class="quick-cats">
+  <div class="container">
+    <div class="quick-grid">
+      <div class="quick-cat" onclick="document.querySelector('#siparis').scrollIntoView({behavior:'smooth'})">
+        <div class="icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/></svg>
+        </div>
+        <strong>Sipariş</strong>
+        <span>12 makale</span>
+      </div>
+      <div class="quick-cat" onclick="document.querySelector('#kargo').scrollIntoView({behavior:'smooth'})">
+        <div class="icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+        <strong>Kargo</strong>
+        <span>8 makale</span>
+      </div>
+      <div class="quick-cat" onclick="document.querySelector('#iade').scrollIntoView({behavior:'smooth'})">
+        <div class="icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.74 9.74 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+        </div>
+        <strong>İade</strong>
+        <span>6 makale</span>
+      </div>
+      <div class="quick-cat" onclick="document.querySelector('#abonelik').scrollIntoView({behavior:'smooth'})">
+        <div class="icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 0 1-9 9m9-9a9 9 0 0 0-9-9m9 9H3m9 9a9 9 0 0 1-9-9m9 9c-2.5-2.5-4-5.5-4-9s1.5-6.5 4-9m0 18c2.5-2.5 4-5.5 4-9s-1.5-6.5-4-9"/></svg>
+        </div>
+        <strong>Abonelik</strong>
+        <span>10 makale</span>
+      </div>
+      <div class="quick-cat" onclick="document.querySelector('#urun').scrollIntoView({behavior:'smooth'})">
+        <div class="icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>
+        </div>
+        <strong>Ürünler</strong>
+        <span>14 makale</span>
+      </div>
+      <div class="quick-cat" onclick="document.querySelector('#kvkk').scrollIntoView({behavior:'smooth'})">
+        <div class="icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <strong>KVKK & Yasal</strong>
+        <span>5 belge</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- SIDEBAR -->
+  <aside class="tab-sidebar">
+    <ul class="tab-list">
+      <li><a href="#siparis" class="active">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/></svg>
+        Sipariş
+      </a></li>
+      <li><a href="#kargo">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/></svg>
+        Kargo & Teslimat
+      </a></li>
+      <li><a href="#iade">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.74 9.74 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+        İade & Değişim
+      </a></li>
+      <li><a href="#abonelik">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 0 1-9 9m9-9a9 9 0 0 0-9-9m9 9H3"/></svg>
+        Abonelik
+      </a></li>
+      <li><a href="#urun">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>
+        Ürünler
+      </a></li>
+      <li><a href="#odeme">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+        Ödeme
+      </a></li>
+      <li><a href="#kvkk">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        KVKK
+      </a></li>
+      <li><a href="#mesafeli">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Mesafeli Satış
+      </a></li>
+      <li><a href="#cerez">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10c0-.46-.04-.92-.1-1.36a5.39 5.39 0 0 1-4.4-5.43c.04-.46-.07-.92-.27-1.34A9.96 9.96 0 0 0 12 2z"/></svg>
+        Çerez Politikası
+      </a></li>
+    </ul>
+  </aside>
+
+  <!-- CONTENT -->
+  <div class="tab-content">
+
+    <!-- SIPARIS -->
+    <section class="tab-section" id="siparis">
+      <div class="tab-section-header">
+        <div class="tab-section-eyebrow">Yardım · Sipariş</div>
+        <h2>Sipariş <em>süreçleri</em></h2>
+        <p>Sipariş verme, takip etme ve değiştirme ile ilgili tüm sorular.</p>
+      </div>
+
+      <div class="faq-item open">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          Üye olmadan sipariş verebilir miyim?
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="faq-a"><p>Evet. Tek seferlik siparişlerde üyelik zorunlu değildir; misafir alışverişle sipariş tamamlayabilirsiniz. Yalnızca abonelik başlatmak istiyorsanız ücretsiz hesap oluşturmanız gerekir — atlama, iptal, ürün değişikliği gibi işlemleri panelinizden yapabilmeniz için.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          Siparişimi nasıl takip edebilirim?
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="faq-a"><p>Sipariş onay e-postasındaki takip numarası ile hesabınızdan veya doğrudan kargo firmasının web sitesi üzerinden izleyebilirsiniz. Üye iseniz "Hesabım → Siparişlerim" altında canlı durum görüntülenir. Ayrıca her aşama için WhatsApp Business hattımızdan bildirim alırsınız.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          Siparişimi sonradan değiştirebilir veya iptal edebilir miyim?
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="faq-a"><p>Sipariş kargoya verilmeden önce (sipariş onayından sonra ilk 4 saat içinde) değişiklik veya iptal mümkündür. Hesap panelinizden veya 0282 673 81 50 numaralı kurumsal hattımızdan bize ulaşın. Soğuk zincir lojistiği nedeniyle kargoya verildikten sonra değişiklik yapamayız.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          Minimum sipariş tutarı var mı?
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="faq-a"><p>B2C bireysel siparişlerde minimum 150 ₺. Soğuk zincir lojistik maliyeti nedeniyle bu limit altındaki siparişler işleme alınmaz. 350 ₺ ve üzeri siparişler ücretsiz kargo kapsamına girer.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          Hangi günler sipariş verebilirim?
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="faq-a"><p>7/24 sipariş verebilirsiniz. Ancak teslimat günlerimiz <strong>perşembe, cuma ve cumartesi</strong>dir. Çarşamba 14:00'a kadar verilen siparişler perşembe-cuma çıkışında, cuma 14:00'a kadar verilenler cumartesi çıkışında işleme alınır.</p></div>
+      </div>
+    </section>
+
+    <!-- KARGO -->
+    <section class="tab-section" id="kargo">
+      <div class="tab-section-header">
+        <div class="tab-section-eyebrow">Yardım · Kargo & Teslimat</div>
+        <h2>Soğuk zincirle <em>kapınıza</em></h2>
+        <p>Teslimat süresi, ücreti ve bölgelere göre detaylar.</p>
+      </div>
+
+      <h3 style="font-size: 17px; color: var(--green-deep); margin-bottom: 14px;">Bölgesel Teslimat Süresi ve Ücretleri</h3>
+      <table class="zone-table">
+        <thead>
+          <tr>
+            <th>Bölge</th>
+            <th>Teslimat Süresi</th>
+            <th>350 ₺ altı</th>
+            <th>350 ₺+ </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>İstanbul + Marmara</td>
+            <td>24 saat</td>
+            <td class="price">39 ₺</td>
+            <td class="free">Ücretsiz</td>
+          </tr>
+          <tr>
+            <td>Ege + İç Anadolu</td>
+            <td>2 iş günü</td>
+            <td class="price">59 ₺</td>
+            <td class="free">Ücretsiz</td>
+          </tr>
+          <tr>
+            <td>Karadeniz + Akdeniz</td>
+            <td>2-3 iş günü</td>
+            <td class="price">79 ₺</td>
+            <td class="price">29 ₺</td>
+          </tr>
+          <tr>
+            <td>Doğu + Güneydoğu Anadolu</td>
+            <td>3-4 iş günü</td>
+            <td class="price">99 ₺</td>
+            <td class="price">49 ₺</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="info-callout">
+        <strong>📦 Soğuk Zincir Garantisi</strong>
+        <p>Tüm teslimatlarımız +2°C / +6°C arasında, soğutmalı kargo araçlarıyla yapılır. Termal ambalaj ve buz aküleri ücretsizdir. Kapıda sıcaklık kontrolü için ücretsiz dijital termometre koruma rehberi mevcuttur.</p>
+      </div>
+
+      <div class="faq-item open">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          Soğuk zincir nasıl korunuyor? Kapıda kaç derece geliyor?
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="faq-a">
+          <p>Sütleriniz +2°C / +4°C arasında, soğuk zincirle ulaşır:</p>
+          <ul>
+            <li>Tesisten ayrılmadan önce parti sıcaklığı 4°C altında ölçülür</li>
+            <li>Soğutmalı kargo aracında sürekli takip edilir</li>
+            <li>Termal ambalaj + reusable buz akülü kutu kullanılır</li>
+            <li>Kapıya 24 saatte ulaşmasını planlar, gecikme halinde parti iadesini garantileriz</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          Kapıda yoksam ne olur?
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="faq-a"><p>Kuryemiz sizi telefonla arar. Apartman görevlisi/güvenliğine teslim, komşuya teslim ya da yeniden teslim seçenekleri mevcuttur. Termal ambalaj 6-8 saat soğuğu korur, bu nedenle aynı gün geç saatlerde de güvenli teslim mümkün.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          Aynı gün teslimat mümkün mü?
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="faq-a"><p>Evet, sadece İstanbul içi için "Express Soğuk Zincir" seçeneğiyle. Sabah 10:00'dan önce verilen siparişler aynı gün öğleden sonra teslim edilir. Bu hizmet 45 ₺ ek ücretlidir.</p></div>
+      </div>
+    </section>
+
+    <!-- IADE -->
+    <section class="tab-section" id="iade">
+      <div class="tab-section-header">
+        <div class="tab-section-eyebrow">Yardım · İade & Değişim</div>
+        <h2>İade ve <em>değişim</em></h2>
+        <p>Memnuniyetinizi önemsiyoruz; gıda ürünlerinde geçerli koşullar.</p>
+      </div>
+
+      <div class="info-callout">
+        <strong>🥛 Gıda Ürünlerinde Özel Durum</strong>
+        <p>Süt ve süt ürünleri, hijyenik nedenlerle Mesafeli Satışlar Yönetmeliği'nin <strong>15. maddesi g bendi</strong> kapsamındadır: ürün açıldıktan sonra cayma hakkı kullanılamaz. Ancak biz bu koşulu kalite ile birleştiriyoruz: bozuk veya hatalı ürün için tam iade garantisi sağlıyoruz.</p>
+      </div>
+
+      <div class="faq-item open">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          Hangi durumlarda iade yapılır?
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="faq-a">
+          <p>Aşağıdaki durumlarda <strong>%100 ücret iadesi</strong> ya da yenisinin gönderilmesi seçeneği sunulur:</p>
+          <ul>
+            <li>Ambalaj hasarlı geldi (yırtık, kırık, sızıntı)</li>
+            <li>Ürün soğuk zincir kırılmış halde geldi (ölçüm 8°C üzerinde)</li>
+            <li>Raf ömrü 3 günden az kalmış halde geldi</li>
+            <li>Ürün açıldığında bozulma, kötü koku veya tat sorunu var</li>
+            <li>Yanlış ürün gönderildi</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          İade sürecini nasıl başlatırım?
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="faq-a">
+          <p>Çok kolay, 3 adım:</p>
+          <ol>
+            <li>Sorunun fotoğrafını çekin</li>
+            <li>WhatsApp Business hattımızdan veya iade@malkarasutureticileri.org.tr adresinden gönderin (sipariş numaranızla birlikte)</li>
+            <li>24 saat içinde size dönüş yaparız — fotoğraflar yeterliyse ürünü iade etmeden iade işlemi başlatılır</li>
+          </ol>
+          <p>İade tutarı 5-7 iş günü içinde aynı kart/banka hesabınıza yansır.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          Cayma süresi var mı?
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="faq-a"><p>Mesafeli Satışlar Yönetmeliği'nin 15. maddesi g bendi gereği, açılmış gıda ürünlerinde cayma hakkı bulunmamaktadır. Ancak ürün <strong>açılmamış ve soğuk zincir kırılmamış</strong> halde, teslimden sonraki 24 saat içinde iade edilebilir. Bu durumda sadece kargo ücreti tarafınıza aittir.</p></div>
+      </div>
+    </section>
+
+    <!-- ABONELIK -->
+    <section class="tab-section" id="abonelik">
+      <div class="tab-section-header">
+        <div class="tab-section-eyebrow">Yardım · Abonelik</div>
+        <h2>Abonelik <em>yönetimi</em></h2>
+        <p>Atlama, değiştirme, iptal ve ödeme döngüsü.</p>
+      </div>
+
+      <div class="faq-item open">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          Aboneliği nasıl iptal ederim?
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="faq-a"><p>Hesabım → Aboneliklerim bölümünden tek tıkla iptal edebilirsiniz. Cayma süresi yoktur, bağlayıcı sözleşme yoktur. İptal işlemi anlık olur, başka bir ücret çekilmez. Mevcut hazırlanan siparişiniz varsa son kez teslim edilir.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          Tatildeyken bir teslimat atlayabilir miyim?
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="faq-a"><p>Tabii. 'Aboneliklerim' bölümünden sıradaki teslimatı 'Atla' butonuna tıklayın. Birden fazla haftayı atlayabilir, tatil bittiğinde tekrar normal düzene dönebilirsiniz. Atlanan haftalar için ödeme alınmaz.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          Ödeme nasıl alınıyor?
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="faq-a"><p>Her sipariş, teslimattan 24 saat önce kayıtlı kartınızdan otomatik çekilir. Iyzico altyapısı kullanılır — kart bilgileriniz tokenize edilerek saklanır, hiçbir kart numarası sistemde tutulmaz. Çekim öncesi e-posta ve WhatsApp ile bildirim alırsınız.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          Ürünleri her hafta değiştirebilir miyim?
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="faq-a"><p>Evet. Her sipariş kesinleşmeden 48 saat önceye kadar kutunuza ürün ekleyebilir, çıkarabilir, miktarları değiştirebilirsiniz.</p></div>
+      </div>
+    </section>
+
+    <!-- URUN -->
+    <section class="tab-section" id="urun">
+      <div class="tab-section-header">
+        <div class="tab-section-eyebrow">Yardım · Ürünler</div>
+        <h2>Ürün <em>bilgileri</em></h2>
+        <p>Saklama, raf ömrü ve içerik soruları.</p>
+      </div>
+
+      <div class="faq-item open">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          A2 süt nedir? Normal sütten farkı nedir?
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="faq-a"><p>A2 süt, beta-kazein proteininin yalnızca A2 formunu içeren ineklerden elde edilir. Bazı kişilerde A1 proteinine bağlı sindirim güçlüğü gözlenebilir. A2 sütü bu açıdan daha hafif olarak konumlandırılır. Bilimsel yan haricinde tat olarak da daha kremamsı bir profile sahiptir.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          Pastörize ile UHT arasında ne fark var? Sizin sütleriniz hangisi?
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="faq-a"><p>Tüm günlük sütlerimiz pastörizedir — düşük ısıda kısa süreli işlemden geçer, besin değerini ve doğal tadını korur. UHT işlenmiş süt satışımız bulunmamaktadır. Bu sebeple raf ömrümüz kısadır (5-7 gün), buzdolabı saklamak zorunludur.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          Ürünler katkı maddesi içeriyor mu?
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="faq-a"><p>Hayır. Sütlerimiz %100 saf inek/manda sütüdür. Yoğurtlarımızda yalnızca süt ve maya kullanılır. Peynirlerimizde süt + tuz + maya bulunur. Hiçbir ürünümüzde koruyucu, renk, aroma katkısı kullanılmaz.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          Saklama koşulları nelerdir?
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="faq-a">
+          <ul>
+            <li><strong>Süt:</strong> +2°C / +6°C buzdolabı, açıldıktan sonra 3 gün içinde tüketin</li>
+            <li><strong>Yoğurt:</strong> +2°C / +6°C, açıldıktan sonra 5 gün</li>
+            <li><strong>Peynir:</strong> +2°C / +6°C, kapağı sıkı kapalı kaplarda</li>
+            <li><strong>Tereyağı:</strong> +2°C / +6°C buzdolabı veya derin dondurucuda 3 ay</li>
+            <li>Hiçbir süt ürününü dondurmayın (tereyağı hariç)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ODEME -->
+    <section class="tab-section" id="odeme">
+      <div class="tab-section-header">
+        <div class="tab-section-eyebrow">Yardım · Ödeme</div>
+        <h2>Ödeme <em>seçenekleri</em></h2>
+      </div>
+
+      <div class="faq-item open">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          Hangi ödeme yöntemlerini kabul ediyorsunuz?
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="faq-a">
+          <ul>
+            <li>Kredi kartı (Visa, MasterCard, Troy, American Express)</li>
+            <li>Banka kartı</li>
+            <li>Havale/EFT (sipariş onayı 24 saatte)</li>
+            <li>Apple Pay, Google Pay</li>
+            <li>BKM Express</li>
+            <li>Kurumsal ödeme: e-fatura ile aylık tahsilat</li>
+          </ul>
+          <p>Tüm ödemeler Iyzico altyapısı üzerinden 256-bit SSL ile güvenli olarak alınır.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          Taksit imkânı var mı?
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="faq-a"><p>Evet. Tüm bankaların kredi kartlarına 3 ve 6 taksit imkânı sunuyoruz. 750 ₺ ve üzeri siparişlerde taksit seçeneği aktif olur. Banka taksit kampanyalarına bağlı olarak ek taksitlendirme gözükebilir.</p></div>
+      </div>
+    </section>
+
+    <!-- KVKK -->
+    <section class="tab-section" id="kvkk">
+      <div class="tab-section-header">
+        <div class="tab-section-eyebrow">Yasal Belge · KVKK</div>
+        <h2>KVKK <em>Aydınlatma Metni</em></h2>
+        <p>6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında aydınlatma yükümlülüğümüz.</p>
+      </div>
+
+      <div class="legal-content">
+        <div class="legal-meta">
+          <strong>Veri Sorumlusu:</strong> Malkara Süt Üreticileri Birliği<br>
+          <strong>Adres:</strong> Gazibey, Tevfikbey Cd. No:3, 59310 Malkara/Tekirdağ<br>
+          <strong>Yürürlük tarihi:</strong> 1 Mayıs 2026 · <strong>Versiyon:</strong> 2.0
+        </div>
+
+        <h3>1. Toplanan Kişisel Veriler</h3>
+        <p>Hizmetlerimizden faydalanmanız sırasında aşağıdaki kişisel verileriniz toplanmaktadır:</p>
+        <ul>
+          <li><strong>Kimlik bilgileri:</strong> Ad, soyad, T.C. kimlik numarası (yalnızca e-fatura için)</li>
+          <li><strong>İletişim bilgileri:</strong> E-posta, telefon, adres</li>
+          <li><strong>Finansal bilgiler:</strong> Ödeme bilgileri (Iyzico aracılığıyla, tokenize)</li>
+          <li><strong>Müşteri işlem bilgileri:</strong> Sipariş geçmişi, tercihler, iade talepleri</li>
+          <li><strong>İşitsel/görsel kayıtlar:</strong> Müşteri hizmetleri görüşmeleri (kalite amaçlı)</li>
+          <li><strong>Çerez verileri:</strong> Tarayıcı oturum bilgileri, IP adresi</li>
+        </ul>
+
+        <h3>2. İşlenme Amaçları</h3>
+        <p>Verileriniz şu amaçlarla işlenir:</p>
+        <ul>
+          <li>Sipariş, teslimat ve fatura işlemlerinin yürütülmesi</li>
+          <li>Müşteri ilişkileri ve destek hizmetleri</li>
+          <li>Pazarlama ve kampanya faaliyetleri (onay vermeniz halinde)</li>
+          <li>Yasal yükümlülüklerin yerine getirilmesi (vergi, gıda mevzuatı)</li>
+          <li>Hizmet kalitesinin iyileştirilmesi (anonimleştirilmiş analiz)</li>
+        </ul>
+
+        <h3>3. Hukuki Sebepler</h3>
+        <p>Verileriniz KVKK 5. madde kapsamında <strong>sözleşme kurulması ve ifası</strong>, <strong>yasal yükümlülük</strong> ve onay verdiğiniz durumlarda <strong>açık rıza</strong> hukuki sebeplerine dayanılarak işlenir.</p>
+
+        <h3>4. Verilerin Aktarıldığı Taraflar</h3>
+        <ul>
+          <li>Iyzico (ödeme altyapısı)</li>
+          <li>Aras Soğuk Kargo, Sürat Soğuk (teslimat)</li>
+          <li>Paraşüt (e-fatura/e-arşiv)</li>
+          <li>Klaviyo, WhatsApp Business (iletişim altyapısı, açık rıza ile)</li>
+          <li>Yetkili kamu kurum ve kuruluşları (yasal talep halinde)</li>
+        </ul>
+
+        <h3>5. Haklarınız (KVKK Madde 11)</h3>
+        <p>Veri sahibi olarak şu haklara sahipsiniz:</p>
+        <ul>
+          <li>Verilerinizin işlenip işlenmediğini öğrenme</li>
+          <li>Bilgi talep etme</li>
+          <li>İşleme amacını ve buna uygun kullanılıp kullanılmadığını öğrenme</li>
+          <li>Düzeltme ve silme talep etme</li>
+          <li>Açık rızayı geri alma</li>
+          <li>Zarar oluşması halinde tazminat talep etme</li>
+        </ul>
+
+        <p>Haklarınızı kullanmak için <a href="mailto:kvkk@malkarasutureticileri.org.tr" style="color: var(--green-deep); text-decoration: underline; font-weight: 600;">kvkk@malkarasutureticileri.org.tr</a> adresine başvurabilirsiniz.</p>
+      </div>
+    </section>
+
+    <!-- MESAFELI SATIS -->
+    <section class="tab-section" id="mesafeli">
+      <div class="tab-section-header">
+        <div class="tab-section-eyebrow">Yasal Belge · Mesafeli Satış</div>
+        <h2>Mesafeli Satış <em>Sözleşmesi</em></h2>
+      </div>
+
+      <div class="legal-content">
+        <div class="legal-meta">
+          <strong>Yürürlük tarihi:</strong> 1 Mayıs 2026 · <strong>Versiyon:</strong> 2.0<br>
+          <strong>Yasal Dayanak:</strong> 6502 sayılı Tüketicinin Korunması Hakkında Kanun ve Mesafeli Sözleşmeler Yönetmeliği
+        </div>
+
+        <h3>1. Taraflar</h3>
+        <p><strong>Satıcı:</strong> Malkara Süt Üreticileri Birliği<br><strong>Adres:</strong> Gazibey, Tevfikbey Cd. No:3, 59310 Malkara/Tekirdağ<br><strong>Vergi No:</strong> [Birlik vergi numarası]</p>
+        <p><strong>Alıcı:</strong> Sipariş formundaki bilgilerle tanımlanan müşteri.</p>
+
+        <h3>2. Sözleşmenin Konusu</h3>
+        <p>Alıcı'nın, Satıcı'ya ait <strong>malkarasutureticileri.org.tr</strong> internet sitesinden elektronik ortamda sipariş verdiği, sözleşmede bahsi geçen nitelikteki ürünlerin satışı ve teslimi.</p>
+
+        <h3>3. Genel Hükümler</h3>
+        <p>Alıcı, sipariş verdiği ürünlerin temel nitelikleri, satış fiyatı, ödeme şekli, teslimat ve cayma hakkı konularında bilgi sahibi olduğunu ve elektronik ortamda gerekli teyidi verdiğini beyan eder.</p>
+
+        <h3>4. Cayma Hakkı</h3>
+        <p>Alıcı, mesafeli satış sözleşmesinden 14 gün içinde cayma hakkına sahiptir. Ancak <strong>çabuk bozulan ya da son kullanma tarihi geçebilecek mallar</strong> (süt, yoğurt, taze peynir vb.) Mesafeli Sözleşmeler Yönetmeliği 15/g bendi gereği <strong>cayma hakkı kapsamı dışındadır</strong>.</p>
+        <p>Bozuk veya hatalı ürün durumunda iade ve tam ücret iadesi yapılır.</p>
+
+        <h3>5. Teslimat</h3>
+        <p>Teslimat, ürünün hazırlanmasını takiben en geç 3 iş günü içinde gerçekleştirilir. Soğuk zincir lojistiği nedeniyle teslimatlar yalnızca Perşembe-Cumartesi günlerinde yapılır. Teslimat ücreti sipariş onayında belirtilir.</p>
+
+        <h3>6. Yetkili Mahkeme</h3>
+        <p>İşbu sözleşmeden doğan uyuşmazlıklarda, Tüketici Hakem Heyetleri ile Tüketici Mahkemeleri yetkilidir.</p>
+      </div>
+    </section>
+
+    <!-- CEREZ -->
+    <section class="tab-section" id="cerez">
+      <div class="tab-section-header">
+        <div class="tab-section-eyebrow">Yasal Belge · Çerez Politikası</div>
+        <h2>Çerez <em>Politikası</em></h2>
+      </div>
+
+      <div class="legal-content">
+        <h3>Çerezler Nedir?</h3>
+        <p>Çerezler, sitemizi ziyaret ettiğinizde tarayıcınız üzerinden bilgisayarınıza/cihazınıza kaydedilen küçük metin dosyalarıdır. Sitenin daha verimli çalışması ve deneyiminizin iyileştirilmesi için kullanılır.</p>
+
+        <h3>Kullandığımız Çerez Türleri</h3>
+        <ul>
+          <li><strong>Zorunlu çerezler:</strong> Sepet, oturum, güvenlik için. Devre dışı bırakılamaz.</li>
+          <li><strong>Performans çerezleri:</strong> Anonim analitik (Google Analytics 4). Hangi sayfa ne kadar ziyaret ediliyor.</li>
+          <li><strong>Pazarlama çerezleri:</strong> Meta Pixel, TikTok Pixel, Google Ads. Açık rızanıza tabidir.</li>
+          <li><strong>Tercih çerezleri:</strong> Dil, bölge gibi tercihlerinizi hatırlamak için.</li>
+        </ul>
+
+        <h3>Çerez Yönetimi</h3>
+        <p>Tarayıcı ayarlarınızdan tüm çerezleri reddedebilir veya tercih edebilirsiniz. Site içerisinde sayfanın altındaki "Çerez Tercihleri" bağlantısı üzerinden de çerez tercihlerinizi yönetebilirsiniz.</p>
+      </div>
+    </section>
+
+    <!-- CONTACT BOX -->
+    <div class="contact-box">
+      <div>
+        <h3>Cevabını <em>bulamadın mı?</em></h3>
+        <p>Müşteri hizmetlerimiz hafta içi 09:00-18:00 arası aktif. WhatsApp Business hattımız ise 7/24 yanıt veriyor.</p>
+      </div>
+      <div class="contact-buttons">
+        <a href="https://wa.me/902826738150" class="contact-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+          WhatsApp
+        </a>
+        <a href="tel:+902826738150" class="contact-btn outline">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Telefon
+        </a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <div class="logo-mark">M</div>
+          <div class="logo-text">
+            Malkara
+            <small style="opacity: 0.7;">Süt Üreticileri Birliği</small>
+          </div>
+        </a>
+        <p>Trakya'nın 57 köyünden, 92 soğutma merkezinden, doğrudan sofranıza.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Alışveriş</h4>
+        <ul>
+          <li><a href="#">Tüm Ürünler</a></li>
+          <li><a href="#">Süt</a></li>
+          <li><a href="#">Yoğurt</a></li>
+          <li><a href="#">Abonelik</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Birlik</h4>
+        <ul>
+          <li><a href="#">Hikâyemiz</a></li>
+          <li><a href="#">Üreticiler</a></li>
+          <li><a href="#">Köy Haritası</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>İletişim</h4>
+        <ul>
+          <li style="opacity: 0.7; font-size: 14px;">Gazibey, Tevfikbey Cd. No:3<br>59310 Malkara/Tekirdağ</li>
+          <li><a href="tel:+902826738150">+90 282 673 81 50</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Malkara Süt Üreticileri Birliği</div>
+      <div style="display: flex; gap: 24px;">
+        <a href="#kvkk">KVKK</a>
+        <a href="#cerez">Çerez</a>
+        <a href="#mesafeli">Mesafeli Satış</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
