@@ -34,9 +34,7 @@
       </ul>
     </nav>
     <div class="nav-actions">
-      <a href="#" class="icon-btn" aria-label="Ara — yakında">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-      </a>
+      <button type="button" class="icon-btn search-trigger" @click="$dispatch(\'open-search\')" aria-label="Ara"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></button>
       <a href="giris-kayit.html" class="icon-btn" aria-label="Hesap" aria-current="page">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
       </a>
@@ -490,6 +488,49 @@
 <script src="../assets/js/whatsapp.js" defer></script>
 <script src="../assets/js/cart-ui.js" defer></script>
 <script src="../assets/js/social.js" defer></script>
+
+<!-- Search modal (Alpine-controlled) -->
+<div x-data="{ open: false, query: '' }"
+     @open-search.window="open = true; $nextTick(() => $refs.input && $refs.input.focus())"
+     @keydown.escape.window="open = false"
+     x-show="open"
+     x-cloak
+     x-transition.opacity
+     class="search-modal-overlay"
+     @click.self="open = false"
+     style="display:none">
+  <div class="search-modal" role="dialog" aria-modal="true" aria-label="Ara">
+    <div class="search-header">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="search-icon"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="search"
+             x-ref="input"
+             x-model="query"
+             placeholder="Ürün, kategori veya üretici ara…"
+             class="search-input"
+             autocomplete="off">
+      <button @click="open = false" class="search-close" aria-label="Kapat" type="button">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div x-show="!query.trim()" class="search-empty">
+      <h3>Popüler Aramalar</h3>
+      <div class="search-suggestions">
+        <a href="kategori.html?cat=sut">Süt</a>
+        <a href="kategori.html?cat=yogurt">Yoğurt</a>
+        <a href="kategori.html?cat=peynir">Peynir</a>
+        <a href="kategori.html?cat=tereyagi">Tereyağı</a>
+        <a href="ureticiler.html">Üreticilerimiz</a>
+        <a href="abonelik.html">Abonelik</a>
+      </div>
+    </div>
+    <div x-show="query.trim()" class="search-results">
+      <p class="search-pending">
+        "<span x-text="query"></span>" için canlı arama yakında etkinleşecek. Şimdilik kategori sayfasından filtreleyebilirsiniz.
+      </p>
+      <a :href="`kategori.html?q=${encodeURIComponent(query)}`" class="btn btn-primary">Tüm ürünleri gör</a>
+    </div>
+  </div>
+</div>
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </body>
 </html>
