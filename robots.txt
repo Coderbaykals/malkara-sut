@@ -2,5 +2,10 @@ User-agent: *
 Allow: /
 Disallow: /docs/
 Disallow: /pages/admin/
+Disallow: /pages/sepet.html
+Disallow: /pages/hesabim.html
+Disallow: /pages/giris-kayit.html
+Disallow: /pages/siparis-onay.html
+Disallow: /404.html
 
-Sitemap: https://malkarasut.com/sitemap.xml
+Sitemap: https://coderbaykals.github.io/malkara-sut/sitemap.xml
