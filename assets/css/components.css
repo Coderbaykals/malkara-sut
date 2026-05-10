@@ -123,3 +123,105 @@
   display: flex; align-items: center; gap: 4px;
 }
 @media (max-width: 900px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+
+
+/* MOBILE MENU (slide-in panel) */
+.mobile-menu-toggle {
+  display: none;
+}
+@media (max-width: 768px) {
+  .desktop-nav { display: none; }
+  .mobile-menu-toggle { display: grid; }
+}
+
+.mobile-menu-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(31,58,46,0.55);
+  backdrop-filter: blur(4px);
+  z-index: 200;
+}
+
+.mobile-menu-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(85vw, 360px);
+  background: var(--milk);
+  z-index: 201;
+  padding: 28px 24px 32px;
+  overflow-y: auto;
+  box-shadow: -16px 0 48px rgba(31,58,46,0.18);
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-menu-enter,
+.mobile-menu-leave {
+  transition: transform 250ms ease;
+}
+.mobile-menu-out { transform: translateX(100%); }
+.mobile-menu-in { transform: translateX(0); }
+
+.mobile-menu-close {
+  align-self: flex-end;
+  width: 40px; height: 40px;
+  border: 1px solid var(--line);
+  background: transparent;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  color: var(--green-deep);
+  transition: all 0.2s;
+  margin-bottom: 24px;
+}
+.mobile-menu-close:hover { background: var(--cream); }
+
+.mobile-menu-nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.mobile-menu-nav a {
+  display: block;
+  padding: 14px 16px;
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  color: var(--green-deep);
+  border-bottom: 1px solid var(--line);
+  transition: color 0.2s;
+}
+.mobile-menu-nav a:hover { color: var(--green-mid); }
+
+.mobile-menu-footer {
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.mobile-menu-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--green-deep);
+  color: var(--cream);
+  padding: 14px 18px;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+.mobile-menu-whatsapp:hover { background: var(--green-mid); }
+.mobile-menu-phone {
+  font-size: 14px;
+  color: var(--warm-grey);
+  text-align: center;
+}
+
+/* Body scroll lock when mobile menu open */
+body.no-scroll { overflow: hidden; }
