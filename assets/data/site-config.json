@@ -4,24 +4,27 @@
     "shortName": "Malkara Süt",
     "phone": "+90 282 673 81 50",
     "email": "info@malkarasutureticileri.org.tr",
-    "address": "Gazibey, Tevfikbey Cd. No:3, 59310 Malkara/Tekirdağ"
+    "address": "Gazibey, Tevfikbey Cd. No:3, 59310 Malkara/Tekirdağ",
+    "taxOffice": "Malkara",
+    "taxNumber": "PENDING",
+    "_note": "taxNumber Birlik'ten alınacak"
   },
   "whatsapp": {
     "number": "905XXXXXXXXX",
-    "_note": "PENDING: Birliğe soruldu, gelince güncelle"
+    "_note": "PENDING: Birliğe soruldu"
   },
   "shipping": {
     "freeThreshold": 350,
     "defaultFee": 49,
     "currency": "₺",
-    "_note": "PENDING: 49₺ placeholder, Birliğe soruldu"
+    "_note": "PENDING: 49₺ placeholder"
   },
   "social": {
     "instagram": "",
     "facebook": "",
     "youtube": "",
     "linkedin": "",
-    "_note": "Sprint 7'de doldurulacak"
+    "_note": "Açılınca site-config doldurulur, social.js otomatik bağlar"
   },
   "delivery": {
     "tier1Cities": ["İstanbul", "Tekirdağ", "Edirne", "Kırklareli"],
@@ -29,5 +32,12 @@
     "tier3Cities": ["Bursa", "Kocaeli", "Sakarya", "Yalova", "Bilecik"],
     "estimatedHours": "24-48",
     "deliveryDays": ["Salı", "Perşembe", "Cumartesi"]
+  },
+  "seo": {
+    "siteName": "Malkara Süt Üreticileri Birliği",
+    "defaultDescription": "Trakya'nın 57 köyünden, soğuk zincirle Marmara sofralarına ulaşan süt ürünleri. Üreticisini tanıdığınız hakiki süt, yoğurt, peynir.",
+    "defaultOgImage": "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=1200&h=630&fit=crop",
+    "twitterHandle": "",
+    "domain": "https://coderbaykals.github.io/malkara-sut"
   }
 }
