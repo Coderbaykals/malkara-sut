@@ -244,3 +244,22 @@ nav.desktop-nav a[aria-current="page"] {
   border-color: var(--green-deep);
   background: var(--cream);
 }
+
+/* CART COUNT BADGE (reactive via Alpine) */
+.cart-count:empty,
+.cart-count[x-text]:not(.has-items) {
+  display: none;
+}
+.cart-count.has-items {
+  display: grid;
+  background: var(--wheat-dark);
+  color: white;
+}
+@keyframes msub-cart-pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.35); }
+  100% { transform: scale(1); }
+}
+.cart-count.pop {
+  animation: msub-cart-pop 320ms ease;
+}

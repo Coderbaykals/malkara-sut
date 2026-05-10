@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="../assets/css/components.css">
 <link rel="stylesheet" href="../assets/css/pages/producers.css">
 </head>
-<body x-data="{ mobileOpen: false }" :class="{ \'no-scroll\': mobileOpen }">
+<body x-data="{ mobileOpen: false, cartCount: 0 }" :class="{ 'no-scroll': mobileOpen }" @msub:cart:updated.window="cartCount = $event.detail.count; if ($refs.cartBadge) { $refs.cartBadge.classList.add('pop'); setTimeout(() => $refs.cartBadge.classList.remove('pop'), 320); }">
 
 <div class="announce">
   <span>👨‍🌾 Bu hafta öne çıkan üretici: İsmail Yıldız · Evrenbey Köyü · A2 sürü</span>
@@ -46,7 +46,7 @@
       </a>
       <a href="sepet.html" class="icon-btn" aria-label="Sepet">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-        <span class="cart-count">0</span>
+        <span class="cart-count" x-ref="cartBadge" x-text="cartCount > 0 ? cartCount : ''" :class="{ 'has-items': cartCount > 0 }"></span>
       </a>
       <button class="icon-btn mobile-menu-toggle" aria-label="Menüyü aç" @click="mobileOpen = true">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
