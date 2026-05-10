@@ -15,10 +15,10 @@
   font-family: 'Inter', sans-serif;
 }
 .btn-primary {
-  background: var(--cream);
-  color: var(--green-deep);
+  background: var(--green-deep);
+  color: var(--cream);
 }
-.btn-primary:hover { background: white; transform: translateY(-2px); }
+.btn-primary:hover { background: var(--charcoal); transform: translateY(-2px); }
 .btn-ghost {
   background: transparent;
   color: var(--cream);

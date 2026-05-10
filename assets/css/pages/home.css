@@ -1,5 +1,14 @@
 /* Anasayfa-specific styles — index.html only */
 
+/* Override: .btn-primary (cream-bg variant; majority is green-deep) */
+/* Override: footer (80px top padding; majority is 60px) */
+.btn-primary {
+  background: var(--cream);
+  color: var(--green-deep);
+}
+.btn-primary:hover { background: white; transform: translateY(-2px); }
+footer { padding: 80px 32px 30px; }
+
 /* HERO */
 .hero {
   position: relative;
