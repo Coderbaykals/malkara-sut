@@ -5,8 +5,6 @@
 /* Override: header (vs base.css) */
 /* Override: .nav-wrap (vs base.css) */
 /* Override: .section-title (vs base.css) */
-/* Override: footer (vs base.css) */
-
 body {
   font-family: 'Inter', sans-serif;
   color: var(--charcoal);
@@ -45,16 +43,6 @@ header {
   color: inherit;  /* reset from base */
   font-weight: inherit;  /* reset from base */
 }
-
-footer {
-  text-align: center;
-  padding: 30px 32px;
-  background: var(--milk);
-  border-top: 1px solid var(--line);
-  color: var(--warm-grey);
-  font-size: 12px;
-}
-
 /* === PAGE-SPECIFIC RULES === */
 
 * { margin: 0; padding: 0; box-sizing: border-box; }

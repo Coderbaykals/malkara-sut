@@ -3,8 +3,6 @@
 /* === OVERRIDES (minority pattern; explicit re-declare + reset of base) === */
 /* Override: body (vs base.css) */
 /* Override: .section-link (vs base.css) */
-/* Override: footer (vs base.css) */
-
 body {
   font-family: 'Inter', sans-serif;
   color: var(--charcoal);
@@ -20,16 +18,6 @@ body {
   border-bottom: 1px solid var(--green-deep);
   padding-bottom: 2px;
 }
-
-footer {
-  background: var(--charcoal);
-  color: var(--cream);
-  padding: 30px 32px;
-  text-align: center;
-  font-size: 13px;
-  opacity: 0.85;
-}
-
 /* === PAGE-SPECIFIC RULES === */
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
