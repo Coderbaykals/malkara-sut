@@ -197,261 +197,49 @@
 </section>
 
 <!-- ALL PRODUCERS GRID -->
-<section class="producers-section">
+<section class="producers-section" x-data="producersPage()" x-init="init()">
   <div class="container">
-    <div class="section-header-flex">
+    <div class="section-header">
       <div>
-        <div class="section-eyebrow">Tüm Üreticiler</div>
-        <h2 class="section-title">Sofranıza süt, yoğurt, peynir <em>ulaştıranlar</em></h2>
+        <div class="section-eyebrow">Üreticilerimiz</div>
+        <h2 class="section-title">Tek tek <em>tanıyın</em></h2>
       </div>
-      <div style="display: flex; align-items: center; gap: 12px;">
-        <span class="result-info"><strong>24 üretici</strong> bulundu</span>
-        <select class="sort-select">
-          <option>Önerilen</option>
-          <option>İsim (A-Z)</option>
-          <option>Köy (A-Z)</option>
-          <option>En tecrübeli</option>
-          <option>En genç</option>
-        </select>
-      </div>
+      <p class="section-meta" x-text="producers.length + ' üretici'"></p>
     </div>
-
     <div class="producer-grid">
-
-      <article class="producer-card">
-        <div class="producer-img-wrap">
-          <div class="producer-badges">
-            <span class="producer-badge">A2 Sürü</span>
+      <template x-for="producer in producers" :key="producer.id">
+        <article class="producer-card">
+          <div class="producer-img">
+            <img :src="producer.photo" :alt="producer.name" loading="lazy">
+            <div class="producer-village" x-text="producer.village + ' Köyü'"></div>
           </div>
-          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=800&q=80" alt="">
-        </div>
-        <div class="producer-info">
-          <div class="producer-village">Evrenbey Köyü</div>
-          <h3>İsmail Yıldız</h3>
-          <div class="role">28 yıllık üretici · Kuşaktan kuşağa</div>
-          <blockquote>"Babamdan öğrendim. Şimdi oğlumla beraber sürdürüyoruz. Hayvanın rahatı sütün tadında belli olur."</blockquote>
-          <div class="producer-products">
-            <span class="producer-product-tag">A2 Süt</span>
-            <span class="producer-product-tag">Tam Yağlı</span>
-            <span class="producer-product-tag">Yarım Yağlı</span>
+          <div class="producer-info">
+            <h3 x-text="producer.name"></h3>
+            <div class="role" x-text="producer.role"></div>
+            <p x-text="producer.bio"></p>
+            <div class="producer-stats">
+              <span x-text="producer.yearsOfExperience + ' yıl deneyim'"></span>
+              <span x-show="producer.animals > 0" x-text="producer.animals + ' hayvan'"></span>
+              <span x-text="producer.products.length + ' ürün'"></span>
+            </div>
+            <a :href="'kategori.html?producer=' + producer.id" class="producer-link">
+              Ürünlerini Gör →
+            </a>
           </div>
-          <div class="producer-stats">
-            <div class="producer-stat"><strong>180</strong><span>İnek</span></div>
-            <div class="producer-stat"><strong>2.4t</strong><span>Günlük</span></div>
-            <div class="producer-stat"><strong>28y</strong><span>Deneyim</span></div>
-          </div>
-        </div>
-      </article>
-
-      <article class="producer-card">
-        <div class="producer-img-wrap">
-          <div class="producer-badges">
-            <span class="producer-badge women">Kadın Kooperatifi</span>
-          </div>
-          <img src="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?w=800&q=80" alt="">
-        </div>
-        <div class="producer-info">
-          <div class="producer-village">Karaidemir Köyü</div>
-          <h3>Ayşe Kaplan</h3>
-          <div class="role">Kadın Kooperatifi Başkanı · 16 yıl</div>
-          <blockquote>"Birlik sayesinde fiyatımız düzene girdi. Köydeki 14 kadınla beraber yoğurt ve peynir de üretiyoruz artık."</blockquote>
-          <div class="producer-products">
-            <span class="producer-product-tag">Süzme Yoğurt</span>
-            <span class="producer-product-tag">Beyaz Peynir</span>
-            <span class="producer-product-tag">Tereyağı</span>
-          </div>
-          <div class="producer-stats">
-            <div class="producer-stat"><strong>14</strong><span>Kadın üye</span></div>
-            <div class="producer-stat"><strong>800kg</strong><span>Aylık</span></div>
-            <div class="producer-stat"><strong>16y</strong><span>Deneyim</span></div>
-          </div>
-        </div>
-      </article>
-
-      <article class="producer-card">
-        <div class="producer-img-wrap">
-          <div class="producer-badges">
-            <span class="producer-badge">Manda</span>
-          </div>
-          <img src="https://images.unsplash.com/photo-1605733513597-a8f8341084e6?w=800&q=80" alt="">
-        </div>
-        <div class="producer-info">
-          <div class="producer-village">Pirinçeli Köyü</div>
-          <h3>Mehmet Demir</h3>
-          <div class="role">Manda Yetiştiricisi · 22 yıl</div>
-          <blockquote>"Manda sütü ayrı bir el ister. Trakya'da bunu sürdürebilen az kaldık. Birlik bu işi koruyor — biz de geleneği."</blockquote>
-          <div class="producer-products">
-            <span class="producer-product-tag">Manda Sütü</span>
-            <span class="producer-product-tag">Manda Yoğurt</span>
-            <span class="producer-product-tag">Manda Peynir</span>
-          </div>
-          <div class="producer-stats">
-            <div class="producer-stat"><strong>42</strong><span>Manda</span></div>
-            <div class="producer-stat"><strong>320L</strong><span>Günlük</span></div>
-            <div class="producer-stat"><strong>22y</strong><span>Deneyim</span></div>
-          </div>
-        </div>
-      </article>
-
-      <article class="producer-card">
-        <div class="producer-img-wrap">
-          <div class="producer-badges">
-            <span class="producer-badge organic">Organik</span>
-          </div>
-          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&q=80" alt="">
-        </div>
-        <div class="producer-info">
-          <div class="producer-village">Sağlamtaş Köyü</div>
-          <h3>Hasan Şahin</h3>
-          <div class="role">Birlik Başkanı · Üretici · 32 yıl</div>
-          <blockquote>"Sertifikalı meraya dayalı çiftçilik kolay değil. Ama torunlarımıza daha temiz bir toprak bırakmak için bu yola girdik."</blockquote>
-          <div class="producer-products">
-            <span class="producer-product-tag">Organik Süt</span>
-            <span class="producer-product-tag">Tereyağı</span>
-          </div>
-          <div class="producer-stats">
-            <div class="producer-stat"><strong>95</strong><span>İnek</span></div>
-            <div class="producer-stat"><strong>1.2t</strong><span>Günlük</span></div>
-            <div class="producer-stat"><strong>32y</strong><span>Deneyim</span></div>
-          </div>
-        </div>
-      </article>
-
-      <article class="producer-card">
-        <div class="producer-img-wrap">
-          <div class="producer-badges">
-            <span class="producer-badge young">Genç Çiftçi</span>
-          </div>
-          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80" alt="">
-        </div>
-        <div class="producer-info">
-          <div class="producer-village">Ahmetpaşa Köyü</div>
-          <h3>Selim Akın</h3>
-          <div class="role">Veteriner · 4 yıllık üretici</div>
-          <blockquote>"Şehirden köye döndüğümde herkes şaşırdı. Ama hayvancılığın bilimsel ayağını güçlendirme arzusu beni geri çağırdı."</blockquote>
-          <div class="producer-products">
-            <span class="producer-product-tag">Tam Yağlı Süt</span>
-            <span class="producer-product-tag">Kefir</span>
-          </div>
-          <div class="producer-stats">
-            <div class="producer-stat"><strong>65</strong><span>İnek</span></div>
-            <div class="producer-stat"><strong>900L</strong><span>Günlük</span></div>
-            <div class="producer-stat"><strong>4y</strong><span>Deneyim</span></div>
-          </div>
-        </div>
-      </article>
-
-      <article class="producer-card">
-        <div class="producer-img-wrap">
-          <div class="producer-badges">
-            <span class="producer-badge women">Kadın Kooperatifi</span>
-            <span class="producer-badge">Geleneksel</span>
-          </div>
-          <img src="https://images.unsplash.com/photo-1546961342-1ca15ee0c4f5?w=800&q=80" alt="">
-        </div>
-        <div class="producer-info">
-          <div class="producer-village">Karaidemir Köyü</div>
-          <h3>Fatma Aydın</h3>
-          <div class="role">Kooperatif Üyesi · 12 yıl</div>
-          <blockquote>"Anneannemden öğrendiğim peynir mayalama tekniğini bugün de sürdürüyorum. Modern donanım, geleneksel el."</blockquote>
-          <div class="producer-products">
-            <span class="producer-product-tag">Beyaz Peynir</span>
-            <span class="producer-product-tag">Lor</span>
-            <span class="producer-product-tag">Çökelek</span>
-          </div>
-          <div class="producer-stats">
-            <div class="producer-stat"><strong>—</strong><span>Kooperatif</span></div>
-            <div class="producer-stat"><strong>240kg</strong><span>Aylık</span></div>
-            <div class="producer-stat"><strong>12y</strong><span>Deneyim</span></div>
-          </div>
-        </div>
-      </article>
-
-      <article class="producer-card">
-        <div class="producer-img-wrap">
-          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80" alt="">
-        </div>
-        <div class="producer-info">
-          <div class="producer-village">Gözsüz Köyü</div>
-          <h3>Ramazan Polat</h3>
-          <div class="role">Çiftçi · Tereyağı uzmanı · 18 yıl</div>
-          <blockquote>"Tereyağının sırrı tek başına süt değil, tutuş süresi ve sıcaklık. Ben hâlâ ilk gün ki disiplinle çalışıyorum."</blockquote>
-          <div class="producer-products">
-            <span class="producer-product-tag">Köy Tereyağı</span>
-            <span class="producer-product-tag">Krema</span>
-          </div>
-          <div class="producer-stats">
-            <div class="producer-stat"><strong>50</strong><span>İnek</span></div>
-            <div class="producer-stat"><strong>180kg</strong><span>Aylık tereyağı</span></div>
-            <div class="producer-stat"><strong>18y</strong><span>Deneyim</span></div>
-          </div>
-        </div>
-      </article>
-
-      <article class="producer-card">
-        <div class="producer-img-wrap">
-          <div class="producer-badges">
-            <span class="producer-badge">A2 Sürü</span>
-          </div>
-          <img src="https://images.unsplash.com/photo-1501286353178-1ec881214838?w=800&q=80" alt="">
-        </div>
-        <div class="producer-info">
-          <div class="producer-village">Kozyörük Köyü</div>
-          <h3>Mustafa Çelik</h3>
-          <div class="role">Üretici · 25 yıl</div>
-          <blockquote>"Sürümün yarısını A2'ye çevirmek 6 yıl sürdü. Sabır ve iyi genetik — bu işin formülü bu."</blockquote>
-          <div class="producer-products">
-            <span class="producer-product-tag">A2 Süt</span>
-            <span class="producer-product-tag">Yoğurt</span>
-          </div>
-          <div class="producer-stats">
-            <div class="producer-stat"><strong>120</strong><span>İnek</span></div>
-            <div class="producer-stat"><strong>1.6t</strong><span>Günlük</span></div>
-            <div class="producer-stat"><strong>25y</strong><span>Deneyim</span></div>
-          </div>
-        </div>
-      </article>
-
-      <article class="producer-card">
-        <div class="producer-img-wrap">
-          <div class="producer-badges">
-            <span class="producer-badge young">Genç Çiftçi</span>
-          </div>
-          <img src="https://images.unsplash.com/photo-1521252659862-eec69941b071?w=800&q=80" alt="">
-        </div>
-        <div class="producer-info">
-          <div class="producer-village">Yenice Köyü</div>
-          <h3>Ebru Yılmaz</h3>
-          <div class="role">Ziraat mühendisi · 6 yıllık üretici</div>
-          <blockquote>"Aile çiftliğini ben devraldım. Geleneksel bilgiyi modern hijyen ve veri analiziyle birleştirmeye çalışıyorum."</blockquote>
-          <div class="producer-products">
-            <span class="producer-product-tag">Tam Yağlı Süt</span>
-            <span class="producer-product-tag">Kefir</span>
-            <span class="producer-product-tag">Light Yoğurt</span>
-          </div>
-          <div class="producer-stats">
-            <div class="producer-stat"><strong>78</strong><span>İnek</span></div>
-            <div class="producer-stat"><strong>1.1t</strong><span>Günlük</span></div>
-            <div class="producer-stat"><strong>6y</strong><span>Deneyim</span></div>
-          </div>
-        </div>
-      </article>
-
-    </div>
-
-    <!-- PAGINATION -->
-    <div class="pagination">
-      <button class="page-btn" disabled>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-      </button>
-      <button class="page-btn active">1</button>
-      <button class="page-btn">2</button>
-      <button class="page-btn">3</button>
-      <button class="page-btn">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-      </button>
+        </article>
+      </template>
     </div>
   </div>
+  <script>
+    function producersPage() {
+      return {
+        producers: [],
+        async init() {
+          this.producers = await window.MSUB.data.loadProducers();
+        }
+      };
+    }
+  </script>
 </section>
 
 <!-- JOIN SECTION -->
