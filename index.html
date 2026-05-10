@@ -57,7 +57,8 @@
 }
 </script>
 </head>
-<body x-data="{ mobileOpen: false, cartCount: 0 }" :class="{ 'no-scroll': mobileOpen }" @msub:cart-updated.window="cartCount = $event.detail.count; if ($refs.cartBadge) { $refs.cartBadge.classList.add('pop'); setTimeout(() => $refs.cartBadge.classList.remove('pop'), 320); }">
+<body x-data="{ mobileOpen: false, cartCount: 0 }" :class="{ 'no-scroll': mobileOpen }" @msub:cart-updated.window="cartCount = $event.detail.count; if ($refs.cartBadge) { $refs.cartBadge.classList.add('pop'); setTimeout(() =>
+<a href="#main-content" class="skip-link">İçeriğe geç</a> $refs.cartBadge.classList.remove('pop'), 320); }">
 
 <!-- ANNOUNCEMENT BAR -->
 <div class="announce">
@@ -837,6 +838,10 @@
           ? 'cerez-politikasi.html'
           : 'pages/cerez-politikasi.html';
       },
+      get analyticsAllowed() {
+        try { return localStorage.getItem('msub_cookies') === 'accepted'; }
+        catch (e) { return false; }
+      },
       init() {
         try {
           this.decided = localStorage.getItem('msub_cookies') !== null;
@@ -847,10 +852,12 @@
       accept() {
         try { localStorage.setItem('msub_cookies', 'accepted'); } catch (e) {}
         this.decided = true;
+        // Future: window.dispatchEvent(new CustomEvent('msub:consent', { detail: { allowed: true } }))
       },
       reject() {
         try { localStorage.setItem('msub_cookies', 'rejected'); } catch (e) {}
         this.decided = true;
+        // Future analytics scripts must check window.MSUB.cookieConsent.analyticsAllowed before firing
       }
     };
   }

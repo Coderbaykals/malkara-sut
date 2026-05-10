@@ -30,7 +30,8 @@
 <link rel="stylesheet" href="../assets/css/components.css">
 <link rel="stylesheet" href="../assets/css/pages/legal.css">
 </head>
-<body x-data="{ mobileOpen: false, cartCount: 0 }" :class="{ 'no-scroll': mobileOpen }" @msub:cart-updated.window="cartCount = $event.detail.count; if ($refs.cartBadge) { $refs.cartBadge.classList.add('pop'); setTimeout(() => $refs.cartBadge.classList.remove('pop'), 320); }">
+<body x-data="{ mobileOpen: false, cartCount: 0 }" :class="{ 'no-scroll': mobileOpen }" @msub:cart-updated.window="cartCount = $event.detail.count; if ($refs.cartBadge) { $refs.cartBadge.classList.add('pop'); setTimeout(() =>
+<a href="#main-content" class="skip-link">İçeriğe geç</a> $refs.cartBadge.classList.remove('pop'), 320); }">
 
 <header>
   <div class="nav-wrap">
@@ -131,7 +132,7 @@
 </section>
 
 <!-- MAIN -->
-<main class="main">
+<main id="main-content" class="main">
   <article class="legal-page">
     <header class="legal-header">
       <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -449,7 +450,11 @@
       get cookiePolicyUrl() {
         return window.location.pathname.includes('/pages/')
           ? 'cerez-politikasi.html'
-          : 'cerez-politikasi.html';
+          : 'pages/cerez-politikasi.html';
+      },
+      get analyticsAllowed() {
+        try { return localStorage.getItem('msub_cookies') === 'accepted'; }
+        catch (e) { return false; }
       },
       init() {
         try {
@@ -461,10 +466,12 @@
       accept() {
         try { localStorage.setItem('msub_cookies', 'accepted'); } catch (e) {}
         this.decided = true;
+        // Future: window.dispatchEvent(new CustomEvent('msub:consent', { detail: { allowed: true } }))
       },
       reject() {
         try { localStorage.setItem('msub_cookies', 'rejected'); } catch (e) {}
         this.decided = true;
+        // Future analytics scripts must check window.MSUB.cookieConsent.analyticsAllowed before firing
       }
     };
   }

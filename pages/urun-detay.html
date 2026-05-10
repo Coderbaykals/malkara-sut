@@ -30,7 +30,8 @@
 <link rel="stylesheet" href="../assets/css/components.css">
 <link rel="stylesheet" href="../assets/css/pages/product.css">
 </head>
-<body x-data="{ mobileOpen: false, cartCount: 0 }" :class="{ 'no-scroll': mobileOpen }" @msub:cart-updated.window="cartCount = $event.detail.count; if ($refs.cartBadge) { $refs.cartBadge.classList.add('pop'); setTimeout(() => $refs.cartBadge.classList.remove('pop'), 320); }">
+<body x-data="{ mobileOpen: false, cartCount: 0 }" :class="{ 'no-scroll': mobileOpen }" @msub:cart-updated.window="cartCount = $event.detail.count; if ($refs.cartBadge) { $refs.cartBadge.classList.add('pop'); setTimeout(() =>
+<a href="#main-content" class="skip-link">İçeriğe geç</a> $refs.cartBadge.classList.remove('pop'), 320); }">
 
 <div class="announce">
   <span>🚚 İstanbul ve Marmara'ya soğuk zincirle 24 saatte teslim · 350 ₺ üzeri ücretsiz kargo</span>
@@ -770,7 +771,11 @@
       get cookiePolicyUrl() {
         return window.location.pathname.includes('/pages/')
           ? 'cerez-politikasi.html'
-          : 'cerez-politikasi.html';
+          : 'pages/cerez-politikasi.html';
+      },
+      get analyticsAllowed() {
+        try { return localStorage.getItem('msub_cookies') === 'accepted'; }
+        catch (e) { return false; }
       },
       init() {
         try {
@@ -782,10 +787,12 @@
       accept() {
         try { localStorage.setItem('msub_cookies', 'accepted'); } catch (e) {}
         this.decided = true;
+        // Future: window.dispatchEvent(new CustomEvent('msub:consent', { detail: { allowed: true } }))
       },
       reject() {
         try { localStorage.setItem('msub_cookies', 'rejected'); } catch (e) {}
         this.decided = true;
+        // Future analytics scripts must check window.MSUB.cookieConsent.analyticsAllowed before firing
       }
     };
   }

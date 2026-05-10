@@ -684,3 +684,86 @@ nav.desktop-nav a[aria-current="page"] {
   .cookie-actions { width: 100%; }
   .cookie-actions > * { flex: 1; }
 }
+
+/* IMAGE FALLBACK — Unsplash sometimes fails; cream gradient shows underneath */
+.product-img,
+.product-card .product-img,
+.cart-item-img,
+.cart-modal-product img,
+.related-img,
+.search-result-item img,
+.producer-img,
+.thumb {
+  background: linear-gradient(135deg, var(--cream) 0%, var(--wheat) 100%);
+}
+img[onerror] { /* placeholder for future onerror handlers */ }
+
+/* MOBILE UX FINAL POLISH (Sprint 8 / Phase 2.3) */
+
+/* iOS auto-zoom prevention — input/select/textarea must be ≥16px font-size on mobile */
+@media (max-width: 768px) {
+  input, select, textarea, button {
+    font-size: 16px;
+  }
+}
+
+/* Minimum touch target 44x44px on mobile — accessibility WCAG 2.1 */
+@media (max-width: 768px) {
+  .icon-btn,
+  .qty-stepper button,
+  .cart-item-remove,
+  .filter-tag,
+  .btn-cookie {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  .filter-chip button {
+    min-height: 28px;
+    min-width: 28px;
+  }
+}
+
+/* Mobile: ensure cart modal full-width on small screens */
+@media (max-width: 480px) {
+  .cart-modal {
+    padding: 24px 18px;
+  }
+  .cart-modal-actions {
+    flex-direction: column;
+  }
+  .cart-modal-actions > * {
+    width: 100%;
+  }
+}
+
+/* ACCESSIBILITY — focus-visible + skip-link */
+
+/* Visible keyboard focus indicator (consistent across components) */
+*:focus { outline: none; }
+*:focus-visible {
+  outline: 2px solid var(--green-deep);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.btn:focus-visible,
+.icon-btn:focus-visible {
+  outline-offset: 3px;
+}
+
+/* Skip-to-content link — hidden until keyboard focus */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 8px;
+  background: var(--green-deep);
+  color: var(--cream);
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 500;
+  transition: top 200ms ease;
+}
+.skip-link:focus {
+  top: 8px;
+}
