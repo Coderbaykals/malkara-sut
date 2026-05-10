@@ -54,443 +54,216 @@
   </div>
 </div>
 
-<main class="checkout-page">
+<main class="cart-page" x-data="cartPage()" x-init="init()" @msub:cart:updated.window="refresh()">
 
-  <!-- LEFT -->
-  <div>
-
-    <!-- CART REVIEW -->
-    <section class="form-section">
-      <div class="cart-header">
-        <h1>Siparişinizi gözden geçirin</h1>
-        <span>3 ürün</span>
-      </div>
-
-      <div class="cart-item">
-        <div class="item-img">
-          <span class="qty-badge">2</span>
-          <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?w=200&q=80" alt="">
-        </div>
-        <div class="item-info">
-          <div class="item-name">A2 Tam Yağlı Pastörize Süt, 1L</div>
-          <div class="item-meta">Evrenbey · İsmail Yıldız</div>
-          <span class="item-tag sub">↻ Haftalık abonelik · %10 indirim</span>
-        </div>
-        <div class="item-controls">
-          <div class="qty-stepper">
-            <button>−</button>
-            <input type="number" value="2" min="1">
-            <button>+</button>
-          </div>
-          <span class="item-price">160 ₺</span>
-          <button class="item-remove" aria-label="Sil">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6l-2 14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L5 6"/></svg>
-          </button>
-        </div>
-      </div>
-
-      <div class="cart-item">
-        <div class="item-img">
-          <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=200&q=80" alt="">
-        </div>
-        <div class="item-info">
-          <div class="item-name">Geleneksel Süzme Yoğurt, 750g</div>
-          <div class="item-meta">Karaidemir · Ayşe Kaplan</div>
-          <span class="item-tag">Tek seferlik</span>
-        </div>
-        <div class="item-controls">
-          <div class="qty-stepper">
-            <button>−</button>
-            <input type="number" value="1" min="1">
-            <button>+</button>
-          </div>
-          <span class="item-price">125 ₺</span>
-          <button class="item-remove">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6l-2 14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L5 6"/></svg>
-          </button>
-        </div>
-      </div>
-
-      <div class="cart-item">
-        <div class="item-img">
-          <img src="https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=200&q=80" alt="">
-        </div>
-        <div class="item-info">
-          <div class="item-name">Köy Tereyağı, Tuzsuz, 250g</div>
-          <div class="item-meta">Sağlamtaş · Mehmet Demir</div>
-          <span class="item-tag">Tek seferlik</span>
-        </div>
-        <div class="item-controls">
-          <div class="qty-stepper">
-            <button>−</button>
-            <input type="number" value="1" min="1">
-            <button>+</button>
-          </div>
-          <span class="item-price">165 ₺</span>
-          <button class="item-remove">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6l-2 14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L5 6"/></svg>
-          </button>
-        </div>
-      </div>
+  <!-- EMPTY STATE -->
+  <template x-if="items.length === 0">
+    <section class="cart-empty">
+      <h1>Sepetiniz boş</h1>
+      <p>Henüz hiç ürün eklemediniz. Trakya'nın taze sütlerini keşfetmeye başlayın.</p>
+      <a href="kategori.html" class="btn btn-primary">Ürünlere Göz At</a>
     </section>
+  </template>
 
-    <!-- GUEST/LOGIN -->
-    <div class="guest-row">
-      <span>Üye misiniz? Daha hızlı ödeme için</span>
-      <a href="#">Giriş Yap →</a>
-    </div>
+  <!-- FILLED CART -->
+  <template x-if="items.length > 0">
+    <div class="cart-grid">
 
-    <!-- EXPRESS PAY -->
-    <div class="express-pay">
-      <button class="express-btn">
-         Pay
-      </button>
-      <button class="express-btn">
-        G Pay
-      </button>
-    </div>
-    <div class="express-divider">veya manuel olarak doldurun</div>
+      <!-- LEFT: items list -->
+      <section class="cart-items">
+        <div class="cart-header">
+          <h1>Sepetim</h1>
+          <span x-text="`${items.length} farklı ürün, toplam ${count} adet`"></span>
+        </div>
 
-    <!-- CONTACT -->
-    <section class="form-section">
-      <div class="section-title">
-        <div class="section-num">1</div>
-        <h2>İletişim Bilgileri</h2>
-      </div>
-      <div class="form-row">
-        <div class="form-field">
-          <label>E-posta</label>
-          <input type="email" placeholder="ornek@email.com">
-          <div class="form-help"><span>Sipariş ve fatura buraya gönderilir</span></div>
-        </div>
-        <div class="form-field">
-          <label>Telefon</label>
-          <input type="tel" placeholder="+90 5__ ___ __ __">
-          <div class="form-help"><span>WhatsApp ile teslimat bildirimi</span></div>
-        </div>
-      </div>
-      <label class="checkbox-row">
-        <input type="checkbox" checked>
-        <span>Yeni ürünler ve kampanyalardan e-posta ile haberdar olmak istiyorum.</span>
-      </label>
-      <label class="checkbox-row">
-        <input type="checkbox" checked>
-        <span>Ticari elektronik ileti onayı (İYS uyumlu) — bilgilendirme için onay veriyorum.</span>
-      </label>
-    </section>
-
-    <!-- ADDRESS -->
-    <section class="form-section">
-      <div class="section-title">
-        <div class="section-num">2</div>
-        <h2>Teslimat Adresi</h2>
-      </div>
-      <div class="form-row">
-        <div class="form-field">
-          <label>Ad</label>
-          <input type="text" placeholder="Zeynep">
-        </div>
-        <div class="form-field">
-          <label>Soyad</label>
-          <input type="text" placeholder="Kara">
-        </div>
-      </div>
-      <div class="form-row single">
-        <div class="form-field">
-          <label>Adres</label>
-          <input type="text" placeholder="Mahalle, sokak, bina, daire">
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-field">
-          <label>İl</label>
-          <select>
-            <option>İstanbul</option>
-            <option>Ankara</option>
-            <option>İzmir</option>
-            <option>Tekirdağ</option>
-          </select>
-        </div>
-        <div class="form-field">
-          <label>İlçe</label>
-          <select>
-            <option>Beşiktaş</option>
-            <option>Kadıköy</option>
-            <option>Şişli</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-field">
-          <label>Posta Kodu</label>
-          <input type="text" placeholder="34000">
-        </div>
-        <div class="form-field">
-          <label>T.C. Kimlik No (e-fatura için)</label>
-          <input type="text" placeholder="11 hane">
-        </div>
-      </div>
-      <label class="checkbox-row">
-        <input type="checkbox">
-        <span>Kurumsal fatura istiyorum (vergi numarası gireceğim)</span>
-      </label>
-    </section>
-
-    <!-- DELIVERY METHOD -->
-    <section class="form-section">
-      <div class="section-title">
-        <div class="section-num">3</div>
-        <h2>Teslimat Yöntemi</h2>
-      </div>
-      <div class="delivery-options">
-        <label class="delivery-opt selected">
-          <input type="radio" name="ship" checked>
-          <div class="delivery-opt-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-          </div>
-          <div class="delivery-opt-info">
-            <div class="delivery-opt-row">
-              <div class="delivery-opt-title">
-                Soğuk Zincir Standart
-                <span class="item-tag" style="background: var(--cream); color: var(--green-deep);">+4°C</span>
+        <template x-for="item in items" :key="item.id">
+          <article class="cart-item">
+            <div class="cart-item-img">
+              <img :src="item.image" :alt="item.name" loading="lazy">
+            </div>
+            <div class="cart-item-info">
+              <h3 x-text="item.name"></h3>
+              <small x-text="(item.unit ? item.unit + ' · ' : '') + (item.producerVillage ? item.producerVillage + ' köyü' : '')"></small>
+              <div class="cart-item-actions">
+                <div class="qty-stepper">
+                  <button @click="decrementQty(item.id)" aria-label="Adet azalt">−</button>
+                  <span x-text="item.qty"></span>
+                  <button @click="incrementQty(item.id)" aria-label="Adet artır">+</button>
+                </div>
+                <button @click="remove(item.id)" class="cart-item-remove" aria-label="Ürünü kaldır">Kaldır</button>
               </div>
-              <div class="delivery-opt-price free">Ücretsiz</div>
             </div>
-            <div class="delivery-opt-desc">İstanbul içi 24 saat · Marmara 24-36 saat · Termal ambalaj dahil</div>
-          </div>
-        </label>
-
-        <label class="delivery-opt">
-          <input type="radio" name="ship">
-          <div class="delivery-opt-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-          </div>
-          <div class="delivery-opt-info">
-            <div class="delivery-opt-row">
-              <div class="delivery-opt-title">Express Soğuk Zincir</div>
-              <div class="delivery-opt-price">+45 ₺</div>
+            <div class="cart-item-price">
+              <strong x-text="(item.price * item.qty) + ' ₺'"></strong>
+              <small x-text="item.price + ' ₺ × ' + item.qty"></small>
             </div>
-            <div class="delivery-opt-desc">Aynı gün İstanbul içi · Sabah siparişi öğleden sonra teslim</div>
-          </div>
-        </label>
+          </article>
+        </template>
+      </section>
 
-        <label class="delivery-opt">
-          <input type="radio" name="ship">
-          <div class="delivery-opt-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z"/></svg>
-          </div>
-          <div class="delivery-opt-info">
-            <div class="delivery-opt-row">
-              <div class="delivery-opt-title">Mağazadan Teslim Al · Malkara</div>
-              <div class="delivery-opt-price free">Ücretsiz</div>
+      <!-- RIGHT: summary + customer info + WhatsApp CTA -->
+      <aside class="cart-summary">
+        <h2>Sipariş Özeti</h2>
+
+        <div class="summary-row">
+          <span>Ara Toplam</span>
+          <span x-text="subtotal + ' ₺'"></span>
+        </div>
+
+        <div class="summary-row">
+          <span>Kargo</span>
+          <span x-text="shipping === 0 ? 'Ücretsiz' : (shipping + ' ₺')" :class="shipping === 0 ? 'free' : ''"></span>
+        </div>
+
+        <template x-if="shipping > 0">
+          <div class="free-shipping-progress">
+            <p><strong x-text="freeShippingRemaining + ' ₺'"></strong> daha alışveriş yap, kargo bedava!</p>
+            <div class="progress-bar">
+              <div class="progress-fill" :style="`width: ${Math.min(100, (subtotal / freeThreshold) * 100)}%`"></div>
             </div>
-            <div class="delivery-opt-desc">Tekirdağ Malkara merkezimizden, ertesi gün hazır</div>
           </div>
-        </label>
-      </div>
+        </template>
 
-      <div style="margin-top: 22px;">
-        <label style="display: block; font-size: 12px; font-weight: 600; color: var(--green-deep); margin-bottom: 6px; letter-spacing: 0.02em;">Teslimat Günü</label>
-        <div style="font-size: 12px; color: var(--warm-grey); margin-bottom: 6px;">Soğuk zincir nedeniyle perşembe-cumartesi günleri teslimat yapıyoruz</div>
-        <div class="date-picker">
-          <div class="date-cell unavailable"><div class="day">Pzt</div><div class="num">11</div></div>
-          <div class="date-cell unavailable"><div class="day">Sal</div><div class="num">12</div></div>
-          <div class="date-cell unavailable"><div class="day">Çar</div><div class="num">13</div></div>
-          <div class="date-cell"><div class="day">Per</div><div class="num">14</div></div>
-          <div class="date-cell selected"><div class="day">Cum</div><div class="num">15</div></div>
-          <div class="date-cell"><div class="day">Cmt</div><div class="num">16</div></div>
-          <div class="date-cell unavailable"><div class="day">Paz</div><div class="num">17</div></div>
+        <div class="summary-row total">
+          <strong>Toplam</strong>
+          <strong x-text="total + ' ₺'"></strong>
         </div>
 
-        <label style="display: block; font-size: 12px; font-weight: 600; color: var(--green-deep); margin: 18px 0 6px; letter-spacing: 0.02em;">Saat Aralığı</label>
-        <div class="time-slots">
-          <button class="time-slot">09:00 — 12:00</button>
-          <button class="time-slot selected">12:00 — 15:00</button>
-          <button class="time-slot">15:00 — 18:00</button>
-          <button class="time-slot">18:00 — 21:00</button>
+        <div class="customer-info">
+          <h3>Teslimat Bilgileri</h3>
+          <label>
+            <span>Ad Soyad</span>
+            <input type="text" x-model="customer.name" placeholder="örn. Zeynep Kara" required>
+          </label>
+          <label>
+            <span>Telefon</span>
+            <input type="tel" x-model="customer.phone" placeholder="5XX XXX XX XX" required>
+          </label>
+          <label>
+            <span>Adres</span>
+            <textarea x-model="customer.address" placeholder="Mahalle, sokak, bina no, daire" rows="3" required></textarea>
+          </label>
+          <label>
+            <span>İlçe / Şehir</span>
+            <input type="text" x-model="customer.city" placeholder="örn. Kadıköy / İstanbul" required>
+          </label>
+          <label>
+            <span>Teslimat Tercih Günü</span>
+            <select x-model="customer.deliveryDay">
+              <option value="">Fark etmez</option>
+              <template x-for="day in deliveryDays" :key="day">
+                <option :value="day" x-text="day"></option>
+              </template>
+            </select>
+          </label>
+          <label>
+            <span>Sipariş Notu (opsiyonel)</span>
+            <textarea x-model="customer.note" placeholder="Özel istek, not vs." rows="2"></textarea>
+          </label>
         </div>
-      </div>
 
-      <div class="form-row single" style="margin-top: 18px;">
-        <div class="form-field">
-          <label>Teslimat Notu (opsiyonel)</label>
-          <textarea rows="2" placeholder="Apartman güvenliğine bırakabilir, kapıda 'sessiz' modu vb."></textarea>
-        </div>
-      </div>
-    </section>
-
-    <!-- PAYMENT -->
-    <section class="form-section">
-      <div class="section-title">
-        <div class="section-num">4</div>
-        <h2>Ödeme Yöntemi</h2>
-      </div>
-      <div class="payment-tabs">
-        <button class="payment-tab active">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
-          Kredi/Banka Kartı
+        <button
+          @click="sendWhatsAppOrder()"
+          class="btn btn-whatsapp"
+          :disabled="!isFormValid()"
+          :aria-disabled="!isFormValid()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4a7.94 7.94 0 0 0-6.88 11.9L4 20l4.2-1.1a7.94 7.94 0 0 0 3.85.98h.01a7.94 7.94 0 0 0 7.94-7.92 7.88 7.88 0 0 0-2.4-5.64zm-5.55 12.2h-.01a6.59 6.59 0 0 1-3.36-.92l-.24-.14-2.5.65.67-2.43-.16-.25a6.6 6.6 0 1 1 12.24-3.5 6.6 6.6 0 0 1-6.64 6.59zm3.62-4.94c-.2-.1-1.18-.58-1.36-.65-.18-.07-.32-.1-.45.1-.13.2-.51.65-.63.78-.12.13-.23.15-.43.05-.2-.1-.84-.31-1.6-.99a6 6 0 0 1-1.1-1.37c-.12-.2-.01-.31.09-.41.09-.09.2-.23.3-.35.1-.12.13-.2.2-.33.06-.13.03-.25-.02-.35-.05-.1-.45-1.08-.61-1.48-.16-.39-.33-.34-.45-.34h-.39a.74.74 0 0 0-.54.25c-.18.2-.7.69-.7 1.68 0 .99.72 1.94.82 2.08.1.13 1.42 2.16 3.43 3.03.48.21.86.33 1.15.43.48.15.92.13 1.27.08.39-.06 1.18-.48 1.34-.95.17-.46.17-.86.12-.95-.05-.08-.18-.13-.38-.23z"/></svg>
+          WhatsApp ile Sipariş Ver
         </button>
-        <button class="payment-tab">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3z"/><path d="M7 7h.01M17 7h.01M7 17h.01M17 17h.01"/></svg>
-          Havale/EFT
-        </button>
-        <button class="payment-tab">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-          BKM Express
-        </button>
-      </div>
 
-      <div class="card-form">
-        <div class="card-icons">
-          <div class="card-icon">VISA</div>
-          <div class="card-icon">MC</div>
-          <div class="card-icon">TROY</div>
-          <div class="card-icon">AMEX</div>
-        </div>
-        <div class="form-row single">
-          <div class="form-field">
-            <label>Kart Üzerindeki İsim</label>
-            <input type="text" placeholder="Zeynep Kara">
-          </div>
-        </div>
-        <div class="form-row single">
-          <div class="form-field">
-            <label>Kart Numarası</label>
-            <input type="text" placeholder="•••• •••• •••• ••••">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-field">
-            <label>Son Kullanma</label>
-            <input type="text" placeholder="AA / YY">
-          </div>
-          <div class="form-field">
-            <label>CVV</label>
-            <input type="text" placeholder="3 hane">
-          </div>
-        </div>
-        <label class="checkbox-row">
-          <input type="checkbox">
-          <span>Kartımı sonraki siparişler için güvenli olarak kaydet (Iyzico tokenizasyonu)</span>
-        </label>
+        <p class="cart-note">
+          Siparişiniz WhatsApp üzerinden alınır. Onay sonrası kargoya verilir. Sipariş onay mesajını WhatsApp'tan takip edebilirsiniz.
+        </p>
+      </aside>
 
-        <label style="display: block; font-size: 12px; font-weight: 600; color: var(--green-deep); margin: 12px 0 8px; letter-spacing: 0.02em;">Taksit Seçenekleri</label>
-        <div class="installments">
-          <div class="installment selected">
-            <strong>Tek Çekim</strong>
-            <span>434 ₺</span>
-          </div>
-          <div class="installment">
-            <strong>3 Taksit</strong>
-            <span>3 × 145 ₺</span>
-          </div>
-          <div class="installment">
-            <strong>6 Taksit</strong>
-            <span>6 × 75 ₺</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- AGREEMENTS -->
-    <section class="form-section">
-      <div class="section-title">
-        <div class="section-num">5</div>
-        <h2>Sözleşme Onayları</h2>
-      </div>
-      <label class="checkbox-row">
-        <input type="checkbox">
-        <span><a href="#" style="color: var(--green-deep); text-decoration: underline;">Mesafeli Satış Sözleşmesi</a>'ni okudum ve onaylıyorum.</span>
-      </label>
-      <label class="checkbox-row">
-        <input type="checkbox">
-        <span><a href="#" style="color: var(--green-deep); text-decoration: underline;">Ön Bilgilendirme Formu</a>'nu okudum ve onaylıyorum.</span>
-      </label>
-      <label class="checkbox-row">
-        <input type="checkbox">
-        <span><a href="#" style="color: var(--green-deep); text-decoration: underline;">KVKK Aydınlatma Metni</a>'ni okudum.</span>
-      </label>
-    </section>
-
-  </div>
-
-  <!-- RIGHT: SUMMARY -->
-  <aside class="summary-wrap">
-    <div class="summary">
-      <h3>Sipariş Özeti</h3>
-
-      <div class="summary-row">
-        <span>Ara toplam (3 ürün)</span>
-        <strong>450 ₺</strong>
-      </div>
-      <div class="summary-row discount">
-        <span>↻ Abonelik indirimi (%10)</span>
-        <strong>-16 ₺</strong>
-      </div>
-      <div class="summary-row">
-        <span>Soğuk zincir kargo</span>
-        <strong style="color: var(--success);">Ücretsiz</strong>
-      </div>
-      <div class="summary-row">
-        <span>KDV (dahil)</span>
-        <strong style="opacity: 0.7;">39 ₺</strong>
-      </div>
-
-      <div class="free-shipping">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
-        <span><strong style="color: var(--wheat);">Tebrikler!</strong> 350 ₺ üzeri ücretsiz kargo kazandınız</span>
-      </div>
-
-      <div class="promo-code">
-        <input type="text" placeholder="İndirim kodunuz var mı?">
-        <button>Uygula</button>
-      </div>
-
-      <div class="summary-row total">
-        <span>Toplam</span>
-        <span class="total-amount">434 ₺</span>
-      </div>
-
-      <button class="place-order">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        Siparişi Tamamla
-      </button>
-      <p class="order-disclaimer">
-        "Siparişi Tamamla" butonuna tıklayarak <a href="#">Mesafeli Satış Sözleşmesi</a>, <a href="#">Ön Bilgilendirme Formu</a> ve <a href="#">KVKK</a>'yı kabul etmiş sayılırsınız.
-      </p>
     </div>
+  </template>
 
-    <div class="trust-grid">
-      <div class="trust-cell">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>
-        <div>
-          <strong>Güvenli ödeme</strong>
-          <span style="font-size: 11px; color: var(--warm-grey);">256-bit SSL</span>
-        </div>
-      </div>
-      <div class="trust-cell">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>
-        <div>
-          <strong>Soğuk zincir</strong>
-          <span style="font-size: 11px; color: var(--warm-grey);">Kapıda 4°C</span>
-        </div>
-      </div>
-      <div class="trust-cell">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-        <div>
-          <strong>Memnuniyet</strong>
-          <span style="font-size: 11px; color: var(--warm-grey);">14 gün iade</span>
-        </div>
-      </div>
-      <div class="trust-cell">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        <div>
-          <strong>WhatsApp destek</strong>
-          <span style="font-size: 11px; color: var(--warm-grey);">7/24 müsait</span>
-        </div>
-      </div>
-    </div>
-  </aside>
+  <script>
+    function cartPage() {
+      return {
+        items: [],
+        count: 0,
+        subtotal: 0,
+        shipping: 0,
+        total: 0,
+        freeShippingRemaining: 0,
+        freeThreshold: 350,
+        deliveryDays: [],
+        customer: {
+          name: '', phone: '', address: '', city: '',
+          deliveryDay: '', note: ''
+        },
+
+        async init() {
+          // Restore form draft from sessionStorage if any
+          try {
+            const draft = JSON.parse(sessionStorage.getItem('msub_cart_customer') || '{}');
+            Object.assign(this.customer, draft);
+          } catch (_) {}
+          // Watch customer changes and persist
+          this.$watch('customer', (v) => {
+            try { sessionStorage.setItem('msub_cart_customer', JSON.stringify(v)); } catch (_) {}
+          });
+
+          await window.MSUB.configReady;
+          const cfg = window.MSUB.config;
+          this.freeThreshold = cfg.shipping.freeThreshold;
+          this.deliveryDays = cfg.delivery.deliveryDays;
+          this.refresh();
+        },
+
+        refresh() {
+          const s = window.MSUB.cart.summary();
+          this.items = s.items;
+          this.count = s.count;
+          this.subtotal = s.subtotal;
+          this.shipping = s.shipping;
+          this.total = s.total;
+          this.freeShippingRemaining = Math.max(0, this.freeThreshold - this.subtotal);
+        },
+
+        incrementQty(id) {
+          const item = this.items.find(i => i.id === id);
+          if (item) window.MSUB.cart.updateQty(id, item.qty + 1);
+        },
+
+        decrementQty(id) {
+          const item = this.items.find(i => i.id === id);
+          if (!item) return;
+          if (item.qty <= 1) {
+            if (confirm('Ürünü sepetten kaldır?')) window.MSUB.cart.removeItem(id);
+          } else {
+            window.MSUB.cart.updateQty(id, item.qty - 1);
+          }
+        },
+
+        remove(id) {
+          window.MSUB.cart.removeItem(id);
+        },
+
+        isFormValid() {
+          return this.customer.name.trim().length >= 2
+            && this.customer.phone.trim().length >= 10
+            && this.customer.address.trim().length >= 8
+            && this.customer.city.trim().length >= 2;
+        },
+
+        sendWhatsAppOrder() {
+          if (!this.isFormValid()) return;
+          const url = window.MSUB.whatsapp.generateOrderURL({
+            items: this.items,
+            subtotal: this.subtotal,
+            shipping: this.shipping,
+            total: this.total,
+            customer: this.customer
+          });
+          window.open(url, '_blank', 'noopener');
+        }
+      };
+    }
+  </script>
+
 </main>
 
 <footer>
