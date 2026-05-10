@@ -469,6 +469,62 @@
     };
   }
 </script>
+
+<!-- Cart-added modal -->
+<div x-data="cartAddedModal()"
+     x-show="open"
+     x-cloak
+     x-transition.opacity
+     @cart:added.window="show($event.detail.product)"
+     @keydown.escape.window="close()"
+     @click.self="close()"
+     class="cart-modal-overlay"
+     style="display:none">
+  <div class="cart-modal" role="dialog" aria-modal="true" aria-label="Sepete eklendi">
+    <button @click="close()" class="cart-modal-close" type="button" aria-label="Kapat">×</button>
+    <div class="cart-modal-icon">✓</div>
+    <h3>Sepetinize Eklendi</h3>
+    <div class="cart-modal-product" x-show="product">
+      <img :src="product?.image" :alt="product?.name">
+      <div class="cart-modal-product-info">
+        <h4 x-text="product?.name"></h4>
+        <small x-text="product?.producerVillage ? product.producerVillage + ' köyü' : ''"></small>
+        <strong x-text="product?.price + ' ₺'"></strong>
+      </div>
+    </div>
+    <div class="cart-modal-summary">
+      <span>Sepetinizde <strong x-text="cartCount"></strong> ürün</span>
+      <strong x-text="cartTotal + ' ₺'"></strong>
+    </div>
+    <div class="cart-modal-actions">
+      <button class="btn btn-ghost" @click="close()" type="button">Alışverişe Devam</button>
+      <a :href="cartUrl" class="btn btn-primary">Sepete Git →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  function cartAddedModal() {
+    return {
+      open: false,
+      product: null,
+      cartCount: 0,
+      cartTotal: 0,
+      get cartUrl() {
+        return window.location.pathname.includes('/pages/') ? 'sepet.html' : 'sepet.html';
+      },
+      show(product) {
+        this.product = product;
+        if (window.MSUB && window.MSUB.cart) {
+          this.cartCount = window.MSUB.cart.getCount();
+          this.cartTotal = window.MSUB.cart.getTotal();
+        }
+        this.open = true;
+      },
+      close() { this.open = false; }
+    };
+  }
+</script>
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </body>
 </html>
