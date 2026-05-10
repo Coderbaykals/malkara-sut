@@ -297,3 +297,28 @@ nav.desktop-nav a[aria-current="page"] {
   color: var(--cream) !important;
   cursor: default;
 }
+
+/* SOCIAL "COMING SOON" badges */
+.social-icon.coming-soon {
+  position: relative;
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.social-icon.coming-soon::after {
+  content: 'Yakında';
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: var(--wheat-dark);
+  color: white;
+  font-size: 9px;
+  padding: 2px 5px;
+  border-radius: 8px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.social-icon.coming-soon:hover {
+  opacity: 0.55;
+}
