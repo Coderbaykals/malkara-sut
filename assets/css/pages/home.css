@@ -217,7 +217,7 @@ footer { padding: 80px 32px 30px; }
   align-items: stretch;
 }
 .story-image {
-  background: url('https://images.unsplash.com/photo-1605196560547-b2f7281b8355?w=1200&q=80') center/cover;
+  background: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200&q=80') center/cover;
   min-height: 600px;
   position: relative;
 }
