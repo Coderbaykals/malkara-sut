@@ -32,8 +32,8 @@
 <link rel="stylesheet" href="../assets/css/components.css">
 <link rel="stylesheet" href="../assets/css/pages/order-confirmation.css">
 </head>
-<body x-data="{ mobileOpen: false, cartCount: 0 }" :class="{ 'no-scroll': mobileOpen }" @msub:cart-updated.window="cartCount = $event.detail.count; if ($refs.cartBadge) { $refs.cartBadge.classList.add('pop'); setTimeout(() =>
-<a href="#main-content" class="skip-link">İçeriğe geç</a> $refs.cartBadge.classList.remove('pop'), 320); }">
+<body x-data="{ mobileOpen: false, cartCount: 0 }" :class="{ 'no-scroll': mobileOpen }" @msub:cart-updated.window="cartCount = $event.detail.count; if ($refs.cartBadge) { $refs.cartBadge.classList.add('pop'); setTimeout(() => $refs.cartBadge.classList.remove('pop'), 320); }">
+<a href="#main-content" class="skip-link">İçeriğe geç</a>
 
 <header>
   <div class="nav-wrap">
