@@ -103,25 +103,25 @@
 <div class="map-controls">
   <div class="controls-wrap">
     <div class="layer-pills">
-      <button class="layer-pill active koy">
+      <button class="layer-pill active koy" type="button" @click="window.MSUB.harita.toggleLayer($el)">
         <span class="dot"></span>
         Köyler (57)
       </button>
-      <button class="layer-pill active merkez">
+      <button class="layer-pill active merkez" type="button" @click="window.MSUB.harita.toggleLayer($el)">
         <span class="dot"></span>
         Soğutma Merkezleri (92)
       </button>
-      <button class="layer-pill dagitim">
+      <button class="layer-pill dagitim" type="button" @click="window.MSUB.harita.toggleLayer($el)">
         <span class="dot"></span>
         Dağıtım Hatları
       </button>
-      <button class="layer-pill">
+      <button class="layer-pill" type="button" @click="window.MSUB.harita.toggleLayer($el)">
         Kadın Kooperatifi
       </button>
-      <button class="layer-pill">
+      <button class="layer-pill" type="button" @click="window.MSUB.harita.toggleLayer($el)">
         Manda Üretimi
       </button>
-      <button class="layer-pill">
+      <button class="layer-pill" type="button" @click="window.MSUB.harita.toggleLayer($el)">
         Organik
       </button>
     </div>
@@ -388,13 +388,13 @@
 
     <!-- ZOOM CONTROLS -->
     <div class="map-zoom">
-      <button>
+      <button type="button" aria-label="Yakınlaştır" @click="window.MSUB.harita.zoom(0.15)">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
       </button>
-      <button>
+      <button type="button" aria-label="Uzaklaştır" @click="window.MSUB.harita.zoom(-0.15)">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/></svg>
       </button>
-      <button>
+      <button type="button" aria-label="Sıfırla" @click="window.MSUB.harita.reset()">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
       </button>
     </div>
@@ -664,6 +664,35 @@
 <script src="../assets/js/social.js" defer></script>
 <script src="../assets/js/data-loader.js" defer></script>
 <script src="../assets/js/analytics.js" defer></script>
+
+<script>
+  // Harita page interactions (page-local)
+  window.MSUB = window.MSUB || {};
+  window.MSUB.harita = {
+    _scale: 1,
+
+    toggleLayer(btn) {
+      if (!btn) return;
+      btn.classList.toggle('active');
+    },
+
+    zoom(delta) {
+      const svg = document.querySelector('.map-canvas svg');
+      if (!svg) return;
+      this._scale = Math.max(0.5, Math.min(3, this._scale + delta));
+      svg.style.transform = 'scale(' + this._scale + ')';
+      svg.style.transformOrigin = 'center center';
+      svg.style.transition = 'transform 0.2s ease';
+    },
+
+    reset() {
+      const svg = document.querySelector('.map-canvas svg');
+      if (!svg) return;
+      this._scale = 1;
+      svg.style.transform = '';
+    }
+  };
+</script>
 
 <!-- Search modal (Alpine-controlled) -->
 <div x-data="{

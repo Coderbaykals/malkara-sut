@@ -621,3 +621,16 @@ footer { padding: 80px 32px 30px; }
 /* Map dots animation */
 .village-dot { transition: all 0.3s; cursor: pointer; }
 .village-dot:hover { r: 6; fill: var(--wheat-dark); }
+
+/* Newsletter inline success message (replaces alert) */
+.news-success {
+  margin-top: 16px;
+  padding: 14px 18px;
+  background: rgba(247,241,227,0.15);
+  border: 1px solid rgba(247,241,227,0.4);
+  border-radius: 12px;
+  color: var(--cream);
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-block;
+}

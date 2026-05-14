@@ -581,10 +581,13 @@
   <div class="news-wrap">
     <h2>İlk haberi siz alın.</h2>
     <p>Yeni ürünler, mevsimsel kahvaltı setleri ve abonelere özel kampanyalar — ayda iki e-posta, hepsi bu.</p>
-    <form class="news-form" onsubmit="event.preventDefault(); alert('Teşekkürler! E-posta listemize eklendiniz.');">
-      <input type="email" placeholder="ornek@email.com" required>
+    <form class="news-form" onsubmit="return window.MSUB.newsletter.submit(event, this)">
+      <input type="email" name="email" placeholder="ornek@email.com" required>
       <button type="submit">Abone Ol</button>
     </form>
+    <div class="news-success" hidden role="status" aria-live="polite">
+      ✓ Teşekkürler! E-posta listemize eklendiniz.
+    </div>
     <small>KVKK kapsamında verileriniz korunur. İstediğiniz an çıkabilirsiniz.</small>
   </div>
 </div>
@@ -710,6 +713,24 @@
 <script src="assets/js/social.js" defer></script>
 <script src="assets/js/data-loader.js" defer></script>
 <script src="assets/js/analytics.js" defer></script>
+
+<script>
+  // Newsletter form (inline success message instead of alert)
+  window.MSUB = window.MSUB || {};
+  window.MSUB.newsletter = window.MSUB.newsletter || {
+    submit(event, form) {
+      event.preventDefault();
+      const success = form.parentElement.querySelector('.news-success');
+      const input = form.querySelector('input[type="email"]');
+      if (success) {
+        form.style.display = 'none';
+        success.hidden = false;
+      }
+      if (input) input.value = '';
+      return false;
+    }
+  };
+</script>
 
 <!-- Search modal (Alpine-controlled) -->
 <div x-data="{
