@@ -641,3 +641,28 @@ button { font-family: inherit; cursor: pointer; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
     .footer-brand { grid-column: 1/3; }
   }
+
+/* Empty state for filtered/searched results */
+.blog-empty {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 28px 24px;
+  background: var(--milk);
+  border: 1px dashed var(--line);
+  border-radius: 16px;
+  text-align: center;
+  color: var(--warm-grey);
+  font-size: 15px;
+}
+
+/* Newsletter inline success message (replaces alert) */
+.news-success {
+  margin-top: 12px;
+  padding: 14px 18px;
+  background: rgba(31,58,46,0.08);
+  border: 1px solid var(--green-mid);
+  border-radius: 12px;
+  color: var(--green-deep);
+  font-weight: 600;
+  font-size: 14px;
+}

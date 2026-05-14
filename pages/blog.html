@@ -85,16 +85,16 @@
 <div class="category-bar">
   <div class="category-wrap">
     <div class="category-pills">
-      <button class="pill active">Tümü <span class="count">48</span></button>
-      <button class="pill">🍴 Tarifler <span class="count">22</span></button>
-      <button class="pill">🌾 Köyden Hikâye <span class="count">12</span></button>
-      <button class="pill">🔬 Bilim & Beslenme <span class="count">8</span></button>
-      <button class="pill">📰 Birlik Haberleri <span class="count">6</span></button>
-      <button class="pill">☕ Barista Köşesi <span class="count">4</span></button>
+      <button class="pill active" type="button" data-topic="all" onclick="window.MSUB.blog.setTopic(this)">Tümü <span class="count" data-count="all"></span></button>
+      <button class="pill" type="button" data-topic="recipe" onclick="window.MSUB.blog.setTopic(this)">🍴 Tarifler <span class="count" data-count="recipe"></span></button>
+      <button class="pill" type="button" data-topic="story" onclick="window.MSUB.blog.setTopic(this)">🌾 Köyden Hikâye <span class="count" data-count="story"></span></button>
+      <button class="pill" type="button" data-topic="science" onclick="window.MSUB.blog.setTopic(this)">🔬 Bilim & Beslenme <span class="count" data-count="science"></span></button>
+      <button class="pill" type="button" data-topic="news" onclick="window.MSUB.blog.setTopic(this)">📰 Birlik Haberleri <span class="count" data-count="news"></span></button>
+      <button class="pill" type="button" data-topic="barista" onclick="window.MSUB.blog.setTopic(this)">☕ Barista Köşesi <span class="count" data-count="barista"></span></button>
     </div>
     <div class="search-wrap">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-      <input type="text" placeholder="Yazı veya tarif ara...">
+      <input type="text" placeholder="Yazı veya tarif ara..." oninput="window.MSUB.blog.setQuery(this.value)">
     </div>
   </div>
 </div>
@@ -150,7 +150,7 @@
 
     <div class="articles-grid">
 
-      <article class="article-card">
+      <article class="article-card" data-topic="recipe">
         <div class="article-img">
           <span class="article-tag recipe">🍴 Tarif</span>
           <div class="recipe-info">
@@ -175,7 +175,7 @@
         </div>
       </article>
 
-      <article class="article-card">
+      <article class="article-card" data-topic="science">
         <div class="article-img">
           <span class="article-tag science">🔬 Bilim</span>
           <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1550583724-b2692b85b150?w=800&q=85" alt="">
@@ -196,7 +196,7 @@
         </div>
       </article>
 
-      <article class="article-card">
+      <article class="article-card" data-topic="story">
         <div class="article-img">
           <span class="article-tag story">🌾 Hikâye</span>
           <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1605733513597-a8f8341084e6?w=800&q=85" alt="">
@@ -217,7 +217,7 @@
         </div>
       </article>
 
-      <article class="article-card">
+      <article class="article-card" data-topic="recipe">
         <div class="article-img">
           <span class="article-tag recipe">🍴 Tarif</span>
           <div class="recipe-info">
@@ -242,7 +242,7 @@
         </div>
       </article>
 
-      <article class="article-card">
+      <article class="article-card" data-topic="barista">
         <div class="article-img">
           <span class="article-tag" style="background: var(--charcoal); color: var(--cream);">☕ Barista</span>
           <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=800&q=85" alt="">
@@ -263,7 +263,7 @@
         </div>
       </article>
 
-      <article class="article-card">
+      <article class="article-card" data-topic="recipe">
         <div class="article-img">
           <span class="article-tag recipe">🍴 Tarif</span>
           <div class="recipe-info">
@@ -288,7 +288,7 @@
         </div>
       </article>
 
-      <article class="article-card">
+      <article class="article-card" data-topic="story">
         <div class="article-img">
           <span class="article-tag story">🌾 Hikâye</span>
           <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?w=800&q=85" alt="">
@@ -309,7 +309,7 @@
         </div>
       </article>
 
-      <article class="article-card">
+      <article class="article-card" data-topic="science">
         <div class="article-img">
           <span class="article-tag science">🔬 Bilim</span>
           <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1494390248081-4e521a5940db?w=800&q=85" alt="">
@@ -330,7 +330,7 @@
         </div>
       </article>
 
-      <article class="article-card">
+      <article class="article-card" data-topic="recipe">
         <div class="article-img">
           <span class="article-tag recipe">🍴 Tarif</span>
           <div class="recipe-info">
@@ -357,18 +357,8 @@
 
     </div>
 
-    <div class="pagination">
-      <button class="page-btn" disabled>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-      </button>
-      <button class="page-btn active">1</button>
-      <button class="page-btn">2</button>
-      <button class="page-btn">3</button>
-      <button class="page-btn">4</button>
-      <button class="page-btn">5</button>
-      <button class="page-btn">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-      </button>
+    <div class="blog-empty" id="blog-empty" hidden>
+      <p>Bu kategoride henüz yazı yok — yakında yeni içerikler eklenecek.</p>
     </div>
 
   </div>
@@ -444,10 +434,13 @@
     <div class="section-eyebrow">Mutfak Bülteni</div>
     <h2>Her hafta <em>iki tarif</em>, bir hikâye.</h2>
     <p>Yeni tarifler, üretici hikâyeleri ve süt bilimine dair makaleler — her cumartesi sabahı kahvenizle birlikte. Spam yok, indirim yok, sadece içerik.</p>
-    <form class="news-form" onsubmit="event.preventDefault(); alert('Teşekkürler! Aboneliğiniz onaylandı.');">
-      <input type="email" placeholder="ornek@email.com" required>
+    <form class="news-form" onsubmit="return window.MSUB.newsletter.submit(event, this)">
+      <input type="email" name="email" placeholder="ornek@email.com" required>
       <button type="submit">Abone Ol</button>
     </form>
+    <div class="news-success" hidden role="status" aria-live="polite">
+      ✓ Teşekkürler! Aboneliğiniz onaylandı.
+    </div>
     <p class="news-disclaimer">İstediğiniz zaman abonelikten çıkabilirsiniz. KVKK uyumlu.</p>
   </div>
 </section>
@@ -563,6 +556,83 @@
 <script src="../assets/js/social.js" defer></script>
 <script src="../assets/js/data-loader.js" defer></script>
 <script src="../assets/js/analytics.js" defer></script>
+
+<script>
+  // Blog filter + search (page-local)
+  window.MSUB = window.MSUB || {};
+  window.MSUB.blog = {
+    topic: 'all',
+    query: '',
+
+    init() {
+      this.computeCounts();
+      this.apply();
+    },
+
+    computeCounts() {
+      const all = document.querySelectorAll('.article-card[data-topic]');
+      const counts = { all: all.length };
+      all.forEach(function (c) {
+        const t = c.dataset.topic;
+        counts[t] = (counts[t] || 0) + 1;
+      });
+      document.querySelectorAll('[data-count]').forEach(function (el) {
+        const key = el.dataset.count;
+        el.textContent = counts[key] != null ? counts[key] : 0;
+      });
+    },
+
+    setTopic(btn) {
+      this.topic = btn.dataset.topic;
+      document.querySelectorAll('.pill').forEach(function (p) { p.classList.remove('active'); });
+      btn.classList.add('active');
+      this.apply();
+    },
+
+    setQuery(q) {
+      this.query = (q || '').toLocaleLowerCase('tr');
+      this.apply();
+    },
+
+    apply() {
+      const t = this.topic;
+      const q = this.query;
+      let visible = 0;
+      document.querySelectorAll('.article-card[data-topic]').forEach(function (c) {
+        const topicMatch = (t === 'all') || (c.dataset.topic === t);
+        let queryMatch = true;
+        if (q) {
+          const txt = (c.textContent || '').toLocaleLowerCase('tr');
+          queryMatch = txt.indexOf(q) !== -1;
+        }
+        const show = topicMatch && queryMatch;
+        c.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      const empty = document.getElementById('blog-empty');
+      if (empty) empty.hidden = visible !== 0;
+    }
+  };
+
+  // Newsletter form (shared logic; replaces alert with inline success)
+  window.MSUB.newsletter = window.MSUB.newsletter || {
+    submit(event, form) {
+      event.preventDefault();
+      const success = form.parentElement.querySelector('.news-success');
+      const input = form.querySelector('input[type="email"]');
+      if (success) {
+        form.style.display = 'none';
+        success.hidden = false;
+      }
+      if (input) input.value = '';
+      return false;
+    }
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    window.MSUB.blog.init();
+  });
+</script>
 
 <!-- Search modal (Alpine-controlled) -->
 <div x-data="{
