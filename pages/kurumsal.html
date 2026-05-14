@@ -324,7 +324,7 @@
           <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Standart ürün yelpazesi</li>
           <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> 15 gün vade</li>
         </ul>
-        <button class="btn-cta">Başvuru Yap</button>
+        <a class="btn-cta" href="#form" role="button">Başvuru Yap</a>
       </article>
 
       <article class="price-card featured">
@@ -343,7 +343,7 @@
           <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> 30 gün vade</li>
           <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> WhatsApp B2B hattı</li>
         </ul>
-        <button class="btn-cta">Başvuru Yap</button>
+        <a class="btn-cta" href="#form" role="button">Başvuru Yap</a>
       </article>
 
       <article class="price-card">
@@ -360,7 +360,7 @@
           <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Tam belge dosyası</li>
           <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> 45 gün vade</li>
         </ul>
-        <button class="btn-cta">Görüşme Talep Et</button>
+        <a class="btn-cta" href="#form" role="button">Görüşme Talep Et</a>
       </article>
 
     </div>
@@ -443,27 +443,27 @@
         <div class="form-field">
           <label>İşletme Türü ★</label>
           <div class="biz-type-grid">
-            <div class="biz-type-card selected">
+            <div class="biz-type-card selected" role="button" tabindex="0" @click="window.MSUB.ui.pickOne($el, '.biz-type-card')" @keydown.enter="window.MSUB.ui.pickOne($el, '.biz-type-card')">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/></svg>
               Kafe / Kahveci
             </div>
-            <div class="biz-type-card">
+            <div class="biz-type-card" role="button" tabindex="0" @click="window.MSUB.ui.pickOne($el, '.biz-type-card')" @keydown.enter="window.MSUB.ui.pickOne($el, '.biz-type-card')">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11h18v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-9z"/><path d="M3 7h18v4H3z"/></svg>
               Otel / Restoran
             </div>
-            <div class="biz-type-card">
+            <div class="biz-type-card" role="button" tabindex="0" @click="window.MSUB.ui.pickOne($el, '.biz-type-card')" @keydown.enter="window.MSUB.ui.pickOne($el, '.biz-type-card')">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/></svg>
               Pastane / Fırın
             </div>
-            <div class="biz-type-card">
+            <div class="biz-type-card" role="button" tabindex="0" @click="window.MSUB.ui.pickOne($el, '.biz-type-card')" @keydown.enter="window.MSUB.ui.pickOne($el, '.biz-type-card')">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
               Catering
             </div>
-            <div class="biz-type-card">
+            <div class="biz-type-card" role="button" tabindex="0" @click="window.MSUB.ui.pickOne($el, '.biz-type-card')" @keydown.enter="window.MSUB.ui.pickOne($el, '.biz-type-card')">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z"/></svg>
               Okul / Hastane
             </div>
-            <div class="biz-type-card">
+            <div class="biz-type-card" role="button" tabindex="0" @click="window.MSUB.ui.pickOne($el, '.biz-type-card')" @keydown.enter="window.MSUB.ui.pickOne($el, '.biz-type-card')">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
               Bakkal / Diğer
             </div>
@@ -567,10 +567,13 @@
         <span><a href="kvkk.html" style="color: var(--green-deep); text-decoration: underline;">KVKK Aydınlatma Metni</a>'ni okudum ve onaylıyorum.</span>
       </label>
 
-      <button class="form-submit">
+      <button class="form-submit" type="button" @click="window.MSUB.b2b.send()">
         Başvuruyu Gönder
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </button>
+      <div class="form-success" id="b2bSuccess" hidden role="status" aria-live="polite">
+        ✓ Başvurunuz WhatsApp üzerinden iletildi. En geç 24 saat içinde dönüş yapacağız.
+      </div>
     </div>
   </div>
 </section>
@@ -686,6 +689,107 @@
 <script src="../assets/js/social.js" defer></script>
 <script src="../assets/js/data-loader.js" defer></script>
 <script src="../assets/js/analytics.js" defer></script>
+
+<script>
+  // B2B application form → WhatsApp (page-local)
+  window.MSUB = window.MSUB || {};
+  window.MSUB.ui = window.MSUB.ui || {
+    pickOne(el, selector) {
+      if (!el || !el.parentElement) return;
+      el.parentElement.querySelectorAll(selector).forEach(function (b) {
+        b.classList.remove('selected');
+      });
+      el.classList.add('selected');
+    }
+  };
+
+  window.MSUB.b2b = {
+    _phone() {
+      return (window.MSUB.config && window.MSUB.config.whatsapp && window.MSUB.config.whatsapp.number) || '905XXXXXXXXX';
+    },
+    // Find input/select/textarea by associated label text (starts-with match)
+    _byLabel(prefix) {
+      const labels = Array.from(document.querySelectorAll('.form-section label'));
+      const label = labels.find(function (l) {
+        return l.textContent.trim().startsWith(prefix);
+      });
+      if (!label) return '';
+      const field = label.closest('.form-field');
+      if (!field) return '';
+      const input = field.querySelector('input, select, textarea');
+      return input ? (input.value || '').trim() : '';
+    },
+    send() {
+      const bizCard = document.querySelector('.biz-type-card.selected');
+      const bizType = bizCard ? bizCard.textContent.trim() : 'Belirtilmedi';
+
+      const data = {
+        bizName: this._byLabel('İşletme Adı'),
+        taxNo: this._byLabel('Vergi Numarası'),
+        contactName: this._byLabel('Yetkili Ad Soyad'),
+        role: this._byLabel('Görev'),
+        email: this._byLabel('E-posta'),
+        phone: this._byLabel('Telefon'),
+        city: this._byLabel('Şehir'),
+        district: this._byLabel('İlçe'),
+        volume: this._byLabel('Tahmini Aylık Hacim'),
+        package: this._byLabel('Hangi Pakete'),
+        products: this._byLabel('Hangi Ürünlerle'),
+        extras: this._byLabel('Eklemek')
+      };
+
+      if (!data.bizName || !data.contactName || !data.email || !data.phone) {
+        alert('Lütfen ★ ile işaretli zorunlu alanları doldurun: İşletme Adı, Yetkili, E-posta, Telefon.');
+        return;
+      }
+
+      const checkboxes = document.querySelectorAll('.form-section .checkbox-row input[type="checkbox"]');
+      const sample = checkboxes[0] && checkboxes[0].checked;
+      const kvkk = checkboxes[1] && checkboxes[1].checked;
+      if (!kvkk) {
+        alert('Devam etmek için KVKK Aydınlatma Metni onayı gerekiyor.');
+        return;
+      }
+
+      const lines = [
+        '🏢 *Toptan & Kurumsal Başvuru — Malkara Süt*',
+        '',
+        '*İşletme Türü:* ' + bizType,
+        '*İşletme:* ' + data.bizName + (data.taxNo ? ' (VKN: ' + data.taxNo + ')' : ''),
+        '',
+        '*Yetkili*',
+        '👤 ' + data.contactName + (data.role ? ' — ' + data.role : ''),
+        '📧 ' + data.email,
+        '📞 ' + data.phone,
+        '📍 ' + data.city + (data.district ? ', ' + data.district : ''),
+        '',
+        '*Hacim & İlgi*',
+        'Aylık hacim: ' + data.volume,
+        'Paket: ' + data.package
+      ];
+      if (data.products) {
+        lines.push('');
+        lines.push('*Ürün İlgisi*');
+        lines.push(data.products);
+      }
+      if (data.extras) {
+        lines.push('');
+        lines.push('*Notlar*');
+        lines.push(data.extras);
+      }
+      if (sample) {
+        lines.push('');
+        lines.push('🎁 Numune talep ediyor.');
+      }
+
+      const url = 'https://wa.me/' + this._phone() + '?text=' + encodeURIComponent(lines.join('\n'));
+      window.open(url, '_blank', 'noopener');
+
+      const success = document.getElementById('b2bSuccess');
+      if (success) success.hidden = false;
+    }
+  };
+</script>
 
 <!-- Search modal (Alpine-controlled) -->
 <div x-data="{

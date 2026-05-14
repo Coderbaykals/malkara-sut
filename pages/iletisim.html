@@ -225,56 +225,59 @@
 
         <label style="display: block; font-size: 12px; font-weight: 600; color: var(--green-deep); margin-bottom: 10px; letter-spacing: 0.02em;">Konunuz nedir?</label>
         <div class="topic-pills">
-          <button class="topic-pill active">📦 Sipariş</button>
-          <button class="topic-pill">↻ Abonelik</button>
-          <button class="topic-pill">🏢 Kurumsal</button>
-          <button class="topic-pill">👨‍🌾 Üretici</button>
-          <button class="topic-pill">📰 Basın</button>
-          <button class="topic-pill">💬 Genel</button>
+          <button class="topic-pill active" type="button" @click="window.MSUB.ui.pickOne($el, '.topic-pill')">📦 Sipariş</button>
+          <button class="topic-pill" type="button" @click="window.MSUB.ui.pickOne($el, '.topic-pill')">↻ Abonelik</button>
+          <button class="topic-pill" type="button" @click="window.MSUB.ui.pickOne($el, '.topic-pill')">🏢 Kurumsal</button>
+          <button class="topic-pill" type="button" @click="window.MSUB.ui.pickOne($el, '.topic-pill')">👨‍🌾 Üretici</button>
+          <button class="topic-pill" type="button" @click="window.MSUB.ui.pickOne($el, '.topic-pill')">📰 Basın</button>
+          <button class="topic-pill" type="button" @click="window.MSUB.ui.pickOne($el, '.topic-pill')">💬 Genel</button>
         </div>
 
         <div class="form-row">
           <div class="form-field">
-            <label>Ad Soyad</label>
-            <input type="text" placeholder="Zeynep Kara">
+            <label for="contact-name">Ad Soyad</label>
+            <input type="text" id="contact-name" name="name" placeholder="Zeynep Kara" required>
           </div>
           <div class="form-field">
-            <label>E-posta</label>
-            <input type="email" placeholder="ornek@email.com">
+            <label for="contact-email">E-posta</label>
+            <input type="email" id="contact-email" name="email" placeholder="ornek@email.com" required>
           </div>
         </div>
         <div class="form-row">
           <div class="form-field">
-            <label>Telefon (opsiyonel)</label>
-            <input type="tel" placeholder="+90 5__ ___ __ __">
+            <label for="contact-phone">Telefon (opsiyonel)</label>
+            <input type="tel" id="contact-phone" name="phone" placeholder="+90 5__ ___ __ __">
           </div>
           <div class="form-field">
-            <label>Sipariş Numarası (varsa)</label>
-            <input type="text" placeholder="ML-26-XXXXX">
-          </div>
-        </div>
-        <div class="form-row single">
-          <div class="form-field">
-            <label>Konu</label>
-            <input type="text" placeholder="Mesajınızın kısa başlığı">
+            <label for="contact-order">Sipariş Numarası (varsa)</label>
+            <input type="text" id="contact-order" name="orderNo" placeholder="ML-26-XXXXX">
           </div>
         </div>
         <div class="form-row single">
           <div class="form-field">
-            <label>Mesajınız</label>
-            <textarea placeholder="Detaylı olarak yazın, doğru kişiye yönlendirelim..."></textarea>
+            <label for="contact-subject">Konu</label>
+            <input type="text" id="contact-subject" name="subject" placeholder="Mesajınızın kısa başlığı" required>
+          </div>
+        </div>
+        <div class="form-row single">
+          <div class="form-field">
+            <label for="contact-message">Mesajınız</label>
+            <textarea id="contact-message" name="message" placeholder="Detaylı olarak yazın, doğru kişiye yönlendirelim..." required></textarea>
           </div>
         </div>
 
         <label class="checkbox-row">
-          <input type="checkbox" checked>
+          <input type="checkbox" id="contact-kvkk" checked>
           <span><a href="kvkk.html" style="color: var(--green-deep); text-decoration: underline;">KVKK Aydınlatma Metni</a>'ni okudum, formdaki bilgilerimin işlenmesini onaylıyorum.</span>
         </label>
 
-        <button class="form-submit">
+        <button class="form-submit" type="button" @click="window.MSUB.contact.send()">
           Mesajı Gönder
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
         </button>
+        <div class="form-success" id="contactSuccess" hidden role="status" aria-live="polite">
+          ✓ Mesajınız WhatsApp üzerinden iletildi. En geç 24 saat içinde dönüş yapacağız.
+        </div>
       </div>
 
       <!-- MAP -->
@@ -528,6 +531,71 @@
 <script src="../assets/js/social.js" defer></script>
 <script src="../assets/js/data-loader.js" defer></script>
 <script src="../assets/js/analytics.js" defer></script>
+
+<script>
+  // Generic small UI helpers + contact form submission (page-local)
+  window.MSUB = window.MSUB || {};
+  window.MSUB.ui = window.MSUB.ui || {
+    pickOne(el, selector) {
+      if (!el || !el.parentElement) return;
+      el.parentElement.querySelectorAll(selector).forEach(function (b) {
+        b.classList.remove('active');
+      });
+      el.classList.add('active');
+    }
+  };
+
+  window.MSUB.contact = {
+    _phone() {
+      return (window.MSUB.config && window.MSUB.config.whatsapp && window.MSUB.config.whatsapp.number) || '905XXXXXXXXX';
+    },
+    send() {
+      const name = (document.getElementById('contact-name') || {}).value || '';
+      const email = (document.getElementById('contact-email') || {}).value || '';
+      const phone = (document.getElementById('contact-phone') || {}).value || '';
+      const orderNo = (document.getElementById('contact-order') || {}).value || '';
+      const subject = (document.getElementById('contact-subject') || {}).value || '';
+      const message = (document.getElementById('contact-message') || {}).value || '';
+      const kvkk = (document.getElementById('contact-kvkk') || {}).checked;
+
+      // Minimal validation
+      if (!name.trim() || !email.trim() || !subject.trim() || !message.trim()) {
+        alert('Lütfen Ad Soyad, E-posta, Konu ve Mesaj alanlarını doldurun.');
+        return;
+      }
+      if (!kvkk) {
+        alert('Devam etmek için KVKK Aydınlatma Metni onayı gerekiyor.');
+        return;
+      }
+
+      const activeTopic = document.querySelector('.topic-pill.active');
+      const topic = activeTopic ? activeTopic.textContent.trim() : 'Genel';
+
+      const lines = [
+        '📩 *İletişim Talebi — Malkara Süt*',
+        '',
+        'Kategori: ' + topic,
+        'Konu: ' + subject.trim(),
+        '',
+        '*İletişim Bilgileri*',
+        '👤 ' + name.trim(),
+        '📧 ' + email.trim()
+      ];
+      if (phone.trim()) lines.push('📞 ' + phone.trim());
+      if (orderNo.trim()) lines.push('🔢 Sipariş: ' + orderNo.trim());
+      lines.push('');
+      lines.push('*Mesaj*');
+      lines.push(message.trim());
+
+      const url = 'https://wa.me/' + this._phone() + '?text=' + encodeURIComponent(lines.join('\n'));
+      window.open(url, '_blank', 'noopener');
+
+      // Show inline success
+      const success = document.getElementById('contactSuccess');
+      if (success) success.hidden = false;
+    }
+  };
+</script>
 
 <!-- Search modal (Alpine-controlled) -->
 <div x-data="{
