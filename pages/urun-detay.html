@@ -97,7 +97,7 @@
         <span class="image-tag bio">A2 Protein</span>
         <span class="image-tag">Cam Şişe</span>
       </div>
-      <button class="zoom-btn">
+      <button class="zoom-btn" type="button" aria-label="Görseli büyüt" @click="window.MSUB.product.zoom($el.parentElement.querySelector('img'))">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
       </button>
       <img loading="lazy" decoding="async" :src="product?.image || \'https://images.unsplash.com/photo-1550583724-b2692b85b150?w=1200&q=85\'" :alt="product?.name || \'\'">
@@ -204,11 +204,11 @@
     </div>
 
     <div class="secondary-actions">
-      <button class="secondary-btn">
+      <button class="secondary-btn" type="button" @click="window.MSUB.product.toggleFav($el)" :class="{ 'is-fav': window.MSUB.product.isFav(product?.id) }">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-        Favorilere Ekle
+        <span x-text="window.MSUB.product.isFav(product?.id) ? 'Favorilerde ✓' : 'Favorilere Ekle'">Favorilere Ekle</span>
       </button>
-      <button class="secondary-btn">
+      <button class="secondary-btn" type="button" @click="window.MSUB.product.share(product)">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
         Paylaş
       </button>
@@ -398,7 +398,7 @@
       <div class="big-rating">4.9</div>
       <div class="stars-big">★★★★★</div>
       <div class="total">128 onaylı yorum</div>
-      <button class="write-btn">Yorum Yaz</button>
+      <button class="write-btn" type="button" @click="window.MSUB.product.writeReview()">Yorum Yaz</button>
     </div>
     <div class="review-bars">
       <div class="review-bar-row">
@@ -646,6 +646,79 @@
 <script src="../assets/js/social.js" defer></script>
 <script src="../assets/js/data-loader.js" defer></script>
 <script src="../assets/js/analytics.js" defer></script>
+
+<script>
+  // Product detail page interactions (page-local)
+  window.MSUB = window.MSUB || {};
+  window.MSUB.product = {
+    FAV_KEY: 'msub:favorites',
+
+    _favs() {
+      try { return JSON.parse(localStorage.getItem(this.FAV_KEY) || '[]'); }
+      catch (_) { return []; }
+    },
+    isFav(id) {
+      if (!id) return false;
+      return this._favs().indexOf(id) !== -1;
+    },
+    toggleFav(btn) {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id') || 'p001';
+      let favs = this._favs();
+      const idx = favs.indexOf(id);
+      if (idx === -1) favs.push(id);
+      else favs.splice(idx, 1);
+      localStorage.setItem(this.FAV_KEY, JSON.stringify(favs));
+      // Visual feedback
+      btn.classList.toggle('is-fav', idx === -1);
+      const label = btn.querySelector('span');
+      if (label) label.textContent = (idx === -1) ? 'Favorilerde ✓' : 'Favorilere Ekle';
+    },
+    share(product) {
+      const data = {
+        title: (product && product.name) ? product.name + ' — Malkara Süt' : 'Malkara Süt',
+        text: (product && product.shortDescription) || 'Trakya köylerinden taze süt ürünleri.',
+        url: window.location.href
+      };
+      if (navigator.share) {
+        navigator.share(data).catch(function () { /* user cancelled, ignore */ });
+      } else if (navigator.clipboard) {
+        navigator.clipboard.writeText(data.url).then(function () {
+          alert('Bağlantı kopyalandı: ' + data.url);
+        });
+      } else {
+        prompt('Bağlantıyı kopyalayın:', data.url);
+      }
+    },
+    zoom(img) {
+      if (!img || !img.src) return;
+      // Build overlay
+      const overlay = document.createElement('div');
+      overlay.className = 'image-zoom-overlay';
+      overlay.setAttribute('role', 'dialog');
+      overlay.setAttribute('aria-label', 'Görsel önizleme');
+      overlay.innerHTML = '<button class="image-zoom-close" aria-label="Kapat">×</button><img src="' + img.src.replace(/w=\d+/, 'w=1600') + '" alt="">';
+      overlay.addEventListener('click', function (e) {
+        if (e.target === overlay || e.target.classList.contains('image-zoom-close')) {
+          overlay.remove();
+          document.removeEventListener('keydown', onEsc);
+        }
+      });
+      function onEsc(e) {
+        if (e.key === 'Escape') { overlay.remove(); document.removeEventListener('keydown', onEsc); }
+      }
+      document.addEventListener('keydown', onEsc);
+      document.body.appendChild(overlay);
+    },
+    writeReview() {
+      const phone = (window.MSUB.config && window.MSUB.config.whatsapp && window.MSUB.config.whatsapp.number) || '905XXXXXXXXX';
+      const productEl = document.querySelector('h1[x-text]');
+      const productName = (productEl && productEl.textContent) || 'Ürün';
+      const msg = '⭐ *Ürün Yorumu — Malkara Süt*\n\nÜrün: ' + productName + '\n\nYorumum:\n[buraya yorumunuzu yazın]';
+      window.open('https://wa.me/' + phone + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+    }
+  };
+</script>
 
 <!-- Search modal (Alpine-controlled) -->
 <div x-data="{
