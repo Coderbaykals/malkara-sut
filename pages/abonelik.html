@@ -327,9 +327,9 @@
                 <span>89 ₺</span>
               </div>
               <div class="pick-stepper">
-                <button>−</button>
-                <input type="number" value="2">
-                <button>+</button>
+                <button type="button" @click="window.MSUB.ui.stepInput($el.parentElement.querySelector('input'), -1)">−</button>
+                <input type="number" value="2" min="1">
+                <button type="button" @click="window.MSUB.ui.stepInput($el.parentElement.querySelector('input'), 1)">+</button>
               </div>
             </div>
 
@@ -340,9 +340,9 @@
                 <span>125 ₺</span>
               </div>
               <div class="pick-stepper">
-                <button>−</button>
-                <input type="number" value="1">
-                <button>+</button>
+                <button type="button" @click="window.MSUB.ui.stepInput($el.parentElement.querySelector('input'), -1)">−</button>
+                <input type="number" value="1" min="1">
+                <button type="button" @click="window.MSUB.ui.stepInput($el.parentElement.querySelector('input'), 1)">+</button>
               </div>
             </div>
 
@@ -352,7 +352,7 @@
                 <h4>Beyaz Peynir 500g</h4>
                 <span>185 ₺</span>
               </div>
-              <button class="add-pick-btn">+</button>
+              <button class="add-pick-btn" type="button" aria-label="Bu ürünü kutuya ekle" @click="window.MSUB.ui.addPick($el)">+</button>
             </div>
 
             <div class="product-pick added">
@@ -362,9 +362,9 @@
                 <span>165 ₺</span>
               </div>
               <div class="pick-stepper">
-                <button>−</button>
-                <input type="number" value="1">
-                <button>+</button>
+                <button type="button" @click="window.MSUB.ui.stepInput($el.parentElement.querySelector('input'), -1)">−</button>
+                <input type="number" value="1" min="1">
+                <button type="button" @click="window.MSUB.ui.stepInput($el.parentElement.querySelector('input'), 1)">+</button>
               </div>
             </div>
 
@@ -374,7 +374,7 @@
                 <h4>Sade Kefir 500ml</h4>
                 <span>75 ₺</span>
               </div>
-              <button class="add-pick-btn">+</button>
+              <button class="add-pick-btn" type="button" aria-label="Bu ürünü kutuya ekle" @click="window.MSUB.ui.addPick($el)">+</button>
             </div>
 
             <div class="product-pick">
@@ -383,7 +383,7 @@
                 <h4>Manda Beyaz Peynir 500g</h4>
                 <span>285 ₺</span>
               </div>
-              <button class="add-pick-btn">+</button>
+              <button class="add-pick-btn" type="button" aria-label="Bu ürünü kutuya ekle" @click="window.MSUB.ui.addPick($el)">+</button>
             </div>
 
           </div>
@@ -397,11 +397,11 @@
             <h3>Teslimat sıklığı</h3>
           </div>
           <div class="freq-grid">
-            <button class="freq-opt selected">
+            <button class="freq-opt selected" type="button" @click="window.MSUB.ui.pickOne($el, '.freq-opt')">
               <strong>Her hafta</strong>
               <span>Süt-yoğurt yüksek tüketim için</span>
             </button>
-            <button class="freq-opt">
+            <button class="freq-opt" type="button" @click="window.MSUB.ui.pickOne($el, '.freq-opt')">
               <strong>2 haftada bir</strong>
               <span>Daha esnek tempo</span>
             </button>
@@ -418,9 +418,9 @@
             <div class="day-cell disabled"><strong>Pzt</strong><span class="dt">Yok</span></div>
             <div class="day-cell disabled"><strong>Sal</strong><span class="dt">Yok</span></div>
             <div class="day-cell disabled"><strong>Çar</strong><span class="dt">Yok</span></div>
-            <div class="day-cell"><strong>Per</strong><span class="dt">Müsait</span></div>
-            <div class="day-cell selected"><strong>Cum</strong><span class="dt">Seçildi</span></div>
-            <div class="day-cell"><strong>Cmt</strong><span class="dt">Müsait</span></div>
+            <div class="day-cell" role="button" tabindex="0" @click="window.MSUB.ui.pickDay($el)" @keydown.enter="window.MSUB.ui.pickDay($el)"><strong>Per</strong><span class="dt">Müsait</span></div>
+            <div class="day-cell selected" role="button" tabindex="0" @click="window.MSUB.ui.pickDay($el)" @keydown.enter="window.MSUB.ui.pickDay($el)"><strong>Cum</strong><span class="dt">Seçildi</span></div>
+            <div class="day-cell" role="button" tabindex="0" @click="window.MSUB.ui.pickDay($el)" @keydown.enter="window.MSUB.ui.pickDay($el)"><strong>Cmt</strong><span class="dt">Müsait</span></div>
             <div class="day-cell disabled"><strong>Paz</strong><span class="dt">Yok</span></div>
           </div>
         </div>
@@ -432,15 +432,15 @@
             <h3>İlk teslimat tarihi</h3>
           </div>
           <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
-            <button class="freq-opt selected">
+            <button class="freq-opt selected" type="button" @click="window.MSUB.ui.pickOne($el, '.freq-opt')">
               <strong>Bu Cuma</strong>
               <span>15 Mayıs</span>
             </button>
-            <button class="freq-opt">
+            <button class="freq-opt" type="button" @click="window.MSUB.ui.pickOne($el, '.freq-opt')">
               <strong>Gelecek Cuma</strong>
               <span>22 Mayıs</span>
             </button>
-            <button class="freq-opt">
+            <button class="freq-opt" type="button" @click="window.MSUB.ui.pickOne($el, '.freq-opt')">
               <strong>2 Hafta Sonra</strong>
               <span>29 Mayıs</span>
             </button>
@@ -724,8 +724,56 @@
 <script src="../assets/js/analytics.js" defer></script>
 
 <script>
-  // Subscription box → WhatsApp request flow (page-local)
+  // Small UI helpers for the builder (page-local, no build step)
   window.MSUB = window.MSUB || {};
+  window.MSUB.ui = window.MSUB.ui || {
+    // Mutual-exclusion selector within parent
+    pickOne(el, selector) {
+      if (!el || !el.parentElement) return;
+      el.parentElement.querySelectorAll(selector).forEach(function (b) {
+        b.classList.remove('selected');
+      });
+      el.classList.add('selected');
+    },
+    // Day picker: only operates on non-disabled cells, also swaps status text
+    pickDay(el) {
+      if (!el || el.classList.contains('disabled')) return;
+      const cells = el.parentElement.querySelectorAll('.day-cell');
+      cells.forEach(function (c) {
+        if (c.classList.contains('disabled')) return;
+        c.classList.remove('selected');
+        const dt = c.querySelector('.dt');
+        if (dt) dt.textContent = 'Müsait';
+      });
+      el.classList.add('selected');
+      const dt = el.querySelector('.dt');
+      if (dt) dt.textContent = 'Seçildi';
+    },
+    // Stepper +/- for a number input
+    stepInput(input, delta) {
+      if (!input) return;
+      const min = parseInt(input.min, 10) || 0;
+      const max = parseInt(input.max, 10) || 99;
+      let val = parseInt(input.value, 10) || 0;
+      val = Math.max(min, Math.min(max, val + delta));
+      input.value = String(val);
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+    },
+    // Convert a "+ Ekle" card into an added stepper card (visual only)
+    addPick(btn) {
+      const card = btn.closest('.product-pick');
+      if (!card) return;
+      card.classList.add('added');
+      btn.outerHTML = ''
+        + '<div class="pick-stepper">'
+        +   '<button type="button" onclick="window.MSUB.ui.stepInput(this.parentElement.querySelector(\'input\'), -1)">−</button>'
+        +   '<input type="number" value="1" min="1">'
+        +   '<button type="button" onclick="window.MSUB.ui.stepInput(this.parentElement.querySelector(\'input\'), 1)">+</button>'
+        + '</div>';
+    }
+  };
+
+  // Subscription box → WhatsApp request flow (page-local)
   window.MSUB.subscribe = {
     _phone() {
       return (window.MSUB.config && window.MSUB.config.whatsapp && window.MSUB.config.whatsapp.number) || '905XXXXXXXXX';
