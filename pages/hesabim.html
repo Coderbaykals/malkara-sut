@@ -196,23 +196,23 @@
       </div>
 
       <div class="sub-actions">
-        <button class="sub-btn primary">
+        <a class="sub-btn primary" href="abonelik.html#builder" role="button">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
           Kutuyu Düzenle
-        </button>
-        <button class="sub-btn">
+        </a>
+        <button class="sub-btn" type="button" @click="window.MSUB.account.request('skip')">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
           Bu Haftayı Atla
         </button>
-        <button class="sub-btn">
+        <button class="sub-btn" type="button" @click="window.MSUB.account.request('reschedule')">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
           Tarihi Değiştir
         </button>
-        <button class="sub-btn">
+        <a class="sub-btn" href="#past-orders" role="button">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
           Geçmiş
-        </button>
-        <button class="sub-btn danger">
+        </a>
+        <button class="sub-btn danger" type="button" @click="window.MSUB.account.request('cancel')">
           Aboneliği İptal Et
         </button>
       </div>
@@ -310,10 +310,10 @@
     </div>
 
     <!-- RECENT ORDERS -->
-    <div class="section">
+    <div class="section" id="past-orders">
       <div class="section-title-row">
         <h2>Son Siparişler</h2>
-        <a href="javascript:void(0)" class="section-link">Tümünü Gör →</a>
+        <a href="iletisim.html?konu=siparis-gecmisi" class="section-link">Tümünü Gör →</a>
       </div>
 
       <div class="order-row">
@@ -511,6 +511,26 @@
 <script src="../assets/js/social.js" defer></script>
 <script src="../assets/js/data-loader.js" defer></script>
 <script src="../assets/js/analytics.js" defer></script>
+
+<script>
+  // Account page subscription actions → WhatsApp request (page-local)
+  window.MSUB = window.MSUB || {};
+  window.MSUB.account = {
+    _phone() {
+      return (window.MSUB.config && window.MSUB.config.whatsapp && window.MSUB.config.whatsapp.number) || '905XXXXXXXXX';
+    },
+    request(action) {
+      const messages = {
+        skip:       '🥛 *Abonelik — Bu Haftayı Atla*\n\nMerhaba, bu haftaki teslimatımı atlamak istiyorum. Lütfen onaylar mısınız?',
+        reschedule: '🥛 *Abonelik — Teslimat Tarihi Değiştir*\n\nMerhaba, abonelik teslimat günümü/tarihimi değiştirmek istiyorum. Sizinle uygun tarih için iletişime geçer misiniz?',
+        cancel:     '🥛 *Abonelik — İptal Talebi*\n\nMerhaba, mevcut aboneliğimi iptal etmek istiyorum. Lütfen iptal işlemini başlatır mısınız?'
+      };
+      const msg = messages[action] || 'Merhaba, aboneliğim hakkında konuşmak istiyorum.';
+      const url = 'https://wa.me/' + this._phone() + '?text=' + encodeURIComponent(msg);
+      window.open(url, '_blank', 'noopener');
+    }
+  };
+</script>
 
 <!-- Search modal (Alpine-controlled) -->
 <div x-data="{
